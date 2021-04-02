@@ -40,10 +40,3 @@ module.exports = (db) => {
 
   return router;
 }
-
-
-
-// app.get("/dashboard", (req, res) => {
-
-// });
-
