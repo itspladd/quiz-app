@@ -37,9 +37,24 @@ app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
 
 // Homepage
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.get("/404", (req, res) => {
+  res.render("404");
+});
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/*", (req, res) => {
+  res.redirect("/404");
 });
 
 app.listen(PORT, () => {
