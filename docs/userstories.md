@@ -15,3 +15,5 @@ As a user I would like to be able to share a link to my results so I can share m
 As a user I would like to be able to see a list of public quizzes so I can discover new things.
 
 As a user I would like to see a list of public quizzes on the home page every time I visit the home page because I am lazy.
+
+As a user I would like to take a quiz without logging in because I do not care about tracking my progress.
