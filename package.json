@@ -4,16 +4,28 @@
   "description": "Midterm quiz app with Paul and Reggi",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "local": "./node_modules/.bin/nodemon -L --ignore public/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itspladd/quiz-app.git"
   },
-  "author": "",
+  "author": "Paul Ladd, Maria Regina Sirilan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/itspladd/quiz-app/issues"
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^2.4.2",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "node-sass-middleware": "^0.11.0",
+    "pg": "^6.4.2",
+    "pg-native": "^3.0.0"
   },
-  "homepage": "https://github.com/itspladd/quiz-app#readme"
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
 }
