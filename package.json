@@ -1,8 +1,8 @@
 {
   "name": "quiz-app",
   "version": "1.0.0",
-  "description": "Midterm quiz app with Paul and Reggi",
-  "main": "index.js",
+  "description": "Midterm Quiz App by Paul and Reggi",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
