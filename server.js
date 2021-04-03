@@ -164,12 +164,32 @@ app.post("/register", (req, res) => {
 
 // Error 404 page
 app.get("/404", (req, res) => {
-  res.render("404");
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  const templateVars = {
+    alerts,
+    userData,
+    currentPage
+  };
+  res.render("404", templateVars);
 });
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  const templateVars = {
+    alerts,
+    userData,
+    currentPage
+  };
+  res.render("index", templateVars);
 });
 
 // Wildcard route
