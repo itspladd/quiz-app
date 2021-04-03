@@ -5,7 +5,7 @@ module.exports = (db) => {
 
   // /users/dashboard
   router.get("/dashboard", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query("SELECT * FROM users;")
       .then(data => {
         const users = data.rows;
         return { users };
@@ -19,14 +19,14 @@ module.exports = (db) => {
 
   // /users/:userid
   router.get("/:userid", (req, res) => {
-    db.query(`SELECT...`)
+    db.query("SELECT...")
       .then()
       .catch();
   });
 
   // /users
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query("SELECT * FROM users;")
       .then(data => {
         const users = data.rows;
         return { users };
@@ -39,4 +39,4 @@ module.exports = (db) => {
   });
 
   return router;
-}
+};
