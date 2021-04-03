@@ -10,7 +10,7 @@
 <p>A full-stack application for generating and sharing quizzes
 </p>
 
-<p>Built with <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://expressjs.com/">Express</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, <a href="https://jquery.com">jQuery</a>, CSS/<a href="https://sass-lang.com/">SASS</a>, and hosted with <a href="https://www.heroku.com/">Heroku</a></p>
+<p>Built with <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://expressjs.com/">Express</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, <a href="https://jquery.com">jQuery</a>, <a href="https://getbootstrap.com/docs/4.6/">Bootstrap 4</a>, and hosted with <a href="https://www.heroku.com/">Heroku</a></p>
 
 
 
@@ -28,7 +28,7 @@
 
 Created by Paul Ladd ([@pladd](https://github.com/itspladd)) and Maria Regina Sirilan ([@ahhreggi](https://github.com/ahhreggi)) as part of our Lighthouse Labs midterm project.
 
-<b>Built with <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://expressjs.com/">Express</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, <a href="https://jquery.com">jQuery</a>, CSS/<a href="https://sass-lang.com/">SASS</a>. Unit tested using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).</b>
+<b>Built with <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://expressjs.com/">Express</a>, <a href="https://www.postgresql.org/">PostgreSQL</a>, <a href="https://jquery.com">jQuery</a>, and <a href="https://getbootstrap.com/docs/4.6/">Bootstrap 4</a>. Unit tested using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).</b>
 
 <!-- FEATURES -->
 
