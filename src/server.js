@@ -18,7 +18,7 @@ db.connect();
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.set('views','./src/views');
+app.set("views","./src/views");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
