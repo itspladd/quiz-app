@@ -1,10 +1,12 @@
 <div align="center">
-<h1> ⚠️ WORK-IN-PROGRESS ⚠️</h1>
+<h2> ⚠️ WORK-IN-PROGRESS ⚠️</h2>
 </div>
+<br><br>
 
 <!-- TITLE -->
 <div align="center">
-<h1>🧠 Quiz App 📝</h1>
+<img src="https://www.flaticon.com/svg/vstatic/svg/3176/3176298.svg?token=exp=1617422932~hmac=fffd0c06bc635786b3cedec4269f1f22" width="100" />
+<h1>Quiz App</h1>
 <p>A full-stack application for generating and sharing quizzes
 </p>
 
