@@ -24,7 +24,7 @@
 
 ## 📚 Introduction
 
-<b>[QuizApp](https://www.youtube.com/watch?v=dQw4w9WgXcQ)</b> is a full-stack application that allows users to create and take quizzes, share their results, and track their daily progress.
+<b>[QuizApp](https://www.youtube.com/watch?v=dQw4w9WgXcQ)</b> is a responsive, full-stack web application that allows users to create and take quizzes, share their results, and track their daily progress.
 
 Created by Paul Ladd ([@pladd](https://github.com/itspladd)) and Maria Regina Sirilan ([@ahhreggi](https://github.com/ahhreggi)) as part of our Lighthouse Labs midterm project.
 
