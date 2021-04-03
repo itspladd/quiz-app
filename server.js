@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   res.locals.vars = {
     alerts: req.flash(),
     visitorID,
-    // userData: userDatabase[cookieUserID],
+    userData: null, // userDatabase[cookieUserID]
     currentPage: req.originalUrl,
     currentDateTime
   };
@@ -59,7 +59,24 @@ app.use("/quizzes", quizzesRoutes(db));
 
 // Form to login to an existing account
 app.get("/login", (req, res) => {
-  res.render("login");
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  // ERROR: User is already logged in
+  if (userData) {
+    req.flash("warning", "You are already logged in.");
+    res.redirect("/");
+  } else {
+    // SUCCESS: User is not logged in
+    const templateVars = {
+      alerts,
+      userData,
+      currentPage
+    };
+  }
+  res.render("login", templateVars);
 });
 
 // Form to register a new account
