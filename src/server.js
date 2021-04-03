@@ -11,7 +11,7 @@ const morgan = require("morgan");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
-const dbParams = require("./src/lib/db");
+const dbParams = require("./lib/db");
 const db = new Pool(dbParams);
 db.connect();
 
@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Routes for each resource
-const usersRoutes = require("./src/routes/users");
-const quizzesRoutes = require("./src/routes/quizzes");
+const usersRoutes = require("./routes/users");
+const quizzesRoutes = require("./routes/quizzes");
 
 // Mount resource routes
 app.use("/users", usersRoutes(db));
