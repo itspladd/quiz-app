@@ -2,11 +2,12 @@
 @import "nav";
 
 html body {
-  background-color: $bg-color;
-  color: $font-color-body;
-  font-family: $font-primary;
+  background-color: $dark;
+  color: $white;
+  font-family: $font-ss;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  padding-top: 4rem;
 }
 
 *,

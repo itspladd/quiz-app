@@ -1,0 +1,9 @@
+@import "global";
+
+#navigation {
+  padding: 1rem 0;
+  background-color: $secondary;
+  a {
+    color: $white;
+  }
+}
