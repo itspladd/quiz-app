@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Quiz App</title>
+    <%- include("partials/_imports.ejs") %>
+  </head>
+
+  <body>
+
+    <%- include("partials/_header.ejs") %>
+
+    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+
+      <!-- MAIN WINDOW (SPLIT) -->
+      <div class="col-12 col-lg-8">
+        <section id="main-split">
+        </section>
+      </div>
+
+      <!-- MAIN WINDOW (FULL) -->
+      <!-- <div class="col-12">
+        <section id="main-full">
+        </section>
+      </div> -->
+
+      <!-- SIDE PANELS (SPLIT) -->
+      <div class="col-12 col-lg-4">
+        <section id="side-split-top" class="ml-lg-1">
+        </section>
+        <section id="side-split-bottom" class="ml-lg-1">
+        </section>
+      </div>
+
+      <!-- SIDE PANEL (FULL) -->
+      <!-- <div class="col-12 col-lg-4">
+        <section id="side-full" class="ml-lg-1">
+        </section>
+      </div> -->
+
+      </main>
+
+  <%- include("partials/_footer.ejs") %>
+
+  </body>
+
+</html>
