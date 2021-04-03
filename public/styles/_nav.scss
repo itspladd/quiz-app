@@ -3,7 +3,13 @@
 #navigation {
   padding: 1rem 0;
   background-color: $secondary;
+  font-weight: 700;
   a {
     color: $white;
+  }
+  li {
+    a:hover {
+      color: $primary;
+    }
   }
 }

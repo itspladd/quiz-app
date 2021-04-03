@@ -1,10 +1,15 @@
 #navigation {
   padding: 1rem 0;
   background-color: #222338;
+  font-weight: 700;
 }
 
 #navigation a {
   color: #fff;
+}
+
+#navigation li a:hover {
+  color: #e22d4b;
 }
 
 html body {
