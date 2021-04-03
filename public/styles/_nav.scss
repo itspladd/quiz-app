@@ -3,14 +3,15 @@
 #navigation {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: $secondary;
+  background-color: $tertiary;
   font-weight: 700;
+
   a {
     color: $white;
   }
-  li {
-    a:hover {
-      color: $primary;
-    }
+
+  li a:hover {
+    color: $primary;
   }
+
 }
