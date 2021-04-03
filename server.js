@@ -81,7 +81,24 @@ app.get("/login", (req, res) => {
 
 // Form to register a new account
 app.get("/register", (req, res) => {
-  res.render("register");
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  // ERROR: User is already logged in
+  if (userData) {
+    req.flash("warning", "You are already logged in.");
+    res.redirect("/urls");
+  } else {
+    // SUCCESS: User is not logged in
+    const templateVars = {
+      alerts,
+      userData,
+      currentPage
+    };
+    res.render("register", templateVars);
+  }
 });
 
 // Create a new account and log the user in
