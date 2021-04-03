@@ -9,11 +9,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const morgan = require("morgan");
 
-// PG database client/connection setup
-const { Pool } = require("pg");
-const dbParams = require("./src/lib/db");
-const db = new Pool(dbParams);
-db.connect();
+// Import db helper functions
+const db = require("./src/lib/dbHelpers.js");
 
 // app.use(morgan("dev"));
 

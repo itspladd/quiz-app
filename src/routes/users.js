@@ -3,9 +3,18 @@ const router = express.Router();
 
 module.exports = (db) => {
 
+/*   
+  EXAMPLE USAGE OF DB FUNCTIONS
+  db.getUserByID(3)
+  .then(rows => console.log(rows));
+
+  db.getUserByUsername('pladd')
+  .then(rows => console.log(rows));
+*/
+
   // /users/dashboard
   router.get("/dashboard", (req, res) => {
-    // db.query("SELECT * FROM users;")
+    // db.getUserByID("SELECT * FROM users;")
     //   .then(data => {
     //     const users = data.rows;
     //     return { users };
