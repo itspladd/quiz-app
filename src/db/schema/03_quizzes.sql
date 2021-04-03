@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS quizzes CASCADE;
+
+CREATE TABLE quizzes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  author_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL,
+  category INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  views INTEGER DEFAULT 0,
+  creation_date DATE DEFAULT NOW(),
+  public BOOLEAN DEFAULT FALSE
+);

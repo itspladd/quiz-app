@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
     "local": "./node_modules/.bin/nodemon -L -e js,ejs src/index.js",
-    "scss": "node-sass --watch ./src/public/styles -o ./css"
+    "scss": "node-sass --watch ./src/public/styles -o ./css",
+    "db:reset": "node src/bin/resetdb.js"
   },
   "repository": {
     "type": "git",

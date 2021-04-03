@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS question_ratings CASCADE;
+
+CREATE TABLE question_ratings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE,
+  rating SMALLINT NOT NULL,
+  comment VARCHAR(255)
+);
