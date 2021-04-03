@@ -10,7 +10,16 @@
   margin: 2rem 0 3rem 0;
 }
 
-.form-register {
+.form-custom {
   background-color: $tertiary-darker;
   border: 4px solid $primary-darker;
+  img {
+    width: 3rem;
+    margin: auto;
+    padding-bottom: 0.2rem;
+  }
+}
+
+#login-fact {
+  margin: auto 0;
 }
