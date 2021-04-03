@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const cookieSession = require("cookie-session");
+const methodOverride = require("method-override");
 const flash = require("connect-flash");
 
 const app = express();
