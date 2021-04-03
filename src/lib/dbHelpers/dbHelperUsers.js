@@ -38,10 +38,10 @@ module.exports = {
   addUser: function(user) {
     // Extract the user data into queryParams and the keys into an array
     const {columnsString, varsString, queryParams} = db.buildInsertQueryParams(user);
-    console.log(columnsString);
-    console.log(varsString);
-    console.log(queryParams);
-    const queryString = `INSERT INTO users`
+
+    const queryString = `INSERT INTO users (${columnsString})
+    VALUES (${varsString});`;
+    db.query(queryString, queryParams);
   }
 
 };
