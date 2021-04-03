@@ -50,6 +50,7 @@ app.get("/*", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
+
   // Extract/convert data
   const {
     username,
@@ -58,7 +59,7 @@ app.post("/register", (req, res) => {
   } = req.body;
 
   // TODO: Check if user exists then run code below IF username/email isn't taken
-  const existingData = false; // false or "username" or "email" if either is taken
+  const existingData = false; // DB helper returns: false or "username" or "email" if either is taken
 
   // ERROR: Incomplete form or existing credentials
   if (!username || !email || !password) {
@@ -77,8 +78,8 @@ app.post("/register", (req, res) => {
       res.redirect("/")
     })
     .catch(err => console.error(err));
-
   }
+
 });
 
 app.listen(PORT, () => {
