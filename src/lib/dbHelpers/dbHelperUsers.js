@@ -28,5 +28,20 @@ module.exports = {
     const queryParams = [username];
     return db.query(queryString, queryParams)
     .catch(err => console.error(err));
+  },
+
+  /**
+   * Add a new user to the database.
+   * @param {Object} user The user data to be added.
+   * @return {Promise<{}>} A promise to the user.
+   */
+  addUser: function(user) {
+    // Extract the user data into queryParams and the keys into an array
+    const {columnsString, varsString, queryParams} = db.buildInsertQueryParams(user);
+    console.log(columnsString);
+    console.log(varsString);
+    console.log(queryParams);
+    const queryString = `INSERT INTO users`
   }
+
 };
