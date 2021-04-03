@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS quiz_sessions CASCADE;
+
+CREATE TABLE quiz_sessions (
+  id SERIAL NOT NULL,
+  user_id INTEGER REFERENCES users(id) NOT NULL ON DELETE CASCADE,
+  quiz_id INTEGER REFERENCES quizzes(id) NOT NULL ON DELETE CASCADE,
+  start_time TIMESTAMP DEFAULT NOW(),
+  end_time TIMESTAMP
+);

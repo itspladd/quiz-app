@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS session_answers CASCADE;
+
+CREATE TABLE session_answers (
+  id SERIAL NOT NULL,
+  session_id INTEGER REFERENCES sessions(id) NOT NULL ON DELETE CASCADE,
+  answer_id INTEGER REFERENCES answers(id) NOT NULL ON DELETE CASCADE,
+);
