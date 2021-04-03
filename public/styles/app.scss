@@ -51,3 +51,36 @@ section {
   background-color: $green;
   min-height: 24rem;
 }
+
+form {
+  .btn-custom-primary {
+    color: $primary-darker;
+    background-color: $tertiary;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid $primary-darker;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    outline: $primary-darker;
+    transition: 0.1s;
+    &:hover {
+      color: $tertiary;
+      border-color: $primary;
+      background-color: $primary;
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: 0px 0px 1px 2px $primary-darker;
+    }
+  }
+  .form-control {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    &:active,
+    &:focus {
+      box-shadow: 0px 0px 1px 2px $primary-darker;
+    }
+  }
+}

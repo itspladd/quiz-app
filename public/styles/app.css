@@ -75,4 +75,41 @@ section {
   background-color: #31f37b;
   min-height: 24rem;
 }
+
+form .btn-custom-primary {
+  color: #faa515;
+  background-color: #222338;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #faa515;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: #faa515;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+form .btn-custom-primary:hover {
+  color: #222338;
+  border-color: #fad207;
+  background-color: #fad207;
+}
+
+form .btn-custom-primary:active, form .btn-custom-primary:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #faa515;
+          box-shadow: 0px 0px 1px 2px #faa515;
+}
+
+form .form-control {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+}
+
+form .form-control:active, form .form-control:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #faa515;
+          box-shadow: 0px 0px 1px 2px #faa515;
+}
 /*# sourceMappingURL=app.css.map */
