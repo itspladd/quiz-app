@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,7 +17,14 @@ const db = require("./src/lib/dbHelpers.js");
 app.set("view engine", "ejs"); // set the view engine to EJS
 app.set("views","./src/views"); // set the views directory
 app.use(bodyParser.urlencoded({ extended: true })); // parse req body
+app.use(cookieSession({ // configure cookies
+  name: "session",
+  keys: ["userID", "visitorID"],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+app.use(methodOverride("_method")); // override POST requests
 app.use(express.static("public")); // serve public directory
+app.use(flash()); // enable storage of flash messages
 
 // RESOURCE ROUTES ///////////////////////////////////
 const usersRoutes = require("./src/routes/users");
