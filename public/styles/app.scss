@@ -1,6 +1,6 @@
 @import "global";
 @import "nav";
-@import "index";
+@import "form";
 
 html body {
   background-color: $dark;
@@ -8,7 +8,7 @@ html body {
   font-family: $font-ss;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 6rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
@@ -21,12 +21,57 @@ html body {
 section {
   background-color: $tertiary;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+a {
+  color: $primary-darker;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+form {
+  .btn-custom-primary {
+    color: $primary-darker;
+    background-color: $tertiary-darker;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid $primary-darker;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    outline: $primary-darker;
+    transition: 0.1s;
+    &:hover {
+      color: $tertiary;
+      border-color: $primary;
+      background-color: $primary;
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: 0px 0px 1px 2px $primary-darker;
+    }
+  }
+  .form-control {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    &:active,
+    &:focus {
+      box-shadow: 0px 0px 1px 2px $primary-darker;
+    }
+  }
+}
+
+#nav-spacer {
+  height: 5rem;
 }
 
 #main-full {
-  background-color: $primary;
-  min-height: 45rem;
+  // background-color: $tertiary;
+  // min-height: 45rem;
   margin-bottom: 2rem;
 }
 
@@ -50,4 +95,8 @@ section {
 #side-split-bottom {
   background-color: $green;
   min-height: 24rem;
+}
+
+.highlight {
+  color: $primary-darker;
 }
