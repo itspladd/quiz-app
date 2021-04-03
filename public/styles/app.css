@@ -33,6 +33,10 @@
   margin: auto 0;
 }
 
+.error-404 {
+  padding: 4rem;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -84,6 +88,7 @@ form .form-control:active, form .form-control:focus {
 }
 
 #main-full {
+  min-height: 33rem;
   margin-bottom: 2rem;
 }
 
