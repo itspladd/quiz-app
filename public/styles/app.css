@@ -1,5 +1,6 @@
 #navigation {
-  padding: 1rem 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: #222338;
   font-weight: 700;
 }
@@ -19,7 +20,6 @@ html body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 4rem;
 }
 
 *,
