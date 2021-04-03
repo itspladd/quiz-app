@@ -12,7 +12,9 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
-console.log(dbParams);
+
+//console.log(dbParams);
+
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
 
