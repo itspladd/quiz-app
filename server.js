@@ -79,6 +79,30 @@ app.get("/login", (req, res) => {
   }
 });
 
+// Log the user in
+app.post("/login", (req, res) => {
+  const {
+    login,
+    password
+  } = req.body;
+  let validUserData = true; // authenticateUser(login, password, userDatabase);
+  // ERROR: Incomplete form
+  if (!login || !password) {
+    req.flash("danger", "Please complete all fields.");
+    res.redirect("/login");
+    // ERROR: Credentials are invalid
+  } else if (!validUserData) {
+    req.flash("danger", "The username/email or password you entered is invalid.");
+    res.redirect("/login");
+
+    // SUCCESS: Credentials are valid
+  } else {
+    req.session.userID = validUserData.id;
+    req.flash("success", `Login successful. Welcome back, ${validUserData.username}!`);
+    res.redirect("/");
+  }
+});
+
 // Form to register a new account
 app.get("/register", (req, res) => {
   const {
