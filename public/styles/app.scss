@@ -19,8 +19,9 @@ html body {
 }
 
 section {
-  background-color: $tertiary;
+  background-color: $tertiary-darker;
   border-radius: 5px;
+  border: 4px solid $primary-darker;
   padding: 2rem;
 }
 
@@ -43,6 +44,7 @@ form {
     box-shadow: none;
     outline: $primary-darker;
     transition: 0.1s;
+    user-select: none;
     &:hover {
       color: $tertiary;
       border-color: $primary;
