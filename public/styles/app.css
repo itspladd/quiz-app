@@ -1,6 +1,7 @@
 html body {
-  color: white;
   background-color: #111318;
+  color: white;
+  font-family: "Montserrat", sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   scroll-behavior: smooth;

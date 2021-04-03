@@ -2,8 +2,9 @@
 @import "nav";
 
 html body {
-  color: $font-main;
   background-color: $bg-color;
+  color: $font-color-body;
+  font-family: $font-primary;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
