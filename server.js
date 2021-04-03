@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   res.locals.vars = {
     alerts: req.flash(),
     visitorID,
-    userData: userDatabase[cookieUserID],
+    // userData: userDatabase[cookieUserID],
     currentPage: req.originalUrl,
     currentDateTime
   };
