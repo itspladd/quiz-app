@@ -34,28 +34,6 @@ a {
 }
 
 form {
-  .btn-custom-primary {
-    color: $primary-darker;
-    background-color: $tertiary-darker;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid $primary-darker;
-    border-radius: 0.25rem;
-    box-shadow: none;
-    outline: $primary-darker;
-    transition: 0.1s;
-    user-select: none;
-    &:hover {
-      color: $tertiary;
-      border-color: $primary;
-      background-color: $primary;
-    }
-
-    &:active,
-    &:focus {
-      box-shadow: 0px 0px 1px 2px $primary-darker;
-    }
-  }
   .form-control {
     outline: none;
     box-shadow: none;
@@ -99,6 +77,75 @@ form {
   min-height: 24rem;
 }
 
+.btn-custom {
+  color: $primary-darker;
+  background-color: $tertiary-darker;
+  width: auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid $primary-darker;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  outline: $primary-darker;
+  transition: 0.1s;
+  user-select: none;
+  &:hover {
+    color: $tertiary;
+    border-color: $primary;
+    background-color: $primary;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $primary-darker;
+  }
+}
+
+.btn-custom-flex {
+  width: 100%;
+}
+
+.btn-custom-red {
+  color: $red;
+  background-color: $tertiary-darker;
+  border-color: $red;
+  outline: $red;
+  &:hover {
+    border-color: $red;
+    background-color: $red;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $red-darker;
+  }
+}
+
 .highlight {
   color: $primary-darker;
+}
+
+.divider-v {
+  border-left: 3px solid $primary-darker;
+  margin: 0 3rem;
+}
+
+.divider-h {
+  border-bottom: 3px solid $primary-darker;
+  margin: 2rem 0 3rem 0;
+}
+
+.border-red {
+  border-color: $red;
+}
+
+.border-blue {
+  border-color: $blue;
+}
+
+.border-green {
+  border-color: $green;
+}
+
+.border-purple {
+  border-color: $purple;
 }
