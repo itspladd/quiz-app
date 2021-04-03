@@ -5,7 +5,7 @@
 
 <!-- TITLE -->
 <div align="center">
-<img src="public/images/lightbulb.svg" width="100" />
+<img src="public/images/lightbulb-circle.png" width="100" />
 <h1>Quiz App</h1>
 <p>A full-stack application for generating and sharing quizzes
 </p>
