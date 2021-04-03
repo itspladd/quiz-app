@@ -8,7 +8,8 @@ html body {
   font-family: $font-ss;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 8rem;
+  padding-top: 6rem;
+  padding-bottom: 1rem;
 }
 
 *,
@@ -23,19 +24,30 @@ section {
   padding: 1rem;
 }
 
-#main-section {
+#main-full {
+  background-color: $primary;
+  min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#main-split {
   background-color: $blue;
   min-height: 45rem;
   margin-bottom: 2rem;
 }
 
-#side-top {
+#side-full {
+  background-color: $purple;
+  min-height: 45rem;
+}
+
+#side-split-top {
   background-color: $red;
   min-height: 19rem;
   margin-bottom: 2rem;
 }
 
-#side-bottom {
+#side-split-bottom {
   background-color: $green;
   min-height: 24rem;
 }
