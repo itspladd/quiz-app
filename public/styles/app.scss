@@ -1,7 +1,15 @@
-$bg-color: rgb(29, 29, 29);
-$font-main: $white;
+@import "global";
+@import "nav";
 
 html body {
   color: $font-main;
   background-color: $bg-color;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }

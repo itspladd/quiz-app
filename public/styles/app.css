@@ -1,5 +1,15 @@
 html body {
   color: white;
-  background-color: #1d1d1d !important;
+  background-color: #111318;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 /*# sourceMappingURL=app.css.map */

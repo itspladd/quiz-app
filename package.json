@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
+    "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L -e js,ejs src/index.js",
     "scss": "node-sass --watch ./src/public/styles -o ./css",
     "db:reset": "node src/bin/resetdb.js"
@@ -24,7 +24,8 @@
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "node-sass": "^5.0.0",
-    "pg": "^6.4.2"
+    "pg": "^6.4.2",
+    "pg-native": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
