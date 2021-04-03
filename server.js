@@ -7,6 +7,7 @@ const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const bcrypt = require("bcrypt");
 const morgan = require("morgan");
 
 // Import db helper functions
@@ -50,12 +51,34 @@ app.get("/*", (req, res) => {
 
 app.post("/register", (req, res) => {
   // Extract/convert data
-  const newUser = {...req.body};
-  // Encrypt password
-  newUser.password = newUser.password + "encrypted!!!";
-  db.addUser(newUser)
-    .then(res.redirect("/"))
+  const {
+    username,
+    email,
+    password
+  } = req.body;
+
+  // TODO: Check if user exists then run code below IF username/email isn't taken
+  const existingData = false; // false or "username" or "email" if either is taken
+
+  // ERROR: Incomplete form or existing credentials
+  if (!username || !email || !password) {
+    res.redirect("/register");
+
+  } else if (existingData) {
+    // req.flash("danger", `The ${existingData} you entered is already in use.`);
+    res.redirect("/register");
+
+  } else {
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    db.addUser({ username, email, password: hashedPassword })
+    .then(() => {
+      // req.flash("Registration successful. Welcome to InquizitorApp!");
+      console.log("Registration successful. Welcome to InquizitorApp!");
+      res.redirect("/")
+    })
     .catch(err => console.error(err));
+
+  }
 });
 
 app.listen(PORT, () => {
