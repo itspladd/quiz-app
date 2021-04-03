@@ -12,7 +12,9 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
-console.log(dbParams);
+
+//console.log(dbParams);
+
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
 
@@ -21,5 +23,20 @@ module.exports = {
     return pool.query(text, params)
     .then(res => res.rows)
     .catch(err => console.error(err));
+  },
+
+  buildInsertQueryParams: function(obj) {
+    const keysArray = Object.keys(obj);
+    const numVars = keysArray.length;
+    const queryParams = Object.values(obj);
+
+    columnsString = keysArray.join(", ");
+    let varsString = "";
+    for(let i = 1; i <= numVars; i++) {
+      varsString += i !== 1 ? ", " : "";
+      varsString += `$${i}`;
+    }
+
+    return {columnsString, varsString, queryParams};
   }
 };
