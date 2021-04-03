@@ -48,6 +48,16 @@ app.get("/*", (req, res) => {
   res.redirect("/404");
 });
 
+app.post("/register", (req, res) => {
+  // Extract/convert data
+  const newUser = {...req.body};
+  // Encrypt password
+  newUser.password = newUser.password + "encrypted!!!";
+  db.addUser(newUser)
+  .then(res.redirect("/"))
+  .catch(err => console.error(err));
+});
+
 app.listen(PORT, () => {
   console.log(`ExQuizzIt listening on port ${PORT}`);
 });
