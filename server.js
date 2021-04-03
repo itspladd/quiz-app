@@ -1,74 +1,54 @@
-// Load .env data into process.env
-require("dotenv").config();
-
-// Web server config
-const PORT = process.env.PORT || 8080;
-const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
 const bcrypt = require("bcrypt");
-const morgan = require("morgan");
 
-// Import db helper functions
+const app = express();
+const PORT = process.env.PORT || 8080;
+
 const db = require("./src/lib/dbHelpers.js");
 
-// app.use(morgan("dev"));
+// MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
-app.set("view engine", "ejs");
-app.set("views","./src/views");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.set("view engine", "ejs"); // set the view engine to EJS
+app.set("views","./src/views"); // set the views directory
+app.use(bodyParser.urlencoded({ extended: true })); // parse req body
+app.use(express.static("public")); // serve public directory
 
-// Routes for each resource
+// RESOURCE ROUTES ///////////////////////////////////
 const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
 
-// Mount resource routes
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
 
-// Homepage
+// ENDPOINTS & ROUTES ////////////////////////////////
+
+// Form to login to an existing account
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// Form to register a new account
 app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/404", (req, res) => {
-  res.render("404");
-});
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/*", (req, res) => {
-  res.redirect("/404");
-});
-
+// Create a new account and log the user in
 app.post("/register", (req, res) => {
-
-  // Extract/convert data
   const {
     username,
     email,
     password
   } = req.body;
-
   // TODO: Check if user exists then run code below IF username/email isn't taken
   const existingData = false; // DB helper returns: false or "username" or "email" if either is taken
-
   // ERROR: Incomplete form or existing credentials
   if (!username || !email || !password) {
+    // req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
-
   } else if (existingData) {
     // req.flash("danger", `The ${existingData} you entered is already in use.`);
     res.redirect("/register");
-
   } else {
     const hashedPassword = bcrypt.hashSync(password, 10);
     db.addUser({ username, email, password: hashedPassword })
@@ -79,7 +59,21 @@ app.post("/register", (req, res) => {
     })
     .catch(err => console.error(err));
   }
+});
 
+// Error 404 page
+app.get("/404", (req, res) => {
+  res.render("404");
+});
+
+// Home page
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+// Wildcard route
+app.get("/*", (req, res) => {
+  res.redirect("/404");
 });
 
 app.listen(PORT, () => {
