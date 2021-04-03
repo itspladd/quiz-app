@@ -57,6 +57,39 @@ app.use("/quizzes", quizzesRoutes(db));
 
 // ENDPOINTS & ROUTES ////////////////////////////////
 
+// Log the user in
+app.post("/login", (req, res) => {
+  const {
+    login,
+    password
+  } = req.body;
+  let validUserData = true; // authenticateUser(login, password, userDatabase);
+  // ERROR: Incomplete form
+  if (!login || !password) {
+    req.flash("danger", "Please complete all fields.");
+    res.redirect("/login");
+    // ERROR: Credentials are invalid
+  } else if (!validUserData) {
+    req.flash("danger", "The username/email or password you entered is invalid.");
+    res.redirect("/login");
+    // SUCCESS: Credentials are valid
+  } else {
+    req.session.userID = validUserData.id;
+    req.flash("success", `Login successful. Welcome back, ${validUserData.username}!`);
+    res.redirect("/");
+  }
+});
+
+// Log the user out
+app.post("/logout", (req, res) => {
+  // SUCCESS: User is logged in
+  if (req.session.userID) {
+    req.session.userID = null;
+    req.flash("success", "You've successfully logged out.");
+  }
+  res.redirect("/");
+});
+
 // Form to login to an existing account
 app.get("/login", (req, res) => {
   const {
@@ -76,30 +109,6 @@ app.get("/login", (req, res) => {
       currentPage
     };
     res.render("login", templateVars);
-  }
-});
-
-// Log the user in
-app.post("/login", (req, res) => {
-  const {
-    login,
-    password
-  } = req.body;
-  let validUserData = true; // authenticateUser(login, password, userDatabase);
-  // ERROR: Incomplete form
-  if (!login || !password) {
-    req.flash("danger", "Please complete all fields.");
-    res.redirect("/login");
-    // ERROR: Credentials are invalid
-  } else if (!validUserData) {
-    req.flash("danger", "The username/email or password you entered is invalid.");
-    res.redirect("/login");
-
-    // SUCCESS: Credentials are valid
-  } else {
-    req.session.userID = validUserData.id;
-    req.flash("success", `Login successful. Welcome back, ${validUserData.username}!`);
-    res.redirect("/");
   }
 });
 
