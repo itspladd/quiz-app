@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS quizzes CASCADE;
 
 CREATE TABLE quizzes (
   id SERIAL PRIMARY KEY NOT NULL,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   author_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   title VARCHAR(150) NOT NULL,
   description TEXT NOT NULL,
   views INTEGER DEFAULT 0,
