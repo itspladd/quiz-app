@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
+const dayjs = require("dayjs");
 const bcrypt = require("bcrypt");
 
 const app = express();
@@ -11,6 +12,9 @@ const PORT = process.env.PORT || 8080;
 // HELPER FUNCTIONS //////////////////////////////////
 
 const db = require("./src/lib/dbHelpers.js");
+const {
+  generateRandomString,
+} = require("./src/lib/serverHelpers.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
@@ -25,6 +29,24 @@ app.use(cookieSession({ // configure cookies
 app.use(methodOverride("_method")); // override POST requests
 app.use(express.static("public")); // serve public directory
 app.use(flash()); // enable storage of flash messages
+
+// Initialize local variables on every request
+app.use((req, res, next) => {
+  if (!req.session.visitorID) {
+    req.session.visitorID = generateRandomString(10);
+  }
+  const visitorID = req.session.visitorID;
+  const cookieUserID = req.session.userID;
+  const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
+  res.locals.vars = {
+    alerts: req.flash(),
+    visitorID,
+    userData: userDatabase[cookieUserID],
+    currentPage: req.originalUrl,
+    currentDateTime
+  };
+  next();
+});
 
 // RESOURCE ROUTES ///////////////////////////////////
 const usersRoutes = require("./src/routes/users");
