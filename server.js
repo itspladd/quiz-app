@@ -15,7 +15,7 @@ const dbParams = require("./src/lib/db");
 const db = new Pool(dbParams);
 db.connect();
 
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.set("views","./src/views");
