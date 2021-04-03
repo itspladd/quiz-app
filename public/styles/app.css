@@ -3,6 +3,10 @@
   padding-bottom: 1rem;
   background-color: #222338;
   font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #navigation a {
