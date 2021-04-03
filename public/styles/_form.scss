@@ -1,0 +1,16 @@
+@import "global";
+
+.divider-h {
+  border-left: 3px solid $primary-darker;
+  margin: 0 3rem;
+}
+
+.divider-v {
+  border-bottom: 3px solid $primary-darker;
+  margin: 1rem 0;
+}
+
+.form-register {
+  background-color: $tertiary-darker;
+  border: 4px solid $primary-darker;
+}

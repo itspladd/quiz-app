@@ -19,6 +19,21 @@
   padding-bottom: 0.2rem;
 }
 
+.divider-h {
+  border-left: 3px solid #faa515;
+  margin: 0 3rem;
+}
+
+.divider-v {
+  border-bottom: 3px solid #faa515;
+  margin: 1rem 0;
+}
+
+.form-register {
+  background-color: #1a1b2b;
+  border: 4px solid #faa515;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -26,7 +41,7 @@ html body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 6rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
@@ -40,12 +55,60 @@ html body {
 section {
   background-color: #222338;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 2rem;
+}
+
+a {
+  color: #faa515;
+}
+
+a:hover {
+  color: #fad207;
+  text-decoration: none;
+}
+
+form .btn-custom-primary {
+  color: #faa515;
+  background-color: #1a1b2b;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #faa515;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: #faa515;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+form .btn-custom-primary:hover {
+  color: #222338;
+  border-color: #fad207;
+  background-color: #fad207;
+}
+
+form .btn-custom-primary:active, form .btn-custom-primary:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #faa515;
+          box-shadow: 0px 0px 1px 2px #faa515;
+}
+
+form .form-control {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+}
+
+form .form-control:active, form .form-control:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #faa515;
+          box-shadow: 0px 0px 1px 2px #faa515;
+}
+
+#nav-spacer {
+  height: 5rem;
 }
 
 #main-full {
-  background-color: #fad207;
-  min-height: 45rem;
   margin-bottom: 2rem;
 }
 
@@ -69,5 +132,9 @@ section {
 #side-split-bottom {
   background-color: #31f37b;
   min-height: 24rem;
+}
+
+.highlight {
+  color: #faa515;
 }
 /*# sourceMappingURL=app.css.map */
