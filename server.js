@@ -50,12 +50,10 @@ app.get("/*", (req, res) => {
 
 app.post("/register", (req, res) => {
   // Extract/convert data
-  console.log(req.body);
+  const newUser = {...req.body};
   // Encrypt password
-  const username = "default";
-  const email = "tom@crom.blom";
-  const password = "encrypted";
-  db.addUser({username, email, password})
+  newUser.password = newUser.password + "encrypted!!!";
+  db.addUser(newUser)
   .then(res.redirect("/"))
   .catch(err => console.error(err));
 });
