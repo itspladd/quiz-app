@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS answers CASCADE;
 
 CREATE TABLE answers (
   id SERIAL NOT NULL,
-  quiz_id INTEGER REFERENCES quizzes(id) NOT NULL ON DELETE CASCADE,
+  question_id INTEGER REFERENCES questions(id) NOT NULL ON DELETE CASCADE,
   body VARCHAR(255) NOT NULL,
-  difficulty SMALLINT NOT NULL
+  is_correct BOOLEAN,
+  explanation VARCHAR(255)
 );
