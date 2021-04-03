@@ -75,8 +75,8 @@ app.get("/login", (req, res) => {
       userData,
       currentPage
     };
+    res.render("login", templateVars);
   }
-  res.render("login", templateVars);
 });
 
 // Form to register a new account
