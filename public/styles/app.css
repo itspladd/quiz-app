@@ -19,9 +19,14 @@
   padding-bottom: 0.2rem;
 }
 
-.divider {
+.divider-h {
   border-left: 3px solid #faa515;
   margin: 0 3rem;
+}
+
+.divider-v {
+  border-bottom: 3px solid #faa515;
+  margin: 1rem 0;
 }
 
 .form-register {
@@ -36,7 +41,7 @@ html body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 6rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
@@ -97,6 +102,10 @@ form .form-control {
 form .form-control:active, form .form-control:focus {
   -webkit-box-shadow: 0px 0px 1px 2px #faa515;
           box-shadow: 0px 0px 1px 2px #faa515;
+}
+
+#nav-spacer {
+  height: 5rem;
 }
 
 #main-full {
