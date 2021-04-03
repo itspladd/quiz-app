@@ -41,7 +41,7 @@ module.exports = {
 
     const queryString = `INSERT INTO users (${columnsString})
     VALUES (${varsString});`;
-    db.query(queryString, queryParams);
+    return db.query(queryString, queryParams);
   }
 
 };
