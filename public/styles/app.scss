@@ -1,6 +1,7 @@
 @import "global";
 @import "nav";
 @import "form";
+@import "404";
 
 html body {
   background-color: $dark;
@@ -51,7 +52,7 @@ form {
 
 #main-full {
   // background-color: $tertiary;
-  // min-height: 45rem;
+  min-height: 33rem;
   margin-bottom: 2rem;
 }
 
