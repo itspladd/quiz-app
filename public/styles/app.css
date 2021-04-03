@@ -13,20 +13,6 @@
   color: #fad207;
 }
 
-section {
-  background-color: #222338;
-  border-radius: 5px;
-  padding: 1rem;
-}
-
-#side-top {
-  min-height: 20rem;
-}
-
-#side-bottom {
-  min-height: 25rem;
-}
-
 html body {
   background-color: #111318;
   color: #fff;
@@ -42,5 +28,28 @@ html body {
 *:after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
+}
+
+section {
+  background-color: #222338;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#main-section {
+  background-color: #008cff;
+  min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#side-top {
+  background-color: #e22d4b;
+  min-height: 19rem;
+  margin-bottom: 2rem;
+}
+
+#side-bottom {
+  background-color: #31f37b;
+  min-height: 24rem;
 }
 /*# sourceMappingURL=app.css.map */

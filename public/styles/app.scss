@@ -16,3 +16,26 @@ html body {
 *:after {
   box-sizing: inherit;
 }
+
+section {
+  background-color: $tertiary;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#main-section {
+  background-color: $blue;
+  min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#side-top {
+  background-color: $red;
+  min-height: 19rem;
+  margin-bottom: 2rem;
+}
+
+#side-bottom {
+  background-color: $green;
+  min-height: 24rem;
+}
