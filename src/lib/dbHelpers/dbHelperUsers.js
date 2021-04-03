@@ -13,7 +13,7 @@ module.exports = {
       WHERE id = $1`;
     const queryParams = [id];
     return db.query(queryString, queryParams)
-    .catch(err => console.error(err));
+      .catch(err => console.error(err));
   },
 
   /**
@@ -27,7 +27,7 @@ module.exports = {
       WHERE username = $1`;
     const queryParams = [username];
     return db.query(queryString, queryParams)
-    .catch(err => console.error(err));
+      .catch(err => console.error(err));
   },
 
   /**

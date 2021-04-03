@@ -8,6 +8,6 @@ const users = require("./dbHelpers/dbHelperUsers");
 const quizzes = require("./dbHelpers/dbHelperQuizzes");
 const sessions = require("./dbHelpers/dbHelperSessions");
 
-module.exports = { 
+module.exports = {
   ...users,
 };

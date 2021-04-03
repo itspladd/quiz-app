@@ -54,10 +54,10 @@ app.post("/register", (req, res) => {
   // Encrypt password
   newUser.password = newUser.password + "encrypted!!!";
   db.addUser(newUser)
-  .then(res.redirect("/"))
-  .catch(err => console.error(err));
+    .then(res.redirect("/"))
+    .catch(err => console.error(err));
 });
 
 app.listen(PORT, () => {
-  console.log(`ExQuizzIt listening on port ${PORT}`);
+  console.log(`InquizitorApp listening on port ${PORT}`);
 });

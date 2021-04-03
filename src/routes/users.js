@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-/*   
+  /*
   EXAMPLE USAGE OF DB FUNCTIONS
   db.getUserByID(3)
   .then(rows => console.log(rows));

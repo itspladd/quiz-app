@@ -10,6 +10,6 @@ module.exports = {
    * @return {Promise<[{}]>}  A promise to the quiz array.
    */
   getQuizzes: function(options, limit = 10) {
-    let queryString = `SELECT `;
+    let queryString = "SELECT ";
   }
 };
