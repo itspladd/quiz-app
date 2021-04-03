@@ -1,1 +1,15 @@
 @import "global";
+
+section {
+  background-color: $tertiary;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#side-top {
+  min-height: 20rem;
+}
+
+#side-bottom {
+  min-height: 25rem;
+}

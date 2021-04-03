@@ -13,6 +13,20 @@
   color: #fad207;
 }
 
+section {
+  background-color: #222338;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#side-top {
+  min-height: 20rem;
+}
+
+#side-bottom {
+  min-height: 25rem;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -20,7 +34,7 @@ html body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   scroll-behavior: smooth;
-  padding-top: 5rem;
+  padding-top: 6rem;
 }
 
 *,
