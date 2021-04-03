@@ -1,9 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const flash = require("connect-flash");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// HELPER FUNCTIONS //////////////////////////////////
 
 const db = require("./src/lib/dbHelpers.js");
 
