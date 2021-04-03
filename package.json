@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "local": "./node_modules/.bin/nodemon -L -e js server/index.js",
-    "scss": "node-sass --watch ./public/styles -o ./css"
+    "start": "node src/server.js",
+    "local": "./node_modules/.bin/nodemon -L -e js src/index.js",
+    "scss": "node-sass --watch ./src/public/styles -o ./css"
   },
   "repository": {
     "type": "git",
