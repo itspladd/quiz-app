@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS categories CASCADE;
+
+CREATE TABLE categories (
+  id SERIAL NOT NULL,
+  title VARCHAR(20)
+);
