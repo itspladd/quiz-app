@@ -31,6 +31,20 @@ module.exports = {
   },
 
   /**
+   * Get a single user from the database given their email.
+   * @param {String} email The email of the user.
+   * @return {Promise<{}>} A promise to the user.
+   */
+    getUserByEmail: function(email) {
+    const queryString = `SELECT *
+      FROM users
+      WHERE email = $1`;
+    const queryParams = [email];
+    return db.query(queryString, queryParams)
+    .catch(err => console.error(err));
+  },
+
+  /**
    * Add a new user to the database.
    * @param {Object} user The user data to be added.
    * @return {Promise<{}>} A promise to the user.
