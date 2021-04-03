@@ -19,6 +19,11 @@
   padding-bottom: 0.2rem;
 }
 
+.divider {
+  border-left: 3px solid #faa515;
+  margin: 0 3rem;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -40,11 +45,11 @@ html body {
 section {
   background-color: #222338;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #main-full {
-  background-color: #fad207;
+  background-color: #222338;
   min-height: 45rem;
   margin-bottom: 2rem;
 }

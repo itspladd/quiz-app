@@ -1,6 +1,6 @@
 @import "global";
 @import "nav";
-@import "index";
+@import "form";
 
 html body {
   background-color: $dark;
@@ -21,11 +21,11 @@ html body {
 section {
   background-color: $tertiary;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #main-full {
-  background-color: $primary;
+  background-color: $tertiary;
   min-height: 45rem;
   margin-bottom: 2rem;
 }
