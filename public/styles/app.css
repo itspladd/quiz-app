@@ -24,6 +24,11 @@
   margin: 0 3rem;
 }
 
+.form-register {
+  background-color: #1a1b2b;
+  border: 4px solid #faa515;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -48,37 +53,18 @@ section {
   padding: 2rem;
 }
 
-#main-full {
-  background-color: #222338;
-  min-height: 45rem;
-  margin-bottom: 2rem;
+a {
+  color: #faa515;
 }
 
-#main-split {
-  background-color: #008cff;
-  min-height: 45rem;
-  margin-bottom: 2rem;
-}
-
-#side-full {
-  background-color: #9a4dff;
-  min-height: 45rem;
-}
-
-#side-split-top {
-  background-color: #e22d4b;
-  min-height: 19rem;
-  margin-bottom: 2rem;
-}
-
-#side-split-bottom {
-  background-color: #31f37b;
-  min-height: 24rem;
+a:hover {
+  color: #fad207;
+  text-decoration: none;
 }
 
 form .btn-custom-primary {
   color: #faa515;
-  background-color: #222338;
+  background-color: #1a1b2b;
   width: 100%;
   padding: 0.5rem 1rem;
   border: 1px solid #faa515;
@@ -111,5 +97,35 @@ form .form-control {
 form .form-control:active, form .form-control:focus {
   -webkit-box-shadow: 0px 0px 1px 2px #faa515;
           box-shadow: 0px 0px 1px 2px #faa515;
+}
+
+#main-full {
+  margin-bottom: 2rem;
+}
+
+#main-split {
+  background-color: #008cff;
+  min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#side-full {
+  background-color: #9a4dff;
+  min-height: 45rem;
+}
+
+#side-split-top {
+  background-color: #e22d4b;
+  min-height: 19rem;
+  margin-bottom: 2rem;
+}
+
+#side-split-bottom {
+  background-color: #31f37b;
+  min-height: 24rem;
+}
+
+.highlight {
+  color: #faa515;
 }
 /*# sourceMappingURL=app.css.map */

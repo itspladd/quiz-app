@@ -24,38 +24,18 @@ section {
   padding: 2rem;
 }
 
-#main-full {
-  background-color: $tertiary;
-  min-height: 45rem;
-  margin-bottom: 2rem;
-}
-
-#main-split {
-  background-color: $blue;
-  min-height: 45rem;
-  margin-bottom: 2rem;
-}
-
-#side-full {
-  background-color: $purple;
-  min-height: 45rem;
-}
-
-#side-split-top {
-  background-color: $red;
-  min-height: 19rem;
-  margin-bottom: 2rem;
-}
-
-#side-split-bottom {
-  background-color: $green;
-  min-height: 24rem;
+a {
+  color: $primary-darker;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
 }
 
 form {
   .btn-custom-primary {
     color: $primary-darker;
-    background-color: $tertiary;
+    background-color: $tertiary-darker;
     width: 100%;
     padding: 0.5rem 1rem;
     border: 1px solid $primary-darker;
@@ -83,4 +63,36 @@ form {
       box-shadow: 0px 0px 1px 2px $primary-darker;
     }
   }
+}
+
+#main-full {
+  // background-color: $tertiary;
+  // min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#main-split {
+  background-color: $blue;
+  min-height: 45rem;
+  margin-bottom: 2rem;
+}
+
+#side-full {
+  background-color: $purple;
+  min-height: 45rem;
+}
+
+#side-split-top {
+  background-color: $red;
+  min-height: 19rem;
+  margin-bottom: 2rem;
+}
+
+#side-split-bottom {
+  background-color: $green;
+  min-height: 24rem;
+}
+
+.highlight {
+  color: $primary-darker;
 }
