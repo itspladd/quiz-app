@@ -33,12 +33,11 @@ app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
 app.use((req, res, next) => {
-  console.log('middleware start')
   if (!req.session.visitorID) {
     req.session.visitorID = generateRandomString(10);
   }
   const visitorID = req.session.visitorID;
-  const cookieUserID = req.session.userID || null;
+  const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
   db.getUserByID(cookieUserID)
     .then(userData => {
@@ -59,7 +58,6 @@ app.use((req, res, next) => {
   // console.log("COOKIES:");
   // console.log("visitorID:", visitorID);
   // console.log("userID:", cookieUserID);
-console.log('middleware end');
   //////////////////////////////////////////
 });
 
