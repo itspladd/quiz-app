@@ -45,8 +45,6 @@ const getUserByEmail = (email) => {
  * Returns a user if the given username/email and password combination exists in the database, false otherwise.
  * @param  {string} login
  *         The username/email of a user.
- * @param  {string} password
- *         The password to authenticate credentials with.
  * @return {Promise<{}>}
  *         A promise to the user.
  */
