@@ -17,8 +17,7 @@ module.exports = {
     // Separate the quiz metadata from the questions
     const questions = quizData.questions;
     delete quizData.questions;
-    console.log("Quiz data:", quizData);
-    console.log("Questions: ", questions);
+    
     // Extract the user data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(quizData);
     const queryString = `
@@ -42,7 +41,6 @@ module.exports = {
       return Promise.all(questionPromises);
     })
     .then(promiseArr => {
-      console.log(promiseArr);
       // The quiz is still the first element in the array, so we return that
       return promiseArr[0];
     })
@@ -63,15 +61,36 @@ module.exports = {
     // Separate the answers from the question
     const answers = questionData.answers;
     delete questionData.answers;
-    // Extract the user data into queryParams and the keys into an array
+
+    // Extract the question data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(questionData);
     const queryString = `
       INSERT INTO questions (${columns})
       VALUES (${vars})
       RETURNING *;
     `;
+
+    // Return a promise to the query completion, value is the question object
     return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
+    .then(rows => {
+      // Save the question object
+      const question = rows[0];
+      // Create the array to hold all the promises from adding each answer
+      // The question object is the first thing in this array, so we can access it later
+      const answerPromises = [question];
+      // Add the question id to each answer and add its database promise to the array
+      for (let answer of answers) {
+        answer['question_id'] = question.id;
+        answerPromises.push(this.addAnswer(answer));
+      }
+      // Return once all have resolved
+      return Promise.all(answerPromises);
+    })
+    .then(promiseArr => {
+      // The question is still the first element in the array, so we return that
+      return promiseArr[0];
+    })
+    .catch(err => console.error(err));
   },
 
   /**
@@ -84,15 +103,16 @@ module.exports = {
      * @return {Promise<{}>}
      *         A promise to the answer.
      */
-  addAnswer: (answerData) => {
-    // Extract the user data into queryParams and the keys into an array
+  addAnswer: function(answerData) {
+    // Extract the answer data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(answerData);
     const queryString = `
-      INSERT INTO quizzes (${columns})
+      INSERT INTO answers (${columns})
       VALUES (${vars})
       RETURNING *;
     `;
     return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
+    .then(rows => rows[0])
+    .catch(err => console.error(err));
   }
 };

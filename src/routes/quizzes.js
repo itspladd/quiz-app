@@ -85,38 +85,18 @@ module.exports = (db) => {
       questions: [
         {
           body
-          difficulty
+          difficulty (optional)
           answers: [
             body,
             is_correct,
-            explanation
+            explanation (optional)
           ]
         }
       ]
     }
     */
-   // Dummy quiz
-    const quiz = {
-      author_id: 1,
-      category_id: 1,
-      title: "Does quiz insertion work?",
-      description: "No, seriously.",
-      public: true,
-      questions: [
-        { body: "Can you see this question?",
-          answers: [
-            { body: "Yes", is_correct: true},
-            { body: "No", is_correct: false},
-          ]},
-        { body: "What about THIS question?",
-          answers: [
-            { body: "No, dummy", is_correct: false},
-            { body: "Yes, duh", is_correct: true},
-          ]},
-      ],
-    };
     db.addQuiz(quiz)
-    .then(quiz => res.redirect(`/${quiz.id}`))
+    .then(quiz => res.redirect(`/quizzes/${quiz.id}`))
     .catch(err => console.log(err));
   });
 
