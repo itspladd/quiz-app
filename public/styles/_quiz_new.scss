@@ -14,9 +14,19 @@
 
 }
 
+#new-quiz-error {
+  color: $red;
+  height: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
 .add-control {
 
   user-select: none;
+  // border: 2px solid red;
+  display: flex;
 
   .control-desc {
     visibility: visible;

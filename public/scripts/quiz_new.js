@@ -43,12 +43,21 @@ const getNumQuestions = () => {
   return $("#add-questions").children().length;
 };
 
+const showError = (errorMsg) => {
+  const errorComponent = $("#new-quiz-error");
+  if (errorMsg) {
+    errorComponent.html(errorMsg);
+  } else {
+    errorComponent.empty();
+  }
+}
+
 // Check that the form is complete and that there are at least min questions
 // A quiz is valid if:
 // - There are at least min questions
 // - All questions are non-empty
 // - All responses are non-empty
-const getFormErrors = (minQuestions = 2, minResponses = 4) => {
+const getFormErrors = (minQuestions = 1, minResponses = 4) => {
   let error = null;
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
@@ -91,7 +100,7 @@ $(document).ready(function() {
 
 
   // Add initial question forms
-  const initialForms = 2;
+  const initialForms = 1;
   for (let i = 0; i < initialForms; i++) {
     addQuestionComponent(questionsList);
   }
@@ -108,14 +117,17 @@ $(document).ready(function() {
     if (formError) {
       // TODO: Display formError value on page
       console.log(formError)
+      showError(formError);
     } else {
       console.log("good to go!");
+      showError(false);
     }
   })
 
   // Clear question validation highlights on user input
   quizForm.on("input", function() {
     $(this).find(".new-question").css("border-color", "#fff");
+    showError(false);
   });
 
 });
