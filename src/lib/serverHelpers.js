@@ -32,15 +32,11 @@ const generateRandomString = (length) => {
 //////////////////////////////////////////////////////////
 
 /**
- * Returns a string representing the property that exists in the database, false otherwise.
+ * Returns a user from the database with the given username.
  * @param  {string} username
- *         The username to look up in the database.
- * @param  {string} email
- *         The email to look up in the database.
- * @param  {{Object.<id: string, username: string, email: string, password: string}} userDB
- *         An object containing user IDs and their associated credentials.
- * @return {string|undefined}
- *         The existing property or undefined if none was found.
+ *         The username of a user.
+ * @return {Promise<{}>}
+ *         A promise to the user.
  */
 const getUserByUsername = (username) => {
   const queryString = `
@@ -53,6 +49,13 @@ const getUserByUsername = (username) => {
     .then(res => res.rows[0]);
 };
 
+/**
+ * Returns a user from the database with the given email.
+ * @param  {string} email
+ *         The email of a user.
+ * @return {Promise<{}>}
+ *         A promise to the user.
+ */
 const getUserByEmail = (email) => {
   const queryString = `
     SELECT *
