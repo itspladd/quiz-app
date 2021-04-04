@@ -50,10 +50,27 @@
                       <option value="false">Unlisted (hidden from search results)</option>
                     </select>
                   </div>
+                </div>
 
-                  <!-- QUESTIONS -->
+
+
+                <!-- QUESTIONS -->
+                <div class="add-questions mt-2">
+
+                  <div class="form-row">
+                    <div class="col-11 col-md-5">
+                      <label for="question" class="form-label text-muted mt-2">Question</label>
+                      <input class="form-control" type="text" name="question[]" required>
+                    </div>
+                    <div class="col-11 col-md-5">
+                      <label for="answer" class="form-label text-muted mt-2">Answer</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                    </div>
+                  </div>
 
                 </div>
+
+
                 <!-- SUBMIT -->
                 <button type="submit" class="btn-custom btn-custom-flex mt-5">Create Quiz</button>
               </div>

@@ -93,6 +93,10 @@
   width: 4rem;
 }
 
+.add-questions {
+  border: 2px solid red;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
