@@ -1,11 +1,6 @@
-$(document).ready(function() {
-
-  console.log("yo")
-
+$(document).ready(() => {
+  console.log("HEY");
   $(document).on("click", () => {
-    console.log("heyo");
-    alert("hey");
-  }
-
-
-});
+    console.log("OW");
+  })
+})

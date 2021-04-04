@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const dayjs = require("dayjs");
 const bcrypt = require("bcrypt");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -28,7 +29,7 @@ app.use(cookieSession({ // configure cookies
   maxAge: 24 * 60 * 60 * 1000
 }));
 app.use(methodOverride("_method")); // override POST requests
-app.use(express.static("public")); // serve public directory
+app.use(express.static(path.join(__dirname, 'public'))); // serve public directory
 app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
