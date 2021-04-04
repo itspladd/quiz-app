@@ -68,6 +68,15 @@
   border-color: #e22d4b;
 }
 
+.list-quiz {
+  border: 1px solid red;
+  height: 7rem;
+}
+
+.list-quiz button {
+  font-size: larger;
+}
+
 html body {
   background-color: #111318;
   color: #fff;
@@ -124,24 +133,20 @@ form .form-control:active, form .form-control:focus {
 }
 
 #main-split {
-  background-color: #008cff;
   min-height: 45rem;
   margin-bottom: 2rem;
 }
 
 #side-full {
-  background-color: #9a4dff;
   min-height: 45rem;
 }
 
 #side-split-top {
-  background-color: #e22d4b;
   min-height: 19rem;
   margin-bottom: 2rem;
 }
 
 #side-split-bottom {
-  background-color: #31f37b;
   min-height: 24rem;
 }
 

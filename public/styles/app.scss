@@ -3,6 +3,7 @@
 @import "form";
 @import "404";
 @import "flash";
+@import "quiz_index";
 
 html body {
   background-color: $dark;
@@ -62,24 +63,24 @@ form {
 }
 
 #main-split {
-  background-color: $blue;
+  // background-color: $blue;
   min-height: 45rem;
   margin-bottom: 2rem;
 }
 
 #side-full {
-  background-color: $purple;
+  // background-color: $purple;
   min-height: 45rem;
 }
 
 #side-split-top {
-  background-color: $red;
+  // background-color: $red;
   min-height: 19rem;
   margin-bottom: 2rem;
 }
 
 #side-split-bottom {
-  background-color: $green;
+  // background-color: $green;
   min-height: 24rem;
 }
 

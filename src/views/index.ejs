@@ -13,7 +13,20 @@
 
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8">
-      <section id="main-split">
+      <section id="main-split" class="border-blue">
+
+        <div class="d-flex flex-row justify-content-between list-quiz">
+          <div class="d-flex flex-column">
+            <p class="h3">World Capitals</p>
+            <p>Do you know the capitals of every country in the the world?</p>
+          </div>
+          <img src="/public/images/arrow-green.png" alt="arrow" />
+          <button class="btn-custom btn-custom-primary justify-content-end align-self-center">
+            GO
+          </button>
+        </div>
+
+
       </section>
     </div>
 
@@ -25,11 +38,15 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div class="col-12 col-lg-4">
-      <section id="side-split-top" class="ml-lg-1">
+      <section id="side-split-top" class="ml-lg-1 border-red">
         <%= userData ? `Signed in as ${userData.username}` : "" %>
       </section>
-      <section id="side-split-bottom" class="ml-lg-1">
+
+      <!-- LEADERBOARDS -->
+      <section id="side-split-bottom" class="ml-lg-1 border-green">
+
       </section>
+
     </div>
 
     <!-- SIDE PANEL (FULL) -->
