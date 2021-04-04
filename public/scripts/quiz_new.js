@@ -12,8 +12,8 @@ const addQuestionComponent = (element) => {
           <input class="input-response form-control mt-3" type="text" name="answer[]" required>
           <input class="input-response form-control mt-3" type="text" name="answer[]" required>
         </div>
-        <div class="add-control d-flex flex-row align-items-center mt-3">
-          <span class="icon icon-del"></span><span class="control-desc control-del">Delete</span>
+        <div class="question-control d-flex flex-row justify-content-end align-items-center mt-3">
+          <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@ const showError = (errorMsg) => {
 // - There are at least min questions
 // - All questions are non-empty
 // - All responses are non-empty
-const getFormErrors = (minQuestions = 1, minResponses = 4) => {
+const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
   let error = null;
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
@@ -89,6 +89,21 @@ const getFormErrors = (minQuestions = 1, minResponses = 4) => {
     // Highlight question green/red if valid/invalid
     $(question).closest(".new-question").css("border-color", valid ? "#31f37b" : "#e22d4b");
   }
+
+  return error;
+}
+
+const getQuizFormErrors = () => {
+  let error = null;
+  if ($("#quiz-title").val().trim().length < 1) {
+    error = "Missing quiz title";
+  } else if ($("#quiz-desc").val().trim().length < 1) {
+    error = "Missing quiz description";
+  } else if ($("#quiz-category").val().trim().length < 1) {
+    error = "Missing quiz category";
+  } else if ($("#quiz-title").val().trim().length < 1) {
+    error = "Missing quiz visibility";
+  }
   return error;
 }
 
@@ -113,18 +128,13 @@ $(document).ready(function() {
   quizForm.on("submit", function(event) {
     event.preventDefault();
     console.log("SUBMITTING QUIZ (CLIENT-SIDE)...")
-    const formError = getFormErrors();
-    if (formError) {
-      // TODO: Display formError value on page
-      console.log(formError)
-      showError(formError);
-    } else {
-      console.log("good to go!");
-      showError(false);
-    }
-  })
+    // Display question form errors, if any
+    const checkQuizInfo = getQuizFormErrors();
+    const checkQuestions = getQuestionFormErrors();
+    showError(checkQuizInfo || checkQuestions);
+  });
 
-  // Clear question validation highlights on user input
+  // Clear question validation highlights and error message on user input
   quizForm.on("input", function() {
     $(this).find(".new-question").css("border-color", "#fff");
     showError(false);

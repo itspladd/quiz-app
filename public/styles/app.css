@@ -133,7 +133,7 @@ form .custom-select:focus {
           justify-content: center;
 }
 
-.add-control {
+.question-control {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -143,19 +143,19 @@ form .custom-select:focus {
   display: flex;
 }
 
-.add-control .control-desc {
+.question-control .control-desc {
   visibility: visible;
 }
 
-.add-control .control-desc.control-del {
+.question-control .control-desc.control-del {
   color: #e22d4b;
 }
 
-.add-control .control-desc.control-add {
+.question-control .control-desc.control-add {
   color: #31f37b;
 }
 
-.add-control .icon {
+.question-control .icon {
   height: 2rem;
   width: 2rem;
   display: -webkit-box;
@@ -163,20 +163,21 @@ form .custom-select:focus {
   display: flex;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  margin: 0rem 0.5rem 0 0;
   opacity: 0.8;
   cursor: pointer;
 }
 
-.add-control .icon.icon-add {
+.question-control .icon.icon-add {
+  margin-right: 0.5rem;
   content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/plus.png");
 }
 
-.add-control .icon.icon-del {
+.question-control .icon.icon-del {
+  margin-left: 0.5rem;
   content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
 }
 
-.add-control .icon:hover {
+.question-control .icon:hover {
   opacity: 1;
 }
 
