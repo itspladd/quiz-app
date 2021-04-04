@@ -7,14 +7,15 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     // Browse all
     // Get all quizzes (this is where we'd add a sort parameter in the future)
+    const {
+      alerts,
+      userData,
+      currentPage,
+      rankData
+    } = res.locals.vars;
+
     db.getPublicQuizzes()
     .then(quizData => {
-      const {
-        alerts,
-        userData,
-        currentPage,
-        rankData
-      } = res.locals.vars;
       const templateVars = {
         alerts,
         userData,
@@ -52,16 +53,19 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-    const templateVars = {
-      alerts,
-      userData,
-      currentPage,
-      rankData
-    };
-    // db.query("SELECT...")
-    //   .then()
-    //   .catch();
-    res.render("quiz_show", templateVars);
+
+    db.getQuizByID(req.params.quizID)
+    .then(quizData => {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        rankData,
+        quizData
+      };
+      res.render("quiz_show", templateVars);
+    })
+    .catch(err => console.error(err));
   });
 
   router.post("/", (req, res) => {

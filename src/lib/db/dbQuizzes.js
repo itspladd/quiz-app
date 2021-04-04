@@ -12,7 +12,7 @@ module.exports = {
   getPublicQuizzes: function(searchParameters) {
     let queryString = `
       SELECT quizzes.*, 
-        users.username,
+        users.username AS author,
         ROUND( AVG(rating), 1 ) as avg_rating
       FROM quizzes
         JOIN users ON author_id = users.id
@@ -28,6 +28,19 @@ module.exports = {
     // Close out the query
     queryString += `;`;
     return db.query(queryString, queryParams);
+  },
+
+  getQuizByID: function(id) {
+    const queryString = `
+      SELECT quizzes.*,
+        users.username AS author
+      FROM quizzes
+        JOIN users ON users.id = quizzes.id
+      WHERE quizzes.id = $1;
+    `;
+    const queryParams = [id];
+    return db.query(queryString, queryParams)
+    .then(rows => rows[0]);
   },
 
   /**
