@@ -23,6 +23,17 @@
   padding-bottom: 0.2rem;
 }
 
+#navigation button {
+  color: #fff;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+}
+
+#navigation button:hover {
+  color: #fad207;
+}
+
 .form-custom img {
   width: 3rem;
   margin: auto;
