@@ -100,6 +100,7 @@ module.exports = (db) => {
       author_id: 1,
       category_id: 1,
       title: "Does quiz insertion work?",
+      description: "No, seriously.",
       public: true,
       questions: [
         { body: "Can you see this question?",
