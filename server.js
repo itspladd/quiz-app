@@ -33,6 +33,7 @@ app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
 app.use((req, res, next) => {
+  console.log('middleware')
   if (!req.session.visitorID) {
     req.session.visitorID = generateRandomString(10);
   }
@@ -221,6 +222,7 @@ app.get("/404", (req, res) => {
 
 // Home page
 app.get("/", (req, res) => {
+  console.log('made it here')
   const {
     alerts,
     userData,
