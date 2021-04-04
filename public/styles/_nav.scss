@@ -11,8 +11,16 @@
     color: $white;
   }
 
-  li a:hover {
-    color: $primary;
+  button {
+    color: $white;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      color: $primary;
+    }
+
   }
 
   img {
@@ -21,14 +29,8 @@
     padding-bottom: 0.2rem;
   }
 
-  button {
-    color: $white;
-    font-weight: 700;
-    background-color: transparent;
-    border: none;
-    &:hover {
-      color: $primary;
-    }
+  li a:hover {
+    color: $primary;
   }
 
 }
