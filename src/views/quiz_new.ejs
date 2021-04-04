@@ -31,7 +31,6 @@
                 <label for="description" class="form-label text-muted mt-2">Description</label>
                 <input class="form-control" type="text" name="description" required>
                 <!-- CATEGORY (value = category_id) -->
-
                 <div class="form-row">
                   <div class="col-12 col-md-6">
                     <label for="category" class="form-label text-muted mt-2">Category</label>
@@ -58,25 +57,51 @@
                 <label for="public" class="form-label text-muted mt-3 lead">Questions</label>
                 <div id="add-questions" class="mt-2">
 
-                  <!-- A SINGLE QUESTION + RESPONSES -->
+                  <!-- A SINGLE QUESTION + RESPONSES (MIN: 2 QUESTIONS) -->
                   <div class="form-group new-question">
 
-                      <!-- QUESTION -->
-                      <label for="question" class="form-label text-muted mt-2">Question #1</label>
-                      <input class="form-control" type="text" name="question" required>
+                    <!-- QUESTION -->
+                    <label for="question" class="form-label text-muted mt-2">Question</label>
+                    <input class="form-control" type="text" name="question" required>
 
-                      <!-- RESPONSES -->
+                    <!-- RESPONSES -->
+                    <div class="responses">
                       <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
                       <input class="form-control" type="text" name="answer[]" required>
                       <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
                       <input class="form-control" type="text" name="answer[]" required>
                       <input class="form-control mt-3" type="text" name="answer[]" required>
                       <input class="form-control mt-3" type="text" name="answer[]" required>
+                    </div>
 
-                      <!-- CONTROLS -->
-                      <div class="add-control d-flex flex-row align-items-center mt-3">
-                        <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
-                      </div>
+                    <!-- CONTROLS -->
+                    <div class="add-control d-flex flex-row align-items-center mt-3">
+                      <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
+                    </div>
+
+                  </div>
+
+                  <!-- A SINGLE QUESTION + RESPONSES (MIN: 2 QUESTIONS) -->
+                  <div class="form-group new-question">
+
+                    <!-- QUESTION -->
+                    <label for="question" class="form-label text-muted mt-2">Question</label>
+                    <input class="form-control" type="text" name="question" required>
+
+                    <!-- RESPONSES -->
+                    <div class="responses">
+                      <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                    </div>
+
+                    <!-- CONTROLS -->
+                    <div class="add-control d-flex flex-row align-items-center mt-3">
+                      <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
+                    </div>
 
                   </div>
 

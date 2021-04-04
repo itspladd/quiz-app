@@ -93,7 +93,7 @@
   width: 4rem;
 }
 
-#add-questions {
+.new-question {
   border: 2px solid #ffffff79;
   border-radius: 0.25rem;
   min-height: 10rem;
@@ -101,7 +101,7 @@
   margin-bottom: 0.5rem;
 }
 
-#add-questions:hover {
+.new-question:hover {
   border-color: #fff;
   background-color: #222338;
 }
