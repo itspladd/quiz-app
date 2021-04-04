@@ -221,7 +221,6 @@ app.get("/404", (req, res) => {
 
 // Home page
 app.get("/", (req, res) => {
-  console.log('made it here')
   // Top 3 featured
   const quizData = [
     { id: "1", title: "Quiz Name", description: "This is the description."},
