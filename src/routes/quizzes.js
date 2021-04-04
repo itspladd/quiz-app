@@ -6,33 +6,25 @@ module.exports = (db) => {
   // /quizzes
   router.get("/", (req, res) => {
     // Browse all
-    const quizData = [
-      { id: "1", title: "Quiz Name", description: "This is the description."},
-      { id: "2", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-    ]
-    const {
-      alerts,
-      userData,
-      currentPage,
-      rankData
-    } = res.locals.vars;
-    const templateVars = {
-      alerts,
-      userData,
-      currentPage,
-      quizData,
-      rankData
-    };
-    res.render("quiz_index", templateVars);
+    // Get all quizzes (this is where we'd add a sort parameter in the future)
+    db.getQuizzes()
+    .then(quizData => {
+      const {
+        alerts,
+        userData,
+        currentPage,
+        rankData
+      } = res.locals.vars;
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        quizData,
+        rankData
+      };
+      res.render("quiz_index", templateVars);
+    })
+    .catch(err => console.error(err));
   });
 
   // /quizzes/new
@@ -95,7 +87,6 @@ module.exports = (db) => {
       ]
     }
     */
-    console.log(req.body);
     db.addQuiz(quiz)
     .then(quiz => res.redirect(`/quizzes/${quiz.id}`))
     .catch(err => console.log(err));

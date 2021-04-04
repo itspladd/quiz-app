@@ -2,7 +2,22 @@ const db = require("./db");
 
 module.exports = {
 
-  
+  /**
+   * Search for quizzes with optional parameters.
+   * @param  { searchParameters: {  } } quiz
+   *         The quiz data to be added.
+   * @return {Promise<{}>}
+   *         A promise to the quiz.
+   */
+  getQuizzes: function(searchParameters) {
+    const queryString = `
+      SELECT *
+      FROM quizzes;
+    `;
+    const queryParams = [];
+
+    return db.query(queryString, queryParams);
+  },
 
   /**
    * Adds a new quiz to the database. Also adds all included questions and answers.
