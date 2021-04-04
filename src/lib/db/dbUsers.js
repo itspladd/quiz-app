@@ -3,16 +3,6 @@ const {
   buildInsertQueryParams
 } = require("./index");
 
-const { Pool } = require("pg");
-
-const pool = new Pool({
-  user: "ahhreggi",
-  password: "123",
-  port: "5432",
-  host: "localhost",
-  database: "midterm"
-});
-
 //////////////////////////////////////////////////////////
 
 /**
