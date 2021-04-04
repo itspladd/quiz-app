@@ -94,8 +94,9 @@ app.post("/login", (req, res) => {
           res.redirect("/login");
           // SUCCESS: Credentials are valid
         } else {
-          req.session.userID = userData.username;
-          console.log(`Login successful. Welcome back, ${userData.username}!`)
+          req.session.userID = userData.id;
+          console.log(req.session.userID);
+          console.log(`Login successful. Welcome back, ${userData.username}!`);
           req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
           res.redirect("/");
         }
@@ -170,17 +171,17 @@ app.post("/register", (req, res) => {
     res.redirect("/register");
   } else {
     getUserByUsername(username)
-      .then(user => {
+      .then(userData => {
         // ERROR: Username is taken
-        if (user) {
+        if (userData) {
           console.log("The username you entered is already in use.");
           req.flash("The username you entered is already in use.");
           res.redirect("/register");
         } else {
           getUserByEmail(email)
           // ERROR: Email is taken
-            .then(user => {
-              if (user) {
+            .then(userData => {
+              if (userData) {
                 console.log("The email you entered is already in use.");
                 req.flash("The email you entered is already in use.");
                 res.redirect("/register");
@@ -188,9 +189,10 @@ app.post("/register", (req, res) => {
               } else {
                   const hashedPassword = bcrypt.hashSync(password, 10);
                   db.addUser({ username, email, password: hashedPassword })
-                    .then(() => {
-                      console.log("Registration successful. Welcome to InquizitorApp!");
-                      req.flash("Registration successful. Welcome to InquizitorApp!");
+                    .then(userData => {
+                      req.session.userID = userData.id;
+                      console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
+                      req.flash(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
                       res.redirect("/")
                     })
               }

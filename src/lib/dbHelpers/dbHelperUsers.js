@@ -64,7 +64,8 @@ module.exports = {
     const {columns, vars, queryParams} = db.buildInsertQueryParams(userData);
     const queryString = `
       INSERT INTO users (${columns})
-      VALUES (${vars});
+      VALUES (${vars})
+      RETURNING *;
     `;
     return db.query(queryString, queryParams);
   }
