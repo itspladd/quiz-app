@@ -1,9 +1,10 @@
 require("dotenv").config();
 
-let dbParams = {};
+let dbParams = {  ssl: {
+  rejectUnauthorized: false
+}};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
-  dbParams.ssl = { rejectUnauthorized: false };
 } else {
   dbParams = {
     host: process.env.DB_HOST,
@@ -13,10 +14,10 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
-console.log('dbparams: ', dbParams);
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
-console.log('in db.js');
+pool.connect();
+
 module.exports = {
   query: (queryString, queryParams) => {
     console.log("Querying...");
