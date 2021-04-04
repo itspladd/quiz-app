@@ -55,17 +55,29 @@
 
 
                 <!-- QUESTIONS -->
-                <div class="add-questions mt-2">
+                <label for="public" class="form-label text-muted mt-3 lead">Questions</label>
+                <div id="add-questions" class="mt-2">
 
-                  <div class="form-row">
-                    <div class="col-11 col-md-5">
-                      <label for="question" class="form-label text-muted mt-2">Question</label>
-                      <input class="form-control" type="text" name="question[]" required>
-                    </div>
-                    <div class="col-11 col-md-5">
-                      <label for="answer" class="form-label text-muted mt-2">Answer</label>
+                  <!-- A SINGLE QUESTION + RESPONSES -->
+                  <div class="form-group new-question">
+
+                      <!-- QUESTION -->
+                      <label for="question" class="form-label text-muted mt-2">Question #1</label>
+                      <input class="form-control" type="text" name="question" required>
+
+                      <!-- RESPONSES -->
+                      <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
                       <input class="form-control" type="text" name="answer[]" required>
-                    </div>
+                      <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+
+                      <!-- CONTROLS -->
+                      <div class="add-control d-flex flex-row align-items-center mt-3">
+                        <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
+                      </div>
+
                   </div>
 
                 </div>

@@ -1,5 +1,43 @@
 @import "global";
 
-.add-questions {
-  border: 2px solid red;
+#add-questions {
+  border: 2px solid $light;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem 2rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    border-color: $white;
+    background-color: $tertiary;
+  }
+
+}
+
+.add-control {
+
+  .control-desc {
+    visibility: visible;
+    color: $red;
+  }
+
+  .icon {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-self: flex-end;
+    margin: 0rem 0.5rem 0 0;
+    cursor: pointer;
+
+    &.icon-add {
+      content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/plus.png");
+    }
+
+    &.icon-del {
+      content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
+    }
+
+}
+
+
 }
