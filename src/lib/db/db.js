@@ -26,7 +26,7 @@ module.exports = {
       console.log('returning: ', res.rows )
       return res.rows;
     })
-    .catch(err => console.error(err));
+    .catch(err => console.log(err));
   },
 
   /**
