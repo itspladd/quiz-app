@@ -22,7 +22,6 @@ const addQuestionComponent = (element) => {
   const deleteBtn = $newForm.find(".icon-del");
   $(deleteBtn).bind("click", function() {
     $(this).closest(".new-question").remove();
-    console.log("DELETED")
     // Update counter
     updateCounter();
   })
@@ -49,7 +48,7 @@ const getNumQuestions = () => {
 // - There are at least min questions
 // - All questions are non-empty
 // - All responses are non-empty
-const validateForm = (minQuestions = 2, minResponses = 4) => {
+const getFormErrors = (minQuestions = 2, minResponses = 4) => {
   let error = null;
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
@@ -81,7 +80,7 @@ const validateForm = (minQuestions = 2, minResponses = 4) => {
     // Highlight question green/red if valid/invalid
     $(question).closest(".new-question").css("border-color", valid ? "#31f37b" : "#e22d4b");
   }
-  return error || true;
+  return error;
 }
 
 $(document).ready(function() {
@@ -104,8 +103,14 @@ $(document).ready(function() {
 
   quizForm.on("submit", function(event) {
     event.preventDefault();
-    console.log("SUBMITTING QUIZ...")
-    console.log(validateForm());
+    console.log("SUBMITTING QUIZ (CLIENT-SIDE)...")
+    const formError = getFormErrors();
+    if (formError) {
+      // TODO: Display formError value on page
+      console.log(formError)
+    } else {
+      console.log("good to go!");
+    }
   })
 
   // Clear question validation highlights on user input
