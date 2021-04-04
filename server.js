@@ -38,9 +38,9 @@ app.use((req, res, next) => {
     req.session.visitorID = generateRandomString(10);
   }
   const visitorID = req.session.visitorID;
-  const cookieUserID = req.session.userID || null;
+  const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  db.getUserByID(cookieUserID)
+  db.getUserByID(1)
     .then(userData => {
       res.locals.vars = {
         alerts: req.flash(),
