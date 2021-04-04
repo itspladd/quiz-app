@@ -2,19 +2,20 @@
 
 .alert-custom {
   background-color: transparent;
+  border: 4px solid transparent;
 }
 
 .alert-success {
   color: $green;
-  border: 2px solid $green;
+  border-color: $green;
 }
 
 .alert-warning {
   color: $primary;
-  border: 2px solid $primary;
+  border-color: $primary;
 }
 
 .alert-danger {
   color: $red;
-  border: 2px solid $red;
+  border-color: $red;
 }

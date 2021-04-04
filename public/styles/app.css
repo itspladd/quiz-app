@@ -50,21 +50,22 @@
 
 .alert-custom {
   background-color: transparent;
+  border: 4px solid transparent;
 }
 
 .alert-success {
   color: #31f37b;
-  border: 2px solid #31f37b;
+  border-color: #31f37b;
 }
 
 .alert-warning {
   color: #fad207;
-  border: 2px solid #fad207;
+  border-color: #fad207;
 }
 
 .alert-danger {
   color: #e22d4b;
-  border: 2px solid #e22d4b;
+  border-color: #e22d4b;
 }
 
 html body {
