@@ -49,7 +49,6 @@ app.use((req, res, next) => {
         currentPage: req.originalUrl,
         currentDateTime
       };
-      console.log('going to next...');
       next();
     })
     .catch((err) => console.error(err));
