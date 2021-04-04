@@ -70,6 +70,9 @@ module.exports = {
       WHERE id = $1
     `;
     const queryParams = [id];
+    console.log('getting user by id')
+    console.log(queryString)
+    console.log(queryParams)
     return db.query(queryString, queryParams)
       .then(rows => rows[0]);
   },
