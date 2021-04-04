@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 
 // HELPER FUNCTIONS //////////////////////////////////
 
-const db = require("./src/lib/db/index.js");
+const db = require("./src/lib/db/index");
 const {
   generateRandomString
 } = require("./src/lib/utils");
