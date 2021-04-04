@@ -155,24 +155,37 @@ app.post("/register", (req, res) => {
     password
   } = req.body;
 
-  // ERROR: Incomplete form or existing credentials
+  // ERROR: Incomplete form
   if (!username || !email || !password) {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
   } else {
     getUserByUsername(username)
     .then(user => {
+      // ERROR: Username is taken
       if (user) {
-        console.log("USERNAME IS TAKEN!");
+        console.log("The username you entered is already in use.");
+        req.flash("The username you entered is already in use.");
+        res.redirect("/register");
       } else {
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        db.addUser({ username, email, password: hashedPassword })
-        .then(() => {
-          req.flash("Registration successful. Welcome to InquizitorApp!");
-          console.log("Registration successful. Welcome to InquizitorApp!");
-          res.redirect("/")
+        getUserByEmail(email)
+        // ERROR: Email is taken
+        .then(user => {
+          if (user) {
+            console.log("The email you entered is already in use.");
+            req.flash("The email you entered is already in use.");
+            res.redirect("/register");
+            // SUCCESS: Complete form and nonexistent credentials
+          } else {
+              const hashedPassword = bcrypt.hashSync(password, 10);
+              db.addUser({ username, email, password: hashedPassword })
+                .then(() => {
+                  console.log("Registration successful. Welcome to InquizitorApp!");
+                  req.flash("Registration successful. Welcome to InquizitorApp!");
+                  res.redirect("/")
+                })
+          }
         })
-        .catch(err => console.error(err));
       }
 
     })
