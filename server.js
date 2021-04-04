@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 
 // HELPER FUNCTIONS //////////////////////////////////
 
-const db = require("./src/lib/dbHelpers.js");
+const db = require("./src/lib/db/index.js");
 const {
   generateRandomString
 } = require("./src/lib/utils");
@@ -20,8 +20,9 @@ const {
   getUserByUsername,
   getUserByEmail,
   getUserByLogin,
-  getUserByID
-} = require("./src/lib/dbGetters.js");
+  getUserByID,
+  addUser
+} = require("./src/lib/db/dbUsers.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
@@ -68,6 +69,7 @@ app.use((req, res, next) => {
 });
 
 // RESOURCE ROUTES ///////////////////////////////////
+
 const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
 
@@ -128,6 +130,7 @@ app.get("/login", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
+    console.log("You are already logged in.")
     req.flash("warning", "You are already logged in.");
     res.redirect("/");
   } else {
@@ -150,8 +153,9 @@ app.get("/register", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
+    console.log("You are already logged in.")
     req.flash("warning", "You are already logged in.");
-    res.redirect("/urls");
+    res.redirect("/");
   } else {
     // SUCCESS: User is not logged in
     const templateVars = {
@@ -193,7 +197,7 @@ app.post("/register", (req, res) => {
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
                 const hashedPassword = bcrypt.hashSync(password, 10);
-                db.addUser({ username, email, password: hashedPassword })
+                addUser({ username, email, password: hashedPassword })
                   .then(userData => {
                     req.session.userID = userData.id;
                     console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
