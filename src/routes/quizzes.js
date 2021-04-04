@@ -95,6 +95,7 @@ module.exports = (db) => {
       ]
     }
     */
+    console.log(req.body);
     db.addQuiz(quiz)
     .then(quiz => res.redirect(`/quizzes/${quiz.id}`))
     .catch(err => console.log(err));

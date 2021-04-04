@@ -1,6 +1,9 @@
 const db = require("./db");
 
 module.exports = {
+
+  
+
   /**
    * Adds a new quiz to the database. Also adds all included questions and answers.
    * @param  { { author_id: int, 
