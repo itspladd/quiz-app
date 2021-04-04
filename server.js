@@ -33,7 +33,7 @@ app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
 app.use((req, res, next) => {
-  console.log('middleware')
+  console.log('middleware start')
   if (!req.session.visitorID) {
     req.session.visitorID = generateRandomString(10);
   }
@@ -49,6 +49,7 @@ app.use((req, res, next) => {
         currentPage: req.originalUrl,
         currentDateTime
       };
+      console.log('going to next...');
       next();
     })
     .catch((err) => console.error(err));
