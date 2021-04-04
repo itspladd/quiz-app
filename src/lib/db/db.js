@@ -19,7 +19,10 @@ const pool = new Pool(dbParams);
 module.exports = {
   query: (queryString, queryParams) => {
     return pool.query(queryString, queryParams)
-    .then(res => res.rows);
+    .then(res => {
+      console.log('returning', res.rows )
+      return res.rows;
+    });
   },
 
   /**
