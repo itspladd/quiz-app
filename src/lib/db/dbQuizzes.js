@@ -14,8 +14,11 @@ module.exports = {
    *         A promise to the quiz.
    */
   addQuiz: (quizData) => {
-    // 
-
+    // Separate the quiz metadata from the questions
+    const questions = quizData.questions;
+    delete quizData.questions;
+    console.log("Quiz data:", quizData);
+    console.log("Questions: ", questions);
     // Extract the user data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(quizData);
     const queryString = `
