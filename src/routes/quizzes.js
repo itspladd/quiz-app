@@ -67,7 +67,7 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     // POST STUFF
     // REDIRECT TO /:quizID
-    // Make sure quiz is in this format:
+    // Make sure quiz data is in this format:
     /* {
       author_id,
       category_id,
