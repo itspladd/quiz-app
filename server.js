@@ -18,7 +18,8 @@ const {
 } = require("./src/lib/utils");
 const {
   getUserByUsername,
-  getUserByEmail
+  getUserByEmail,
+  getUserByLogin
 } = require("./src/lib/dbGetters.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
@@ -77,20 +78,28 @@ app.post("/login", (req, res) => {
     login,
     password
   } = req.body;
-  let validUserData = true; // authenticateUser(login, password, userDatabase);
   // ERROR: Incomplete form
   if (!login || !password) {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/login");
-    // ERROR: Credentials are invalid
-  } else if (!validUserData) {
-    req.flash("danger", "The username/email or password you entered is invalid.");
-    res.redirect("/login");
-    // SUCCESS: Credentials are valid
   } else {
-    req.session.userID = validUserData.id;
-    req.flash("success", `Login successful. Welcome back, ${validUserData.username}!`);
-    res.redirect("/");
+    getUserByLogin(login)
+      .then(userData => {
+        // Given a valid login, check if the password matches the hashed password
+        const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
+        // ERROR: Credentials are invalid
+        if (!valid) {
+          console.log("The username/email or password you entered is invalid.");
+          req.flash("danger", "The username/email or password you entered is invalid.");
+          res.redirect("/login");
+          // SUCCESS: Credentials are valid
+        } else {
+          req.session.userID = userData.username;
+          console.log(`Login successful. Welcome back, ${userData.username}!`)
+          req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
+          res.redirect("/");
+        }
+      })
   }
 });
 
@@ -161,33 +170,33 @@ app.post("/register", (req, res) => {
     res.redirect("/register");
   } else {
     getUserByUsername(username)
-    .then(user => {
-      // ERROR: Username is taken
-      if (user) {
-        console.log("The username you entered is already in use.");
-        req.flash("The username you entered is already in use.");
-        res.redirect("/register");
-      } else {
-        getUserByEmail(email)
-        // ERROR: Email is taken
-        .then(user => {
-          if (user) {
-            console.log("The email you entered is already in use.");
-            req.flash("The email you entered is already in use.");
-            res.redirect("/register");
-            // SUCCESS: Complete form and nonexistent credentials
-          } else {
-              const hashedPassword = bcrypt.hashSync(password, 10);
-              db.addUser({ username, email, password: hashedPassword })
-                .then(() => {
-                  console.log("Registration successful. Welcome to InquizitorApp!");
-                  req.flash("Registration successful. Welcome to InquizitorApp!");
-                  res.redirect("/")
-                })
-          }
-        })
-      }
-    })
+      .then(user => {
+        // ERROR: Username is taken
+        if (user) {
+          console.log("The username you entered is already in use.");
+          req.flash("The username you entered is already in use.");
+          res.redirect("/register");
+        } else {
+          getUserByEmail(email)
+          // ERROR: Email is taken
+            .then(user => {
+              if (user) {
+                console.log("The email you entered is already in use.");
+                req.flash("The email you entered is already in use.");
+                res.redirect("/register");
+                // SUCCESS: Complete form and nonexistent credentials
+              } else {
+                  const hashedPassword = bcrypt.hashSync(password, 10);
+                  db.addUser({ username, email, password: hashedPassword })
+                    .then(() => {
+                      console.log("Registration successful. Welcome to InquizitorApp!");
+                      req.flash("Registration successful. Welcome to InquizitorApp!");
+                      res.redirect("/")
+                    })
+              }
+            })
+        }
+      })
   }
 });
 
