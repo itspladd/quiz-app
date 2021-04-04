@@ -3,6 +3,7 @@ require("dotenv").config();
 let dbParams = {};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
+  console.log('dbparams: ', dbParams);
 } else {
   dbParams = {
     host: process.env.DB_HOST,
@@ -15,7 +16,7 @@ if (process.env.DATABASE_URL) {
 
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
-
+console.log(pool);
 module.exports = {
   query: (queryString, queryParams) => {
     console.log("Querying...");

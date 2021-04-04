@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  db.getUserByID(1)
+  db.getUserByID(cookieUserID)
     .then(userData => {
       res.locals.vars = {
         alerts: req.flash(),
