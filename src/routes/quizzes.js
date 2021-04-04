@@ -75,6 +75,45 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     // POST STUFF
     // REDIRECT TO /:quizID
+    // Make sure quiz is in this format:
+    /* {
+      author_id,
+      category_id,
+      title,
+      description,
+      public,
+      questions: [
+        {
+          body
+          difficulty
+          answers: [
+            body,
+            is_correct,
+            explanation
+          ]
+        }
+      ]
+    }
+    */
+   // Dummy quiz
+    const quiz = {
+      author_id: 1,
+      category_id: 1,
+      title: "Does quiz insertion work?",
+      public: true,
+      questions: [
+        { body: "Can you see this question?",
+          answers: [
+            { body: "Yes", is_correct: true},
+            { body: "No", is_correct: false},
+          ]},
+        { body: "What about THIS question?",
+          answers: [
+            { body: "No, dummy", is_correct: false},
+            { body: "Yes, duh", is_correct: true},
+          ]},
+      ],
+    };
     db.addQuiz(quiz)
     .then(quiz => res.redirect(`/${quiz.id}`))
     .catch(err => console.log(err));
