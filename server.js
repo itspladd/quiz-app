@@ -45,7 +45,6 @@ app.use((req, res, next) => {
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  console.log("cookieUserID: ", cookieUserID);
   getUserByID(cookieUserID)
     .then(userData => {
       res.locals.vars = {
@@ -115,6 +114,7 @@ app.post("/logout", (req, res) => {
   if (req.session.userID) {
     req.session.userID = null;
     req.flash("success", "You've successfully logged out.");
+    console.log("You've successfully logged out.");
   }
   res.redirect("/");
 });
