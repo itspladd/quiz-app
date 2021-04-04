@@ -212,6 +212,14 @@ a:hover {
   text-decoration: none;
 }
 
+label,
+select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 #nav-spacer {
   height: 4.5rem;
 }

@@ -50,6 +50,11 @@ a {
   }
 }
 
+label,
+select {
+  user-select: none;
+}
+
 #nav-spacer {
   height: 4.5rem;
 }

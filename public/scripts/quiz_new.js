@@ -49,7 +49,7 @@ const getNumQuestions = () => {
 // - There are at least min questions
 // - All questions are non-empty
 // - All responses are non-empty
-const validateForm = (minQuestions = 1, minResponses = 4) => {
+const validateForm = (minQuestions = 2, minResponses = 4) => {
   let error = null;
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
@@ -92,7 +92,7 @@ $(document).ready(function() {
 
 
   // Add initial question forms
-  const initialForms = 1;
+  const initialForms = 2;
   for (let i = 0; i < initialForms; i++) {
     addQuestionComponent(questionsList);
   }
