@@ -2,7 +2,7 @@ const db = require("./db");
 
 module.exports = {
   /**
-   * Adds a new quiz to the database.
+   * Adds a new quiz to the database. Also adds all included questions and answers.
    * @param  { { author_id: int, 
    *             category_id: int,
    *             title: string,
@@ -13,7 +13,7 @@ module.exports = {
    * @return {Promise<{}>}
    *         A promise to the quiz.
    */
-  addQuiz: (quizData) => {
+  addQuiz: function(quizData) {
     // Separate the quiz metadata from the questions
     const questions = quizData.questions;
     delete quizData.questions;
@@ -27,7 +27,26 @@ module.exports = {
       RETURNING *;
     `;
     return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
+    .then(rows => {
+      // Save the quiz object
+      const quiz = rows[0];
+      // Create the array to hold all the promises from adding each question
+      // The quiz object is the first thing in this array, so we can access it later
+      const questionPromises = [quiz];
+      // Add the quiz id to each question and add its database promise to the array
+      for (let question of questions) {
+        question['quiz_id'] = quiz.id;
+        questionPromises.push(this.addQuestion(question));
+      }
+      // Return once all have resolved
+      return Promise.all(questionPromises);
+    })
+    .then(promiseArr => {
+      console.log(promiseArr);
+      // The quiz is still the first element in the array, so we return that
+      return promiseArr[0];
+    })
+    .catch(err => console.error(err));
   },
 
   /**
@@ -40,7 +59,10 @@ module.exports = {
    * @return {Promise<{}>}
    *         A promise to the question.
    */
-  addQuestion: (questionData) => {
+  addQuestion: function(questionData) {
+    // Separate the answers from the question
+    const answers = questionData.answers;
+    delete questionData.answers;
     // Extract the user data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(questionData);
     const queryString = `
