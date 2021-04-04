@@ -179,7 +179,7 @@ app.post("/register", (req, res) => {
         // ERROR: Username is taken
         if (userData) {
           console.log("The username you entered is already in use.");
-          req.flash("The username you entered is already in use.");
+          req.flash("danger", "The username you entered is already in use.");
           res.redirect("/register");
         } else {
           db.getUserByEmail(email)
@@ -187,7 +187,7 @@ app.post("/register", (req, res) => {
             .then(userData => {
               if (userData) {
                 console.log("The email you entered is already in use.");
-                req.flash("The email you entered is already in use.");
+                req.flash("danger", "The email you entered is already in use.");
                 res.redirect("/register");
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
@@ -196,7 +196,7 @@ app.post("/register", (req, res) => {
                   .then(userData => {
                     req.session.userID = userData.id;
                     console.log(`Registration successful. Welcome to InquizitorApp!`);
-                    req.flash(`Registration successful. Welcome to InquizitorApp!`);
+                    req.flash("success", `Registration successful. Welcome to InquizitorApp!`);
                     res.redirect("/");
                   });
               }
