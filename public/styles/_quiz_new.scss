@@ -16,6 +16,8 @@
 
 .add-control {
 
+  user-select: none;
+
   .control-desc {
     visibility: visible;
     &.control-del {

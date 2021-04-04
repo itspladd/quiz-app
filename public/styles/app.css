@@ -121,6 +121,13 @@ form .custom-select:focus {
   background-color: #222338;
 }
 
+.add-control {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 .add-control .control-desc {
   visibility: visible;
 }
