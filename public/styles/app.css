@@ -108,7 +108,14 @@
 
 .add-control .control-desc {
   visibility: visible;
+}
+
+.add-control .control-desc.control-del {
   color: #e22d4b;
+}
+
+.add-control .control-desc.control-add {
+  color: #31f37b;
 }
 
 .add-control .icon {
@@ -120,6 +127,7 @@
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin: 0rem 0.5rem 0 0;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -129,6 +137,10 @@
 
 .add-control .icon.icon-del {
   content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
+}
+
+.add-control .icon:hover {
+  opacity: 1;
 }
 
 html body {

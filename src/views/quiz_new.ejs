@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Create New - InquizitorApp</title>
+    <title>Create Quiz - InquizitorApp</title>
     <%- include("partials/_imports.ejs") %>
   </head>
 
@@ -16,7 +16,7 @@
         <section id="main-split" class="overflow-auto">
           <!-- MAIN TITLE -->
           <div id="main-title" class="mb-5">
-            New Quiz
+            Create Quiz
           </div>
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
@@ -51,8 +51,6 @@
                   </div>
                 </div>
 
-
-
                 <!-- QUESTIONS -->
                 <label for="public" class="form-label text-muted mt-3 lead">Questions</label>
                 <div id="add-questions" class="mt-2">
@@ -76,7 +74,7 @@
 
                     <!-- CONTROLS -->
                     <div class="add-control d-flex flex-row align-items-center mt-3">
-                      <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
+                      <span class="icon icon-del"></span><span class="control-desc control-del">Delete</span>
                     </div>
 
                   </div>
@@ -100,13 +98,17 @@
 
                     <!-- CONTROLS -->
                     <div class="add-control d-flex flex-row align-items-center mt-3">
-                      <span class="icon icon-del"></span><span class="control-desc">Delete?</span>
+                      <span class="icon icon-del"></span><span class="control-desc control-del">Delete</span>
                     </div>
 
                   </div>
 
                 </div>
 
+                <!-- ADD NEW QUESTION BUTTON -->
+                <div class="add-control d-flex flex-row align-items-center mt-3">
+                  <span class="icon icon-add"></span><span class="control-desc control-add">Add question</span>
+                </div>
 
                 <!-- SUBMIT -->
                 <button type="submit" class="btn-custom btn-custom-flex mt-5">Create Quiz</button>

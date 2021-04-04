@@ -18,7 +18,12 @@
 
   .control-desc {
     visibility: visible;
-    color: $red;
+    &.control-del {
+      color: $red;
+    }
+    &.control-add {
+      color: $green;
+    }
   }
 
   .icon {
@@ -27,6 +32,7 @@
     display: flex;
     align-self: flex-end;
     margin: 0rem 0.5rem 0 0;
+    opacity: 0.8;
     cursor: pointer;
 
     &.icon-add {
@@ -35,6 +41,10 @@
 
     &.icon-del {
       content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
+    }
+
+    &:hover {
+      opacity: 1;
     }
 
 }
