@@ -17,30 +17,55 @@ module.exports = {
   },
 
   /**
-   * Get a single user from the database given their username.
-   * @param {String} username The username of the user.
-   * @return {Promise<{}>} A promise to the user.
+   * Returns a user from the database with the given username.
+   * @param  {string} username
+   *         The username of a user.
+   * @return {Promise<{}>}
+   *         A promise to the user.
    */
   getUserByUsername: function(username) {
-    const queryString = `SELECT *
+    const queryString = `
+      SELECT *
       FROM users
-      WHERE username = $1`;
+      WHERE username = $1
+    `;
     const queryParams = [username];
     return db.query(queryString, queryParams)
-      .catch((err) => "username");
+      .then(res => res.rows[0]);
   },
 
   /**
-   * Add a new user to the database.
-   * @param {Object} user The user data to be added.
-   * @return {Promise<{}>} A promise to the user.
+   * Returns a user from the database with the given email.
+   * @param  {string} email
+   *         The email of a user.
+   * @return {Promise<{}>}
+   *         A promise to the user.
    */
-  addUser: function(user) {
-    // Extract the user data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(user);
+  getUserByEmail: function(email) {
+    const queryString = `
+      SELECT *
+      FROM users
+      WHERE email = $1
+    `;
+    const queryParams = [email];
+    return db.query(queryString, queryParams)
+      .then(res => res.rows[0]);
+  },
 
-    const queryString = `INSERT INTO users (${columns})
-    VALUES (${vars});`;
+  /**
+   * Adds a new user to the database.
+   * @param  {{username: string, email: string, password: string}} user
+   *         The user data to be added.
+   * @return {Promise<{}>}
+   *         A promise to the user.
+   */
+  addUser: function(userData) {
+    // Extract the user data into queryParams and the keys into an array
+    const {columns, vars, queryParams} = db.buildInsertQueryParams(userData);
+    const queryString = `
+      INSERT INTO users (${columns})
+      VALUES (${vars});
+    `;
     return db.query(queryString, queryParams);
   }
 

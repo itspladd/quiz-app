@@ -14,10 +14,12 @@ const PORT = process.env.PORT || 8080;
 
 const db = require("./src/lib/dbHelpers.js");
 const {
-  generateRandomString,
+  generateRandomString
+} = require("./src/lib/utils");
+const {
   getUserByUsername,
   getUserByEmail
-} = require("./src/lib/serverHelpers.js");
+} = require("./src/lib/dbGetters.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
@@ -146,7 +148,6 @@ app.get("/register", (req, res) => {
   }
 });
 
-
 // Create a new account and log the user in
 app.post("/register", (req, res) => {
   const {
@@ -154,7 +155,6 @@ app.post("/register", (req, res) => {
     email,
     password
   } = req.body;
-
   // ERROR: Incomplete form
   if (!username || !email || !password) {
     req.flash("danger", "Please complete all fields.");
@@ -187,7 +187,6 @@ app.post("/register", (req, res) => {
           }
         })
       }
-
     })
   }
 });
