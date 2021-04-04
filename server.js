@@ -223,6 +223,18 @@ app.get("/404", (req, res) => {
 // Home page
 app.get("/", (req, res) => {
   console.log('made it here')
+  const quizData = [
+    { id: "1", title: "Quiz Name", description: "This is the description."},
+    { id: "2", title: "Quiz Name", description: "This is the description."},
+    { id: "3", title: "Quiz Name", description: "This is the description."},
+    { id: "4", title: "Quiz Name", description: "This is the description."},
+    { id: "5", title: "Quiz Name", description: "This is the description."},
+    { id: "6", title: "Quiz Name", description: "This is the description."},
+    { id: "7", title: "Quiz Name", description: "This is the description."},
+    { id: "8", title: "Quiz Name", description: "This is the description."},
+    { id: "9", title: "Quiz Name", description: "This is the description."},
+    { id: "10", title: "Quiz Name", description: "This is the description."}
+  ]
   const {
     alerts,
     userData,
@@ -231,7 +243,8 @@ app.get("/", (req, res) => {
   const templateVars = {
     alerts,
     userData,
-    currentPage
+    currentPage,
+    quizData
   };
   res.render("index", templateVars);
 });
