@@ -5,6 +5,20 @@ module.exports = (db) => {
 
   // /quizzes
   router.get("/", (req, res) => {
+    // Browse all
+    const quizData = [
+      { id: "1", title: "Quiz Name", description: "This is the description."},
+      { id: "2", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+      { id: "3", title: "Quiz Name", description: "This is the description."},
+    ]
     const {
       alerts,
       userData,
@@ -13,7 +27,8 @@ module.exports = (db) => {
     const templateVars = {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      quizData
     };
     res.render("quiz_index", templateVars);
   });

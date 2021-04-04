@@ -7,25 +7,66 @@
 
   <body>
 
-    <%- include("partials/_header.ejs") %>
+    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
 
     <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8">
-        <section id="main-split">
-        </section>
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="border-tertiary overflow-auto">
+      <div id="main-title" class="mb-5">
+        Browse All
       </div>
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div class="col-12 col-lg-4">
-        <section id="side-split-top" class="ml-lg-1">
-        </section>
-        <section id="side-split-bottom" class="ml-lg-1">
-        </section>
-      </div>
 
-      </main>
+        <!-- LIST OF ALL QUIZZES (need quiz name, description, id)-->
+        <div id="main-split-content">
+
+          <% for (const quiz of quizData) { %>
+
+            <a href="/quizzes/<%= quiz.id %> ">
+              <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                <div class="col-8">
+                  <p class="quiz-title mt-3 mt-lg-0"><%= quiz.title %> </p>
+                  <p class="quiz-desc d-none d-lg-inline"><%= quiz.description %> </p>
+                </div>
+                  <img class="quiz-go pr-3" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
+              </div>
+            </a>
+
+          <% } %>
+
+        </div>
+
+      </section>
+    </div>
+
+    <!-- MAIN WINDOW (FULL) -->
+    <!-- <div class="col-12">
+      <section id="main-full">
+      </section>
+    </div> -->
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <section id="side-split-top" class="ml-lg-1 border-tertiary">
+        <%= userData ? `Signed in as ${userData.username}` : "" %>
+      </section>
+
+      <!-- LEADERBOARDS -->
+      <section id="side-split-bottom" class="ml-lg-1 border-tertiary">
+
+      </section>
+
+    </div>
+
+    <!-- SIDE PANEL (FULL) -->
+    <!-- <div class="col-12 col-lg-4">
+      <section id="side-full" class="ml-lg-1">
+      </section>
+    </div> -->
+
+    </main>
 
   <%- include("partials/_footer.ejs") %>
 
