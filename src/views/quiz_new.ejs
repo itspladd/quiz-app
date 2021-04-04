@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Create New - InquizitorApp</title>
+    <title>Create Quiz - InquizitorApp</title>
     <%- include("partials/_imports.ejs") %>
   </head>
 
@@ -16,7 +16,7 @@
         <section id="main-split" class="overflow-auto">
           <!-- MAIN TITLE -->
           <div id="main-title" class="mb-5">
-            New Quiz
+            Create Quiz
           </div>
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
@@ -31,7 +31,6 @@
                 <label for="description" class="form-label text-muted mt-2">Description</label>
                 <input class="form-control" type="text" name="description" required>
                 <!-- CATEGORY (value = category_id) -->
-
                 <div class="form-row">
                   <div class="col-12 col-md-6">
                     <label for="category" class="form-label text-muted mt-2">Category</label>
@@ -52,24 +51,64 @@
                   </div>
                 </div>
 
-
-
                 <!-- QUESTIONS -->
-                <div class="add-questions mt-2">
+                <label for="public" class="form-label text-muted mt-3 lead">Questions</label>
+                <div id="add-questions" class="mt-2">
 
-                  <div class="form-row">
-                    <div class="col-11 col-md-5">
-                      <label for="question" class="form-label text-muted mt-2">Question</label>
-                      <input class="form-control" type="text" name="question[]" required>
-                    </div>
-                    <div class="col-11 col-md-5">
-                      <label for="answer" class="form-label text-muted mt-2">Answer</label>
+                  <!-- A SINGLE QUESTION + RESPONSES (MIN: 2 QUESTIONS) -->
+                  <div class="form-group new-question">
+
+                    <!-- QUESTION -->
+                    <label for="question" class="form-label text-muted mt-2">Question</label>
+                    <input class="form-control" type="text" name="question" required>
+
+                    <!-- RESPONSES -->
+                    <div class="responses">
+                      <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
                       <input class="form-control" type="text" name="answer[]" required>
+                      <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
                     </div>
+
+                    <!-- CONTROLS -->
+                    <div class="add-control d-flex flex-row align-items-center mt-3">
+                      <span class="icon icon-del"></span><span class="control-desc control-del">Delete</span>
+                    </div>
+
+                  </div>
+
+                  <!-- A SINGLE QUESTION + RESPONSES (MIN: 2 QUESTIONS) -->
+                  <div class="form-group new-question">
+
+                    <!-- QUESTION -->
+                    <label for="question" class="form-label text-muted mt-2">Question</label>
+                    <input class="form-control" type="text" name="question" required>
+
+                    <!-- RESPONSES -->
+                    <div class="responses">
+                      <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
+                      <input class="form-control" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                      <input class="form-control mt-3" type="text" name="answer[]" required>
+                    </div>
+
+                    <!-- CONTROLS -->
+                    <div class="add-control d-flex flex-row align-items-center mt-3">
+                      <span class="icon icon-del"></span><span class="control-desc control-del">Delete</span>
+                    </div>
+
                   </div>
 
                 </div>
 
+                <!-- ADD NEW QUESTION BUTTON -->
+                <div class="add-control d-flex flex-row align-items-center mt-3">
+                  <span class="icon icon-add"></span><span class="control-desc control-add">Add question</span>
+                </div>
 
                 <!-- SUBMIT -->
                 <button type="submit" class="btn-custom btn-custom-flex mt-5">Create Quiz</button>

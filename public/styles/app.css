@@ -93,8 +93,54 @@
   width: 4rem;
 }
 
-.add-questions {
-  border: 2px solid red;
+.new-question {
+  border: 2px solid #ffffff79;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.new-question:hover {
+  border-color: #fff;
+  background-color: #222338;
+}
+
+.add-control .control-desc {
+  visibility: visible;
+}
+
+.add-control .control-desc.control-del {
+  color: #e22d4b;
+}
+
+.add-control .control-desc.control-add {
+  color: #31f37b;
+}
+
+.add-control .icon {
+  height: 2rem;
+  width: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0rem 0.5rem 0 0;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.add-control .icon.icon-add {
+  content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/plus.png");
+}
+
+.add-control .icon.icon-del {
+  content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
+}
+
+.add-control .icon:hover {
+  opacity: 1;
 }
 
 html body {
