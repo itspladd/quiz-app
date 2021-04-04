@@ -76,7 +76,7 @@ const getUserByLogin = (login) => {
  * @return {Promise<{}>}
  *         A promise to the user.
  */
- const getUserByID = (id) => {
+const getUserByID = (id) => {
   const queryString = `
     SELECT *
     FROM users

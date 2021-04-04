@@ -1,4 +1,4 @@
-require('dotenv').config({path: __dirname + '/.env'});
+require("dotenv").config({path: __dirname + "/.env"});
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
@@ -104,7 +104,7 @@ app.post("/login", (req, res) => {
           req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
           res.redirect("/");
         }
-      })
+      });
   }
 });
 
@@ -192,18 +192,18 @@ app.post("/register", (req, res) => {
                 res.redirect("/register");
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
-                  const hashedPassword = bcrypt.hashSync(password, 10);
-                  db.addUser({ username, email, password: hashedPassword })
-                    .then(userData => {
-                      req.session.userID = userData.id;
-                      console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
-                      req.flash(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
-                      res.redirect("/")
-                    })
+                const hashedPassword = bcrypt.hashSync(password, 10);
+                db.addUser({ username, email, password: hashedPassword })
+                  .then(userData => {
+                    req.session.userID = userData.id;
+                    console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
+                    req.flash(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
+                    res.redirect("/");
+                  });
               }
-            })
+            });
         }
-      })
+      });
   }
 });
 
