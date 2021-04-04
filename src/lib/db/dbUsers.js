@@ -93,7 +93,7 @@ const addUser = (userData) => {
       RETURNING *;
     `;
     return query(queryString, queryParams);
-  }
+}
 
 module.exports = {
   getUserByUsername,

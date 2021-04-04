@@ -13,7 +13,7 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-//console.log(dbParams);
+// console.log(dbParams);
 
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
@@ -24,11 +24,15 @@ module.exports = {
   },
 
   /**
-   *Build the data needed to insert a new object into the database.
-   * @param {Object} object The data to be added.
-   * @return {Object} The column names, query variables, and query parameters.
+   * Build the data needed to insert a new object into the database.
+   * @param  {Object} object
+   *         The data to be added.
+   * @return {Object}
+   *         The column names, query variables, and query parameters.
+   *
    * Build your queryString with `INSERT INTO [table] (${columns}) VALUES (${vars})`
    * The run db.query with (queryString, queryParams).
+   *
    */
   buildInsertQueryParams: function(obj) {
     const keysArray = Object.keys(obj);
