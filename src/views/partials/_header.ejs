@@ -7,9 +7,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/register">REGISTER</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/login">LOGIN</a></li>
 
+              <% if (!userData) { %>
+
+                <!-- LOGIN/REGISTER (shown if user is currently not logged in) -->
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/login">LOGIN</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/register">REGISTER</a></li>
+
+              <% } else { %>
+
+                <!-- LOGOUT (shown if user is currently logged in) -->
                 <li class="nav-item mx-0 mx-lg-1">
                   <form class="form-inline" action="/logout" method="POST">
                     <button id="btn-logout" type="submit" class="btn-nav py-3 px-0 px-lg-3">
@@ -17,6 +24,8 @@
                     </button>
                   </form>
                 </li>
+
+              <% } %>
 
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes">ALL</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/new">NEW</a></li>
