@@ -13,14 +13,13 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-// console.log(dbParams);
-
 const { Pool } = require('pg');
 const pool = new Pool(dbParams);
 
 module.exports = {
   query: (queryString, queryParams) => {
     return pool.query(queryString, queryParams)
+    .then(res => res.rows);
   },
 
   /**
