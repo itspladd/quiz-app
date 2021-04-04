@@ -11,8 +11,8 @@ module.exports = {
    */
   getPublicQuizzes: function(searchParameters) {
     let queryString = `
-      SELECT quizzes.*,
-        username AS author_username,
+      SELECT quizzes.*, 
+        users.username,
         ROUND( AVG(rating), 1 ) as avg_rating
       FROM quizzes
         JOIN users ON author_id = users.id
