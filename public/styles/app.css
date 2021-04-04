@@ -69,12 +69,15 @@
 }
 
 .list-quiz {
-  border: 1px solid red;
-  height: 7rem;
+  border: 2px solid #fff;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.list-quiz button {
-  font-size: larger;
+.quiz-title {
+  font-size: 1.5rem;
 }
 
 html body {

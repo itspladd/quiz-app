@@ -1,10 +1,13 @@
 @import "global";
 
 .list-quiz {
-  border: 1px solid red;
-  height: 7rem;
+  border: 2px solid $white;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
 
-  button {
-    font-size: larger;
-  }
+.quiz-title {
+  font-size: 1.5rem;
 }
