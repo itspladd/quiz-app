@@ -49,17 +49,18 @@ const getNumQuestions = () => {
 // - There are at least min questions
 // - All questions are non-empty
 // - All responses are non-empty
-const checkForm = (min = 1) => {
+const validateForm = (minQuestions = 1, minResponses = 4) => {
   let error = null;
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
-  if (questions.length < min) {
-    error = "Must include at least 2 questions"
+  if (questions.length < minQuestions) {
+    error = `Minimum of ${minQuestions} questions must be provided`
   }
   const allQuestions = $(".input-question")
   for (const question of allQuestions) {
     let valid = true;
     const userQuestion = $(question).val().trim();
+    // Questions may not be non-empty
     if (userQuestion.length < 1) {
       error = "Question field may not be empty"
       valid = false;
@@ -67,10 +68,15 @@ const checkForm = (min = 1) => {
     const responses = $(question).next().find(".input-response");
     for (const response of responses) {
       const userResponse = $(response).val().trim();
+      // Responses may not be non-empty
       if (userResponse.length < 1) {
         error = "Response field may not be empty"
         valid = false;
       }
+    }
+    if (responses.length < minResponses) {
+      error = `Minimum of ${minResponses} responses per question must be provided`;
+      valid = false;
     }
     // Highlight question green/red if valid/invalid
     $(question).closest(".new-question").css("border-color", valid ? "#31f37b" : "#e22d4b");
@@ -82,6 +88,7 @@ $(document).ready(function() {
 
   const questionsList = $("#add-questions");
   const addQuestionBtn = $(".icon-add");
+  const quizForm = $("#new-quiz-form");
 
 
   // Add initial question forms
@@ -95,10 +102,15 @@ $(document).ready(function() {
     addQuestionComponent(questionsList);
   });
 
-  $("#new-quiz-form").on("submit", function(event) {
+  quizForm.on("submit", function(event) {
     event.preventDefault();
     console.log("SUBMITTING QUIZ...")
-    console.log(checkForm());
+    console.log(validateForm());
   })
+
+  // Clear question validation highlights on user input
+  quizForm.on("input", function() {
+    $(this).find(".new-question").css("border-color", "#fff");
+  });
 
 });
