@@ -1,4 +1,7 @@
-const db = require("./db");
+const {
+  query,
+  buildInsertQueryParams
+} = require("./index");
 
 const { Pool } = require("pg");
 
@@ -26,7 +29,7 @@ const getUserByUsername = (username) => {
     WHERE username = $1
   `;
   const queryParams = [username];
-  return pool.query(queryString, queryParams)
+  return query(queryString, queryParams)
     .then(res => res.rows[0]);
 };
 
@@ -44,7 +47,7 @@ const getUserByEmail = (email) => {
     WHERE email = $1
   `;
   const queryParams = [email];
-  return pool.query(queryString, queryParams)
+  return query(queryString, queryParams)
     .then(res => res.rows[0]);
 };
 
@@ -64,7 +67,7 @@ const getUserByLogin = (login) => {
     WHERE username = $1 OR email = $1
   `;
   const queryParams = [login];
-  return pool.query(queryString, queryParams)
+  return query(queryString, queryParams)
     .then(res => res.rows[0]);
 };
 
@@ -82,13 +85,32 @@ const getUserByID = (id) => {
     WHERE id = $1
   `;
   const queryParams = [id];
-  return pool.query(queryString, queryParams)
+  return query(queryString, queryParams)
     .then(res => res.rows[0]);
 };
+
+/**
+ * Adds a new user to the database.
+ * @param  {{username: string, email: string, password: string}} user
+ *         The user data to be added.
+ * @return {Promise<{}>}
+ *         A promise to the user.
+ */
+const addUser = (userData) => {
+    // Extract the user data into queryParams and the keys into an array
+    const {columns, vars, queryParams} = buildInsertQueryParams(userData);
+    const queryString = `
+      INSERT INTO users (${columns})
+      VALUES (${vars})
+      RETURNING *;
+    `;
+    return query(queryString, queryParams);
+  }
 
 module.exports = {
   getUserByUsername,
   getUserByEmail,
   getUserByLogin,
-  getUserByID
+  getUserByID,
+  addUser
 };
