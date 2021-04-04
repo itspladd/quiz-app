@@ -75,6 +75,9 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     // POST STUFF
     // REDIRECT TO /:quizID
+    db.addQuiz(quiz)
+    .then(quiz => res.redirect(`/${quiz.id}`))
+    .catch(err => console.log(err));
   });
 
   /*STRETCH: global results from this quiz
