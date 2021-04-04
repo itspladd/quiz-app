@@ -13,7 +13,7 @@ module.exports = {
     let queryString = `
       SELECT quizzes.*,
         username AS author_username,
-        AVG(rating) as avg_rating
+        ROUND( AVG(rating), 1 ) as avg_rating
       FROM quizzes
         JOIN users ON author_id = users.id
         RIGHT OUTER JOIN quiz_ratings AS ratings ON ratings.quiz_id = quizzes.id 
