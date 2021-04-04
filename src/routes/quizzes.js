@@ -22,13 +22,15 @@ module.exports = (db) => {
     const {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     } = res.locals.vars;
     const templateVars = {
       alerts,
       userData,
       currentPage,
-      quizData
+      quizData,
+      rankData
     };
     res.render("quiz_index", templateVars);
   });
@@ -38,12 +40,14 @@ module.exports = (db) => {
     const {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     } = res.locals.vars;
     const templateVars = {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     };
     res.render("quiz_new", templateVars);
   });
@@ -53,12 +57,14 @@ module.exports = (db) => {
     const {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     } = res.locals.vars;
     const templateVars = {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     };
     // db.query("SELECT...")
     //   .then()

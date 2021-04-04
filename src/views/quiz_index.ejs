@@ -49,14 +49,12 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <section id="side-split-top" class="ml-lg-1 border-tertiary">
-        <%= userData ? `Signed in as ${userData.username}` : "" %>
-      </section>
+
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
 
       <!-- LEADERBOARDS -->
-      <section id="side-split-bottom" class="ml-lg-1 border-tertiary">
-
-      </section>
+      <%- include("partials/_side_bottom.ejs", rankData) %>
 
     </div>
 

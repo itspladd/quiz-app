@@ -47,7 +47,8 @@ app.use((req, res, next) => {
         visitorID,
         userData: userData || null,
         currentPage: req.originalUrl,
-        currentDateTime
+        currentDateTime,
+        rankData: null
       };
       next();
     })
@@ -232,13 +233,15 @@ app.get("/", (req, res) => {
   const {
     alerts,
     userData,
-    currentPage
+    currentPage,
+    rankData
   } = res.locals.vars;
   const templateVars = {
     alerts,
     userData,
     currentPage,
-    quizData
+    quizData,
+    rankData
   };
   res.render("index", templateVars);
 });
