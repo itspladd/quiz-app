@@ -12,17 +12,10 @@ const PORT = process.env.PORT || 8080;
 
 // HELPER FUNCTIONS //////////////////////////////////
 
-const db = require("./src/lib/db/index");
+const db = require("./src/lib/db/dbHelpers.js");
 const {
   generateRandomString
 } = require("./src/lib/utils");
-const {
-  getUserByUsername,
-  getUserByEmail,
-  getUserByLogin,
-  getUserByID,
-  addUser
-} = require("./src/lib/db/dbUsers.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
@@ -46,7 +39,7 @@ app.use((req, res, next) => {
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  getUserByID(cookieUserID)
+  db.getUserByID(cookieUserID)
     .then(userData => {
       res.locals.vars = {
         alerts: req.flash(),
@@ -89,7 +82,7 @@ app.post("/login", (req, res) => {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/login");
   } else {
-    getUserByLogin(login)
+    db.getUserByLogin(login)
       .then(userData => {
         // Given a valid login, check if the password matches the hashed password
         const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
@@ -179,7 +172,7 @@ app.post("/register", (req, res) => {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
   } else {
-    getUserByUsername(username)
+    db.getUserByUsername(username)
       .then(userData => {
         // ERROR: Username is taken
         if (userData) {
@@ -187,7 +180,7 @@ app.post("/register", (req, res) => {
           req.flash("The username you entered is already in use.");
           res.redirect("/register");
         } else {
-          getUserByEmail(email)
+          db.getUserByEmail(email)
           // ERROR: Email is taken
             .then(userData => {
               if (userData) {
@@ -197,7 +190,7 @@ app.post("/register", (req, res) => {
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
                 const hashedPassword = bcrypt.hashSync(password, 10);
-                addUser({ username, email, password: hashedPassword })
+                db.addUser({ username, email, password: hashedPassword })
                   .then(userData => {
                     req.session.userID = userData.id;
                     console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
