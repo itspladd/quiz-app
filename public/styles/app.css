@@ -48,6 +48,25 @@
   padding: 4rem;
 }
 
+.alert-custom {
+  background-color: transparent;
+}
+
+.alert-success {
+  color: #31f37b;
+  border: 2px solid #31f37b;
+}
+
+.alert-warning {
+  color: #fad207;
+  border: 2px solid #fad207;
+}
+
+.alert-danger {
+  color: #e22d4b;
+  border: 2px solid #e22d4b;
+}
+
 html body {
   background-color: #111318;
   color: #fff;

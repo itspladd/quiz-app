@@ -1,0 +1,20 @@
+@import "global";
+
+.alert-custom {
+  background-color: transparent;
+}
+
+.alert-success {
+  color: $green;
+  border: 2px solid $green;
+}
+
+.alert-warning {
+  color: $primary;
+  border: 2px solid $primary;
+}
+
+.alert-danger {
+  color: $red;
+  border: 2px solid $red;
+}
