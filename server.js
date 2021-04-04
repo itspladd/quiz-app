@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 
 // HELPER FUNCTIONS //////////////////////////////////
 
-const db = require("./src/lib/index.js");
+const db = require("./src/lib/db/index.js");
 const {
   generateRandomString
 } = require("./src/lib/utils");
@@ -22,7 +22,7 @@ const {
   getUserByLogin,
   getUserByID,
   addUser
-} = require("./src/lib/dbUsers.js");
+} = require("./src/lib/db/dbUsers.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
@@ -130,6 +130,7 @@ app.get("/login", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
+    console.log("You are already logged in.")
     req.flash("warning", "You are already logged in.");
     res.redirect("/");
   } else {
