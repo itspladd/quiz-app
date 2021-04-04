@@ -1,3 +1,4 @@
+require('dotenv').config({path: __dirname + '/.env'});
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 8080;
 const db = require("./src/lib/dbHelpers.js");
 const {
   generateRandomString,
+  getUserByUsername,
+  getUserByEmail
 } = require("./src/lib/serverHelpers.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
@@ -45,6 +48,15 @@ app.use((req, res, next) => {
     currentPage: req.originalUrl,
     currentDateTime
   };
+
+  //////////////////////////////////////////
+
+  // console.log("COOKIES:");
+  // console.log("visitorID:", visitorID);
+  // console.log("userID:", cookieUserID);
+
+  //////////////////////////////////////////
+
   next();
 });
 
@@ -134,6 +146,7 @@ app.get("/register", (req, res) => {
   }
 });
 
+
 // Create a new account and log the user in
 app.post("/register", (req, res) => {
   const {
@@ -141,24 +154,28 @@ app.post("/register", (req, res) => {
     email,
     password
   } = req.body;
-  // TODO: Check if user exists then run code below IF username/email isn't taken
-  const existingData = false; // DB helper returns: false or "username" or "email" if either is taken
+
   // ERROR: Incomplete form or existing credentials
   if (!username || !email || !password) {
-    // req.flash("danger", "Please complete all fields.");
-    res.redirect("/register");
-  } else if (existingData) {
-    // req.flash("danger", `The ${existingData} you entered is already in use.`);
+    req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
   } else {
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    db.addUser({ username, email, password: hashedPassword })
-    .then(() => {
-      // req.flash("Registration successful. Welcome to InquizitorApp!");
-      console.log("Registration successful. Welcome to InquizitorApp!");
-      res.redirect("/")
+    getUserByUsername(username)
+    .then(user => {
+      if (user) {
+        console.log("USERNAME IS TAKEN!");
+      } else {
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        db.addUser({ username, email, password: hashedPassword })
+        .then(() => {
+          req.flash("Registration successful. Welcome to InquizitorApp!");
+          console.log("Registration successful. Welcome to InquizitorApp!");
+          res.redirect("/")
+        })
+        .catch(err => console.error(err));
+      }
+
     })
-    .catch(err => console.error(err));
   }
 });
 

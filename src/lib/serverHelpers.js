@@ -1,4 +1,15 @@
 const bcrypt = require("bcrypt");
+const db = require("./db");
+
+const { Pool } = require("pg");
+
+const pool = new Pool({
+  user: "ahhreggi",
+  password: "123",
+  port: "5432",
+  host: "localhost",
+  database: "midterm"
+});
 
 /**
  * Returns a random alphanumeric string.
@@ -7,7 +18,7 @@ const bcrypt = require("bcrypt");
  * @return {string}
  *         A string of random alphanumeric characters.
  */
- const generateRandomString = (length) => {
+const generateRandomString = (length) => {
   const alpha = "abcdefghijklmnopqrstuvwxyz";
   const num = "1234567890";
   const alphaNum = alpha + alpha.toUpperCase() + num;
@@ -31,19 +42,26 @@ const bcrypt = require("bcrypt");
  * @return {string|undefined}
  *         The existing property or undefined if none was found.
  */
- const getExistingProperty = (username, email, userDB) => {
-  let result;
-  // For each user in the database
-  for (const userID in userDB) {
-    if (userDB[userID].username === username) {
-      result = "username";
-      break;
-    } else if (userDB[userID].email === email) {
-      result = "email";
-      break;
-    }
-  }
-  return result;
+const getUserByUsername = (username) => {
+  const queryString = `
+    SELECT *
+    FROM users
+    WHERE username = $1
+  `;
+  const queryParams = [username];
+  return pool.query(queryString, queryParams)
+    .then(res => res.rows[0]);
+};
+
+const getUserByEmail = (email) => {
+  const queryString = `
+    SELECT *
+    FROM users
+    WHERE email = $1
+  `;
+  const queryParams = [email];
+  return pool.query(queryString, queryParams)
+    .then(res => res.rows[0]);
 };
 
 /**
@@ -55,7 +73,7 @@ const bcrypt = require("bcrypt");
  * @return {{id: string, email: string, password: string}|undefined}
  *         An object containing a single user's credentials or undefined if none was found.
  */
- const getUserData = (login, userDB) => {
+const getUserData = (login, userDB) => {
   const userData = Object.values(userDB).find((user) => {
     return user.username === login || user.email === login;
   });
@@ -73,7 +91,7 @@ const bcrypt = require("bcrypt");
  * @return {{id: string, email: string, password: string}|boolean}
  *         An object containing a single user's credentials or false if none was found.
  */
- const authenticateUser = (login, password, userDB) => {
+const authenticateUser = (login, password, userDB) => {
   let userData = getUserData(login, userDB);
   // Given a valid login, check if the password matches the hashed password
   const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
@@ -82,7 +100,8 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   generateRandomString,
-  getExistingProperty,
+  getUserByUsername,
+  getUserByEmail,
   getUserData,
   authenticateUser
 };
