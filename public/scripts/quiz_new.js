@@ -18,13 +18,25 @@ const addQuestionComponent = (element) => {
       </div>
     </div>
   `);
+  // Add delete button click event handler
+  const deleteBtn = $newForm.find(".icon-del");
+  $(deleteBtn).bind("click", function() {
+    $(this).closest(".new-question").remove();
+  })
+  // Add form to all questions container
   element.append($newForm);
 }
 
 $(document).ready(function() {
 
   const questionsList = $("#add-questions");
-  const addQuestionBtn = $("#add-question-btn")
+  const addQuestionBtn = $("#add-question-btn");
+
+  // Add initial question forms
+  const initialForms = 1;
+  for (let i = 0; i < initialForms; i++) {
+    addQuestionComponent(questionsList);
+  }
 
   // Add a new question when the user clicks the + add question button
   addQuestionBtn.on("click", function() {
