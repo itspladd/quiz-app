@@ -58,7 +58,7 @@ app.use((req, res, next) => {
   // console.log("COOKIES:");
   // console.log("visitorID:", visitorID);
   // console.log("userID:", cookieUserID);
-
+console.log('middleware end');
   //////////////////////////////////////////
 });
 
