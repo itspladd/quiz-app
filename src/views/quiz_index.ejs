@@ -14,16 +14,13 @@
       <!-- MAIN WINDOW (SPLIT) -->
       <div class="col-12 col-lg-8 m-auto">
         <section id="main-split" class="border-tertiary overflow-auto">
-        <div id="main-title" class="mb-5">
-          Browse All
-        </div>
-
-
-          <!-- LIST OF ALL QUIZZES (need quiz name, description, id)-->
+          <!-- MAIN TITLE -->
+          <div id="main-title" class="mb-5">
+            Browse All
+          </div>
+          <!-- MAIN CONTENT -->
           <div id="main-split-content">
-
             <% for (const quiz of quizData) { %>
-
               <a href="/quizzes/<%= quiz.id %> ">
                 <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
                   <div class="col-8">
@@ -33,23 +30,17 @@
                     <img class="quiz-go pr-3" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
                 </div>
               </a>
-
             <% } %>
-
           </div>
-
         </section>
       </div>
 
       <!-- SIDE PANELS (SPLIT) -->
       <div id="side-section" class="col-12 col-lg-4">
-
         <!-- USER PANEL -->
         <%- include("partials/_side_top.ejs", userData) %>
-
         <!-- LEADERBOARDS -->
         <%- include("partials/_side_bottom.ejs", rankData) %>
-
       </div>
 
     </main>
