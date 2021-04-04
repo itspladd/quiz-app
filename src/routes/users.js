@@ -14,24 +14,31 @@ module.exports = (db) => {
 
   // /users/dashboard
   router.get("/dashboard", (req, res) => {
-    // db.getUserByID("SELECT * FROM users;")
-    //   .then(data => {
-    //     const users = data.rows;
-    //     return { users };
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    res.render("dashboard");
+    const {
+      alerts,
+      userData,
+      currentPage
+    } = res.locals.vars;
+    const templateVars = {
+      alerts,
+      userData,
+      currentPage
+    };
+    res.render("dashboard", templateVars);
   });
 
   // /users/:userid
   router.get("/:userid", (req, res) => {
-    // db.query("SELECT...")
-    //   .then()
-    //   .catch();
+    // const {
+    //   alerts,
+    //   userData,
+    //   currentPage
+    // } = res.locals.vars;
+    // const templateVars = {
+    //   alerts,
+    //   userData,
+    //   currentPage
+    // };
   });
 
   return router;
