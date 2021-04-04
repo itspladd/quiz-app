@@ -1,16 +1,21 @@
+// FIELD LIMITS:
+// Title: 30 chars
+// Desc: 60 chars
+// Question/Ans: 250
+
 // Appends a question component to the given element
 const addQuestionComponent = (element) => {
   const $newForm = $(`
     <div class="form-group new-question">
         <label for="question" class="form-label text-muted mt-2">Question</label>
-        <input class="input-question form-control" type="text" name="question" required>
+        <input class="input-question form-control" type="text" name="question" maxlength="250" required>
         <div class="responses">
           <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
-          <input class="input-response form-control" type="text" name="answer[]" required>
+          <input class="input-response form-control" type="text" name="answer[]" maxlength="250" required>
           <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
-          <input class="input-response form-control" type="text" name="answer[]" required>
-          <input class="input-response form-control mt-3" type="text" name="answer[]" required>
-          <input class="input-response form-control mt-3" type="text" name="answer[]" required>
+          <input class="input-response form-control" type="text" name="answer[]" maxlength="250" required>
+          <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
+          <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
         </div>
         <div class="question-control d-flex flex-row justify-content-end align-items-center mt-3">
           <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
