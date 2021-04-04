@@ -194,8 +194,8 @@ app.post("/register", (req, res) => {
                 db.addUser({ username, email, password: hashedPassword })
                   .then(userData => {
                     req.session.userID = userData.id;
-                    console.log(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
-                    req.flash(`Registration successful. Welcome to InquizitorApp, ${userData.username}(id: ${userData.id})!`);
+                    console.log(`Registration successful. Welcome to InquizitorApp!`);
+                    req.flash(`Registration successful. Welcome to InquizitorApp!`);
                     res.redirect("/");
                   });
               }
