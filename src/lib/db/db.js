@@ -18,11 +18,15 @@ const pool = new Pool(dbParams);
 
 module.exports = {
   query: (queryString, queryParams) => {
+    console.log("Querying...");
+    console.log(queryString);
+    console.log(queryParams);
     return pool.query(queryString, queryParams)
     .then(res => {
-      console.log('returning', res.rows )
+      console.log('returning: ', res.rows )
       return res.rows;
-    });
+    })
+    .catch(err => console.error(err));
   },
 
   /**
