@@ -17,27 +17,18 @@
         </section>
       </div>
 
-      <!-- MAIN WINDOW (FULL) -->
-      <!-- <div class="col-12">
-        <section id="main-full">
-        </section>
-      </div> -->
-
       <!-- SIDE PANELS (SPLIT) -->
       <div class="col-12 col-lg-4">
-        <section id="side-split-top" class="ml-lg-1">
-        </section>
-        <section id="side-split-bottom" class="ml-lg-1">
-        </section>
+
+        <!-- USER PANEL -->
+        <%- include("partials/_side_top.ejs", userData) %>
+
+        <!-- LEADERBOARDS -->
+        <%- include("partials/_side_bottom.ejs", rankData) %>
+
       </div>
 
-      <!-- SIDE PANEL (FULL) -->
-      <!-- <div class="col-12 col-lg-4">
-        <section id="side-full" class="ml-lg-1">
-        </section>
-      </div> -->
-
-      </main>
+    </main>
 
   <%- include("partials/_footer.ejs") %>
 

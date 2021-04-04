@@ -11,58 +11,46 @@
 
     <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
-    <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="border-tertiary overflow-auto">
-      <div id="main-title" class="mb-5">
-        Browse All
-      </div>
-
-
-        <!-- LIST OF ALL QUIZZES (need quiz name, description, id)-->
-        <div id="main-split-content">
-
-          <% for (const quiz of quizData) { %>
-
-            <a href="/quizzes/<%= quiz.id %> ">
-              <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-                <div class="col-8">
-                  <p class="quiz-title mt-3 mt-lg-0"><%= quiz.title %> </p>
-                  <p class="quiz-desc d-none d-lg-inline"><%= quiz.description %> </p>
-                </div>
-                  <img class="quiz-go pr-3" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-              </div>
-            </a>
-
-          <% } %>
-
+      <!-- MAIN WINDOW (SPLIT) -->
+      <div class="col-12 col-lg-8 m-auto">
+        <section id="main-split" class="border-tertiary overflow-auto">
+        <div id="main-title" class="mb-5">
+          Browse All
         </div>
 
-      </section>
-    </div>
 
-    <!-- MAIN WINDOW (FULL) -->
-    <!-- <div class="col-12">
-      <section id="main-full">
-      </section>
-    </div> -->
+          <!-- LIST OF ALL QUIZZES (need quiz name, description, id)-->
+          <div id="main-split-content">
 
-    <!-- SIDE PANELS (SPLIT) -->
-    <div id="side-section" class="col-12 col-lg-4">
+            <% for (const quiz of quizData) { %>
 
-      <!-- USER PANEL -->
-      <%- include("partials/_side_top.ejs", userData) %>
+              <a href="/quizzes/<%= quiz.id %> ">
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                  <div class="col-8">
+                    <p class="quiz-title mt-3 mt-lg-0"><%= quiz.title %> </p>
+                    <p class="quiz-desc d-none d-lg-inline"><%= quiz.description %> </p>
+                  </div>
+                    <img class="quiz-go pr-3" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
+                </div>
+              </a>
 
-      <!-- LEADERBOARDS -->
-      <%- include("partials/_side_bottom.ejs", rankData) %>
+            <% } %>
 
-    </div>
+          </div>
 
-    <!-- SIDE PANEL (FULL) -->
-    <!-- <div class="col-12 col-lg-4">
-      <section id="side-full" class="ml-lg-1">
-      </section>
-    </div> -->
+        </section>
+      </div>
+
+      <!-- SIDE PANELS (SPLIT) -->
+      <div id="side-section" class="col-12 col-lg-4">
+
+        <!-- USER PANEL -->
+        <%- include("partials/_side_top.ejs", userData) %>
+
+        <!-- LEADERBOARDS -->
+        <%- include("partials/_side_bottom.ejs", rankData) %>
+
+      </div>
 
     </main>
 

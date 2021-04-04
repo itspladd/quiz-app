@@ -17,12 +17,14 @@ module.exports = (db) => {
     const {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     } = res.locals.vars;
     const templateVars = {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     };
     res.render("dashboard", templateVars);
   });
