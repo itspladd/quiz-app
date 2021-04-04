@@ -69,15 +69,28 @@
 }
 
 .list-quiz {
-  border: 2px solid #fff;
+  border: 2px solid #ffffff79;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
 }
 
+.list-quiz p {
+  color: #fff;
+}
+
+.list-quiz:hover {
+  border-color: #fff;
+  background-color: #222338;
+}
+
 .quiz-title {
   font-size: 1.5rem;
+}
+
+.quiz-go {
+  width: 4rem;
 }
 
 html body {
@@ -149,7 +162,7 @@ form .form-control:active, form .form-control:focus {
 }
 
 #main-split {
-  height: 45rem;
+  height: 40rem;
   margin-bottom: 2rem;
 }
 
@@ -164,6 +177,14 @@ form .form-control:active, form .form-control:focus {
 
 #main-split::-webkit-scrollbar-thumb {
   background-color: #222338;
+}
+
+#main-title {
+  line-height: 3rem;
+  font-size: 3rem;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 #side-full {
@@ -257,5 +278,9 @@ form .form-control:active, form .form-control:focus {
 
 .border-purple {
   border-color: #9a4dff;
+}
+
+.border-tertiary {
+  border-color: #222338;
 }
 /*# sourceMappingURL=app.css.map */

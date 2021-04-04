@@ -13,80 +13,27 @@
 
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="border-blue overflow-auto">
+      <div id="main-title">FEATURED QUIZZES</div>
+      <section id="main-split" class="border-tertiary overflow-auto">
+
 
         <!-- LIST OF ALL QUIZZES (need quiz name, description, id)-->
+        <div id="main-feed">
 
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #1</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
+          <% for (const quiz of quizData) { %>
 
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #2</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
+            <a href="/quizzes/<%= quiz.id %> ">
+              <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                <div class="col-8">
+                  <p class="quiz-title mt-3 mt-lg-0"><%= quiz.title %> </p>
+                  <p class="quiz-desc d-none d-lg-inline"><%= quiz.description %> </p>
+                </div>
+                  <img class="quiz-go pr-3" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
+              </div>
+            </a>
 
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #3</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
+          <% } %>
 
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
-            <p class="quiz-title mt-3 mt-lg-0">Quiz Name #4</p>
-            <p class="quiz-desc d-none d-lg-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
-          <img class="quiz-go col-3 col-md-2" src="https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/arrow-green.png" alt="arrow" />
         </div>
 
 
@@ -101,12 +48,12 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <section id="side-split-top" class="ml-lg-1 border-red">
+      <section id="side-split-top" class="ml-lg-1 border-tertiary">
         <%= userData ? `Signed in as ${userData.username}` : "" %>
       </section>
 
       <!-- LEADERBOARDS -->
-      <section id="side-split-bottom" class="ml-lg-1 border-green">
+      <section id="side-split-bottom" class="ml-lg-1 border-tertiary">
 
       </section>
 

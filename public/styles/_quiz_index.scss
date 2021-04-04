@@ -1,13 +1,24 @@
 @import "global";
 
 .list-quiz {
-  border: 2px solid $white;
+  border: 2px solid $light;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
+  p {
+    color: $white;
+  }
+  &:hover {
+    border-color: $white;
+    background-color: $tertiary;
+  }
 }
 
 .quiz-title {
   font-size: 1.5rem;
+}
+
+.quiz-go {
+  width: 4rem;
 }
