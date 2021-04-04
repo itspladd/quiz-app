@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 let dbParams = {};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
@@ -15,28 +13,35 @@ if (process.env.DATABASE_URL) {
 
 //console.log(dbParams);
 
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 const pool = new Pool(dbParams);
 
 module.exports = {
-  query: (text, params) => {
-    return pool.query(text, params)
-    .then(res => res.rows)
-    .catch(err => console.error(err));
+  query: (queryString, queryParams) => {
+    return pool.query(queryString, queryParams)
+      .then(res => res.rows)
+      .catch(err => console.error(err));
   },
 
+  /**
+   *Build the data needed to insert a new object into the database.
+   * @param {Object} object The data to be added.
+   * @return {Object} The column names, query variables, and query parameters.
+   * Build your queryString with `INSERT INTO [table] (${columns}) VALUES (${vars})`
+   * The run db.query with (queryString, queryParams).
+   */
   buildInsertQueryParams: function(obj) {
     const keysArray = Object.keys(obj);
     const numVars = keysArray.length;
     const queryParams = Object.values(obj);
 
-    columnsString = keysArray.join(", ");
-    let varsString = "";
-    for(let i = 1; i <= numVars; i++) {
-      varsString += i !== 1 ? ", " : "";
-      varsString += `$${i}`;
+    const columns = keysArray.join(", ");
+    let vars = "";
+    for (let i = 1; i <= numVars; i++) {
+      vars += i !== 1 ? ", " : "";
+      vars += `$${i}`;
     }
 
-    return {columnsString, varsString, queryParams};
+    return {columns, vars, queryParams};
   }
 };

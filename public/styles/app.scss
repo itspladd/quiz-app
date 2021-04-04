@@ -35,15 +35,19 @@ a {
 }
 
 form {
+
   .form-control {
     outline: none;
     box-shadow: none;
     border: none;
+
     &:active,
     &:focus {
       box-shadow: 0px 0px 1px 2px $primary-darker;
     }
+
   }
+
 }
 
 #nav-spacer {
@@ -89,6 +93,7 @@ form {
   outline: $primary-darker;
   transition: 0.1s;
   user-select: none;
+
   &:hover {
     color: $tertiary;
     border-color: $primary;
@@ -119,6 +124,7 @@ form {
   &:focus {
     box-shadow: 0px 0px 1px 2px $red-darker;
   }
+
 }
 
 .highlight {

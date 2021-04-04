@@ -11,14 +11,26 @@
     color: $white;
   }
 
-  li a:hover {
-    color: $primary;
+  button {
+    color: $white;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      color: $primary;
+    }
+
   }
 
   img {
     width: 2rem;
     margin-left: 0.5rem;
     padding-bottom: 0.2rem;
+  }
+
+  li a:hover {
+    color: $primary;
   }
 
 }
