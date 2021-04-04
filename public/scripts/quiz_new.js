@@ -22,15 +22,33 @@ const addQuestionComponent = (element) => {
   const deleteBtn = $newForm.find(".icon-del");
   $(deleteBtn).bind("click", function() {
     $(this).closest(".new-question").remove();
+    console.log("DELETED")
+    // Update counter
+    updateCounter();
   })
   // Add form to all questions container
   element.append($newForm);
+  // Update counter
+  updateCounter();
 }
+
+// Update the children counter of the given element
+const updateCounter = () => {
+  const num = getNumQuestions();
+  $("#questions-counter")
+    .html(`Questions${num ? ` ( ${num} )` : ""}`)
+};
+
+// Return the number of questions
+const getNumQuestions = () => {
+  return $("#add-questions").children().length;
+}
+
 
 $(document).ready(function() {
 
   const questionsList = $("#add-questions");
-  const addQuestionBtn = $("#add-question-btn");
+  const addQuestionBtn = $(".icon-add");
 
   // Add initial question forms
   const initialForms = 1;
