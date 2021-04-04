@@ -7,7 +7,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     // Browse all
     // Get all quizzes (this is where we'd add a sort parameter in the future)
-    db.getQuizzes()
+    db.getPublicQuizzes()
     .then(quizData => {
       const {
         alerts,

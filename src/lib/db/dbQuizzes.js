@@ -3,19 +3,30 @@ const db = require("./db");
 module.exports = {
 
   /**
-   * Search for quizzes with optional parameters.
+   * Search for quizzes that match the input parameters.
    * @param  { searchParameters: {  } } quiz
    *         The quiz data to be added.
    * @return {Promise<{}>}
    *         A promise to the quiz.
    */
-  getQuizzes: function(searchParameters) {
-    const queryString = `
-      SELECT *
-      FROM quizzes;
+  getPublicQuizzes: function(searchParameters) {
+    let queryString = `
+      SELECT quizzes.*,
+        username AS author_username,
+        AVG(rating) as avg_rating
+      FROM quizzes
+        JOIN users ON author_id = users.id
+        RIGHT OUTER JOIN quiz_ratings AS ratings ON ratings.quiz_id = quizzes.id 
+      WHERE public = TRUE 
     `;
-    const queryParams = [];
 
+    // Add grouping and filtering
+    queryString += `
+    GROUP BY quizzes.id, users.id
+    `
+    const queryParams = [];
+    // Close out the query
+    queryString += `;`;
     return db.query(queryString, queryParams);
   },
 
