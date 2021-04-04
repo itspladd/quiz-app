@@ -19,7 +19,8 @@ const {
 const {
   getUserByUsername,
   getUserByEmail,
-  getUserByLogin
+  getUserByLogin,
+  getUserByID
 } = require("./src/lib/dbGetters.js");
 
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
@@ -44,13 +45,19 @@ app.use((req, res, next) => {
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
   const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-  res.locals.vars = {
-    alerts: req.flash(),
-    visitorID,
-    userData: null, // userDatabase[cookieUserID]
-    currentPage: req.originalUrl,
-    currentDateTime
-  };
+  console.log("cookieUserID: ", cookieUserID);
+  getUserByID(cookieUserID)
+    .then(userData => {
+      res.locals.vars = {
+        alerts: req.flash(),
+        visitorID,
+        userData: userData || null,
+        currentPage: req.originalUrl,
+        currentDateTime
+      };
+      next();
+    })
+    .catch((err) => console.error(err));
 
   //////////////////////////////////////////
 
@@ -59,8 +66,6 @@ app.use((req, res, next) => {
   // console.log("userID:", cookieUserID);
 
   //////////////////////////////////////////
-
-  next();
 });
 
 // RESOURCE ROUTES ///////////////////////////////////

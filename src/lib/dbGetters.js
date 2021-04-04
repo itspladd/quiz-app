@@ -69,8 +69,27 @@ const getUserByLogin = (login) => {
     .then(res => res.rows[0]);
 };
 
+/**
+ * Returns a user with the given ID.
+ * @param  {string} id
+ *         The id of a user.
+ * @return {Promise<{}>}
+ *         A promise to the user.
+ */
+ const getUserByID = (id) => {
+  const queryString = `
+    SELECT *
+    FROM users
+    WHERE id = $1
+  `;
+  const queryParams = [id];
+  return pool.query(queryString, queryParams)
+    .then(res => res.rows[0]);
+};
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
-  getUserByLogin
+  getUserByLogin,
+  getUserByID
 };
