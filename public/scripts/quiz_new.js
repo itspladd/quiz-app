@@ -1,8 +1,3 @@
-// FIELD LIMITS:
-// Title: 30 chars
-// Desc: 60 chars
-// Question/Ans: 250
-
 // Appends a question component to the given element
 const addQuestionComponent = (element) => {
 
@@ -24,6 +19,7 @@ const addQuestionComponent = (element) => {
       </div>
     </div>
   `);
+
   // Add delete button click event handler
   const deleteBtn = $newForm.find(".icon-del");
   $(deleteBtn).bind("click", function() {
@@ -31,14 +27,16 @@ const addQuestionComponent = (element) => {
     // Update counter
     updateCounter();
   });
+
   // Add form to all questions container
   element.append($newForm);
+
   // Update counter
   updateCounter();
 
 };
 
-// Update the children counter of the given element
+// Update the question counter
 const updateCounter = () => {
 
   const num = getNumQuestions();
@@ -66,18 +64,17 @@ const showError = (errorMsg) => {
 
 };
 
-// Check that the form is complete and that there are at least min questions/responses
-// A quiz is valid if:
-// - There are at least min questions
-// - All questions are non-empty
-// - All responses are non-empty
+// Check that the form is complete and that there are sufficient questions and responses
 const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
+
   let error = null;
+
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
   if (questions.length < minQuestions) {
     error = `Minimum of ${minQuestions} questions must be provided`;
   }
+
   const allQuestions = $(".input-question");
   for (const question of allQuestions) {
     let valid = true;
@@ -142,8 +139,18 @@ const getQuizFormErrors = () => {
 
 };
 
+// Sanitize user input values
+const sanitize = (string) => {
+
+  const div = document.createElement("div");
+  div.appendChild(document.createTextNode(string.trim()));
+  return div.innerHTML;
+
+}
+
 // Submit form handler
 const submitForm = () => {
+
   const title = $("#quiz-title").val().trim();
   const description = $("#quiz-desc").val().trim();
   const category_id = $("#quiz-category").val().trim();
@@ -165,6 +172,7 @@ const submitForm = () => {
     }
     questions.push(question);
   }
+
   const data = {
     title,
     description,
@@ -179,14 +187,10 @@ const submitForm = () => {
     type: "POST",
     data
   })
-    .then(res => {
+    .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
-      const quizID = res;
-      console.log("Success! Redirecting to new quiz!");
       window.location.replace(`/quizzes/${quizID}`);
     });
-
-  ;
 
 };
 
@@ -196,7 +200,6 @@ $(document).ready(function() {
   const addQuestionBtn = $(".icon-add");
   const quizForm = $("#new-quiz-form");
 
-
   // Add initial question forms
   const initialForms = 1;
   for (let i = 0; i < initialForms; i++) {
@@ -205,25 +208,33 @@ $(document).ready(function() {
 
   // Add a new question when the user clicks the + add question button
   addQuestionBtn.on("click", function() {
+
     addQuestionComponent(questionsList);
+
   });
 
+  // On submit, check for form errors prior to submitting a POST request
   quizForm.on("submit", function(event) {
+
     event.preventDefault();
-    console.log("SUBMITTING QUIZ (CLIENT-SIDE)...");
+
     // Display question form errors, if any
     const error = getQuizFormErrors() || getQuestionFormErrors();
     showError(error);
+
     // If there are no errors, construct data to be sent to the server
     if (!error) {
       submitForm();
     }
+
   });
 
   // Clear question validation highlights and error message on user input
   quizForm.on("input", function() {
+
     $(this).find(".new-question").css("border-color", "#fff");
     showError(false);
+
   });
 
 });
