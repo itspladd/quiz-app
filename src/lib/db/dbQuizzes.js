@@ -36,6 +36,18 @@ module.exports = {
       .then(rows => rows[0]);
   },
 
+  getQuizzesForUser: function(userID) {
+    const queryString = `
+      SELECT quizzes.*
+      FROM quizzes
+      JOIN users ON users.id = author_id
+      WHERE author_id = $1
+      ORDER BY creation_date DESC;
+    `;
+    const queryParams = [userID];
+    return db.query(queryString, queryParams);
+  },
+
   /**
    * Adds a new quiz to the database. Also adds all included questions and answers.
    * @param  { { author_id: int,
