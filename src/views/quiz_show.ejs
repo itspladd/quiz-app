@@ -3,6 +3,7 @@
   <head>
     <title>Some Quiz - InquizitorApp</title>
     <%- include("partials/_imports.ejs") %>
+    <script type="text/javascript" src="/scripts/quiz_show.js"></script>
   </head>
 
   <body>
@@ -23,13 +24,9 @@
 
             <!-- CONTENT HERE -->
 
-
-            <form class="form-inline" action="/quizzes/<%= quizData.id %>/sessions" method="POST">
-              <button id="play-quiz" type="button">
-                PLAY
-              </button>
-            </form>
-
+            <button id="play-quiz" type="button">
+              PLAY
+            </button>
 
           </div>
         </section>
