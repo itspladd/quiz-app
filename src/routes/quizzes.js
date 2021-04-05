@@ -130,6 +130,8 @@ module.exports = (db) => {
   // LATER: If we want to, we can track anonymous quiz plays by counting sessions with user_id = null
   router.post("/:quizID/sessions", (req, res) => {
 
+    // return res.send(false);
+
     // TEMPORARY IN-MEMORY DATA ////////////////////////////////////
 
     const tempData = {
