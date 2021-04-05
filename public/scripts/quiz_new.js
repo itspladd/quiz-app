@@ -23,18 +23,56 @@ const addQuestionComponent = (element) => {
   // Add delete button click event handler
   const deleteBtn = $newForm.find(".icon-del");
   $(deleteBtn).bind("click", function() {
-    $(this).closest(".new-question").remove();
+    const component = $(this).closest(".new-question");
+    removeElement(component);
+    setTimeout(() => {
+      updateCounter()
+    }, 800);
     // Update counter
-    updateCounter();
   });
 
   // Add form to all questions container
+  $newForm.css("display", "none").css("min-height", "0");
   element.append($newForm);
+  addElement($newForm);
 
   // Update counter
   updateCounter();
 
 };
+
+// Remove an element
+const removeElement = (element, delay = 800) => {
+  element
+    .css("min-height", "0")
+    .animate({
+      queue: true,
+      opacity: 0
+    }, {
+      duration: 400
+    })
+    .slideUp(400)
+  setTimeout(() => {
+    element.remove();
+  }, delay)
+};
+
+// Add an element
+const addElement = (element, delay = 400) => {
+  element.css("display", "none");
+  setTimeout(() => {
+    element
+      .slideDown(delay)
+      // .css("display", "block")
+      .css("opacity", 0)
+      .animate({
+        queue: true,
+        opacity: 1
+      }, {
+        duration: delay
+      });
+  }, 0);
+}
 
 // Update the question counter
 const updateCounter = () => {

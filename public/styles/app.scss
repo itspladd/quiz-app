@@ -18,8 +18,10 @@ html body {
 
 body {
 
+  overflow-y: scroll;
+
   &::-webkit-scrollbar {
-    width: 0.5em;
+    width: 0.25em;
   }
 
   &::-webkit-scrollbar-track {
@@ -74,7 +76,7 @@ select {
   margin-bottom: 2rem;
 
   &::-webkit-scrollbar {
-    width: 0.5em;
+    width: 0.25em;
   }
 
   &::-webkit-scrollbar-track {

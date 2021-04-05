@@ -260,8 +260,12 @@ html body {
   padding-bottom: 1rem;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 body::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.25em;
 }
 
 body::-webkit-scrollbar-track {
@@ -321,7 +325,7 @@ select {
 }
 
 #main-split::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.25em;
 }
 
 #main-split::-webkit-scrollbar-track {
