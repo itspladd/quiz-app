@@ -67,6 +67,19 @@ module.exports = (db) => {
         if (!quizData) {
           res.redirect("/404");
         } else {
+
+          // TEMPORARY REVIEWS ///////////////
+
+          const reviews = [
+            { user_id: 1, username: "reggi", comment: "this quiz sucks", rating: "1" },
+            { user_id: 2, username: "francis", comment: "this quiz depends", rating: "3" },
+            { user_id: 3, username: "pladd", comment: "this quiz is awesome", rating: "5" }
+          ]
+
+          quizData.reviews = reviews;
+
+          ////////////////////////////////////
+
           const templateVars = {
             alerts,
             userData,
