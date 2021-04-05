@@ -1,4 +1,5 @@
 #navigation {
+  min-height: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #222338;
@@ -14,14 +15,14 @@
 }
 
 #navigation button {
-  color: #bd2942;
+  color: #e22d4b;
   font-weight: 700;
   background-color: transparent;
   border: none;
 }
 
 #navigation button:hover {
-  color: #e22d4b;
+  color: #bd2942;
 }
 
 #navigation img {
@@ -47,7 +48,7 @@
 
 #app-links .nav-primary:hover,
 #user-links .nav-primary:hover {
-  color: #dbdbdb;
+  color: #faa515;
 }
 
 #app-links .nav-primary-darker,
@@ -57,7 +58,7 @@
 
 #app-links .nav-primary-darker:hover,
 #user-links .nav-primary-darker:hover {
-  color: #dbdbdb;
+  color: #fad207;
 }
 
 #app-links .nav-blue,
@@ -88,6 +89,16 @@
 #app-links .nav-purple:hover,
 #user-links .nav-purple:hover {
   color: #8040d3;
+}
+
+.nav-item {
+  border-top: 0.2rem solid transparent;
+  border-bottom: 0.2rem solid transparent;
+}
+
+.active,
+.nav-item:hover {
+  border-bottom: 0.2rem solid #dbdbdb;
 }
 
 form .form-control,
@@ -249,16 +260,16 @@ html body {
   padding-bottom: 1rem;
 }
 
-html body::-webkit-scrollbar {
-  width: 1em;
+body::-webkit-scrollbar {
+  width: 0.25em;
 }
 
-html body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px #111318;
           box-shadow: inset 0 0 6px #111318;
 }
 
-html body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background-color: #222338;
 }
 
@@ -278,6 +289,8 @@ section {
 
 a {
   color: #faa515;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 a:hover {
@@ -308,7 +321,7 @@ select {
 }
 
 #main-split::-webkit-scrollbar {
-  width: 1em;
+  width: 0.5em;
 }
 
 #main-split::-webkit-scrollbar-track {

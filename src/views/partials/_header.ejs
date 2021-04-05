@@ -28,16 +28,17 @@
                     <li class="nav-item my-2 ml-xl-3"><a class="nav-primary-darker nav-link" href="/login">LOGIN</a></li>
                     <li class="nav-item my-2 ml-xl-3"><a class="nav-primary nav-link" href="/register">REGISTER</a></li>
 
-                    <% } else { %>
+                  <% } else { %>
 
-                      <!-- USER NAV LINKS (shown if user is currently logged in) -->
-                      <li class="nav-item my-2 ml-xl-3">
-                    <form class="form-inline" action="/logout" method="POST">
-                      <button id="nav-logout" type="submit" class="btn-nav">
-                        LOGOUT
-                      </button>
-                    </form>
-                  </li>
+                    <!-- USER NAV LINKS (shown if user is currently logged in) -->
+                    <li class="nav-item my-2 ml-xl-3"><a class="nav-primary nav-link" href="/account">ACCOUNT</a></li>
+                    <li class="nav-item my-2 ml-xl-3">
+                      <form class="form-inline" action="/logout" method="POST">
+                        <button id="nav-logout" type="submit" class="btn-nav">
+                          LOGOUT
+                        </button>
+                      </form>
+                    </li>
 
                 <% } %>
               </div>

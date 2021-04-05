@@ -14,9 +14,12 @@ html body {
   scroll-behavior: smooth;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+body {
 
   &::-webkit-scrollbar {
-    width: 1em;
+    width: 0.25em;
   }
 
   &::-webkit-scrollbar-track {
@@ -26,7 +29,6 @@ html body {
   &::-webkit-scrollbar-thumb {
     background-color: $tertiary;
   }
-
 }
 
 *,
@@ -44,6 +46,7 @@ section {
 
 a {
   color: $primary-darker;
+  transition: 0.2s;
   &:hover {
     color: $primary;
     text-decoration: none;
@@ -71,7 +74,7 @@ select {
   margin-bottom: 2rem;
 
   &::-webkit-scrollbar {
-    width: 1em;
+    width: 0.5em;
   }
 
   &::-webkit-scrollbar-track {

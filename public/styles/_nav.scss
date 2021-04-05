@@ -1,6 +1,7 @@
 @import "global";
 
 #navigation {
+  min-height: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: $tertiary;
@@ -12,13 +13,13 @@
   }
 
   button {
-    color: $red-darker;
+    color: $red;
     font-weight: 700;
     background-color: transparent;
     border: none;
 
     &:hover {
-      color: $red;
+      color: $red-darker;
     }
 
   }
@@ -47,14 +48,14 @@
   .nav-primary {
     color: $primary;
     &:hover {
-      color: $white;
+      color: $primary-darker;
     }
   }
 
   .nav-primary-darker {
     color: $primary-darker;
     &:hover {
-      color: $white;
+      color: $primary;
     }
   }
 
@@ -79,4 +80,14 @@
     }
   }
 
+}
+
+.nav-item {
+  border-top: 0.2rem solid transparent;
+  border-bottom: 0.2rem solid transparent;
+}
+
+.active,
+.nav-item:hover {
+  border-bottom: 0.2rem solid $white;
 }
