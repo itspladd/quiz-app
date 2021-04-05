@@ -69,6 +69,8 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
+
+  // Route to create a new quiz
   router.post("/", (req, res) => {
     // This is what is received from the form's post request:
     console.log("From the POST request...");
@@ -77,8 +79,6 @@ module.exports = (db) => {
     const {
       userData
     } = res.locals.vars;
-
-    console.log(userData);
 
     // After the form data is received...
 
@@ -108,36 +108,31 @@ module.exports = (db) => {
           .catch(err => console.log(err));
       }
     }
-    /*
-    const quiz = {
-      author_id,
-      title,
-      description,
-      category_id,
-      public,
-      questions: [
-        {
-          body: "What is the capital of Canada?",
-          answers: [
-            { body: "ans1", explanation: "why tho" },
-            { body: "ans2", explanation: "why tho" },
-            { body: "ans3", explanation: "why tho" },
-            { body: "ans4", explanation: "why tho" }
-          ]
-        },
-        {
-          question: "What is the capital of Canada?",
-          answers: [
-            { body: "ans1", explanation: "why tho" },
-            { body: "ans2", explanation: "why tho" },
-            { body: "ans3", explanation: "why tho" },
-            { body: "ans4", explanation: "why tho" }
-          ]
-        }
-      ]
-    }
-    */
 
+
+  });
+
+  router.post("/:quizID/sessions", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+
+    if (userData === null) {
+      console.log("You must be logged in to do that.");
+      req.flash("warning", "You must be logged in to do that.");
+      res.redirect("/login");
+      // SUCCESS: The user is signed in
+    } else if (userData) {
+      const quiz_id = req.params.quizID;
+      const user_id = userData.id;
+      db.addSession({quiz_id, user_id})
+      .then(session => {
+        req.flash("success", "New session started!");
+        res.json(session.id);
+
+      })
+      .catch(err => console.log(err));
+    }
   });
 
   /*STRETCH: global results from this quiz
