@@ -5,6 +5,7 @@
 
 // Appends a question component to the given element
 const addQuestionComponent = (element) => {
+
   const $newForm = $(`
     <div class="form-group new-question">
         <label for="question" class="form-label text-muted mt-2">Question</label>
@@ -34,30 +35,38 @@ const addQuestionComponent = (element) => {
   element.append($newForm);
   // Update counter
   updateCounter();
+
 }
 
 // Update the children counter of the given element
 const updateCounter = () => {
+
   const num = getNumQuestions();
   $("#questions-counter")
     .html(`Questions${num ? ` ( ${num} )` : ""}`)
+
 };
 
 // Return the number of questions
 const getNumQuestions = () => {
+
   return $("#add-questions").children().length;
+
 };
 
+// Display field errors, if any
 const showError = (errorMsg) => {
+
   const errorComponent = $("#new-quiz-error");
   if (errorMsg) {
     errorComponent.html(errorMsg);
   } else {
     errorComponent.empty();
   }
+
 }
 
-// Check that the form is complete and that there are at least min questions
+// Check that the form is complete and that there are at least min questions/responses
 // A quiz is valid if:
 // - There are at least min questions
 // - All questions are non-empty
@@ -77,6 +86,9 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
     if (userQuestion.length < 1) {
       error = "Question field may not be empty"
       valid = false;
+    } else if (userQuestion.length > 250) {
+      error = "Question field exceeds 250-character limit";
+      valid = false;
     }
     const responses = $(question).next().find(".input-response");
     for (const response of responses) {
@@ -84,6 +96,9 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
       // Responses may not be non-empty
       if (userResponse.length < 1) {
         error = "Response field may not be empty"
+        valid = false;
+      } else if (userResponse.length > 250) {
+        error = "Response field exceeds 250-character limit";
         valid = false;
       }
     }
@@ -98,18 +113,73 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
   return error;
 }
 
+// Check that the quiz info fields are complete
 const getQuizFormErrors = () => {
+
   let error = null;
-  if ($("#quiz-title").val().trim().length < 1) {
-    error = "Missing quiz title";
-  } else if ($("#quiz-desc").val().trim().length < 1) {
-    error = "Missing quiz description";
-  } else if ($("#quiz-category").val().trim().length < 1) {
-    error = "Missing quiz category";
-  } else if ($("#quiz-title").val().trim().length < 1) {
-    error = "Missing quiz visibility";
+  const title = $("#quiz-title").val().trim();
+  const desc = $("#quiz-desc").val().trim();
+  const categoryIDs = ["1", "2", "3"];
+  const category = $("#quiz-category").val().trim();
+  const publicValues = ["true", "false"];
+  const visibility = $("#quiz-visibility").val().trim();
+
+  if (!title || !desc || !category || !visibility) {
+    error = "Missing required fields";
+  } else {
+    if (title.length > 30) {
+      error = "Title exceeds 30-character limit";
+    } else if (desc.length > 60) {
+      error = "Description exceeds 60-character limit";
+    } else if (!categoryIDs.includes(category)) {
+      error = "Invalid category value";
+    } else if (!publicValues.includes(visibility)) {
+      error = "Invalid visibility value";
+    }
   }
+
   return error;
+
+}
+
+// Submit form handler
+const submitForm = () => {
+  const title = $("#quiz-title").val().trim();
+  const desc = $("#quiz-desc").val().trim();
+  const category_id = $("#quiz-category").val().trim();
+  const public = $("#quiz-visibility").val().trim();
+  const questions = [];
+  const allQuestions = $(".input-question");
+  for (const questionField of allQuestions) {
+    const question = {};
+    const questionValue = $(questionField).val().trim();
+    const responseFields = $(questionField).next().find(".input-response");
+    const responseValues = [];
+    for (const responseField of responseFields) {
+      const responseValue = $(responseField).val().trim();
+      responseValues.push(responseValue);
+    }
+    question[questionValue] = responseValues;
+    questions.push(question);
+  }
+  const data = {
+    title,
+    desc,
+    category_id,
+    public,
+    questions
+  };
+
+  console.log(data);
+
+  // Submit a post request with the quiz data
+
+  $.ajax({
+    url: "/quizzes",
+    type: "POST",
+    data: JSON.stringify(data)
+  })
+
 }
 
 $(document).ready(function() {
@@ -134,9 +204,12 @@ $(document).ready(function() {
     event.preventDefault();
     console.log("SUBMITTING QUIZ (CLIENT-SIDE)...")
     // Display question form errors, if any
-    const checkQuizInfo = getQuizFormErrors();
-    const checkQuestions = getQuestionFormErrors();
-    showError(checkQuizInfo || checkQuestions);
+    const error = getQuizFormErrors() || getQuestionFormErrors();
+    showError(error);
+    // If there are no errors, construct data to be sent to the server
+    if (!error) {
+      submitForm();
+    };
   });
 
   // Clear question validation highlights and error message on user input
