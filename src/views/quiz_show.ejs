@@ -21,6 +21,12 @@
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
             <!-- CONTENT HERE -->
+            <p>Data available to this page:</p>
+              <ul>
+              <% for (const key in quizData) { %>
+                <li><%= key %>: <%= quizData[key] %></li>
+              <% } %>
+              </ul>
           </div>
         </section>
       </div>

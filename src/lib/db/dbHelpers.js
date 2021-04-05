@@ -9,4 +9,5 @@ const quizzes = require("./dbQuizzes");
 
 module.exports = {
   ...users,
+  ...quizzes
 };

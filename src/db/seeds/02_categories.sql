@@ -1,4 +1,5 @@
 INSERT INTO categories (title)
 VALUES
-('Video Games'),
-('Other');
+('Technology'),
+('Gaming'),
+('Education');
