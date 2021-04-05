@@ -142,96 +142,22 @@ module.exports = (db) => {
   // (no results or session_answers).
   // LATER: If we want to, we can track anonymous quiz plays by counting sessions with user_id = null
   router.post("/:quizID/sessions", (req, res) => {
-
-    // return res.send(false);
-
-    // TEMPORARY IN-MEMORY DATA ////////////////////////////////////
-
-    const tempData = {
-      sessionID: 1337,
-      questions: [
-        // QUESTION #1 /////////////////////////////////////////
-        {
-          question: { id: 1, quiz_id: 1, body: "What is the capital of Canada?", difficulty: 1 },
-          answers: [
-            { id: 1, question_id: 1, body: "Ottawa", is_correct: true, explanation: "why tho D:" },
-            { id: 2, question_id: 1, body: "Wrong1", is_correct: false, explanation: "why tho" },
-            { id: 3, question_id: 1, body: "Wrong2", is_correct: false, explanation: "why thooo" },
-            { id: 4, question_id: 1, body: "Wrong3", is_correct: false, explanation: "why tho bro" },
-          ]
-        },
-        // QUESTION #2 ///////////////////////////////////////////
-        {
-          question: { id: 2, quiz_id: 1, body: "What is the capital of the US?", difficulty: 2 },
-          answers: [
-            { id: 5, question_id: 2, body: "Washington, D.C.", is_correct: true, explanation: "why tho D:" },
-            { id: 6, question_id: 2, body: "Wrong1", is_correct: false, explanation: "because" },
-            { id: 7, question_id: 2, body: "Wrong2", is_correct: false, explanation: "why thoooooo" },
-            { id: 8, question_id: 2, body: "Wrong3", is_correct: false, explanation: "but WHY tho" },
-          ]
-        },
-      ]
-    }
-
-    res.send(JSON.stringify(tempData));
-    return;
-
-    // END OF TEMPORARY IN-MEMORY DATA //////////////////////////////
-
-
     const {
       userData
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-    // Instead of getting questions and answers separately, run a query to get all of the questions and answers of a quiz in one shot to avoid needing to chain additional promises
-    // COLUMNS TO SELECT: questions.id, questions.quiz_id, questions.body, questions.difficulty, answers.id, answers.question_id, answers.body, answers.is_correct, answers.explanation
-    // The table will have 4 rows per question (due to having multiple answers), then just reconstruct it into the quizData format below:
-    /*
-    data.questions: [
-      // QUESTION #1 /////////////////////////////////////////
-      {
-        question: { id, quiz_id, body, difficulty },
-        answers: [
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-        ]
-      },
-      // QUESTION #2 ///////////////////////////////////////////
-      {
-        question: { id, quiz_id, body, difficulty },
-        answers: [
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-          { id, question_id, body, is_correct, explanation },
-        ]
-      },
-    ]
-    */
-    db.getQandAByQuizID({quiz_id})
-      .then(questionsAndAnswersData => {
-
+    
+    db.getQuizQuestionsAndAnswers(quiz_id)
+      .then(data => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's
         // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
         // Just make sure this redirect goes through if no data is received
-        if (!questionsAndAnswersData) {
+        if (data.length === 0) {
           res.redirect("/404");
 
           // If the quiz exists and its questions/answers were retrieved successfully...
         } else {
-
-          // Reconstruct questionsAndAnswersData into the format above and insert into data
-          const data = {
-            questions
-          }
-
-          // I *think* it's not necessary to send the actual quiz data (from the quizzes table) again since this POST request
-          // is sent via AJAX meaning the user is still on the /quizzes/:quizid page which already has that stuff
-          // If anything, just grab quizData again and add it to data.quizData = quizData, but we shouldn't need to
-
           // Create a new entry in the quiz_sessions table
           db.addSession({quiz_id, user_id})
             .then(session => {
@@ -243,9 +169,8 @@ module.exports = (db) => {
 
               // Add the sessionID to the quizData object
               data.sessionID = session.id;
-
               // Send all of the data back to the client as a JSON
-              res.send(JSON.stringify(data));
+              res.json(data);
             })
             .catch(err => console.log(err));
 

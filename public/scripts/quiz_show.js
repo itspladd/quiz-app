@@ -24,7 +24,7 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
     type: "POST"
   })
     .then(res => {
-      data = JSON.parse(res);
+      data = res;
     });
 
   const timeout = setTimeout(() => {
@@ -53,14 +53,13 @@ $(document).ready(function() {
 
   // Get EJS variable data
   const quizInfo = getQuizData();
-
   const playButton = $("#play-quiz");
 
   // When the user clicks play, send the quizID to the server
   // Expected response: JSON containing the keys "sessionID", "questions"
   playButton.on("click", function() {
 
-    loadQuiz(123, playQuiz);
+    loadQuiz(quizInfo.id, playQuiz);
 
 
 
