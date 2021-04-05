@@ -19,11 +19,12 @@ html body {
 body {
 
   &::-webkit-scrollbar {
-    width: 0.25em;
+    width: 0.5em;
   }
 
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px $dark;
+    border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -40,7 +41,7 @@ body {
 section {
   background-color: $tertiary-darker;
   border-radius: 5px;
-  border: 4px solid $white;
+  border: 2px solid $white;
   padding: 2rem;
 }
 

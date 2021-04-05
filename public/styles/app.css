@@ -261,12 +261,13 @@ html body {
 }
 
 body::-webkit-scrollbar {
-  width: 0.25em;
+  width: 0.5em;
 }
 
 body::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px #111318;
           box-shadow: inset 0 0 6px #111318;
+  border-radius: 1rem;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -283,7 +284,7 @@ body::-webkit-scrollbar-thumb {
 section {
   background-color: #1a1b2b;
   border-radius: 5px;
-  border: 4px solid #dbdbdb;
+  border: 2px solid #dbdbdb;
   padding: 2rem;
 }
 
