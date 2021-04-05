@@ -80,8 +80,6 @@ module.exports = (db) => {
       userData
     } = res.locals.vars;
 
-    console.log(userData);
-
     // After the form data is received...
 
     // 1. Check that the user is signed in
@@ -112,6 +110,28 @@ module.exports = (db) => {
     }
 
 
+  });
+
+  router.post("/:quizID/sessions", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+
+    if (userData === null) {
+      console.log("You must be logged in to do that.");
+      req.flash("warning", "You must be logged in to do that.");
+      res.redirect("/login");
+      // SUCCESS: The user is signed in
+    } else if (userData) {
+      const quiz_id = req.params.quizID;
+      const user_id = userData.id;
+      db.addSession({quiz_id, user_id})
+      .then(session => {
+        req.flash("success", "New session started!");
+        res.json(session.id);
+
+      })
+      .catch(err => console.log(err));
   });
 
   /*STRETCH: global results from this quiz
