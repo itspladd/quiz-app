@@ -37,8 +37,8 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
     if (data) {
       clearTimeout(timeout);
       clearInterval(loader);
-      console.log(data);
-      callback(data);
+      // console.log(data);
+      // callback(data);
     }
   }, 1000)
 
