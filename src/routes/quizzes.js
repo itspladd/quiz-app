@@ -37,13 +37,20 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-    const templateVars = {
-      alerts,
-      userData,
-      currentPage,
-      rankData
-    };
-    res.render("quiz_new", templateVars);
+    // ERROR: User is not logged in
+    if (!userData) {
+      req.flash("warning", "You must be logged in to do that!");
+      res.redirect("/login");
+      // SUCCESS: User is logged in
+    } else {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        rankData
+      };
+      res.render("quiz_new", templateVars);
+    }
   });
 
   // /quizzes/:quizID --> generates a session and results/:sessionID on the client-side
