@@ -150,11 +150,11 @@ module.exports = (db) => {
     const user_id = userData ? userData.id : null;
 
     db.getQuizQuestionsAndAnswers(quiz_id)
-      .then(data => {
+      .then(questions => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's
         // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
         // Just make sure this redirect goes through if no data is received
-        if (data.length === 0) {
+        if (questions.length === 0) {
           res.redirect("/404");
 
           // If the quiz exists and its questions/answers were retrieved successfully...
@@ -168,8 +168,11 @@ module.exports = (db) => {
               // question => a row from the questions table connected to
               // answers => the 4 rows from the answers table
 
-              // Add the sessionID to the quizData object
-              data.sessionID = session.id;
+              // Add the sessionID to the quizData array
+              const data = {
+                questions,
+                sessionID: session.id
+              }
               // Send all of the data back to the client as a JSON
               res.json(data);
             })
