@@ -54,7 +54,7 @@ const addQuestionComponent = (element) => {
       const answer = $(this).find(".input-response:first").val();
       setTimeout(() => {
         $(this).find(".min-question").html(`<p class="lead">${question || "N/A"}</p><p class="mb-0">Answer: ${answer || "N/A"}</p>`);
-      }, 100)
+      }, 100);
       $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
       $(this)
@@ -73,7 +73,7 @@ const addQuestionComponent = (element) => {
   // Minimize other forms
   setTimeout(() => {
     $(".toggle.minimize").not(":last").trigger("click");
-  }, 800)
+  }, 800);
   // Update counter
   updateCounter();
 
