@@ -12,13 +12,13 @@
   }
 
   button {
-    color: $white;
+    color: $red-darker;
     font-weight: 700;
     background-color: transparent;
     border: none;
 
     &:hover {
-      color: $primary;
+      color: $red;
     }
 
   }
@@ -37,6 +37,32 @@
   .nav-link {
     margin: 0;
     padding: 0;
+  }
+
+}
+
+#app-links,
+#user-links {
+
+  .nav-primary {
+    color: $primary;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .nav-primary-darker {
+    color: $primary-darker;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .nav-blue {
+    color: $blue;
+    &:hover {
+      color: $blue-darker;
+    }
   }
 
 }

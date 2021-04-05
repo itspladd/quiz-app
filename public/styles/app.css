@@ -14,14 +14,14 @@
 }
 
 #navigation button {
-  color: #fff;
+  color: #bd2942;
   font-weight: 700;
   background-color: transparent;
   border: none;
 }
 
 #navigation button:hover {
-  color: #fad207;
+  color: #e22d4b;
 }
 
 #navigation img {
@@ -38,6 +38,36 @@
 #navigation .nav-link {
   margin: 0;
   padding: 0;
+}
+
+#app-links .nav-primary,
+#user-links .nav-primary {
+  color: #fad207;
+}
+
+#app-links .nav-primary:hover,
+#user-links .nav-primary:hover {
+  color: #fff;
+}
+
+#app-links .nav-primary-darker,
+#user-links .nav-primary-darker {
+  color: #faa515;
+}
+
+#app-links .nav-primary-darker:hover,
+#user-links .nav-primary-darker:hover {
+  color: #fff;
+}
+
+#app-links .nav-blue,
+#user-links .nav-blue {
+  color: #008cff;
+}
+
+#app-links .nav-blue:hover,
+#user-links .nav-blue:hover {
+  color: #0072cf;
 }
 
 form .form-control,
