@@ -61,7 +61,6 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-
     db.getQuizByID(req.params.quizID)
       .then(quizData => {
         const templateVars = {
@@ -76,8 +75,8 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
-
-  // Route to create a new quiz
+  // Create a new quiz
+  // Restrictions: user must be logged in
   router.post("/", (req, res) => {
     // This is what is received from the form's post request:
     console.log("From the POST request...");
@@ -90,12 +89,12 @@ module.exports = (db) => {
     // After the form data is received...
 
     // 1. Check that the user is signed in
-    // ERROR: The user is not signed in
+    // ERROR: User is not logged in
     if (userData === null) {
       console.log("You must be logged in to do that.");
       req.flash("warning", "You must be logged in to do that.");
       res.redirect("/login");
-      // SUCCESS: The user is signed in
+      // SUCCESS: User is logged in
     } else if (userData) {
 
       // 2. Validate the form data and ensure that all table column values are present & of the right type
@@ -119,27 +118,25 @@ module.exports = (db) => {
 
   });
 
+  // Start a new quiz session
+  // Restrictions: none
+  // NOTE: Users do NOT need to be logged in to start a quiz. This means that a quiz_session should
+  // be generated, except user_id would be null, and no post-quiz data will be received by the server
+  // (no results or session_answers).
+  // LATER: If we want to, we can track anonymous quiz plays by counting sessions with user_id = null
   router.post("/:quizID/sessions", (req, res) => {
     const {
       userData
     } = res.locals.vars;
-
-    if (userData === null) {
-      console.log("You must be logged in to do that.");
-      req.flash("warning", "You must be logged in to do that.");
-      res.redirect("/login");
-      // SUCCESS: The user is signed in
-    } else if (userData) {
-      const quiz_id = req.params.quizID;
-      const user_id = userData.id;
-      db.addSession({quiz_id, user_id})
+    const quiz_id = req.params.quizID;
+    const user_id = userData ? userData.id : null;
+    db.addSession({quiz_id, user_id})
       .then(session => {
-        req.flash("success", "New session started!");
+        console.log(`New session started by ${userData.username || "anonymous"}!`);
+        req.flash("success", `New session started by ${userData.username || "anonymous"}!`);
         res.json(session.id);
-
       })
       .catch(err => console.log(err));
-    }
   });
 
   /*STRETCH: global results from this quiz
