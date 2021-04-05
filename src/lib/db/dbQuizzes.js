@@ -102,6 +102,9 @@ module.exports = {
   addQuestion: function(questionData) {
     // Separate the answers from the question
     const answers = questionData.answers;
+    // Mark the first answer as correct
+    answers[0].is_correct = true;
+
     delete questionData.answers;
 
     // Extract the question data into queryParams and the keys into an array
