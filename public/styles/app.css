@@ -91,13 +91,13 @@
   color: #8040d3;
 }
 
-.nav-item {
+.nav-item .inactive {
   border-top: 0.2rem solid transparent;
   border-bottom: 0.2rem solid transparent;
 }
 
-.active,
-.nav-item:hover {
+.nav-item .active {
+  border-top: 0.2rem solid transparent;
   border-bottom: 0.2rem solid #dbdbdb;
 }
 
