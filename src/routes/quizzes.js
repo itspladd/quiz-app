@@ -71,9 +71,10 @@ module.exports = (db) => {
           // TEMPORARY REVIEWS ///////////////
 
           const reviews = [
-            { user_id: 1, username: "reggi", comment: "this quiz sucks", rating: "1", timestamp: "2 days ago" },
-            { user_id: 2, username: "francis", comment: "this quiz depends", rating: "3", timestamp: "3 days ago" },
-            { user_id: 3, username: "pladd", comment: "this quiz is awesome", rating: "5", timestamp: "1 hour ago" }
+            { user_id: 1, username: "reggi", title: "sucks", comment: "this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks", rating: "1", timestamp: "2 days ago" },
+            { user_id: 2, username: "francis", title: "depends", comment: "this quiz depends", rating: "3", timestamp: "3 days ago" },
+            { user_id: 3, username: "pladd", title: "awesome", comment: "this quiz is awesome", rating: "5", timestamp: "1 hour ago" },
+            { user_id: 4, username: "ghost", title: "awesome", comment: "", rating: "2", timestamp: "Just now" },
           ]
 
           quizData.reviews = reviews;
@@ -147,7 +148,7 @@ module.exports = (db) => {
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-    
+
     db.getQuizQuestionsAndAnswers(quiz_id)
       .then(data => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's

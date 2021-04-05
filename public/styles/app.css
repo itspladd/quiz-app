@@ -261,7 +261,7 @@ form .custom-select:focus {
 }
 
 .quiz-review {
-  border: 2px solid #ffffff79;
+  border: 2px solid #dbdbdb;
   border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
@@ -269,17 +269,17 @@ form .custom-select:focus {
 }
 
 .quiz-review img {
-  height: 1rem;
-  width: 1rem;
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-bottom: 0.1rem;
 }
 
-.quiz-review .review-author {
-  font-size: 1.2rem;
+.quiz-review .review-title {
   font-weight: 700;
 }
 
 .quiz-review .review-timestamp {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 html body {

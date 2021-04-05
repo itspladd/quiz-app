@@ -30,22 +30,30 @@
             <div class="divider-h"></div>
 
             <!-- Reviews -->
-            <p class="h4">Recent Reviews</p>
+            <p class="h4 mt-0">Recent Reviews</p>
 
             <% for (const review of quizData.reviews) { %>
-              <div class="d-flex flex-column quiz-review">
 
-                <span class="review-comment"><%= review.comment %> </span>
-                <span class="review-author"><%= review.username %></span>
-                  <div>
-                    <% for (let i = 0; i < review.rating; i++) { %>
-                      <img src="/images/star.png" alt="star">
-                    <% } %>
+              <div class="d-flex flex-row quiz-review">
+
+                <div class="div d-flex flex-column">
+                  <span class="review-title"><%= review.title %></span>
+
+                  <div class="d-flex flex-row align-items-center">
+                    <div>
+                      <% for (let i = 0; i < review.rating; i++) { %>
+                        <img src="/images/star.png" alt="star">
+                      <% } %>
+                    </div>
                   </div>
-                  <span class="review-timestamp text-muted"><%= review.timestamp %> </span>
+                  <span class="review-comment mt-2"><%= review.comment %> </span>
+                  <span class="review-timestamp text-muted"> <%= review.timestamp %> by <%= review.username %> </span>
+
+                </div>
+
               </div>
 
-              <% } %>
+            <% } %>
 
           </div>
         </section>
