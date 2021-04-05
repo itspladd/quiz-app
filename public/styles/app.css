@@ -91,14 +91,16 @@
   color: #8040d3;
 }
 
-.nav-item .inactive {
+.nav-item .inactive,
+.nav-item .active {
   border-top: 0.2rem solid transparent;
   border-bottom: 0.2rem solid transparent;
 }
 
-.nav-item .active {
-  border-top: 0.2rem solid transparent;
-  border-bottom: 0.2rem solid #dbdbdb;
+@media (min-width: 1202px) {
+  .nav-item .active {
+    border-bottom-color: #dbdbdb;
+  }
 }
 
 form .form-control,
@@ -311,6 +313,7 @@ a:hover {
   text-decoration: none;
 }
 
+img,
 label,
 select {
   -webkit-user-select: none;

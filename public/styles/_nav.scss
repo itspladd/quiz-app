@@ -83,12 +83,20 @@
 }
 
 .nav-item {
-  .inactive {
+  .inactive,
+  .active {
     border-top: 0.2rem solid transparent;
     border-bottom: 0.2rem solid transparent;
   }
-  .active {
-    border-top: 0.2rem solid transparent;
-    border-bottom: 0.2rem solid $white;
+}
+
+
+@media (min-width: 1202px) {
+
+  .nav-item {
+    .active {
+      border-bottom-color: $white;
+    }
   }
+
 }
