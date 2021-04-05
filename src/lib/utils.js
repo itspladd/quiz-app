@@ -16,6 +16,35 @@ const generateRandomString = (length) => {
   return randomStr;
 };
 
+const convertTimestamp = (timestamp) => {
+  // Retrieve current date in milliseconds and calculate difference
+  const currentDate = new Date();
+  const currentDateTs = Math.floor(currentDate.getTime());
+  const seconds = Math.floor((currentDateTs - timestamp) / 1000);
+  // Return a message based on difference
+  if (seconds > 365 * 24 * 3600) {
+    const years = Math.floor(seconds / (365 * 24 * 3600));
+    return `${years} year${years === 1 ? "" : "s"} ago`;
+  } else if (seconds > 30 * 24 * 3600) {
+    const months = Math.floor(seconds / (30 * 24 * 3600));
+    return `${months} month${months === 1 ? "" : "s"} ago`;
+  } else if (seconds > 24 * 3600) {
+    const days = Math.floor(seconds / (24 * 3600));
+    return `${days} day${days === 1 ? "" : "s"} ago`;
+  } else if (seconds > 3600) {
+    const hours = Math.floor(seconds / (3600));
+    return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  } else if (seconds > 60) {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  } else if (seconds > 2) {
+    return `${seconds} seconds ago`;
+  } else {
+    return "Just now";
+  }
+};
+
 module.exports = {
-  generateRandomString
+  generateRandomString,
+  convertTimestamp
 };

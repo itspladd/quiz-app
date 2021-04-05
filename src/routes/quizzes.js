@@ -1,6 +1,7 @@
 const e = require("express");
 const express = require("express");
 const router = express.Router();
+const utils = require("../lib/utils")
 
 module.exports = (db) => {
 
@@ -69,6 +70,9 @@ module.exports = (db) => {
         return db.getReviewsByQuizId(quiz_id);
       })
       .then(reviewData => {
+        for (let review of reviewData) {
+          review.timestamp = utils.convertTimestamp(review.created_at);
+        }
         quizData.reviews = reviewData;
         const templateVars = {
           alerts,
