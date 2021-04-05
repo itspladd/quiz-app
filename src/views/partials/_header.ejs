@@ -8,13 +8,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav d-flex ml-auto">
 
+              <!-- SHOWN ALWAYS -->
               <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/">HOME</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes">ALL</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/new">NEW</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/123">SHOW</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/users/dashboard">DASHBOARD</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/404">404</a></li>
-
+              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes">ALL QUIZZES</a></li>
 
               <% if (!userData) { %>
 
@@ -22,9 +18,11 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/login">LOGIN</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/register">REGISTER</a></li>
 
-              <% } else { %>
+                <% } else { %>
 
-                <!-- LOGOUT (shown if user is currently logged in) -->
+                  <!-- LOGOUT (shown if user is currently logged in) -->
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/new">CREATE</a></li>
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/users/dashboard">DASHBOARD</a></li>
                 <li class="nav-item mx-0 mx-lg-1">
                   <form class="form-inline" action="/logout" method="POST">
                     <button id="btn-logout" type="submit" class="btn-nav py-3 px-0 px-lg-3">
