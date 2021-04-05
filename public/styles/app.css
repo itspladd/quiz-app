@@ -267,7 +267,6 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px #111318;
           box-shadow: inset 0 0 6px #111318;
-  border-radius: 1rem;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -317,7 +316,7 @@ select {
 }
 
 #main-split {
-  height: 45rem;
+  min-height: 45rem;
   margin-bottom: 2rem;
 }
 
