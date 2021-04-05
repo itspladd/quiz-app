@@ -20,13 +20,22 @@
           </div>
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
+
             <!-- CONTENT HERE -->
             <p>Data available to this page:</p>
-              <ul>
-              <% for (const key in quizData) { %>
-                <li><%= key %>: <%= quizData[key] %></li>
-              <% } %>
-              </ul>
+            <ul>
+            <% for (const key in quizData) { %>
+              <li><%= key %>: <%= quizData[key] %></li>
+            <% } %>
+            </ul>
+
+            <form class="form-inline" action="/quizzes/<%= quizData.id %>" method="POST">
+              <button id="play-quiz" type="submit">
+                PLAY
+              </button>
+            </form>
+
+
           </div>
         </section>
       </div>
