@@ -115,7 +115,6 @@ module.exports = (db) => {
       }
     }
 
-
   });
 
   // Start a new quiz session
@@ -130,13 +129,67 @@ module.exports = (db) => {
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-    db.addSession({quiz_id, user_id})
-      .then(session => {
-        console.log(`New session started by ${userData.username || "anonymous"}!`);
-        req.flash("success", `New session started by ${userData.username || "anonymous"}!`);
-        res.json(session.id);
+    // Instead of getting questions and answers separately, run a query to get all of the questions and answers of a quiz in one shot to avoid needing to chain additional promises
+    // COLUMNS TO SELECT: questions.id, questions.quiz_id, questions.body, questions.difficulty, answers.id, answers.question_id, answers.body, answers.is_correct, answers.explanation
+    // The table will have 4 rows per question (due to having multiple answers), then just reconstruct it into the quizData format below:
+    /*
+    questions: [
+      // QUESTION #1 /////////////////////////////////////////
+      {
+        question: { id, quiz_id, body, difficulty },
+        answers: [
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+        ]
+      },
+      // QUESTION #2 ///////////////////////////////////////////
+      {
+        question: { id, quiz_id, body, difficulty },
+        answers: [
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+          { id, question_id, body, is_correct, explanation },
+        ]
+      },
+    ]
+    */
+    db.getQandAByQuizID({quiz_id})
+      .then(questionsAndAnswersData => {
+
+        // If there's no data, it means quiz_id was invalid and there were no Q's and A's
+        // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
+        // Just make sure this redirect goes through if no data is received
+        if (!questionsAndAnswersData) {
+          res.redirect("/404");
+
+          // If the quiz exists and its questions/answers were retrieved successfully...
+        } else {
+
+          // Reconstruct questionsAndAnswersData into the quizData format above
+          const quizData = {}
+
+          // Create a new entry in the quiz_sessions table
+          db.addSession({quiz_id, user_id})
+            .then(session => {
+              console.log(`New session started by ${userData.username || "anonymous"}!`);
+              // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
+              // containing all of a quiz's questions and answers
+              // question => a row from the questions table connected to
+              // answers => the 4 rows from the answers table
+
+              // Add the sessionID to the quizData object
+              quizData.sessionID = session.id;
+
+              // Send quizData back to the client as a JSON
+              res.send(JSON.stringify(quizData));
+            })
+            .catch(err => console.log(err));
+
+        }
       })
-      .catch(err => console.log(err));
   });
 
   /*STRETCH: global results from this quiz
