@@ -154,7 +154,7 @@ module.exports = (db) => {
     }
 
     res.send(JSON.stringify(tempData));
-    return;
+
 
     // END OF TEMPORARY IN-MEMORY DATA //////////////////////////////
 
@@ -168,7 +168,7 @@ module.exports = (db) => {
     // COLUMNS TO SELECT: questions.id, questions.quiz_id, questions.body, questions.difficulty, answers.id, answers.question_id, answers.body, answers.is_correct, answers.explanation
     // The table will have 4 rows per question (due to having multiple answers), then just reconstruct it into the quizData format below:
     /*
-    questions: [
+    data.questions: [
       // QUESTION #1 /////////////////////////////////////////
       {
         question: { id, quiz_id, body, difficulty },
