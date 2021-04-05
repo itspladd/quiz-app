@@ -6,32 +6,40 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav d-flex ml-auto">
+            <ul class="navbar-nav d-flex flex-column flex-xl-row m-0 justify-content-xl-between w-100">
 
-              <!-- SHOWN ALWAYS -->
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/">HOME</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes">ALL QUIZZES</a></li>
+              <div id="app-links" class="d-flex flex-column flex-xl-row align-items-xl-center ml-lg-4">
+                <!-- APP NAV LINKS (always shown) -->
+                <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/">HOME</a></li>
+                <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/quizzes">ALL QUIZZES</a></li>
 
-              <% if (!userData) { %>
+                <!-- APP NAV LINKS (shown if user is currently logged in)-->
+                <% if (userData) { %>
+                  <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/quizzes/new">CREATE</a></li>
+                  <% } %>
+                </div>
 
-                <!-- LOGIN/REGISTER (shown if user is currently not logged in) -->
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/login">LOGIN</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/register">REGISTER</a></li>
+                <div id="user-links" class="d-flex flex-column flex-xl-row align-items-xl-center mx-lg-3">
+                  <% if (!userData) { %>
 
-                <% } else { %>
+                    <!-- USER NAV LINKS (shown if user is currently not logged in) -->
+                    <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/login">LOGIN</a></li>
+                    <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/register">REGISTER</a></li>
 
-                  <!-- LOGOUT (shown if user is currently logged in) -->
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/new">CREATE</a></li>
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/users/dashboard">DASHBOARD</a></li>
-                <li class="nav-item mx-0 mx-lg-1">
-                  <form class="form-inline" action="/logout" method="POST">
-                    <button id="btn-logout" type="submit" class="btn-nav py-3 px-0 px-lg-3">
-                      LOGOUT
-                    </button>
-                  </form>
-                </li>
+                    <% } else { %>
 
-              <% } %>
+                      <!-- USER NAV LINKS (shown if user is currently logged in) -->
+                      <li class="nav-item my-2 ml-xl-3"><a class="nav-link" href="/users/dashboard">DASHBOARD</a></li>
+                      <li class="nav-item my-2 ml-xl-3">
+                    <form class="form-inline" action="/logout" method="POST">
+                      <button id="btn-logout" type="submit" class="btn-nav">
+                        LOGOUT
+                      </button>
+                    </form>
+                  </li>
+
+                <% } %>
+              </div>
 
             </ul>
         </div>

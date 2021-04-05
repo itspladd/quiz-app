@@ -34,6 +34,12 @@
   color: #fad207;
 }
 
+#navigation button,
+#navigation .nav-link {
+  margin: 0;
+  padding: 0;
+}
+
 form .form-control,
 form .custom-select {
   outline: none;
