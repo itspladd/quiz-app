@@ -6,23 +6,7 @@ module.exports = (db) => {
   // /quizzes
   router.get("/", (req, res) => {
     // Browse all
-<<<<<<< HEAD
-    const quizData = [
-      { id: "1", title: "Quiz Name", description: "This is the description."},
-      { id: "2", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-      { id: "3", title: "Quiz Name", description: "This is the description."},
-    ];
-=======
     // Get all quizzes (this is where we'd add a sort parameter in the future)
->>>>>>> 0c32882d92aa1b56e37e13932013654b910f523d
     const {
       alerts,
       userData,
