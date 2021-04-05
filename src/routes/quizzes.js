@@ -169,7 +169,6 @@ module.exports = (db) => {
 
               // Add the sessionID to the quizData object
               data.sessionID = session.id;
-
               // Send all of the data back to the client as a JSON
               res.json(data);
             })

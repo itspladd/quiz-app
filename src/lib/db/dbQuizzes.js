@@ -87,6 +87,7 @@ module.exports = {
         // If we're on a new question...
         if (row.question_id !== currentQuestionID) {
           // Add the question and start the answer array
+          currentQuestionID = row.question_id;
           questionData.push({
             question: {
               id: row.question_id,
@@ -109,6 +110,7 @@ module.exports = {
         });
 
       };
+      console.log(questionData);
       return questionData;
     });
   },
