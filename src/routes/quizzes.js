@@ -63,14 +63,19 @@ module.exports = (db) => {
     } = res.locals.vars;
     db.getQuizByID(req.params.quizID)
       .then(quizData => {
-        const templateVars = {
-          alerts,
-          userData,
-          currentPage,
-          rankData,
-          quizData
-        };
-        res.render("quiz_show", templateVars);
+        // ERROR: Invalid quizID
+        if (!quizData) {
+          res.redirect("/404");
+        } else {
+          const templateVars = {
+            alerts,
+            userData,
+            currentPage,
+            rankData,
+            quizData
+          };
+          res.render("quiz_show", templateVars);
+        }
       })
       .catch(err => console.error(err));
   });
@@ -145,9 +150,9 @@ module.exports = (db) => {
           question: { id: 2, quiz_id: 1, body: "What is the capital of the US?", difficulty: 2 },
           answers: [
             { id: 5, question_id: 2, body: "Washington, D.C.", is_correct: true, explanation: "why tho D:" },
-            { id: 6, question_id: 2, body, is_correct: false, explanation: "because" },
-            { id: 7, question_id: 2, body, is_correct: false, explanation: "why thoooooo" },
-            { id: 8, question_id: 2, body, is_correct: false, explanation: "but WHY tho" },
+            { id: 6, question_id: 2, body: "Wrong1", is_correct: false, explanation: "because" },
+            { id: 7, question_id: 2, body: "Wrong2", is_correct: false, explanation: "why thoooooo" },
+            { id: 8, question_id: 2, body: "Wrong3", is_correct: false, explanation: "but WHY tho" },
           ]
         },
       ]

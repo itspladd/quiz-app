@@ -29,14 +29,15 @@ $(document).ready(function() {
 
     // Submit a post request with data = quizID and do NOT redirect
     $.ajax({
-      url: "/quizzes",
-      type: "POST",
-      data: "hey"
+      url: `/quizzes/${quizData.id}/sessions`,
+      type: "POST"
     })
-      .then(data => {
-        // On successful quiz submission, redirect to the new quiz show page
-        console.log("sent")
-        console.log(data);
+      .then(res => {
+        const resData = JSON.parse(res);
+        // Add sessionID and questions to quizData
+        quizData.sessionID = resData.sessionID;
+        quizData.questions = resData.questions;
+        console.log(quizData.questions);
       });
 
   })
