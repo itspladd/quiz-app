@@ -89,6 +89,7 @@ form .custom-select:focus {
   min-height: 10rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
 }
 
 .list-quiz p {
