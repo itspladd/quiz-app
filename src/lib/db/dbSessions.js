@@ -4,7 +4,7 @@ module.exports = {
   addSession: function(sessionData) {
     const {columns, vars, queryParams} = db.buildInsertQueryParams(sessionData);
     const queryString = `
-      INSERT INTO quizzes (${columns})
+      INSERT INTO quiz_sessions (${columns})
       VALUES (${vars})
       RETURNING *;
     `;
