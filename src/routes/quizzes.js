@@ -101,8 +101,8 @@ module.exports = (db) => {
         quiz.author_id = userData.id;
         // After quiz is constructed with all of the values it needs, pass it into db.addQuiz();
         db.addQuiz(quiz)
-          .then(quiz => res.json(quiz.id)) // res.json({ quizID: quiz_id })
-          .catch(err => console.log("ALERT!", err));
+          .then(quiz => res.json(quiz.id))
+          .catch(err => console.log(err));
       }
     }
     /*

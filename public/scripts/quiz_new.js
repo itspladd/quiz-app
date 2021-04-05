@@ -173,15 +173,18 @@ const submitForm = () => {
     questions
   };
 
-  // console.log(data);
-
   // Submit a post request with the quiz data
   $.ajax({
     url: "/quizzes",
     type: "POST",
     data
   })
-    .then(res => console.log("AJAX REQUEST WORKED! DATA FROM SERVER: ", res));
+    .then(res => {
+      // On successful quiz submission, redirect to the new quiz show page
+      const quizID = res;
+      console.log("Success! Redirecting to new quiz!");
+      window.location.replace(`/quizzes/${quizID}`);
+    });
 
   ;
 
