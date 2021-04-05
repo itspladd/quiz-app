@@ -43,13 +43,17 @@
     </main>
 
     <p>Data available to this page:</p>
-    <ul>
+    <ul id="data-ejs">
     <% for (const key in quizData) { %>
-      <li><%= key %>: <%= quizData[key] %></li>
+      <li>
+        <%= key %>:
+        <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
+      </li>
     <% } %>
-    </ul>
+      </ul>
 
   <%- include("partials/_footer.ejs") %>
+
 
   </body>
 

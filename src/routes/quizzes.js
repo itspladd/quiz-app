@@ -154,7 +154,7 @@ module.exports = (db) => {
     }
 
     res.send(JSON.stringify(tempData));
-
+    return;
 
     // END OF TEMPORARY IN-MEMORY DATA //////////////////////////////
 
