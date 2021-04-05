@@ -66,10 +66,15 @@ module.exports = (db) => {
     const quiz_id = req.params.quizID;
     db.getQuizByID(req.params.quizID)
       .then(quiz => {
+        // Convert date/time data to a more readable format
         quizData = quiz;
+        creationDate = new Date(quiz.creation_date);
+        quizData.relative_time = utils.convertTimestamp(quiz.creation_date);
+        quizData.creation_date = creationDate.toDateString();
         return db.getReviewsByQuizId(quiz_id);
       })
       .then(reviewData => {
+        // Parse the created_at value to get a "created x days ago" string
         for (let review of reviewData) {
           review.timestamp = utils.convertTimestamp(review.created_at);
         }
