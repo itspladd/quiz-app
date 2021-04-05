@@ -1,3 +1,36 @@
+// Remove an element
+const removeElement = (element, delay = 800) => {
+  element
+    .css("min-height", "0")
+    .animate({
+      queue: true,
+      opacity: 0
+    }, {
+      duration: 400
+    })
+    .slideUp(400);
+  setTimeout(() => {
+    element.remove();
+  }, delay);
+};
+
+// Add an element
+const addElement = (element, delay = 400) => {
+  element.css("display", "none");
+  setTimeout(() => {
+    element
+      .slideDown(delay)
+      // .css("display", "block")
+      .css("opacity", 0)
+      .animate({
+        queue: true,
+        opacity: 1
+      }, {
+        duration: delay
+      });
+  }, 0);
+};
+
 $(document).ready(function() {
 
   const scrollBtn = $("#scroll-btn");

@@ -282,6 +282,43 @@ form .custom-select:focus {
   font-size: 0.8rem;
 }
 
+#quiz-question {
+  min-height: 8rem;
+}
+
+#quiz-answers:hover {
+  cursor: pointer;
+}
+
+#quiz-answers :nth-child(1) {
+  border-color: #bd2942;
+}
+
+#quiz-answers :nth-child(1):hover {
+  border-color: #e22d4b;
+  background-color: #222338;
+}
+
+#quiz-answers :nth-child(1):active {
+  background-color: #1a1b2b;
+}
+
+.quiz-option {
+  font-size: 0.9rem;
+  border: 2px solid #dbdbdb;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  min-height: 6rem;
+  margin-top: 0.5rem;
+  word-wrap: break-word;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
 html body {
   background-color: #111318;
   color: #dbdbdb;

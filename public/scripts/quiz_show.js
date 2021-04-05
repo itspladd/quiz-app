@@ -37,15 +37,42 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
     if (data) {
       clearTimeout(timeout);
       clearInterval(loader);
-      // console.log(data);
-      // callback(data);
+      callback(data);
     }
-  }, 1000)
+  }, 10)
 
 }
 
 const playQuiz = (data) => {
-  // Display a question
+
+  const sessionID = data.sessionID;
+
+  console.log("STARTING QUIZ")
+
+  showSession();
+
+}
+
+const showSession = () => {
+  // Hide quiz front page
+
+  const quizFront = $("#quiz-front")
+  quizFront.fadeOut();
+
+  const quizSession = $("#quiz-session")
+
+  // Display "Starting Quiz"
+  // showQuestion(quizSession, "What is the capital of Canada?");
+
+}
+
+const showQuestion = (quizSession, question) => {
+
+  const $question = $(`
+
+
+  `)
+
 }
 
 $(document).ready(function() {
@@ -60,8 +87,6 @@ $(document).ready(function() {
   playButton.on("click", function() {
 
     loadQuiz(quizInfo.id, playQuiz);
-
-
 
   })
 
