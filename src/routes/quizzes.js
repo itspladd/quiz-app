@@ -1,3 +1,4 @@
+const e = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -69,31 +70,57 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    // POST STUFF
-    // REDIRECT TO /:quizID
-    // Make sure quiz data is in this format:
-    /* {
+    // This is what is received from the form's post request:
+    console.log("From the POST request...");
+    console.log(req.body);
+
+    const {
+      userData
+    } = res.locals.vars;
+
+    // After the form data is received...
+
+    // 1. Check that the user is signed in
+    // ERROR: The user is not signed in
+    if (userData === null) {
+      req.flash("warning", "You must be logged in to do that.")
+      res.redirect("/login");
+      // SUCCESS: The user is signed in
+    } else if (userData) {
+
+      // 2. Validate the form data and ensure that all table column values are present & of the right type
+      // Helper function: validateFormBody(req.body) => true or false;
+      const valid = true;
+
+      // 3. Construct the quiz variable to contain everything that db.addQuiz() needs
+      if (valid) {
+        const quiz = req.body;
+        quiz.author_id = userData.id;
+        // After quiz is constructed with all of the values it needs, pass it into db.addQuiz();
+        db.addQuiz(quiz)
+          .then(quiz => res.redirect(`/quizzes/${quiz.id}`))
+          .catch(err => console.log(err));
+      }
+    }
+    /*
+    const quiz = {
       author_id,
-      category_id,
       title,
       description,
+      category_id,
       public,
       questions: [
         {
-          body
-          difficulty (optional)
-          answers: [
-            body,
-            is_correct,
-            explanation (optional)
-          ]
+          question: "What is the capital of Canada?",
+          answers: [ "ans1", "ans2", "ans3", "ans4" ] // index 0 is correct, the rest are incorrect
+        },
+        {
+          question: "What is the capital of the US?",
+          answers: [ "ans1", "ans2", "ans3", "ans4" ] // index 0 is correct, the rest are incorrect
         }
       ]
     }
     */
-    db.addQuiz(quiz)
-    .then(quiz => res.redirect(`/quizzes/${quiz.id}`))
-    .catch(err => console.log(err));
   });
 
   /*STRETCH: global results from this quiz

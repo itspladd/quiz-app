@@ -145,7 +145,7 @@ const getQuizFormErrors = () => {
 // Submit form handler
 const submitForm = () => {
   const title = $("#quiz-title").val().trim();
-  const desc = $("#quiz-desc").val().trim();
+  const description = $("#quiz-desc").val().trim();
   const category_id = $("#quiz-category").val().trim();
   const public = $("#quiz-visibility").val().trim();
   const questions = [];
@@ -164,17 +164,19 @@ const submitForm = () => {
   }
   const data = {
     title,
-    desc,
+    description,
     category_id,
     public,
     questions
   };
 
+  console.log(data);
+
   // Submit a post request with the quiz data
   $.ajax({
     url: "/quizzes",
     type: "POST",
-    data: JSON.stringify(data)
+    data
   });
 
 };
