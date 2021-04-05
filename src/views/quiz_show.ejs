@@ -32,7 +32,20 @@
             <!-- Reviews -->
             <p class="h4">Recent Reviews</p>
 
+            <% for (const review of quizData.reviews) { %>
+              <div class="d-flex flex-column quiz-review">
 
+                <span class="review-comment"><%= review.comment %> </span>
+                <span class="review-author"><%= review.username %></span>
+                  <div>
+                    <% for (let i = 0; i < review.rating; i++) { %>
+                      <img src="/images/star.png" alt="star">
+                    <% } %>
+                  </div>
+                  <span class="review-timestamp text-muted"><%= review.timestamp %> </span>
+              </div>
+
+              <% } %>
 
           </div>
         </section>

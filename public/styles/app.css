@@ -260,6 +260,28 @@ form .custom-select:focus {
   opacity: 1;
 }
 
+.quiz-review {
+  border: 2px solid #ffffff79;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.quiz-review img {
+  height: 1rem;
+  width: 1rem;
+}
+
+.quiz-review .review-author {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.quiz-review .review-timestamp {
+  font-size: 0.7rem;
+}
+
 html body {
   background-color: #111318;
   color: #dbdbdb;
