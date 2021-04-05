@@ -2,8 +2,11 @@
 const addQuestionComponent = (element) => {
 
   const $newForm = $(`
-    <div class="form-group new-question">
-      <label for="question" class="question-label form-label text-muted mt-2">Question</label>
+    <div class="form-group new-question d-flex flex-column">
+      <header class="d-flex flex-row justify-content-between">
+        <label for="question" class="question-label form-label text-muted mt-2">Question</label>
+        <span class="toggle minimize text-muted">click to minimize</span>
+      </header>
       <input class="input-question form-control" type="text" name="question" maxlength="250" required>
       <div class="responses">
         <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
@@ -13,8 +16,10 @@ const addQuestionComponent = (element) => {
         <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
         <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
       </div>
-      <div class="question-control d-flex flex-row justify-content-end align-items-center mt-3">
-        <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
+      <div class="question-control d-flex flex-row justify-content-end mt-3">
+        <div class="d-flex flex-row align-items-center">
+          <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
+        </div>
       </div>
     </div>
   `);
@@ -28,6 +33,29 @@ const addQuestionComponent = (element) => {
       updateCounter();
     }, 800);
     // Update counter
+  });
+
+  $($newForm).bind("click", function(event) {
+    const $target = $(event.target);
+    const clicks = $(this).data("clicks");
+    if ($($target).is(".toggle.maximize")) {
+      $(this)
+        .find(".responses")
+        .slideDown();
+      $(this)
+        .find(".toggle")
+        .html("click to minimize")
+        .removeClass("maximize")
+        .addClass("minimize");
+    } else if ($($target).is(".toggle.minimize")) {
+      $(this).find(".responses").slideUp();
+      $(this)
+        .find(".toggle")
+        .html("click to maximize")
+        .removeClass("minimize")
+        .addClass("maximize");
+    }
+    $(this).data("clicks", !clicks);
   });
 
   // Add form to all questions container
@@ -286,5 +314,7 @@ $(document).ready(function() {
     showError(false);
 
   });
+
+  let hoverDelay;
 
 });
