@@ -143,6 +143,12 @@ select {
   min-height: 24rem;
 }
 
+#page-footer {
+  border: 0.25rem solid $tertiary;
+  position: fixed;
+  bottom: 0;
+}
+
 .btn-custom {
   color: $primary-darker;
   background-color: $tertiary-darker;

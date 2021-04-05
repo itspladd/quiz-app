@@ -401,6 +401,12 @@ select {
   min-height: 24rem;
 }
 
+#page-footer {
+  border: 0.25rem solid #222338;
+  position: fixed;
+  bottom: 0;
+}
+
 .btn-custom {
   color: #faa515;
   background-color: #1a1b2b;
