@@ -28,7 +28,7 @@ module.exports = {
       SELECT quizzes.*,
         users.username AS author
       FROM quizzes
-        JOIN users ON users.id = quizzes.id
+        JOIN users ON users.id = author_id
       WHERE quizzes.id = $1;
     `;
     const queryParams = [id];
