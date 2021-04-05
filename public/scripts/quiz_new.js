@@ -142,27 +142,28 @@ const getQuizFormErrors = () => {
 // Sanitize user input values
 const sanitize = (string) => {
 
-  const div = document.createElement("div");
-  div.appendChild(document.createTextNode(string.trim()));
-  return div.innerHTML;
+  // const div = document.createElement("div");
+  // div.appendChild(document.createTextNode(string.trim()));
+  // return div.innerHTML;
+  return string.trim();
 
 }
 
 // Submit form handler
 const submitForm = () => {
 
-  const title = $("#quiz-title").val().trim();
-  const description = $("#quiz-desc").val().trim();
-  const category_id = $("#quiz-category").val().trim();
-  const public = $("#quiz-visibility").val().trim();
+  const title = sanitize($("#quiz-title").val());
+  const description = sanitize($("#quiz-desc").val());
+  const category_id = sanitize($("#quiz-category").val());
+  const public = sanitize($("#quiz-visibility").val());
   const questions = [];
   const allQuestions = $(".input-question");
   for (const questionField of allQuestions) {
-    const questionValue = $(questionField).val().trim();
+    const questionValue = sanitize($(questionField).val());
     const responseFields = $(questionField).next().find(".input-response");
     const responseValues = [];
     for (const responseField of responseFields) {
-      const responseValue = $(responseField).val().trim();
+      const responseValue = sanitize($(responseField).val());
       const answer = { body: responseValue, explanation: "why tho D:" };
       responseValues.push(answer);
     }
