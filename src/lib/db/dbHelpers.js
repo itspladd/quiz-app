@@ -7,9 +7,11 @@ const db = require("./db");
 const users = require("./dbUsers");
 const quizzes = require("./dbQuizzes");
 const sessions = require("./dbSessions");
+const reviews = require("./dbReviews");
 
 module.exports = {
   ...users,
   ...quizzes,
-  ...sessions
+  ...sessions,
+  ...reviews
 };

@@ -1,10 +1,12 @@
-DROP TABLE IF EXISTS quiz_ratings CASCADE;
+DROP TABLE IF EXISTS quiz_reviews CASCADE;
 
-CREATE TABLE quiz_ratings (
+CREATE TABLE quiz_reviews (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
   session_id INTEGER REFERENCES quiz_sessions(id) ON DELETE CASCADE,
   rating SMALLINT NOT NULL,
-  comment VARCHAR(255)
+  title VARCHAR(30) NOT NULL,
+  comment VARCHAR(255),
+  created_at TIMESTAMP DEFAULT NOW()
 );

@@ -38,10 +38,11 @@
 
             <!-- QUIZ FRONT PAGE -->
             <div id="quiz-front" class="d-none">
+
               <!-- QUIZ INFO -->
               <p class="h1"><%= quizData.title %> </p>
               <p class="lead"><%= quizData.description %></p>
-              <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %></p>
+              <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %> (<%= quizData.relative_time %>)</p>
 
               <button id="play-quiz" type="button">
                 START QUIZ
@@ -90,16 +91,21 @@
 
     </main>
 
-    <p>Data available to this page:</p>
-    <ul id="data-ejs">
+    <p>Quiz data:</p>
+    <ul>
     <% for (const key in quizData) { %>
       <li>
         <%= key %>:
         <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
       </li>
     <% } %>
+    </ul>
+    <p>Review data (quizData.reviews, array of objects, this is just from one review as an example):</p>
+    <ul>
+      <% for (const key in quizData.reviews[0]) { %>
+        <li><%= key %>: <%= quizData.reviews[0][key] %></li>
+      <% } %>
       </ul>
-
   <%- include("partials/_footer.ejs") %>
 
 
