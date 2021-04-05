@@ -5,7 +5,6 @@ const addQuestionComponent = (element) => {
     <div class="form-group new-question d-flex flex-column">
       <header class="d-flex flex-row justify-content-between">
         <label for="question" class="question-label form-label text-muted mt-2">Question</label>
-        <span class="toggle minimize text-muted">click to minimize</span>
       </header>
       <input class="input-question form-control" type="text" name="question" maxlength="250" required>
       <div class="responses">
@@ -16,7 +15,8 @@ const addQuestionComponent = (element) => {
         <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
         <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
       </div>
-      <div class="question-control d-flex flex-row justify-content-end mt-3">
+      <div class="question-control d-flex flex-row justify-content-between mt-3">
+        <span class="toggle minimize text-muted">hide</span>
         <div class="d-flex flex-row align-items-center">
           <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
         </div>
@@ -37,31 +37,34 @@ const addQuestionComponent = (element) => {
 
   $($newForm).bind("click", function(event) {
     const $target = $(event.target);
-    const clicks = $(this).data("clicks");
     if ($($target).is(".toggle.maximize")) {
       $(this)
         .find(".responses")
         .slideDown();
       $(this)
         .find(".toggle")
-        .html("click to minimize")
+        .html("hide")
         .removeClass("maximize")
         .addClass("minimize");
     } else if ($($target).is(".toggle.minimize")) {
       $(this).find(".responses").slideUp();
       $(this)
         .find(".toggle")
-        .html("click to maximize")
+        .html("show")
         .removeClass("minimize")
         .addClass("maximize");
     }
-    $(this).data("clicks", !clicks);
   });
 
   // Add form to all questions container
   $newForm.css("display", "none").css("min-height", "0");
   element.append($newForm);
   addElement($newForm);
+
+  // Minimize other forms
+  setTimeout(() => {
+    $(".toggle.minimize").not(":last").trigger("click");
+  }, 800)
 
   // Update counter
   updateCounter();
