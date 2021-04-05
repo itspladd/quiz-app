@@ -18,7 +18,7 @@ module.exports = (db) => {
       { id: "3", title: "Quiz Name", description: "This is the description."},
       { id: "3", title: "Quiz Name", description: "This is the description."},
       { id: "3", title: "Quiz Name", description: "This is the description."},
-    ]
+    ];
     const {
       alerts,
       userData,

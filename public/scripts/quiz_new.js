@@ -30,20 +30,20 @@ const addQuestionComponent = (element) => {
     $(this).closest(".new-question").remove();
     // Update counter
     updateCounter();
-  })
+  });
   // Add form to all questions container
   element.append($newForm);
   // Update counter
   updateCounter();
 
-}
+};
 
 // Update the children counter of the given element
 const updateCounter = () => {
 
   const num = getNumQuestions();
   $("#questions-counter")
-    .html(`Questions${num ? ` ( ${num} )` : ""}`)
+    .html(`Questions${num ? ` ( ${num} )` : ""}`);
 
 };
 
@@ -64,7 +64,7 @@ const showError = (errorMsg) => {
     errorComponent.empty();
   }
 
-}
+};
 
 // Check that the form is complete and that there are at least min questions/responses
 // A quiz is valid if:
@@ -76,15 +76,15 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
   const questions = $("#add-questions").children();
   // There must be at least 2 questions
   if (questions.length < minQuestions) {
-    error = `Minimum of ${minQuestions} questions must be provided`
+    error = `Minimum of ${minQuestions} questions must be provided`;
   }
-  const allQuestions = $(".input-question")
+  const allQuestions = $(".input-question");
   for (const question of allQuestions) {
     let valid = true;
     const userQuestion = $(question).val().trim();
     // Questions may not be non-empty
     if (userQuestion.length < 1) {
-      error = "Question field may not be empty"
+      error = "Question field may not be empty";
       valid = false;
     } else if (userQuestion.length > 250) {
       error = "Question field exceeds 250-character limit";
@@ -95,7 +95,7 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
       const userResponse = $(response).val().trim();
       // Responses may not be non-empty
       if (userResponse.length < 1) {
-        error = "Response field may not be empty"
+        error = "Response field may not be empty";
         valid = false;
       } else if (userResponse.length > 250) {
         error = "Response field exceeds 250-character limit";
@@ -111,7 +111,7 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
   }
 
   return error;
-}
+};
 
 // Check that the quiz info fields are complete
 const getQuizFormErrors = () => {
@@ -140,7 +140,7 @@ const getQuizFormErrors = () => {
 
   return error;
 
-}
+};
 
 // Submit form handler
 const submitForm = () => {
@@ -170,17 +170,14 @@ const submitForm = () => {
     questions
   };
 
-  console.log(data);
-
   // Submit a post request with the quiz data
-
   $.ajax({
     url: "/quizzes",
     type: "POST",
     data: JSON.stringify(data)
-  })
+  });
 
-}
+};
 
 $(document).ready(function() {
 
@@ -202,14 +199,14 @@ $(document).ready(function() {
 
   quizForm.on("submit", function(event) {
     event.preventDefault();
-    console.log("SUBMITTING QUIZ (CLIENT-SIDE)...")
+    console.log("SUBMITTING QUIZ (CLIENT-SIDE)...");
     // Display question form errors, if any
     const error = getQuizFormErrors() || getQuestionFormErrors();
     showError(error);
     // If there are no errors, construct data to be sent to the server
     if (!error) {
       submitForm();
-    };
+    }
   });
 
   // Clear question validation highlights and error message on user input

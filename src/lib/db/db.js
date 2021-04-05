@@ -13,7 +13,7 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 const pool = new Pool(dbParams);
 
 module.exports = {
@@ -23,12 +23,12 @@ module.exports = {
     console.log(queryString);
     console.log(queryParams); */
     return pool.query(queryString, queryParams)
-    .then(res => {
+      .then(res => {
       // Optional logging, enable to check queries as they run
       /* console.log('returning: ', res.rows ) */
-      return res.rows;
-    })
-    .catch(err => console.log(err));
+        return res.rows;
+      })
+      .catch(err => console.log(err));
   },
 
   /**
@@ -49,7 +49,7 @@ module.exports = {
 
     columns = keysArray.join(", ");
     let vars = "";
-    for(let i = 1; i <= numVars; i++) {
+    for (let i = 1; i <= numVars; i++) {
       vars += i !== 1 ? ", " : "";
       vars += `$${i}`;
     }

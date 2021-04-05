@@ -29,7 +29,7 @@ app.use(cookieSession({ // configure cookies
   maxAge: 24 * 60 * 60 * 1000
 }));
 app.use(methodOverride("_method")); // override POST requests
-app.use(express.static(path.join(__dirname, 'public'))); // serve public directory
+app.use(express.static(path.join(__dirname, "public"))); // serve public directory
 app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
@@ -124,7 +124,7 @@ app.get("/login", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.")
+    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
     res.redirect("/");
   } else {
@@ -147,7 +147,7 @@ app.get("/register", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.")
+    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
     res.redirect("/");
   } else {
@@ -194,8 +194,8 @@ app.post("/register", (req, res) => {
                 db.addUser({ username, email, password: hashedPassword })
                   .then(userData => {
                     req.session.userID = userData.id;
-                    console.log(`Registration successful. Welcome to InquizitorApp!`);
-                    req.flash("success", `Registration successful. Welcome to InquizitorApp!`);
+                    console.log("Registration successful. Welcome to InquizitorApp!");
+                    req.flash("success", "Registration successful. Welcome to InquizitorApp!");
                     res.redirect("/");
                   });
               }
@@ -227,7 +227,7 @@ app.get("/", (req, res) => {
     { id: "1", title: "Quiz Name", description: "This is the description."},
     { id: "2", title: "Quiz Name", description: "This is the description."},
     { id: "3", title: "Quiz Name", description: "This is the description."},
-  ]
+  ];
   const {
     alerts,
     userData,
