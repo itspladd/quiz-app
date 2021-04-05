@@ -124,6 +124,41 @@ module.exports = (db) => {
   // (no results or session_answers).
   // LATER: If we want to, we can track anonymous quiz plays by counting sessions with user_id = null
   router.post("/:quizID/sessions", (req, res) => {
+
+    // TEMPORARY IN-MEMORY DATA ////////////////////////////////////
+
+    const tempData = {
+      sessionID: 1337,
+      questions: [
+        // QUESTION #1 /////////////////////////////////////////
+        {
+          question: { id: 1, quiz_id: 1, body: "What is the capital of Canada?", difficulty: 1 },
+          answers: [
+            { id: 1, question_id: 1, body: "Ottawa", is_correct: true, explanation: "why tho D:" },
+            { id: 2, question_id: 1, body: "Wrong1", is_correct: false, explanation: "why tho" },
+            { id: 3, question_id: 1, body: "Wrong2", is_correct: false, explanation: "why thooo" },
+            { id: 4, question_id: 1, body: "Wrong3", is_correct: false, explanation: "why tho bro" },
+          ]
+        },
+        // QUESTION #2 ///////////////////////////////////////////
+        {
+          question: { id: 2, quiz_id: 1, body: "What is the capital of the US?", difficulty: 2 },
+          answers: [
+            { id: 5, question_id: 2, body: "Washington, D.C.", is_correct: true, explanation: "why tho D:" },
+            { id: 6, question_id: 2, body, is_correct: false, explanation: "because" },
+            { id: 7, question_id: 2, body, is_correct: false, explanation: "why thoooooo" },
+            { id: 8, question_id: 2, body, is_correct: false, explanation: "but WHY tho" },
+          ]
+        },
+      ]
+    }
+
+    res.send(JSON.stringify(tempData));
+    return;
+
+    // END OF TEMPORARY IN-MEMORY DATA //////////////////////////////
+
+
     const {
       userData
     } = res.locals.vars;
