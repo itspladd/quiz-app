@@ -296,11 +296,30 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(1):hover {
   border-color: #e22d4b;
-  background-color: #222338;
 }
 
-#quiz-answers :nth-child(1):active {
-  background-color: #1a1b2b;
+#quiz-answers :nth-child(2) {
+  border-color: #0072cf;
+}
+
+#quiz-answers :nth-child(2):hover {
+  border-color: #008cff;
+}
+
+#quiz-answers :nth-child(3) {
+  border-color: #23ce64;
+}
+
+#quiz-answers :nth-child(3):hover {
+  border-color: #31f37b;
+}
+
+#quiz-answers :nth-child(4) {
+  border-color: #faa515;
+}
+
+#quiz-answers :nth-child(4):hover {
+  border-color: #fad207;
 }
 
 .quiz-option {
@@ -317,6 +336,14 @@ form .custom-select:focus {
           user-select: none;
   -webkit-transition: 0.1s;
   transition: 0.1s;
+}
+
+.quiz-option:hover {
+  background-color: #222338;
+}
+
+.quiz-option:hover:active {
+  background-color: #1a1b2b;
 }
 
 html body {
