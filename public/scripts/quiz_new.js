@@ -339,4 +339,13 @@ $(document).ready(function() {
 
   });
 
+  $("#test").on("click", function() {
+    $.ajax({
+      url: "/quizzes",
+      type: "POST",
+      data: "hey this wasn't supposed to happen"
+    })
+      .then(res => console.log(res))
+  })
+
 });
