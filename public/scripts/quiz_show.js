@@ -49,29 +49,72 @@ const playQuiz = (data) => {
 
   console.log("STARTING QUIZ")
 
-  showSession();
+  showSession(data);
+
+  // Hide quiz front component
+  $("#quiz-front").fadeOut();
+
+  // Create question page component
+  let number = 1;
+  const length = data.questions.length;
+
+  let current = 0;
+
+  for (const entry of data.questions) {
+    console.log(entry);
+    // const question = entry.question.body;
+    // const answers = entry.answers.map(ans => ans.body);
+    // const component = createQuestionPage(question, answers, number, length);
+    // number++;
+  }
+
+
+
 
 }
 
-const showSession = () => {
-  // Hide quiz front page
+// Given a question number and array of answers, create a quiz question page
+const createQuestionPage = (question, answers, number, length) => {
 
-  const quizFront = $("#quiz-front")
-  quizFront.fadeOut();
+  // Get parent container
+  const $parent = $("#quiz-session");
 
-  const quizSession = $("#quiz-session")
-
-  // Display "Starting Quiz"
-  // showQuestion(quizSession, "What is the capital of Canada?");
-
-}
-
-const showQuestion = (quizSession, question) => {
-
-  const $question = $(`
-
-
+  // Create quiz title
+  const $title = $(`
+  <div id="quiz-title" class="text-muted initialism">
+    ${data.title}
+  </div>
   `)
+
+  // Create quiz question number
+  const $number = $(`
+    <div id="quiz-question-number" class="mt-4 mb-3">
+      Question ${number} of ${length}
+    </div>
+  `);
+
+  // Create quiz question
+  const $question = $(`
+    <div id="quiz-question" class="d-flex flex-column justify-content-center mb-4">
+      <h1 class="h3">${question}</h1>
+    </div>
+  `);
+
+  // Create answers container with all options
+  const $answersContainer = $(`<div id="quiz-answers" class="d-flex flex-column">`);
+  for (const option of answers) {
+    const $opt = $(`<span class="quiz-option d-flex align-items-center">${option}</span>`);
+    $answersContainer.append($opt);
+  }
+
+  // Append components to the parent container
+  $parent
+    .append($title)
+    .append($number)
+    .append($question)
+    .append($answersContainer)
+
+  return $parent;
 
 }
 
