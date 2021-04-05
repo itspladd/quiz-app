@@ -69,6 +69,8 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
+
+  // Route to create a new quiz
   router.post("/", (req, res) => {
     // This is what is received from the form's post request:
     console.log("From the POST request...");
@@ -108,35 +110,7 @@ module.exports = (db) => {
           .catch(err => console.log(err));
       }
     }
-    /*
-    const quiz = {
-      author_id,
-      title,
-      description,
-      category_id,
-      public,
-      questions: [
-        {
-          body: "What is the capital of Canada?",
-          answers: [
-            { body: "ans1", explanation: "why tho" },
-            { body: "ans2", explanation: "why tho" },
-            { body: "ans3", explanation: "why tho" },
-            { body: "ans4", explanation: "why tho" }
-          ]
-        },
-        {
-          question: "What is the capital of Canada?",
-          answers: [
-            { body: "ans1", explanation: "why tho" },
-            { body: "ans2", explanation: "why tho" },
-            { body: "ans3", explanation: "why tho" },
-            { body: "ans4", explanation: "why tho" }
-          ]
-        }
-      ]
-    }
-    */
+
 
   });
 
