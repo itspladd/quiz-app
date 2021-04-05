@@ -22,14 +22,9 @@
           <div id="main-split-content">
 
             <!-- CONTENT HERE -->
-            <p>Data available to this page:</p>
-            <ul>
-            <% for (const key in quizData) { %>
-              <li><%= key %>: <%= quizData[key] %></li>
-            <% } %>
-            </ul>
 
-            <form class="form-inline" action="/quizzes/<%= quizData.id %>" method="POST">
+
+            <form class="form-inline" action="/quizzes/<%= quizData.id %>/sessions" method="POST">
               <button id="play-quiz" type="submit">
                 PLAY
               </button>
@@ -49,6 +44,13 @@
       </div>
 
     </main>
+
+    <p>Data available to this page:</p>
+    <ul>
+    <% for (const key in quizData) { %>
+      <li><%= key %>: <%= quizData[key] %></li>
+    <% } %>
+    </ul>
 
   <%- include("partials/_footer.ejs") %>
 
