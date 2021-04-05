@@ -3,6 +3,7 @@
   <head>
     <title>Some Quiz - InquizitorApp</title>
     <%- include("partials/_imports.ejs") %>
+    <script type="text/javascript" src="/scripts/quiz_show.js"></script>
   </head>
 
   <body>
@@ -14,21 +15,23 @@
       <!-- MAIN WINDOW (SPLIT) -->
       <div class="col-12 col-lg-8 m-auto">
         <section id="main-split" class="overflow-auto">
-          <!-- MAIN TITLE -->
-          <div id="main-title" class="mb-5">
-            Show Quiz
-          </div>
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
 
-            <!-- CONTENT HERE -->
+            <!-- QUIZ INFO -->
+            <p class="h1"><%= quizData.title %> </p>
+            <p class="lead"><%= quizData.description %></p>
+            <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %></p>
 
+            <button id="play-quiz" type="button">
+              START QUIZ
+            </button>
 
-            <form class="form-inline" action="/quizzes/<%= quizData.id %>/sessions" method="POST">
-              <button id="play-quiz" type="button">
-                PLAY
-              </button>
-            </form>
+            <div class="divider-h"></div>
+
+            <!-- Reviews -->
+            <p class="h4">Recent Reviews</p>
+
 
 
           </div>
@@ -46,13 +49,17 @@
     </main>
 
     <p>Data available to this page:</p>
-    <ul>
+    <ul id="data-ejs">
     <% for (const key in quizData) { %>
-      <li><%= key %>: <%= quizData[key] %></li>
+      <li>
+        <%= key %>:
+        <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
+      </li>
     <% } %>
-    </ul>
+      </ul>
 
   <%- include("partials/_footer.ejs") %>
+
 
   </body>
 

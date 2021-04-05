@@ -63,14 +63,32 @@ module.exports = (db) => {
     } = res.locals.vars;
     db.getQuizByID(req.params.quizID)
       .then(quizData => {
-        const templateVars = {
-          alerts,
-          userData,
-          currentPage,
-          rankData,
-          quizData
-        };
-        res.render("quiz_show", templateVars);
+        // ERROR: Invalid quizID
+        if (!quizData) {
+          res.redirect("/404");
+        } else {
+
+          // TEMPORARY REVIEWS ///////////////
+
+          const reviews = [
+            { user_id: 1, username: "reggi", comment: "this quiz sucks", rating: "1", timestamp: "2 days ago" },
+            { user_id: 2, username: "francis", comment: "this quiz depends", rating: "3", timestamp: "3 days ago" },
+            { user_id: 3, username: "pladd", comment: "this quiz is awesome", rating: "5", timestamp: "1 hour ago" }
+          ]
+
+          quizData.reviews = reviews;
+
+          ////////////////////////////////////
+
+          const templateVars = {
+            alerts,
+            userData,
+            currentPage,
+            rankData,
+            quizData
+          };
+          res.render("quiz_show", templateVars);
+        }
       })
       .catch(err => console.error(err));
   });
