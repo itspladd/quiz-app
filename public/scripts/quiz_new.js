@@ -6,14 +6,15 @@ const addQuestionComponent = (element) => {
       <header class="d-flex flex-row justify-content-between">
         <label for="question" class="question-label form-label text-muted mt-2">Question</label>
       </header>
-      <input class="input-question form-control" type="text" name="question" maxlength="250" required>
+      <span class="min-question"></span>
+      <input class="input-question form-control" type="text" name="question" maxlength="250">
       <div class="responses">
         <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
-        <input class="input-response form-control" type="text" name="answer[]" maxlength="250" required>
+        <input class="input-response form-control" type="text" maxlength="250">
         <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
-        <input class="input-response form-control" type="text" name="answer[]" maxlength="250" required>
-        <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
-        <input class="input-response form-control mt-3" type="text" name="answer[]" maxlength="250" required>
+        <input class="input-response form-control" type="text" maxlength="250">
+        <input class="input-response form-control mt-3" type="text" maxlength="250">
+        <input class="input-response form-control mt-3" type="text" maxlength="250">
       </div>
       <div class="question-control d-flex flex-row justify-content-between mt-3">
         <span class="toggle minimize text-muted">hide</span>
@@ -38,6 +39,8 @@ const addQuestionComponent = (element) => {
   $($newForm).bind("click", function(event) {
     const $target = $(event.target);
     if ($($target).is(".toggle.maximize")) {
+      $(this).find(".min-question").html("");
+      $(this).find("input").slideDown();
       $(this)
         .find(".responses")
         .slideDown();
@@ -47,6 +50,12 @@ const addQuestionComponent = (element) => {
         .removeClass("maximize")
         .addClass("minimize");
     } else if ($($target).is(".toggle.minimize")) {
+      const question = $(this).find("input").val();
+      const answer = $(this).find(".input-response:first").val();
+      setTimeout(() => {
+        $(this).find(".min-question").html(`<p class="lead">${question || "N/A"}</p><p class="mb-0">Answer: ${answer || "N/A"}</p>`);
+      }, 100)
+      $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
       $(this)
         .find(".toggle")
@@ -65,7 +74,6 @@ const addQuestionComponent = (element) => {
   setTimeout(() => {
     $(".toggle.minimize").not(":last").trigger("click");
   }, 800)
-
   // Update counter
   updateCounter();
 
@@ -119,7 +127,7 @@ const updateLabels = () => {
 
   let number = 1;
   for (const component of $(".question-label")) {
-    console.log($(component).html(`Question #${number}`));
+    $(component).html(`Question #${number}`);
     number++;
   }
 
@@ -183,11 +191,20 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
       error = `Minimum of ${minResponses} responses per question must be provided`;
       valid = false;
     }
+
     // Highlight question green/red if valid/invalid
-    $(question).closest(".new-question").css("border-color", valid ? "#31f37b" : "#e22d4b");
+    $(question).closest(".new-question")
+      .css("border-color", valid ? "#31f37b" : "#e22d4b")
+      .addClass(valid ? "valid-question" : "invalid-question");
+
+    // Maximize invalid questions and minimize valid questions
+    $(".invalid-question .maximize").trigger("click");
+    $(".valid-question .minimize").trigger("click");
+
   }
 
   return error;
+
 };
 
 // Check that the quiz info fields are complete
@@ -299,9 +316,13 @@ $(document).ready(function() {
 
     event.preventDefault();
 
+    // Minimize forms
+    // $(".toggle.minimize").trigger("click");
+
     // Display question form errors, if any
     const error = getQuizFormErrors() || getQuestionFormErrors();
     showError(error);
+
 
     // If there are no errors, construct data to be sent to the server
     if (!error) {
@@ -317,7 +338,5 @@ $(document).ready(function() {
     showError(false);
 
   });
-
-  let hoverDelay;
 
 });
