@@ -3,7 +3,7 @@ const addQuestionComponent = (element) => {
 
   const $newForm = $(`
     <div class="form-group new-question">
-        <label for="question" class="form-label text-muted mt-2">Question</label>
+        <label for="question" class="question-label form-label text-muted mt-2">Question</label>
         <input class="input-question form-control" type="text" name="question" maxlength="250" required>
         <div class="responses">
           <label for="answer" class="form-label text-muted mt-2">Correct Answer</label>
@@ -80,8 +80,20 @@ const updateCounter = () => {
   const num = getNumQuestions();
   $("#questions-counter")
     .html(`Questions${num ? ` ( ${num} )` : ""}`);
+  updateLabels();
 
 };
+
+// Update question # labels
+const updateLabels = () => {
+
+  let number = 1;
+  for (const component of $(".question-label")) {
+    console.log($(component).html(`Question #${number}`));
+    number++;
+  }
+
+}
 
 // Return the number of questions
 const getNumQuestions = () => {
@@ -240,7 +252,7 @@ $(document).ready(function() {
   const quizForm = $("#new-quiz-form");
 
   // Add initial question forms
-  const initialForms = 1;
+  const initialForms = 0;
   for (let i = 0; i < initialForms; i++) {
     addQuestionComponent(questionsList);
   }
