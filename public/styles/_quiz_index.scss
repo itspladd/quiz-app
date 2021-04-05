@@ -7,13 +7,19 @@
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
+
   p {
     color: $white;
   }
+
   &:hover {
     border-color: $white;
     background-color: $tertiary;
+    img {
+      opacity: 1;
+    }
   }
+
 }
 
 .quiz-title {
@@ -22,4 +28,5 @@
 
 .quiz-go {
   width: 4rem;
+  opacity: 0.5;
 }

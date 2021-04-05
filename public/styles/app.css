@@ -168,12 +168,17 @@ form .custom-select:focus {
   background-color: #222338;
 }
 
+.list-quiz:hover img {
+  opacity: 1;
+}
+
 .quiz-title {
   font-size: 1.5rem;
 }
 
 .quiz-go {
   width: 4rem;
+  opacity: 0.5;
 }
 
 .new-question {
@@ -315,8 +320,8 @@ select {
   width: 5rem;
   position: fixed;
   z-index: 9;
-  right: 16px;
-  bottom: 25px;
+  right: 25px;
+  bottom: 35px;
   visibility: hidden;
   opacity: 0.5;
   -webkit-user-select: none;
