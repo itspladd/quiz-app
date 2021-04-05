@@ -6,5 +6,6 @@ CREATE TABLE quiz_ratings (
   quiz_id INTEGER REFERENCES quizzes(id) ON DELETE CASCADE,
   session_id INTEGER REFERENCES quiz_sessions(id) ON DELETE CASCADE,
   rating SMALLINT NOT NULL,
+  title VARCHAR(30) NOT NULL,
   comment VARCHAR(255)
 );
