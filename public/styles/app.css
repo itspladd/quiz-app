@@ -428,7 +428,7 @@ select {
 }
 
 .border-purple {
-  border-color: #9a4dff;
+  border-color: #9a4dff !important;
 }
 
 .border-tertiary {
