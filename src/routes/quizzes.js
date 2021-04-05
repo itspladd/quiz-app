@@ -78,11 +78,14 @@ module.exports = (db) => {
       userData
     } = res.locals.vars;
 
+    console.log(userData)
+
     // After the form data is received...
 
     // 1. Check that the user is signed in
     // ERROR: The user is not signed in
     if (userData === null) {
+      console.log("You must be logged in to do that.");
       req.flash("warning", "You must be logged in to do that.")
       res.redirect("/login");
       // SUCCESS: The user is signed in
@@ -111,16 +114,27 @@ module.exports = (db) => {
       public,
       questions: [
         {
-          question: "What is the capital of Canada?",
-          answers: [ "ans1", "ans2", "ans3", "ans4" ] // index 0 is correct, the rest are incorrect
+          body: "What is the capital of Canada?",
+          answers: [
+            { body: "ans1", explanation: "why tho" },
+            { body: "ans2", explanation: "why tho" },
+            { body: "ans3", explanation: "why tho" },
+            { body: "ans4", explanation: "why tho" }
+          ]
         },
         {
-          question: "What is the capital of the US?",
-          answers: [ "ans1", "ans2", "ans3", "ans4" ] // index 0 is correct, the rest are incorrect
+          question: "What is the capital of Canada?",
+          answers: [
+            { body: "ans1", explanation: "why tho" },
+            { body: "ans2", explanation: "why tho" },
+            { body: "ans3", explanation: "why tho" },
+            { body: "ans4", explanation: "why tho" }
+          ]
         }
       ]
     }
     */
+
   });
 
   /*STRETCH: global results from this quiz

@@ -151,15 +151,18 @@ const submitForm = () => {
   const questions = [];
   const allQuestions = $(".input-question");
   for (const questionField of allQuestions) {
-    const question = {};
     const questionValue = $(questionField).val().trim();
     const responseFields = $(questionField).next().find(".input-response");
     const responseValues = [];
     for (const responseField of responseFields) {
       const responseValue = $(responseField).val().trim();
-      responseValues.push(responseValue);
+      const answer = { body: responseValue, explanation: "why tho D:" };
+      responseValues.push(answer);
     }
-    question[questionValue] = responseValues;
+    const question = {
+      body: questionValue,
+      answers: responseValues
+    }
     questions.push(question);
   }
   const data = {

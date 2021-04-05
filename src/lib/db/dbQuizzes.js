@@ -11,19 +11,12 @@ module.exports = {
    */
   getPublicQuizzes: function(searchParameters) {
     let queryString = `
-      SELECT quizzes.*, 
-        users.username AS author,
-        ROUND( AVG(rating), 1 ) as avg_rating
-      FROM quizzes
+      SELECT quizzes.*,
+        users.username AS author
+        FROM quizzes
         JOIN users ON author_id = users.id
-        RIGHT OUTER JOIN quiz_ratings AS ratings ON ratings.quiz_id = quizzes.id 
-      WHERE public = TRUE 
+      WHERE public = TRUE
     `;
-
-    // Add grouping and filtering
-    queryString += `
-    GROUP BY quizzes.id, users.id
-    `
     const queryParams = [];
     // Close out the query
     queryString += `;`;
@@ -45,7 +38,7 @@ module.exports = {
 
   /**
    * Adds a new quiz to the database. Also adds all included questions and answers.
-   * @param  { { author_id: int, 
+   * @param  { { author_id: int,
    *             category_id: int,
    *             title: string,
    *             description: string,
@@ -59,7 +52,7 @@ module.exports = {
     // Separate the quiz metadata from the questions
     const questions = quizData.questions;
     delete quizData.questions;
-    
+
     // Extract the user data into queryParams and the keys into an array
     const {columns, vars, queryParams} = db.buildInsertQueryParams(quizData);
     const queryString = `
@@ -91,7 +84,7 @@ module.exports = {
 
   /**
    * Adds a new question to the database.
-   * @param  { { quiz_id: int, 
+   * @param  { { quiz_id: int,
    *             body: int,
    *             answers: array,
    *             difficulty: string } } quiz
@@ -140,7 +133,7 @@ module.exports = {
 
   /**
    * Adds a new answer to the database.
-   * @param  { { question_id: int, 
+   * @param  { { question_id: int,
      *             body: string,
      *             is_correct: boolean,
      *             explanation: string } } quiz
