@@ -48,6 +48,71 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  getQuizQuestionsAndAnswers: function(quiz_id){
+    const queryString = `
+      SELECT questions.id AS question_id,
+        questions.body AS question_body,
+        questions.difficulty AS question_difficulty,
+        answers.id AS answer_id,
+        answers.question_id AS answer_question_id,
+        answers.body AS answer_body,
+        answers.is_correct AS answer_is_correct,
+        answers.explanation AS answer_explanation
+      FROM questions
+        JOIN answers ON answers.question_id = questions.id
+      WHERE quiz_id = $1
+      ORDER BY question_id;
+    `;
+    const queryParams = [quiz_id];
+    return db.query(queryString, queryParams)
+    .then(rows => {
+      // Organize the data into the necessary structure, as follows:
+      /* questionData: [
+        { 
+          question: {//question info here},
+          answers: [
+            {answer1 data},
+            {answer2 data}
+          ]},
+        {
+          question... },
+      ]
+      */
+      const questionData = [];
+
+      // Initialize to the first question and array counter
+      let currentQuestionID = null;
+      let index = -1;
+      for (let row of rows) {
+        // If we're on a new question...
+        if (row.question_id !== currentQuestionID) {
+          // Add the question and start the answer array
+          questionData.push({
+            question: {
+              id: row.question_id,
+              quiz_id,
+              body: row.question_body,
+              difficulty: row.question_difficulty
+            },
+            answers: []
+          });
+          // Increment counter so we know where to store our answers
+          index++;
+        }
+        // Store answers
+        questionData[index].answers.push({
+          id: row.answer_id,
+          question_id: row.answer_question_id,
+          body: row.answer_body,
+          is_correct: row.answer_is_correct,
+          explanation: row.answer_explanation
+        });
+
+      };
+      return questionData;
+    });
+  },
+
   /**
    * Adds a new quiz to the database. Also adds all included questions and answers.
    * @param  { { author_id: int,
