@@ -19,7 +19,7 @@ module.exports = {
     `;
     const queryParams = [];
     // Close out the query
-    queryString += `;`;
+    queryString += ";";
     return db.query(queryString, queryParams);
   },
 
@@ -33,7 +33,7 @@ module.exports = {
     `;
     const queryParams = [id];
     return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
+      .then(rows => rows[0]);
   },
 
   /**
@@ -61,25 +61,25 @@ module.exports = {
       RETURNING *;
     `;
     return db.query(queryString, queryParams)
-    .then(rows => {
+      .then(rows => {
       // Save the quiz object
-      const quiz = rows[0];
-      // Create the array to hold all the promises from adding each question
-      // The quiz object is the first thing in this array, so we can access it later
-      const questionPromises = [quiz];
-      // Add the quiz id to each question and add its database promise to the array
-      for (let question of questions) {
-        question['quiz_id'] = quiz.id;
-        questionPromises.push(this.addQuestion(question));
-      }
-      // Return once all have resolved
-      return Promise.all(questionPromises);
-    })
-    .then(promiseArr => {
+        const quiz = rows[0];
+        // Create the array to hold all the promises from adding each question
+        // The quiz object is the first thing in this array, so we can access it later
+        const questionPromises = [quiz];
+        // Add the quiz id to each question and add its database promise to the array
+        for (let question of questions) {
+          question["quiz_id"] = quiz.id;
+          questionPromises.push(this.addQuestion(question));
+        }
+        // Return once all have resolved
+        return Promise.all(questionPromises);
+      })
+      .then(promiseArr => {
       // The quiz is still the first element in the array, so we return that
-      return promiseArr[0];
-    })
-    .catch(err => console.error(err));
+        return promiseArr[0];
+      })
+      .catch(err => console.error(err));
   },
 
   /**
@@ -110,25 +110,25 @@ module.exports = {
 
     // Return a promise to the query completion, value is the question object
     return db.query(queryString, queryParams)
-    .then(rows => {
+      .then(rows => {
       // Save the question object
-      const question = rows[0];
-      // Create the array to hold all the promises from adding each answer
-      // The question object is the first thing in this array, so we can access it later
-      const answerPromises = [question];
-      // Add the question id to each answer and add its database promise to the array
-      for (let answer of answers) {
-        answer['question_id'] = question.id;
-        answerPromises.push(this.addAnswer(answer));
-      }
-      // Return once all have resolved
-      return Promise.all(answerPromises);
-    })
-    .then(promiseArr => {
+        const question = rows[0];
+        // Create the array to hold all the promises from adding each answer
+        // The question object is the first thing in this array, so we can access it later
+        const answerPromises = [question];
+        // Add the question id to each answer and add its database promise to the array
+        for (let answer of answers) {
+          answer["question_id"] = question.id;
+          answerPromises.push(this.addAnswer(answer));
+        }
+        // Return once all have resolved
+        return Promise.all(answerPromises);
+      })
+      .then(promiseArr => {
       // The question is still the first element in the array, so we return that
-      return promiseArr[0];
-    })
-    .catch(err => console.error(err));
+        return promiseArr[0];
+      })
+      .catch(err => console.error(err));
   },
 
   /**
@@ -150,7 +150,7 @@ module.exports = {
       RETURNING *;
     `;
     return db.query(queryString, queryParams)
-    .then(rows => rows[0])
-    .catch(err => console.error(err));
+      .then(rows => rows[0])
+      .catch(err => console.error(err));
   }
 };

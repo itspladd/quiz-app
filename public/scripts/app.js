@@ -3,8 +3,8 @@ $(document).ready(function() {
   const scrollBtn = $("#scroll-btn");
 
   scrollBtn.on("click", function() {
-    $(document).scrollTop(0)
-  })
+    $(document).scrollTop(0);
+  });
 
   $(document).on("scroll", function() {
     const position = $(this).scrollTop();
@@ -16,6 +16,6 @@ $(document).ready(function() {
     } else {
       scrollBtn.fadeOut(200);
     }
-  })
+  });
 
 });

@@ -26,7 +26,7 @@ const addQuestionComponent = (element) => {
     const component = $(this).closest(".new-question");
     removeElement(component);
     setTimeout(() => {
-      updateCounter()
+      updateCounter();
     }, 800);
     // Update counter
   });
@@ -51,10 +51,10 @@ const removeElement = (element, delay = 800) => {
     }, {
       duration: 400
     })
-    .slideUp(400)
+    .slideUp(400);
   setTimeout(() => {
     element.remove();
-  }, delay)
+  }, delay);
 };
 
 // Add an element
@@ -72,7 +72,7 @@ const addElement = (element, delay = 400) => {
         duration: delay
       });
   }, 0);
-}
+};
 
 // Update the question counter
 const updateCounter = () => {
@@ -93,7 +93,7 @@ const updateLabels = () => {
     number++;
   }
 
-}
+};
 
 // Return the number of questions
 const getNumQuestions = () => {
@@ -197,7 +197,7 @@ const sanitize = (string) => {
   // return div.innerHTML;
   return string.trim();
 
-}
+};
 
 // Submit form handler
 const submitForm = () => {
@@ -220,7 +220,7 @@ const submitForm = () => {
     const question = {
       body: questionValue,
       answers: responseValues
-    }
+    };
     questions.push(question);
   }
 

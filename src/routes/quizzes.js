@@ -16,17 +16,17 @@ module.exports = (db) => {
     } = res.locals.vars;
 
     db.getPublicQuizzes()
-    .then(quizData => {
-      const templateVars = {
-        alerts,
-        userData,
-        currentPage,
-        quizData,
-        rankData
-      };
-      res.render("quiz_index", templateVars);
-    })
-    .catch(err => console.error(err));
+      .then(quizData => {
+        const templateVars = {
+          alerts,
+          userData,
+          currentPage,
+          quizData,
+          rankData
+        };
+        res.render("quiz_index", templateVars);
+      })
+      .catch(err => console.error(err));
   });
 
   // /quizzes/new
@@ -56,17 +56,17 @@ module.exports = (db) => {
     } = res.locals.vars;
 
     db.getQuizByID(req.params.quizID)
-    .then(quizData => {
-      const templateVars = {
-        alerts,
-        userData,
-        currentPage,
-        rankData,
-        quizData
-      };
-      res.render("quiz_show", templateVars);
-    })
-    .catch(err => console.error(err));
+      .then(quizData => {
+        const templateVars = {
+          alerts,
+          userData,
+          currentPage,
+          rankData,
+          quizData
+        };
+        res.render("quiz_show", templateVars);
+      })
+      .catch(err => console.error(err));
   });
 
   router.post("/", (req, res) => {
@@ -78,7 +78,7 @@ module.exports = (db) => {
       userData
     } = res.locals.vars;
 
-    console.log(userData)
+    console.log(userData);
 
     // After the form data is received...
 
@@ -86,7 +86,7 @@ module.exports = (db) => {
     // ERROR: The user is not signed in
     if (userData === null) {
       console.log("You must be logged in to do that.");
-      req.flash("warning", "You must be logged in to do that.")
+      req.flash("warning", "You must be logged in to do that.");
       res.redirect("/login");
       // SUCCESS: The user is signed in
     } else if (userData) {
