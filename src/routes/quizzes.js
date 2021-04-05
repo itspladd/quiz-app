@@ -168,8 +168,14 @@ module.exports = (db) => {
           // If the quiz exists and its questions/answers were retrieved successfully...
         } else {
 
-          // Reconstruct questionsAndAnswersData into the quizData format above
-          const quizData = {}
+          // Reconstruct questionsAndAnswersData into the format above and insert into data
+          const data = {
+            questions
+          }
+
+          // I *think* it's not necessary to send the actual quiz data (from the quizzes table) again since this POST request
+          // is sent via AJAX meaning the user is still on the /quizzes/:quizid page which already has that stuff
+          // If anything, just grab quizData again and add it to data.quizData = quizData, but we shouldn't need to
 
           // Create a new entry in the quiz_sessions table
           db.addSession({quiz_id, user_id})
@@ -181,10 +187,10 @@ module.exports = (db) => {
               // answers => the 4 rows from the answers table
 
               // Add the sessionID to the quizData object
-              quizData.sessionID = session.id;
+              data.sessionID = session.id;
 
-              // Send quizData back to the client as a JSON
-              res.send(JSON.stringify(quizData));
+              // Send all of the data back to the client as a JSON
+              res.send(JSON.stringify(data));
             })
             .catch(err => console.log(err));
 
