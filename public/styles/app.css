@@ -310,6 +310,35 @@ select {
           user-select: none;
 }
 
+#scroll-btn {
+  height: 5rem;
+  width: 5rem;
+  position: fixed;
+  z-index: 9;
+  right: 16px;
+  bottom: 25px;
+  visibility: hidden;
+  opacity: 0.5;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+#scroll-btn img {
+  height: 5rem;
+  width: 5rem;
+}
+
+#scroll-btn:hover {
+  opacity: 0.7;
+}
+
+#scroll-btn:active {
+  opacity: 0.9;
+}
+
 #nav-spacer {
   height: 4.5rem;
 }

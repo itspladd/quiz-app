@@ -60,6 +60,33 @@ select {
   user-select: none;
 }
 
+#scroll-btn {
+  height: 5rem;
+  width: 5rem;
+  position: fixed;
+  z-index: 9;
+  right: 16px;
+  bottom: 25px;
+  visibility: hidden;
+  opacity: 0.5;
+  user-select: none;
+  cursor: pointer;
+
+  img {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
+
+}
+
 #nav-spacer {
   height: 4.5rem;
 }
@@ -97,10 +124,6 @@ select {
     height: 2.5rem;
     padding-bottom: 0.5rem;
   }
-}
-
-#side-section {
-
 }
 
 #side-full {
