@@ -65,4 +65,18 @@
     }
   }
 
+  .nav-green {
+    color: $green;
+    &:hover {
+      color: $green-darker;
+    }
+  }
+
+  .nav-purple {
+    color: $purple;
+    &:hover {
+      color: $purple-darker;
+    }
+  }
+
 }

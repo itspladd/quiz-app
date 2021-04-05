@@ -10,7 +10,7 @@
 }
 
 #navigation a {
-  color: #fff;
+  color: #dbdbdb;
 }
 
 #navigation button {
@@ -47,7 +47,7 @@
 
 #app-links .nav-primary:hover,
 #user-links .nav-primary:hover {
-  color: #fff;
+  color: #dbdbdb;
 }
 
 #app-links .nav-primary-darker,
@@ -57,7 +57,7 @@
 
 #app-links .nav-primary-darker:hover,
 #user-links .nav-primary-darker:hover {
-  color: #fff;
+  color: #dbdbdb;
 }
 
 #app-links .nav-blue,
@@ -68,6 +68,26 @@
 #app-links .nav-blue:hover,
 #user-links .nav-blue:hover {
   color: #0072cf;
+}
+
+#app-links .nav-green,
+#user-links .nav-green {
+  color: #31f37b;
+}
+
+#app-links .nav-green:hover,
+#user-links .nav-green:hover {
+  color: #23ce64;
+}
+
+#app-links .nav-purple,
+#user-links .nav-purple {
+  color: #9a4dff;
+}
+
+#app-links .nav-purple:hover,
+#user-links .nav-purple:hover {
+  color: #8040d3;
 }
 
 form .form-control,
@@ -129,11 +149,11 @@ form .custom-select:focus {
 }
 
 .list-quiz p {
-  color: #fff;
+  color: #dbdbdb;
 }
 
 .list-quiz:hover {
-  border-color: #fff;
+  border-color: #dbdbdb;
   background-color: #222338;
 }
 
@@ -154,7 +174,7 @@ form .custom-select:focus {
 }
 
 .new-question:hover {
-  border-color: #fff;
+  border-color: #dbdbdb;
   background-color: #222338;
 }
 
@@ -220,7 +240,7 @@ form .custom-select:focus {
 
 html body {
   background-color: #111318;
-  color: #fff;
+  color: #dbdbdb;
   font-family: "Montserrat", sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -252,7 +272,7 @@ html body::-webkit-scrollbar-thumb {
 section {
   background-color: #1a1b2b;
   border-radius: 5px;
-  border: 4px solid #008cff;
+  border: 4px solid #dbdbdb;
   padding: 2rem;
 }
 
@@ -413,5 +433,9 @@ select {
 
 .border-tertiary {
   border-color: #222338;
+}
+
+.border-white {
+  border-color: #dbdbdb;
 }
 /*# sourceMappingURL=app.css.map */
