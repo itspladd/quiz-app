@@ -173,14 +173,17 @@ const submitForm = () => {
     questions
   };
 
-  console.log(data);
+  // console.log(data);
 
   // Submit a post request with the quiz data
   $.ajax({
     url: "/quizzes",
     type: "POST",
     data
-  });
+  })
+    .then(res => console.log("AJAX REQUEST WORKED! DATA FROM SERVER: ", res));
+
+  ;
 
 };
 
