@@ -61,35 +61,23 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
+    let quizData;
+    const quiz_id = req.params.quizID;
     db.getQuizByID(req.params.quizID)
-      .then(quizData => {
-        // ERROR: Invalid quizID
-        if (!quizData) {
-          res.redirect("/404");
-        } else {
-
-          // TEMPORARY REVIEWS ///////////////
-
-          const reviews = [
-            { user_id: 1, username: "reggi", title: "sucks", comment: "this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks this quiz sucks", rating: "1", timestamp: "2 days ago" },
-            { user_id: 2, username: "francis", title: "depends", comment: "this quiz depends", rating: "3", timestamp: "3 days ago" },
-            { user_id: 3, username: "pladd", title: "awesome", comment: "this quiz is awesome", rating: "5", timestamp: "1 hour ago" },
-            { user_id: 4, username: "ghost", title: "awesome", comment: "", rating: "2", timestamp: "Just now" },
-          ]
-
-          quizData.reviews = reviews;
-
-          ////////////////////////////////////
-
-          const templateVars = {
-            alerts,
-            userData,
-            currentPage,
-            rankData,
-            quizData
-          };
-          res.render("quiz_show", templateVars);
-        }
+      .then(quiz => {
+        quizData = quiz;
+        return db.getReviewsByQuizId(quiz_id);
+      })
+      .then(reviewData => {
+        quizData.reviews = reviewData;
+        const templateVars = {
+          alerts,
+          userData,
+          currentPage,
+          rankData,
+          quizData
+        };
+        res.render("quiz_show", templateVars);
       })
       .catch(err => console.error(err));
   });

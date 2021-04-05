@@ -217,7 +217,7 @@ app.get("/404", (req, res) => {
     userData,
     currentPage
   };
-  res.render("404", templateVars);
+  res.status(404).render("404", templateVars);
 });
 
 // Home page

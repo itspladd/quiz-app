@@ -69,16 +69,21 @@
 
     </main>
 
-    <p>Data available to this page:</p>
-    <ul id="data-ejs">
+    <p>Quiz data:</p>
+    <ul>
     <% for (const key in quizData) { %>
       <li>
         <%= key %>:
         <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
       </li>
     <% } %>
+    </ul>
+    <p>Review data (quizData.reviews, array of objects, this is just from one review as an example):</p>
+    <ul>
+      <% for (const key in quizData.reviews[0]) { %>
+        <li><%= key %>: <%= quizData.reviews[0][key] %></li>
+      <% } %>
       </ul>
-
   <%- include("partials/_footer.ejs") %>
 
 
