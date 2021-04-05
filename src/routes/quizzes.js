@@ -61,8 +61,15 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
+    let quizData;
+    const quiz_id = req.params.quizID;
     db.getQuizByID(req.params.quizID)
-      .then(quizData => {
+      .then(quiz => {
+        quizData = quiz;
+        return db.getRatingsByQuizId(quiz_id);
+      })
+      .then(ratingData => {
+        quizData.ratings = ratingData;
         const templateVars = {
           alerts,
           userData,

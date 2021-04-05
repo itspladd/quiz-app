@@ -7,5 +7,6 @@ CREATE TABLE quiz_ratings (
   session_id INTEGER REFERENCES quiz_sessions(id) ON DELETE CASCADE,
   rating SMALLINT NOT NULL,
   title VARCHAR(30) NOT NULL,
-  comment VARCHAR(255)
+  comment VARCHAR(255),
+  created_at TIMESTAMP DEFAULT NOW()
 );

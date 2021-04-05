@@ -6,8 +6,10 @@ const db = require("./db");
 
 const users = require("./dbUsers");
 const quizzes = require("./dbQuizzes");
+const ratings = require("./dbRatings");
 
 module.exports = {
   ...users,
-  ...quizzes
+  ...quizzes,
+  ...ratings
 };

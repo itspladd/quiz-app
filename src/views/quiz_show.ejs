@@ -45,13 +45,18 @@
 
     </main>
 
-    <p>Data available to this page:</p>
+    <p>Quiz data:</p>
     <ul>
     <% for (const key in quizData) { %>
       <li><%= key %>: <%= quizData[key] %></li>
     <% } %>
     </ul>
-
+    <p>Rating data (quizData.reviews, array of objects, this is just from one rating as an example):</p>
+    <ul>
+      <% for (const key in quizData.ratings[0]) { %>
+        <li><%= key %>: <%= quizData.ratings[0][key] %></li>
+      <% } %>
+      </ul>
   <%- include("partials/_footer.ejs") %>
 
   </body>
