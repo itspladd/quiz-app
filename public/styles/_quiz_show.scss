@@ -1,28 +1,5 @@
 @import "global";
 
-.quiz-review {
-  border: 2px solid $white;
-  border-radius: 0.25rem;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  word-wrap: break-word;
-
-  img {
-    height: 0.75rem;
-    width: 0.75rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .review-title {
-    font-weight: 700;
-  }
-
-  .review-timestamp {
-    font-size: 0.8rem;
-  }
-
-}
-
 #quiz-question {
   min-height: 8rem;
 }
@@ -71,6 +48,10 @@
 
 }
 
+#review-error {
+  color: $red;
+}
+
 .quiz-option {
   font-size: 0.9rem;
   border: 2px solid $white;
@@ -89,6 +70,29 @@
       background-color: $tertiary-darker;
     }
 
+  }
+
+}
+
+.quiz-review {
+  border: 2px solid $white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+
+  img {
+    height: 0.75rem;
+    width: 0.75rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .review-title {
+    font-weight: 700;
+  }
+
+  .review-timestamp {
+    font-size: 0.8rem;
   }
 
 }

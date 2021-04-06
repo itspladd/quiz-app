@@ -260,28 +260,6 @@ form .custom-select:focus {
   opacity: 1;
 }
 
-.quiz-review {
-  border: 2px solid #eeeeee;
-  border-radius: 0.25rem;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  word-wrap: break-word;
-}
-
-.quiz-review img {
-  height: 0.75rem;
-  width: 0.75rem;
-  margin-bottom: 0.1rem;
-}
-
-.quiz-review .review-title {
-  font-weight: 700;
-}
-
-.quiz-review .review-timestamp {
-  font-size: 0.8rem;
-}
-
 #quiz-question {
   min-height: 8rem;
 }
@@ -322,6 +300,10 @@ form .custom-select:focus {
   border-color: #fad207;
 }
 
+#review-error {
+  color: #e22d4b;
+}
+
 .quiz-option {
   font-size: 0.9rem;
   border: 2px solid #eeeeee;
@@ -344,6 +326,28 @@ form .custom-select:focus {
 
 .quiz-option:hover:active {
   background-color: #1a1b2b;
+}
+
+.quiz-review {
+  border: 2px solid #eeeeee;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.quiz-review img {
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-bottom: 0.1rem;
+}
+
+.quiz-review .review-title {
+  font-weight: 700;
+}
+
+.quiz-review .review-timestamp {
+  font-size: 0.8rem;
 }
 
 #results-score {
