@@ -233,7 +233,6 @@ const submitForm = () => {
   const public = getValue("#quiz-visibility");
 
   // Retrieve quiz question form data
-  // TODO: Add an explanation field for the correct answer
   const questions = [];
   const allQuestions = $(".input-question");
   for (const questionField of allQuestions) {
@@ -242,7 +241,7 @@ const submitForm = () => {
     const responseValues = [];
     for (const responseField of responseFields) {
       const responseValue = getValue(responseField);
-      const answer = { body: responseValue, explanation: null };
+      const answer = { body: responseValue };
       responseValues.push(answer);
     }
     const question = {
