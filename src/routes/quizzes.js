@@ -179,15 +179,10 @@ module.exports = (db) => {
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
     const data = req.body;
     const session_id = req.params.sessionID;
-    const dummyData = [
-      { username: "Pumpkinberry", password: "password", email: "email@email.email" },
-      { username: "Jambo", password: "password", email: "email@email.email1" },
-      { username: "Nano", password: "password", email: "email@email.email2" },
-      { username: "Brapsody", password: "password", email: "email@email.email3" },
-      { username: "Siha", password: "password", email: "email@email.email4" },
-    ];
-    db.insert("users", dummyData)
-    .then(rows => console.log(rows))
+    console.log(data);
+
+    /* db.insert("users", dummyData)
+    .then(rows => console.log(rows)) */
   });
   /*STRETCH: global results from this quiz
     router.get("/:quizID/results", (req, res) => {
