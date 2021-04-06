@@ -170,6 +170,27 @@ const processResults = () => {
 
 }
 
+// Create the quiz end component with a button to view results
+const createQuizEndForm = () => {
+
+  // Clear the page
+  console.log("Clearing page")
+  $("#main-split-content").empty();
+
+  const $component = $(`
+    <div id="quiz-end" class="d-flex flex-column">
+      <p class="lead">You've reached the end of</p>
+      <p class="h1"><%= quizData.title %> </p>
+      <div>
+        <button id="submit-results" type="button" class="btn-custom">
+          View Results
+        </button>
+      </div>
+    </div>
+  `);
+  $("main-split-content").append($component);
+}
+
 const userAnswers = [];
 
 $(document).ready(function() {
