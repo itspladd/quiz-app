@@ -45,7 +45,7 @@ const parseResults = (rows) => {
         answer,
         is_correct
       };
-    } 
+    }
     if (is_correct) {
       response.actual_answer = answer;
     }

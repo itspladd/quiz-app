@@ -1,0 +1,58 @@
+@import "global";
+
+#results-score {
+  margin: 2rem 0;
+  .green {
+    color: $green;
+  }
+  .yellow {
+    color: $primary;
+  }
+  .red {
+    color: $red;
+  }
+  .results-bold {
+    font-size: 1.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .results-username {
+    padding-left: 0;
+  }
+}
+
+#share-btn {
+  width: 10rem;
+}
+
+.results-bold {
+  font-weight: 700;
+}
+
+.results-response {
+  border: 2px solid $light;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+
+}
+
+.response-incorrect {
+  border-color: $red;
+  background-color: rgba(255, 0, 0, 0.1);
+
+  .results-correctness {
+    color: $red;
+  }
+
+}
+
+.response-correct {
+  border-color: $green;
+  background-color: rgba(0, 255, 42, 0.1);
+
+  .results-correctness {
+    color: $green;
+  }
+
+}

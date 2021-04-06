@@ -1,8 +1,8 @@
 // Retrieve quizInfo from EJS variables
-const getQuizInfo = () => {
+const getEjsData = () => {
 
   const quizInfo = {};
-  const ejsData = $("#data-ejs .data-key");
+  const ejsData = $("#data-ejs .data-quiz-key");
   for (const dataKey of ejsData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
@@ -205,7 +205,7 @@ let complete = false;
 $(document).ready(function() {
 
   // Get quiz information from EJS
-  const quizInfo = getQuizInfo();
+  const quizInfo = getEjsData();
 
   // When the user clicks play, send the quizID to the server and create a new session
   // The server will respond with quiz question data

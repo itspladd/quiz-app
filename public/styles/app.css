@@ -346,6 +346,65 @@ form .custom-select:focus {
   background-color: #1a1b2b;
 }
 
+#results-score {
+  margin: 2rem 0;
+}
+
+#results-score .green {
+  color: #31f37b;
+}
+
+#results-score .yellow {
+  color: #fad207;
+}
+
+#results-score .red {
+  color: #e22d4b;
+}
+
+#results-score .results-bold {
+  font-size: 1.8rem;
+  padding: 0.4rem 0.6rem;
+}
+
+#results-score .results-username {
+  padding-left: 0;
+}
+
+#share-btn {
+  width: 10rem;
+}
+
+.results-bold {
+  font-weight: 700;
+}
+
+.results-response {
+  border: 2px solid #ffffff79;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.response-incorrect {
+  border-color: #e22d4b;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.response-incorrect .results-correctness {
+  color: #e22d4b;
+}
+
+.response-correct {
+  border-color: #31f37b;
+  background-color: rgba(0, 255, 42, 0.1);
+}
+
+.response-correct .results-correctness {
+  color: #31f37b;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
@@ -541,6 +600,23 @@ select {
 .btn-custom-red:active, .btn-custom-red:focus {
   -webkit-box-shadow: 0px 0px 1px 2px #bd2942;
           box-shadow: 0px 0px 1px 2px #bd2942;
+}
+
+.btn-custom-blue {
+  color: #008cff;
+  background-color: #1a1b2b;
+  border-color: #008cff;
+  outline: #008cff;
+}
+
+.btn-custom-blue:hover {
+  border-color: #008cff;
+  background-color: #008cff;
+}
+
+.btn-custom-blue:active, .btn-custom-blue:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #0072cf;
+          box-shadow: 0px 0px 1px 2px #0072cf;
 }
 
 .highlight {

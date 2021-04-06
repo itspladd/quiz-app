@@ -4,6 +4,7 @@
 <head>
   <title>Results - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_results.js"></script>
 </head>
 
 <body>
@@ -16,12 +17,76 @@
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto">
         <!-- MAIN TITLE -->
-        <div id="main-title" class="mb-5">
-          Quiz Results
+        <div id="main-title">
+          Results
         </div>
         <!-- MAIN CONTENT -->
-        <div id="main-split-content">
-          <!-- CONTENT HERE -->
+        <div id="main-split-content" class="d-flex flex-column">
+
+          <!-- SCORE AND DURATION-->
+          <h1 id="results-score" class="h4 d-flex align-items-center flex-wrap">
+            <span class="results-bold results-username">
+              <%= userData.username %>
+            </span>
+            scored
+            <% const actualScore = sessionData.responses.filter(question => question.answer.is_correct).length %>
+            <% const maxScore = sessionData.responses.length %>
+            <span class="results-bold <%= actualScore === 0 ? "red" : actualScore < maxScore ? "yellow" : "green" %>">
+              <%= actualScore %>
+            </span>
+            out of
+            <span class="results-bold <%= actualScore === 0 ? "red" : actualScore < maxScore ? "yellow" : "green" %>">
+              <%= maxScore %>
+            </span>
+            questions correctly!
+          </h1>
+
+          <!-- QUIZ INFO -->
+          <p class="h5 mb-3"><a href="/quizzes/<%= quizData.id %>"><%= quizData.title %></a>
+          </p>
+
+          <div class="d-flex flex-column flex-md-row justify-content-md-between">
+            <div class="d-flex flex-column">
+              <%= sessionData.end_time %>
+              Duration: <%= sessionData.duration %>
+            </div>
+
+            <!-- SHARE BUTTON -->
+            <div>
+              <button id="share-btn" type="button" class="btn-custom mt-3 mt-md-0">
+                Share this page
+              </button>
+              <div id="quiz-link" class="d-none">/quizzes/<%= quizData.id %></div>
+            </div>
+
+          </div>
+
+          <div class="divider-h mb-4"></div>
+
+          <!-- ALL USER RESPONSES -->
+          <p class="lead mt-0">Responses</p>
+
+          <% for (const response of sessionData.responses) { %>
+
+            <div class="results-response response-<%= response.answer.is_correct ? "correct" : "incorrect" %>">
+              <!-- CORRECT/INCORRECT-->
+              <div class="results-correctness mb-1">
+                <%= response.answer.is_correct ? "CORRECT" : "INCORRECT" %>
+              </div>
+              <!-- QUESTION BODY -->
+              <div class="results-bold mb-1">
+                <%= response.question %>
+              </div>
+              <!-- ANSWER BODY -->
+              <%= response.answer.answer %>
+              <!-- CORRECT ANSWER (if incorrect) -->
+              <% if (!response.answer.is_correct) { %>
+                <p class="mt-3 mb-0"><span class="results-bold">Correct Answer:</span> <%= response.actual_answer %> </p>
+              <% } %>
+            </div>
+
+          <% } %>
+
         </div>
       </section>
     </div>
@@ -70,7 +135,32 @@
     </ul>
     <% } %>
   </ul>
+
   <%- include("partials/_footer.ejs") %>
+
+  <!-- EJS Variable Fetcher (don't modify below!) -->
+  <p>EJS Variables</p>
+  <ul id="data-ejs">
+    <% for (const key in quizData) { %>
+    <li>
+      <%= key %>:
+      <span class="data-quiz-key" title="<%= key %>"><%= quizData[key] %></span>
+    </li>
+    <% } %>
+    <% for (const key in userData) { %>
+      <li>
+        <%= key %>:
+        <span class="data-user-key" title="<%= key %>"><%= userData[key] %></span>
+      </li>
+    <% } %>
+    <% for (const key in sessionData) { %>
+      <li>
+        <%= key %>:
+        <span class="data-session-key" title="<%= key %>"><%= sessionData[key] %></span>
+      </li>
+    <% } %>
+  </ul>
+  <!------------------------------------------->
 
 </body>
 
