@@ -7,6 +7,6 @@ CREATE TABLE quizzes (
   title VARCHAR(30) NOT NULL,
   description VARCHAR(60) NOT NULL,
   views INTEGER DEFAULT 0,
-  creation_date DATE DEFAULT NOW(),
+  creation_time TIMESTAMP DEFAULT NOW(),
   public BOOLEAN DEFAULT FALSE
 );

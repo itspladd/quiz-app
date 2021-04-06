@@ -65,12 +65,12 @@ module.exports = (db) => {
     let quizData;
     const quiz_id = req.params.quizID;
     db.getQuizByID(req.params.quizID)
-      .then(quiz => {
+      .then(rows => {
         // Convert date/time data to a more readable format
-        quizData = quiz;
-        creationDate = new Date(quiz.creation_date);
-        quizData.relative_time = utils.convertTimestamp(quiz.creation_date);
-        quizData.creation_date = moment(creationDate).format("LLLL");
+        quizData = rows[0];
+        creationDate = new Date(quiz.creation_time);
+        quizData.relative_time = utils.convertTimestamp(quiz.creation_time);
+        quizData.creation_time = moment(creationDate).format("LLLL");
         return db.getReviewsByQuizId(quiz_id);
       })
       .then(reviewData => {
@@ -142,7 +142,7 @@ module.exports = (db) => {
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-
+    console.log(req.body)
     db.getQuizQuestionsAndAnswers(quiz_id)
       .then(questions => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's

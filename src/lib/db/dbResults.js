@@ -20,8 +20,7 @@ module.exports = {
         questions.body AS question,
         difficulty,
         answers.body AS answer,
-        is_correct,
-        explanation
+        is_correct
       FROM results
         JOIN quiz_sessions AS sessions ON results.session_id = sessions.id
         JOIN users ON sessions.user_id = users.id
@@ -52,13 +51,11 @@ module.exports = {
           const question = row.question;
           let {
             answer,
-            is_correct,
-            explanation
+            is_correct
           } = row;
           answer = {
             answer,
-            is_correct,
-            explanation
+            is_correct
           };
           const response = {
             question,
