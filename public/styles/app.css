@@ -350,6 +350,10 @@ form .custom-select:focus {
   font-size: 0.8rem;
 }
 
+#review-submitted {
+  color: #31f37b;
+}
+
 #results-score {
   margin: 2rem 0;
 }

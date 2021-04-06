@@ -80,7 +80,7 @@
             <!-- REVIEW FORM (shown only if the user is logged in) -->
             <% if (userData) { %>
             <div id="quiz-review-form">
-              <p class="lead mt-3">Enjoy this quiz? Leave a review below!</p>
+              <h1 class="h4 mt-3">Enjoy this quiz? Leave a review below!</h1>
               <form id="review-form" class="form">
                 <div class="form-group mb-2">
                   <!-- USER DATA -->
@@ -102,7 +102,7 @@
                     <option value="5">5</option>
                   </select>
                   <!-- SUBMIT -->
-                  <button type="submit" class="btn-custom mt-5">Submit Review</button>
+                  <button type="submit" class="btn-custom mt-4 my-3">Submit Review</button>
                   <span id="review-error" class="ml-2"></span>
                 </div>
               </form>
@@ -118,6 +118,8 @@
               <p class="lead mt-3">You must be logged in to post a review!</p>
 
             <% } %>
+
+            <div class="divider-h mt-2 mb-4"></div>
 
             <!-- REVIEWS -->
             <p class="h4 mt-0 mb-4">Recent Reviews</p>
