@@ -67,8 +67,7 @@ module.exports = {
       WHERE id = $1
     `;
     const queryParams = [id];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -80,8 +79,7 @@ module.exports = {
    */
   addUser: (userData) => {
     // Extract the user data into queryParams and the keys into an array
-    return db.insert("users", userData)
-      .then(rows => rows[0]);
+    return db.insert("users", userData);
   }
 
 };

@@ -64,7 +64,7 @@ module.exports = (db) => {
     } = res.locals.vars;
     let quizData;
     const quiz_id = req.params.quizID;
-    db.getQuizByID(req.params.quizID)
+    db.getQuizByID(quiz_id)
       .then(rows => {
         // Convert date/time data to a more readable format
         quizData = rows[0];
@@ -88,7 +88,11 @@ module.exports = (db) => {
         };
         res.render("quiz_show", templateVars);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        req.flash("warning", `Sorry, we couldn't find a quiz with the ID ${quiz_id}.`)
+        res.redirect("/404");
+      });
   });
 
   // Create a new quiz

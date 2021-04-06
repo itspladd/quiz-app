@@ -7,13 +7,13 @@ const moment = require("moment");
 
 // Helper function for getResults to format the results properly.
 const parseResults = (rows) => {
+  // If there's no results, just return an empty array
+  if (rows.length === 0) {
+    return rows;
+  }
   // Some data is the same in every row, so we save a single row
   // to singletonRow to extract all that data before parsing the other rows.
   singletonRow = rows[0];
-  const userData = {
-    id: singletonRow.user_id,
-    username: singletonRow.username
-  };
   const quizData = {
     id: singletonRow.quiz_id,
     author_id: singletonRow.author_id,
@@ -56,13 +56,14 @@ const parseResults = (rows) => {
   // Bundle some singleton data with the extracted responses data.
   const sessionData = {
     id: singletonRow.session_id,
+    user_id: singletonRow.user_id || null,
+    username: singletonRow.username || "Anonymous",
     duration: utils.convertTimestamp(singletonRow.start_time, singletonRow.end_time),
     end_time: moment(singletonRow.end_time).format("LLLL"),
     correct_answers,
     responses
   };
   return [{
-    userData,
     quizData,
     sessionData
   }];
@@ -91,7 +92,7 @@ module.exports = {
         is_correct
       FROM results
         JOIN quiz_sessions AS sessions ON results.session_id = sessions.id
-        JOIN users ON sessions.user_id = users.id
+        LEFT OUTER JOIN users ON sessions.user_id = users.id
         JOIN quizzes ON sessions.quiz_id = quizzes.id
         JOIN questions ON quizzes.id = questions.quiz_id
         JOIN answers ON answers.question_id = questions.id
@@ -102,7 +103,8 @@ module.exports = {
     `;
     const queryParams = [result_id];
     return db.query(queryString, queryParams)
-      .then(rows => parseResults(rows));
+      .then(rows => parseResults(rows))
+      .catch(err => console.log(err));
   }
 
 };

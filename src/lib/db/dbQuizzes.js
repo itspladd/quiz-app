@@ -141,8 +141,7 @@ module.exports = {
         }
         // Return once all have resolved
         return Promise.all(questionPromises);
-      })
-      .catch(err => console.error(err));
+      });
   },
 
   /**
@@ -178,8 +177,7 @@ module.exports = {
         }
         // Return once all have resolved
         return Promise.all(answerPromises);
-      })
-      .catch(err => console.error(err));
+      });
   },
 
   /**
@@ -194,8 +192,7 @@ module.exports = {
   addAnswer: function(answerData) {
     // Extract the answer data into queryParams and the keys into an array
 
-    return db.insert("answers", answerData)
-      .catch(err => console.error(err));
+    return db.insert("answers", answerData);
   }
 
 };
