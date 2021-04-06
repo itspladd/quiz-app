@@ -45,6 +45,11 @@ module.exports = (db) => {
           sessionData
         };
         res.render("quiz_results", templateVars);
+      })
+      .catch(err => {
+        console.error(err);
+        req.flash("warning", `Sorry, we couldn't find any quiz results with ID ${req.params.resultID}!`);
+        res.redirect("/404");
       });
   });
 

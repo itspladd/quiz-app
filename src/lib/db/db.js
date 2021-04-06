@@ -22,7 +22,7 @@ module.exports = {
 
   query: function(queryString, queryParams) {
     // Optional logging, enable to check queries as they run
-    /*console.log("Querying...");
+/*  console.log("Querying...");
     console.log(queryString);
     console.log(queryParams); */
     return pool.query(queryString, queryParams)
