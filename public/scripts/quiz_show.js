@@ -71,6 +71,8 @@ const createQuestionPage = (quizInfo, quizData, number) => {
     console.log("Reached end of quiz!")
     console.log("User answers:")
     console.log(userAnswers);
+    // Calculate results
+    calculateResults();
     return false;
   }
 
@@ -115,8 +117,11 @@ const createQuestionPage = (quizInfo, quizData, number) => {
     const optionData = option;
     // Bind a click event handler to the option component
     $($opt).bind("click", function() {
-      alert(optionData.is_correct);
-      userAnswers.push(optionData);
+      const userResponse = {
+        question,
+        answer: optionData
+      };
+      userAnswers.push(userResponse);
       // Generate the next quiz page
       playQuiz(quizInfo, quizData, number + 1);
     });
@@ -133,6 +138,16 @@ const createQuestionPage = (quizInfo, quizData, number) => {
   // Append parent to the main container
   $("#main-split-content").append($parent);
 
+}
+
+// Calculate the results using data stored in userAnswers
+const calculateResults = () => {
+  const length = userAnswers.length;
+  let score = 0;
+  for (const response of userAnswers) {
+    score += response.answer.is_correct ? 1 : 0;
+  }
+  console.log(`You answered ${score} out of ${length} questions correctly!`);
 }
 
 const userAnswers = [];
