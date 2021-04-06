@@ -409,6 +409,10 @@ form .custom-select:focus {
   color: #31f37b;
 }
 
+#user-quizzes-control .btn-custom {
+  width: 6rem;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
