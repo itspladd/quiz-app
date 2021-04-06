@@ -107,16 +107,24 @@ select {
   min-height: 45rem;
   margin-bottom: 2rem;
 
-  &::-webkit-scrollbar {
-    width: 0.25em;
-  }
+  .main-fixed {
+    height: 34.8rem;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid $tertiary;
 
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px $dark;
-  }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: $tertiary;
+    &::-webkit-scrollbar {
+      width: 0.25em;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px $dark;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $tertiary;
+    }
   }
 
 }

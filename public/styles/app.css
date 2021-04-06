@@ -496,16 +496,23 @@ select {
   margin-bottom: 2rem;
 }
 
-#main-split::-webkit-scrollbar {
+#main-split .main-fixed {
+  height: 34.8rem;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid #222338;
+}
+
+#main-split .main-fixed::-webkit-scrollbar {
   width: 0.25em;
 }
 
-#main-split::-webkit-scrollbar-track {
+#main-split .main-fixed::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px #111318;
           box-shadow: inset 0 0 6px #111318;
 }
 
-#main-split::-webkit-scrollbar-thumb {
+#main-split .main-fixed::-webkit-scrollbar-thumb {
   background-color: #222338;
 }
 
