@@ -150,6 +150,10 @@ select {
   bottom: 0;
 }
 
+#share-btn {
+  width: 9rem;
+}
+
 .btn-custom {
   color: $primary-darker;
   background-color: $tertiary-darker;
@@ -211,6 +215,24 @@ select {
   &:active,
   &:focus {
     box-shadow: 0px 0px 1px 2px $blue-darker;
+  }
+
+}
+
+.btn-custom-green {
+  color: $green;
+  background-color: $tertiary-darker;
+  border-color: $green;
+  outline: $green;
+
+  &:hover {
+    border-color: $green;
+    background-color: $green;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $green-darker;
   }
 
 }
