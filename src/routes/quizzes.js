@@ -186,7 +186,7 @@ module.exports = (db) => {
     console.log(sessionAnswers);
     db.insert("session_answers", sessionAnswers)
     .then(rows => db.insert("results", { session_id }))
-    .then(rows => res.json(rows[0].id))
+    .then(resultRows => res.json(resultRows[0].id))
     .catch(err => console.error(err));
   });
   /*STRETCH: global results from this quiz
