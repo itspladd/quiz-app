@@ -45,7 +45,7 @@ module.exports = (db) => {
           sessionData
         };
         res.render("quiz_results", templateVars);
-      })
+      });
   });
 
   return router;

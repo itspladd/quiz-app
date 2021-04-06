@@ -21,9 +21,9 @@ const loadQuiz = (quizInfo, delay = 5000) => {
 
   // Submit a POST request with the given quiz ID
   $.ajax({
-      url: `/quizzes/${quizInfo.id}/sessions`,
-      type: "POST"
-    })
+    url: `/quizzes/${quizInfo.id}/sessions`,
+    type: "POST"
+  })
     .then(res => {
       quizData = res;
     });
@@ -61,7 +61,7 @@ const shuffleArray = (array) => {
   }
   return shuffled;
 
-}
+};
 
 // Shuffle the order of questions and responses in quizData
 const shuffleQuizData = (quizData) => {
@@ -76,7 +76,7 @@ const shuffleQuizData = (quizData) => {
 
   return quizData;
 
-}
+};
 
 // Given quiz data and a question number, create a single quiz question page component
 const getNextQuestion = (quizInfo, quizData, number = 0) => {
@@ -185,16 +185,16 @@ const processResults = (quizID, sessionID) => {
 const submitResults = (data, quizID, sessionID) => {
 
   $.ajax({
-      url: `/quizzes/${quizID}/sessions/${sessionID}`,
-      type: "PUT",
-      data
-    })
+    url: `/quizzes/${quizID}/sessions/${sessionID}`,
+    type: "PUT",
+    data
+  })
     .then(resultID => {
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
     })
     .catch(() => {
-      window.location.replace(`/404`);
+      window.location.replace("/404");
     });
 
 };

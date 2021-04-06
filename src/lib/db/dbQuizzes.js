@@ -109,7 +109,7 @@ module.exports = {
             explanation: row.answer_explanation
           });
 
-        };
+        }
         return questionData;
       });
   },

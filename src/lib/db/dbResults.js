@@ -45,7 +45,7 @@ module.exports = {
           title: singletonRow.title,
           description: singletonRow.description,
           category_id: singletonRow.category_id
-        }
+        };
 
         const responses = [];
         for (let row of rows) {
@@ -65,14 +65,14 @@ module.exports = {
             answer
           };
           responses.push(response);
-        };
+        }
 
         const sessionData = {
           id: singletonRow.session_id,
           start_time: singletonRow.start_time,
           end_time: singletonRow.end_time,
           responses
-        }
+        };
         return {
           userData,
           quizData,
@@ -81,4 +81,4 @@ module.exports = {
       });
   }
 
-}
+};

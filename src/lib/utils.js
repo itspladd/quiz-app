@@ -5,7 +5,7 @@
  * @return {string}
  *         A string of random alphanumeric characters.
  */
- const generateRandomString = (length) => {
+const generateRandomString = (length) => {
   const alpha = "abcdefghijklmnopqrstuvwxyz";
   const num = "1234567890";
   const alphaNum = alpha + alpha.toUpperCase() + num;
