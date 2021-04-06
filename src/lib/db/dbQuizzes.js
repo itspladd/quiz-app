@@ -48,7 +48,7 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
-  getQuizQuestionsAndAnswers: function(quiz_id){
+  getQuizQuestionsAndAnswers: function(quiz_id) {
     const queryString = `
       SELECT questions.id AS question_id,
         questions.body AS question_body,
@@ -65,10 +65,10 @@ module.exports = {
     `;
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams)
-    .then(rows => {
+      .then(rows => {
       // Organize the data into the necessary structure, as follows:
       /* questionData: [
-        { 
+        {
           question: {//question info here},
           answers: [
             {answer1 data},
@@ -78,41 +78,41 @@ module.exports = {
           question... },
       ]
       */
-      const questionData = [];
+        const questionData = [];
 
-      // Initialize to the first question and array counter
-      let currentQuestionID = null;
-      let index = -1;
-      for (let row of rows) {
+        // Initialize to the first question and array counter
+        let currentQuestionID = null;
+        let index = -1;
+        for (let row of rows) {
         // If we're on a new question...
-        if (row.question_id !== currentQuestionID) {
+          if (row.question_id !== currentQuestionID) {
           // Add the question and start the answer array
-          currentQuestionID = row.question_id;
-          questionData.push({
-            question: {
-              id: row.question_id,
-              quiz_id,
-              body: row.question_body,
-              difficulty: row.question_difficulty
-            },
-            answers: []
+            currentQuestionID = row.question_id;
+            questionData.push({
+              question: {
+                id: row.question_id,
+                quiz_id,
+                body: row.question_body,
+                difficulty: row.question_difficulty
+              },
+              answers: []
+            });
+            // Increment counter so we know where to store our answers
+            index++;
+          }
+          // Store answers
+          questionData[index].answers.push({
+            id: row.answer_id,
+            question_id: row.answer_question_id,
+            body: row.answer_body,
+            is_correct: row.answer_is_correct,
+            explanation: row.answer_explanation
           });
-          // Increment counter so we know where to store our answers
-          index++;
-        }
-        // Store answers
-        questionData[index].answers.push({
-          id: row.answer_id,
-          question_id: row.answer_question_id,
-          body: row.answer_body,
-          is_correct: row.answer_is_correct,
-          explanation: row.answer_explanation
-        });
 
-      };
-      console.log(questionData);
-      return questionData;
-    });
+        }
+        console.log(questionData);
+        return questionData;
+      });
   },
 
   /**

@@ -1,19 +1,19 @@
-  // After the quiz has ended, the client sends the following data to the server via a PUT request on route :
-  //  {end_time, session_id, answers}
-  //   -- (answers is an array of answerIDs)
-  // Server uses this data to store the session_answers, update the quiz_session end_time and create a results table entry
-  // Server should send back a result ID which is used to REDIRECT the client to the results page on the client side
-  //   -- Redirect to GET route: /results/:resultID
+// After the quiz has ended, the client sends the following data to the server via a PUT request on route :
+//  {end_time, session_id, answers}
+//   -- (answers is an array of answerIDs)
+// Server uses this data to store the session_answers, update the quiz_session end_time and create a results table entry
+// Server should send back a result ID which is used to REDIRECT the client to the results page on the client side
+//   -- Redirect to GET route: /results/:resultID
 
-  // NEW GET ROUTE FOR "results": Given a resultID, the results page should receive the following data from templateVars:
-  //   userData     (from the users table by userID)
-  //   quizData     (from the quizzes table by quizID)
-  //   sessionData  (from the quiz_sessions table by sessionID, preferably with a duration column = end_time - start_time but not necessary)
-  // IN ADDITION:
-  //   Add an extra property called sessionData.responses
-  //     -- this should be an ARRAY of multiple { question, answer } (one for each question in the quiz)
-  //        question => a string => the question body
-  //        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
+// NEW GET ROUTE FOR "results": Given a resultID, the results page should receive the following data from templateVars:
+//   userData     (from the users table by userID)
+//   quizData     (from the quizzes table by quizID)
+//   sessionData  (from the quiz_sessions table by sessionID, preferably with a duration column = end_time - start_time but not necessary)
+// IN ADDITION:
+//   Add an extra property called sessionData.responses
+//     -- this should be an ARRAY of multiple { question, answer } (one for each question in the quiz)
+//        question => a string => the question body
+//        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
 
 // Retrieve quizData from EJS variables
 const getQuizData = () => {
@@ -24,11 +24,11 @@ const getQuizData = () => {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
     quizData[key] = value;
-  };
+  }
 
   return quizData;
 
-}
+};
 
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
@@ -59,9 +59,9 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
       callback(quizInfo, quizData);
       return;
     }
-  }, 10)
+  }, 10);
 
-}
+};
 
 // Progress through the quiz, creating question pages successively
 const playQuiz = (quizInfo, quizData, number = 0) => {
@@ -72,7 +72,7 @@ const playQuiz = (quizInfo, quizData, number = 0) => {
   // Create a single question page component
   createQuestionPage(quizInfo, quizData, number);
 
-}
+};
 
 // Given quiz data and a question number, create a single quiz question page component
 const createQuestionPage = (quizInfo, quizData, number) => {
@@ -88,14 +88,14 @@ const createQuestionPage = (quizInfo, quizData, number) => {
     const answers = data.answers;
 
     // Create parent container
-    const $parent = $(`<div id="quiz-session" class="d-flex flex-column">`);
+    const $parent = $("<div id=\"quiz-session\" class=\"d-flex flex-column\">");
 
     // Create quiz title
     const $title = $(`
       <div id="quiz-title" class="text-muted initialism">
         ${title}
       </div>
-    `)
+    `);
 
     // Create quiz question number
     const $number = $(`
@@ -112,7 +112,7 @@ const createQuestionPage = (quizInfo, quizData, number) => {
     `);
 
     // Create answers container with all options
-    const $answersContainer = $(`<div id="quiz-answers" class="d-flex flex-column">`);
+    const $answersContainer = $("<div id=\"quiz-answers\" class=\"d-flex flex-column\">");
     for (const option of answers) {
       // Create the answer option element
       const $opt = $(`<span class="quiz-option d-flex align-items-center">${option.body}</span>`);
@@ -136,7 +136,7 @@ const createQuestionPage = (quizInfo, quizData, number) => {
       .append($title)
       .append($number)
       .append($question)
-      .append($answersContainer)
+      .append($answersContainer);
 
     // Append parent to the main container
     $("#main-split-content").append($parent);
@@ -150,7 +150,7 @@ const createQuestionPage = (quizInfo, quizData, number) => {
 
   }
 
-}
+};
 
 // Process the user response data and display a button that will submit it to the server
 const processResults = (quizID, sessionID) => {
@@ -167,13 +167,13 @@ const processResults = (quizID, sessionID) => {
         end_time: new Date(),
         session_id: sessionID,
         answers: userAnswers.map(ans => ans.answer.id)
-      }
+      };
       submitResults(userResponseData, quizID, sessionID);
     }
 
-  })
+  });
 
-}
+};
 
 // Sends a POST request to the server with the user response data
 const submitResults = (data, quizID, sessionID) => {
@@ -191,12 +191,12 @@ const submitResults = (data, quizID, sessionID) => {
       window.location.replace(`/results/${resultID}`);
     })
     .catch(err => {
-      console.log(err)
-      console.error("The resultID received from the server was invalid. Redirecting to quiz show page.")
+      console.log(err);
+      console.error("The resultID received from the server was invalid. Redirecting to quiz show page.");
       window.location.replace(`/quizzes/${quizID}`);
     });
 
-}
+};
 
 const userAnswers = [];
 let complete = false;
@@ -212,6 +212,6 @@ $(document).ready(function() {
 
     loadQuiz(quizInfo, playQuiz);
 
-  })
+  });
 
 });

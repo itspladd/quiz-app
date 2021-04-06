@@ -9,6 +9,6 @@ module.exports = {
       RETURNING *;
     `;
     return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
+      .then(rows => rows[0]);
   },
 };

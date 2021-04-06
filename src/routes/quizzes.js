@@ -1,7 +1,7 @@
 const e = require("express");
 const express = require("express");
 const router = express.Router();
-const utils = require("../lib/utils")
+const utils = require("../lib/utils");
 
 module.exports = (db) => {
 
@@ -169,14 +169,14 @@ module.exports = (db) => {
               const data = {
                 questions,
                 sessionID: session.id
-              }
+              };
               // Send all of the data back to the client as a JSON
               res.json(data);
             })
             .catch(err => console.log(err));
 
         }
-      })
+      });
   });
 
   /*STRETCH: global results from this quiz

@@ -12,4 +12,4 @@ module.exports = {
     const queryParams = [id];
     return db.query(queryString, queryParams);
   },
-}
+};
