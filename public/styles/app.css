@@ -413,6 +413,22 @@ form .custom-select:focus {
   width: 6rem;
 }
 
+.user-dash-control .btn-custom-green {
+  background-color: #23ce6515;
+}
+
+.user-dash-control .btn-custom-red {
+  background-color: #bd294218;
+}
+
+.user-dash-control .btn-custom-yellow {
+  background-color: #fad10710;
+}
+
+.user-dash-control .btn-custom-blue {
+  background-color: #0072cf2a;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
