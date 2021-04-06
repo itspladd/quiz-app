@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
 
   // /results/:resultID
-  router.get("/:resultID", (req, res) => {
+  router.get("/:result", (req, res) => {
     const {
       alerts,
       userData,
@@ -19,9 +19,6 @@ module.exports = (db) => {
     };
     res.render("quiz_results", templateVars);
 const db = require("./db");
-
-module.exports = {
   });
-
   return router;
 };
