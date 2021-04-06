@@ -4,6 +4,7 @@
 <head>
   <title>Dashboard - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/dashboard.js"></script>
 </head>
 
 <body>
@@ -29,15 +30,15 @@
 
           <!-- DASHBOARD TABS -->
 
-          <button type="button" class="btn-custom btn-custom-blue mr-2">
+          <button id="tab-quizzes" type="button" class="btn-custom btn-custom-blue mr-2">
             My Quizzes
           </button>
-          <button type="button" class="btn-custom btn-custom-blue mr-2">
+          <button id="tab-history" type="button" class="btn-custom btn-custom-blue mr-2">
             My History
           </button>
 
           <!-- MY QUIZZES -->
-          <div id="user-quizzes" class="main-fixed">
+          <div id="user-quizzes" class="dash-tab main-fixed">
             <% for (const quiz of userQuizzes) { %>
                 <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
                   <div class="col-8">
@@ -65,7 +66,7 @@
           </div>
 
           <!-- QUIZ HISTORY -->
-          <div id="user-history" class="main-fixed">
+          <div id="user-history" class="dash-tab main-fixed d-none">
             <% for (const session of userHistory) { %>
                 <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
                   <div class="col-8">
