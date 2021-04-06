@@ -20,7 +20,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
     str += `<input class="input-response form-control mt-3" type="text" maxlength="250">`
   };
 
-  str+= `
+  str += `
       </div>
       <div class="question-control d-flex flex-row justify-content-between mt-3">
         <span class="toggle minimize text-muted">hide</span>
@@ -241,7 +241,9 @@ const submitForm = () => {
     const responseValues = [];
     for (const responseField of responseFields) {
       const responseValue = getValue(responseField);
-      const answer = { body: responseValue };
+      const answer = {
+        body: responseValue
+      };
       responseValues.push(answer);
     }
     const question = {
@@ -253,16 +255,16 @@ const submitForm = () => {
 
   // Submit a post request with the quiz data
   $.ajax({
-    url: "/quizzes",
-    type: "POST",
-    data: {
-      title,
-      description,
-      category_id,
-      public,
-      questions
-    }
-  })
+      url: "/quizzes",
+      type: "POST",
+      data: {
+        title,
+        description,
+        category_id,
+        public,
+        questions
+      }
+    })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
       setTimeout(() => {

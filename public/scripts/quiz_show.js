@@ -1,20 +1,3 @@
-// After the quiz has ended, the client sends the following data to the server via a PUT request on route :
-//  {end_time, session_id, answers}
-//   -- (answers is an array of answerIDs)
-// Server uses this data to store the session_answers, update the quiz_session end_time and create a results table entry
-// Server should send back a result ID which is used to REDIRECT the client to the results page on the client side
-//   -- Redirect to GET route: /results/:resultID
-
-// NEW GET ROUTE FOR "results": Given a resultID, the results page should receive the following data from templateVars:
-//   userData     (from the users table by userID)
-//   quizData     (from the quizzes table by quizID)
-//   sessionData  (from the quiz_sessions table by sessionID, preferably with a duration column = end_time - start_time but not necessary)
-// IN ADDITION:
-//   Add an extra property called sessionData.responses
-//     -- this should be an ARRAY of multiple { question, answer } (one for each question in the quiz)
-//        question => a string => the question body
-//        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
-
 // Retrieve quizInfo from EJS variables
 const getQuizInfo = () => {
 
@@ -32,16 +15,15 @@ const getQuizInfo = () => {
 
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
-// TODO: Display an error on receiving a 404 status code (happens when quizID in the ajax url is invalid)
 const loadQuiz = (quizInfo, delay = 5000) => {
 
   let quizData;
 
   // Submit a POST request with the given quiz ID
   $.ajax({
-    url: `/quizzes/${quizInfo.id}/sessions`,
-    type: "POST"
-  })
+      url: `/quizzes/${quizInfo.id}/sessions`,
+      type: "POST"
+    })
     .then(res => {
       quizData = res;
     });
@@ -59,7 +41,7 @@ const loadQuiz = (quizInfo, delay = 5000) => {
       clearInterval(loader);
       // Clear the quiz front page
       $("#quiz-front").remove();
-      // TODO: Shuffle the questions and responses
+      // Shuffle the order of questions and responses
       const shuffledQuizData = shuffleQuizData(quizData);
       // Start the quiz
       getNextQuestion(quizInfo, shuffledQuizData);
@@ -106,7 +88,6 @@ const getNextQuestion = (quizInfo, quizData, number = 0) => {
   if (number < quizData.questions.length) {
 
     const data = quizData.questions[number];
-
     const title = quizInfo.title;
     const length = quizData.questions.length;
     const question = data.question.body;
@@ -204,10 +185,10 @@ const processResults = (quizID, sessionID) => {
 const submitResults = (data, quizID, sessionID) => {
 
   $.ajax({
-    url: `/quizzes/${quizID}/sessions/${sessionID}`,
-    type: "PUT",
-    data
-  })
+      url: `/quizzes/${quizID}/sessions/${sessionID}`,
+      type: "PUT",
+      data
+    })
     .then(resultID => {
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
