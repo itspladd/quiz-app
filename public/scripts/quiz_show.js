@@ -33,11 +33,11 @@ const getQuizInfo = () => {
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
 // TODO: Display an error on receiving a 404 status code (happens when quizID in the ajax url is invalid)
-const loadQuiz = (quizInfo, callback, delay = 5000) => {
+const loadQuiz = (quizInfo, delay = 5000) => {
 
   let quizData;
 
-  // Submit a post request with data = quizID and do NOT redirect
+  // Submit a POST request with the given quiz ID
   $.ajax({
     url: `/quizzes/${quizInfo.id}/sessions`,
     type: "POST"
@@ -62,7 +62,7 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
       // TODO: Shuffle the questions and responses
       // const quizData = shuffle(quizData);
       // Start the quiz
-      callback(quizInfo, quizData);
+      getNextQuestion(quizInfo, quizData);
       return;
     }
   }, 10);
@@ -74,19 +74,11 @@ const shuffle = (quizData) => {
 
 }
 
-// Progress through the quiz, creating question pages successively
-const playQuiz = (quizInfo, quizData, number = 0) => {
+// Given quiz data and a question number, create a single quiz question page component
+const getNextQuestion = (quizInfo, quizData, number = 0) => {
 
   // Clear the page of any previous questions
   $("#quiz-session").remove();
-
-  // Create a single question page component
-  createQuestionPage(quizInfo, quizData, number);
-
-};
-
-// Given quiz data and a question number, create a single quiz question page component
-const createQuestionPage = (quizInfo, quizData, number) => {
 
   // If there are questions remaining, display the next one
   if (number < quizData.questions.length) {
@@ -124,11 +116,9 @@ const createQuestionPage = (quizInfo, quizData, number) => {
 
     // Create the answers container with all options
     const $answersContainer = $("<div id=\"quiz-answers\" class=\"d-flex flex-column\">");
-    for (const option of answers) {
+    for (const optionData of answers) {
       // Create the answer option element
-      const $opt = $(`<span class="quiz-option d-flex align-items-center">${option.body}</span>`);
-      // Set the variables associated with this specific answer
-      const optionData = option;
+      const $opt = $(`<span class="quiz-option d-flex align-items-center">${optionData.body}</span>`);
       // Bind a click event handler to the option component containing the response data
       $($opt).bind("click", function() {
         const userResponse = {
@@ -137,8 +127,8 @@ const createQuestionPage = (quizInfo, quizData, number) => {
         };
         // Store the answer data associated with the selected option in a global variable
         userAnswers.push(userResponse);
-        // Generate the next quiz page
-        playQuiz(quizInfo, quizData, number + 1);
+        // Generate the next question page
+        getNextQuestion(quizInfo, quizData, number + 1);
       });
       // Add the option component to the answers container
       $answersContainer.append($opt);
@@ -191,21 +181,17 @@ const processResults = (quizID, sessionID) => {
 // Send a POST request to the server with the user response data
 const submitResults = (data, quizID, sessionID) => {
 
-  // Submit a POST request with the quiz data
   $.ajax({
     url: `/quizzes/${quizID}/sessions/${sessionID}`,
     type: "PUT",
     data
   })
     .then(resultID => {
-      console.log(resultID);
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
     })
-    .catch(err => {
-      console.log(err);
-      console.error("The resultID received from the server was invalid. Redirecting to quiz show page.");
-      window.location.replace(`/quizzes/${quizID}`);
+    .catch(() => {
+      window.location.replace(`/404`);
     });
 
 };
@@ -222,7 +208,7 @@ $(document).ready(function() {
   // The server will respond with quiz question data
   $("#play-quiz").on("click", function() {
 
-    loadQuiz(quizInfo, playQuiz);
+    loadQuiz(quizInfo);
 
   });
 
