@@ -28,16 +28,19 @@
             <p class="lead"><%= quizData.description %></p>
             <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
 
-            <div>
-              <button id="play-quiz" type="button" class="btn-custom">
+            <div class="d-flex flex-row justify-content-md-between">
+              <button id="play-quiz" type="button" class="btn-custom btn-custom-green">
                 Start Quiz
+              </button>
+              <button id="share-btn" type="button" class="btn-custom ml-2">
+                Share Link
               </button>
             </div>
 
             <div class="divider-h mb-4"></div>
 
             <!-- REVIEWS -->
-            <p class="h4 mt-0">Recent Reviews</p>
+            <p class="h4 mt-0 mb-4">Recent Reviews</p>
             <% for (const review of quizData.reviews) { %>
             <div class="d-flex flex-row quiz-review">
               <div class="div d-flex flex-column">
@@ -53,6 +56,10 @@
                 <span class="review-timestamp text-muted"> <%= review.timestamp %> by <%= review.username %> </span>
               </div>
             </div>
+            <% } %>
+            <!-- REVIEW MESSAGE (if there are no reviews) -->
+            <% if (!quizData.reviews.length) { %>
+              <p class="lead">There aren't any reviews for this quiz yet.</p>
             <% } %>
 
           </div>
