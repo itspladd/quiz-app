@@ -393,7 +393,7 @@ form .custom-select:focus {
 
 .response-incorrect {
   border-color: #e22d4b;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: #bd294218;
 }
 
 .response-incorrect .results-correctness {
@@ -402,7 +402,7 @@ form .custom-select:focus {
 
 .response-correct {
   border-color: #31f37b;
-  background-color: rgba(0, 255, 42, 0.1);
+  background-color: #23ce6515;
 }
 
 .response-correct .results-correctness {
@@ -411,22 +411,6 @@ form .custom-select:focus {
 
 .user-dash-control .btn-custom {
   width: 6rem;
-}
-
-.user-dash-control .btn-custom-green {
-  background-color: #23ce6515;
-}
-
-.user-dash-control .btn-custom-red {
-  background-color: #bd294218;
-}
-
-.user-dash-control .btn-custom-yellow {
-  background-color: #fad10710;
-}
-
-.user-dash-control .btn-custom-blue {
-  background-color: #0072cf2a;
 }
 
 html body {
@@ -582,7 +566,7 @@ select {
 
 .btn-custom {
   color: #faa515;
-  background-color: #1a1b2b;
+  background-color: #fad10710;
   width: auto;
   padding: 0.5rem 1rem;
   border: 1px solid #faa515;
@@ -615,7 +599,7 @@ select {
 
 .btn-custom-red {
   color: #e22d4b;
-  background-color: #1a1b2b;
+  background-color: #bd294218;
   border-color: #e22d4b;
   outline: #e22d4b;
 }
@@ -632,7 +616,7 @@ select {
 
 .btn-custom-blue {
   color: #008cff;
-  background-color: #1a1b2b;
+  background-color: #0072cf2a;
   border-color: #008cff;
   outline: #008cff;
 }
@@ -649,7 +633,7 @@ select {
 
 .btn-custom-green {
   color: #31f37b;
-  background-color: #1a1b2b;
+  background-color: #23ce6515;
   border-color: #31f37b;
   outline: #31f37b;
 }
@@ -662,6 +646,10 @@ select {
 .btn-custom-green:active, .btn-custom-green:focus {
   -webkit-box-shadow: 0px 0px 1px 2px #23ce64;
           box-shadow: 0px 0px 1px 2px #23ce64;
+}
+
+.btn-custom-yellow {
+  background-color: #fad10710;
 }
 
 .highlight {
