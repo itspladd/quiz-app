@@ -11,7 +11,7 @@
 }
 
 #navigation a {
-  color: #dbdbdb;
+  color: #eeeeee;
 }
 
 #navigation button {
@@ -99,7 +99,7 @@
 
 @media (min-width: 1202px) {
   .nav-item .active {
-    border-bottom-color: #dbdbdb;
+    border-bottom-color: #eeeeee;
   }
 }
 
@@ -162,11 +162,11 @@ form .custom-select:focus {
 }
 
 .list-quiz p {
-  color: #dbdbdb;
+  color: #eeeeee;
 }
 
 .list-quiz:hover {
-  border-color: #dbdbdb;
+  border-color: #eeeeee;
   background-color: #222338;
 }
 
@@ -196,7 +196,7 @@ form .custom-select:focus {
 }
 
 .new-question:hover {
-  border-color: #dbdbdb;
+  border-color: #eeeeee;
   background-color: #222338;
 }
 
@@ -261,7 +261,7 @@ form .custom-select:focus {
 }
 
 .quiz-review {
-  border: 2px solid #dbdbdb;
+  border: 2px solid #eeeeee;
   border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
@@ -324,7 +324,7 @@ form .custom-select:focus {
 
 .quiz-option {
   font-size: 0.9rem;
-  border: 2px solid #dbdbdb;
+  border: 2px solid #eeeeee;
   border-radius: 0.25rem;
   padding: 1rem;
   min-height: 6rem;
@@ -348,7 +348,7 @@ form .custom-select:focus {
 
 html body {
   background-color: #111318;
-  color: #dbdbdb;
+  color: #eeeeee;
   font-family: "Montserrat", sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -384,7 +384,7 @@ body::-webkit-scrollbar-thumb {
 section {
   background-color: #1a1b2b;
   border-radius: 5px;
-  border: 2px solid #dbdbdb;
+  border: 2px solid #eeeeee;
   padding: 2rem;
 }
 
@@ -416,7 +416,7 @@ select {
   right: 25px;
   bottom: 35px;
   visibility: hidden;
-  opacity: 0.5;
+  opacity: 0.75;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -430,11 +430,11 @@ select {
 }
 
 #scroll-btn:hover {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 #scroll-btn:active {
-  opacity: 0.9;
+  opacity: 1;
 }
 
 #nav-spacer {
@@ -586,6 +586,6 @@ select {
 }
 
 .border-white {
-  border-color: #dbdbdb;
+  border-color: #eeeeee;
 }
 /*# sourceMappingURL=app.css.map */
