@@ -118,14 +118,14 @@ form .custom-select:focus {
           box-shadow: 0px 0px 1px 2px #faa515;
 }
 
+#login-fact {
+  margin: auto 0;
+}
+
 .form-custom img {
   width: 3rem;
   margin: auto;
   padding-bottom: 0.2rem;
-}
-
-#login-fact {
-  margin: auto 0;
 }
 
 .error-404 {
@@ -578,7 +578,7 @@ select {
 }
 
 .border-purple {
-  border-color: #9a4dff !important;
+  border-color: #9a4dff;
 }
 
 .border-tertiary {

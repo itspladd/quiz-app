@@ -25,17 +25,19 @@
 .question-control {
 
   user-select: none;
-  // border: 2px solid red;
   display: flex;
 
   .control-desc {
     visibility: visible;
+
     &.control-del {
       color: $red;
     }
+
     &.control-add {
       color: $green;
     }
+
   }
 
   .icon {

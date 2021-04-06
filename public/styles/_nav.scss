@@ -47,56 +47,70 @@
 
   .nav-primary {
     color: $primary;
+
     &:hover {
       color: $primary-darker;
     }
+
   }
 
   .nav-primary-darker {
     color: $primary-darker;
+
     &:hover {
       color: $primary;
     }
+
   }
 
   .nav-blue {
     color: $blue;
+
     &:hover {
       color: $blue-darker;
     }
+
   }
 
   .nav-green {
     color: $green;
+
     &:hover {
       color: $green-darker;
     }
+
   }
 
   .nav-purple {
     color: $purple;
+
     &:hover {
       color: $purple-darker;
     }
+
   }
 
 }
 
 .nav-item {
+
   .inactive,
   .active {
     border-top: 0.2rem solid transparent;
     border-bottom: 0.2rem solid transparent;
   }
+
 }
 
 
 @media (min-width: 1202px) {
 
   .nav-item {
+
     .active {
       border-bottom-color: $white;
     }
+
   }
 
 }

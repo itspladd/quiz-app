@@ -32,6 +32,7 @@ body {
   &::-webkit-scrollbar-thumb {
     background-color: $tertiary;
   }
+
 }
 
 *,
@@ -50,10 +51,12 @@ section {
 a {
   color: $primary-darker;
   transition: 0.2s;
+
   &:hover {
     color: $primary;
     text-decoration: none;
   }
+
 }
 
 img,
@@ -94,13 +97,11 @@ select {
 }
 
 #main-full {
-  // background-color: $tertiary;
   min-height: 33rem;
   margin-bottom: 2rem;
 }
 
 #main-split {
-  // background-color: $blue;
   min-height: 45rem;
   margin-bottom: 2rem;
 
@@ -126,21 +127,19 @@ select {
     height: 2.5rem;
     padding-bottom: 0.5rem;
   }
+
 }
 
 #side-full {
-  // background-color: $purple;
   min-height: 45rem;
 }
 
 #side-split-top {
-  // background-color: $red;
   min-height: 19rem;
   margin-bottom: 2rem;
 }
 
 #side-split-bottom {
-  // background-color: $green;
   min-height: 24rem;
 }
 
@@ -172,6 +171,7 @@ select {
   &:focus {
     box-shadow: 0px 0px 1px 2px $primary-darker;
   }
+
 }
 
 .btn-custom-flex {
@@ -183,6 +183,7 @@ select {
   background-color: $tertiary-darker;
   border-color: $red;
   outline: $red;
+
   &:hover {
     border-color: $red;
     background-color: $red;
@@ -230,7 +231,7 @@ select {
 }
 
 .border-purple {
-  border-color: $purple !important;
+  border-color: $purple;
 }
 
 .border-tertiary {
