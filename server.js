@@ -83,7 +83,8 @@ app.post("/login", (req, res) => {
     res.redirect("/login");
   } else {
     db.getUserByLogin(login)
-      .then(userData => {
+      .then(rows => {
+        const userData = rows[0];
         // Given a valid login, check if the password matches the hashed password
         const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
         // ERROR: Credentials are invalid
