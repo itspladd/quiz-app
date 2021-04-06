@@ -46,15 +46,18 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
       quizData = res;
     });
 
+  // Timeout after the given delay if no response is received from the server
   const timeout = setTimeout(() => {
     clearInterval(loader);
     return;
   }, delay);
 
+  // Check for server response data on an interval, clearing the timeout and interval once received
   const loader = setInterval(() => {
     if (quizData) {
       clearTimeout(timeout);
       clearInterval(loader);
+      // Clear the quiz front page and start the quiz
       $("#quiz-front").remove();
       callback(quizInfo, quizData);
       return;
@@ -111,34 +114,36 @@ const createQuestionPage = (quizInfo, quizData, number) => {
       </div>
     `);
 
-    // Create answers container with all options
+    // Create the answers container with all options
     const $answersContainer = $("<div id=\"quiz-answers\" class=\"d-flex flex-column\">");
     for (const option of answers) {
       // Create the answer option element
       const $opt = $(`<span class="quiz-option d-flex align-items-center">${option.body}</span>`);
       // Set the variables associated with this specific answer
       const optionData = option;
-      // Bind a click event handler to the option component containing response data
+      // Bind a click event handler to the option component containing the response data
       $($opt).bind("click", function() {
         const userResponse = {
           question,
           answer: optionData
         };
+        // Store the answer data associated with the selected option in a global variable
         userAnswers.push(userResponse);
         // Generate the next quiz page
         playQuiz(quizInfo, quizData, number + 1);
       });
+      // Add the option component to the answers container
       $answersContainer.append($opt);
     }
 
-    // Append child components to the parent container
+    // Append all of the child components to the parent
     $parent
       .append($title)
       .append($number)
       .append($question)
       .append($answersContainer);
 
-    // Append parent to the main container
+    // Append the parent to the main container
     $("#main-split-content").append($parent);
 
   } else {
@@ -178,9 +183,7 @@ const processResults = (quizID, sessionID) => {
 // Sends a POST request to the server with the user response data
 const submitResults = (data, quizID, sessionID) => {
 
-  console.log(data);
-
-  // Submit a post request with the quiz data
+  // Submit a POST request with the quiz data
   $.ajax({
     url: `/${quizID}/sessions/${sessionID}`,
     type: "PUT",
