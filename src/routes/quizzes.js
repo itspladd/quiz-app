@@ -68,9 +68,9 @@ module.exports = (db) => {
       .then(quiz => {
         // Convert date/time data to a more readable format
         quizData = quiz;
-        creationDate = new Date(quiz.creation_date);
-        quizData.relative_time = utils.convertTimestamp(quiz.creation_date);
-        quizData.creation_date = moment(creationDate).format("LLLL");
+        creationDate = new Date(quiz.creation_time);
+        quizData.relative_time = utils.convertTimestamp(quiz.creation_time);
+        quizData.creation_time = moment(creationDate).format("LLLL");
         return db.getReviewsByQuizId(quiz_id);
       })
       .then(reviewData => {

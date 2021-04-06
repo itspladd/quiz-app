@@ -42,7 +42,7 @@ module.exports = {
       FROM quizzes
       JOIN users ON users.id = author_id
       WHERE author_id = $1
-      ORDER BY creation_date DESC;
+      ORDER BY creation_time DESC;
     `;
     const queryParams = [userID];
     return db.query(queryString, queryParams);
