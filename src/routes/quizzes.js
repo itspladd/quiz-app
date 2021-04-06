@@ -89,8 +89,8 @@ module.exports = (db) => {
         res.render("quiz_show", templateVars);
       })
       .catch(err => {
-        console.error("Error from in getquiz: ", err);
-        req.flash("warning", `Quiz ${quiz_id} not found.`)
+        console.error(err);
+        req.flash("warning", `Sorry, we couldn't find a quiz with the ID ${quiz_id}.`)
         res.redirect("/404");
       });
   });
