@@ -71,9 +71,8 @@ const createQuestionPage = (quizInfo, quizData, number) => {
     console.log("Reached end of quiz!")
     console.log("User answers:")
     console.log(userAnswers);
-    // Calculate results
-    calculateResults();
-    return false;
+    // Process results
+    return processResults();
   }
 
   const data = quizData.questions[number];
@@ -140,14 +139,35 @@ const createQuestionPage = (quizInfo, quizData, number) => {
 
 }
 
-// Calculate the results using data stored in userAnswers
-const calculateResults = () => {
+// Calculate and display the results using data stored in userAnswers
+const processResults = () => {
+
+  const endTime = new Date();
+  // Calculate the user's score
   const length = userAnswers.length;
   let score = 0;
   for (const response of userAnswers) {
     score += response.answer.is_correct ? 1 : 0;
   }
   console.log(`You answered ${score} out of ${length} questions correctly!`);
+
+  // Render a form to submit a post request that will:
+
+  // Send the session data to the server
+  // sessionID, array of answers, endTime
+  // Server uses this data to store the session_answers, update the quiz_session end_time and create a results table entry
+  // Server sends back a result ID which is used to REDIRECT the client to the results page
+  // /quizzes/results/:resultID
+
+  // NEW PAGE: Given a resultID, the results page will receive the following data from templateVars:
+  // userData (from the users table by userID)
+  // quizData (from the quizzes table by quizID)
+  // sessionData (from the quiz_sessions table by sessionID)
+  // IN ADDITION:
+  //   Add sessionData.responses which is an ARRAY of multiple { question, answer } (one for each question in the quiz) where
+  //   question => a string containing the question body
+  //   answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
+
 }
 
 const userAnswers = [];
