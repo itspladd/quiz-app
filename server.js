@@ -45,7 +45,8 @@ app.use((req, res, next) => {
   const cookieUserID = req.session.userID;
   const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
   db.getUserByID(cookieUserID)
-    .then(userData => {
+    .then(rows => {
+      const userData = rows[0];
       res.locals.vars = {
         alerts: req.flash(),
         visitorID,
@@ -198,7 +199,8 @@ app.post("/register", (req, res) => {
                   email,
                   password: hashedPassword
                 })
-                  .then(userData => {
+                  .then(rows => {
+                    const userData = rows[0];
                     req.session.userID = userData.id;
                     console.log("Registration successful. Welcome to InquizitorApp!");
                     req.flash("success", "Registration successful. Welcome to InquizitorApp!");
