@@ -2,6 +2,8 @@ const db = require("./db");
 const {
   response
 } = require("express");
+const utils = require("../utils");
+const moment = require("moment");
 
 // Helper function for getResults to format the results properly.
 const parseResults = (rows) => {
@@ -50,21 +52,20 @@ const parseResults = (rows) => {
   }
   // Push the last response in
   responses.push(response);
-  console.log(responses);
 
   // Bundle some singleton data with the extracted responses data.
   const sessionData = {
     id: singletonRow.session_id,
-    duration: singletonRow.duration,
-    end_time: singletonRow.end_time,
+    duration: utils.convertTimestamp(singletonRow.start_time, singletonRow.end_time),
+    end_time: moment(singletonRow.end_time).format("LLLL"),
     correct_answers,
     responses
   };
-  return {
+  return [{
     userData,
     quizData,
     sessionData
-  };
+  }];
 };
 
 module.exports = {
@@ -79,7 +80,7 @@ module.exports = {
         description,
         category_id,
         sessions.id AS session_id,
-        end_time - start_time AS duration,
+        start_time,
         end_time,
         questions.id AS question_id,
         questions.body AS question,
