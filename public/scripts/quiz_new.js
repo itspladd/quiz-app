@@ -65,7 +65,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
           <p class="lead">${question || "N/A"}</p>
           <p class="mb-0">Answer: ${answer || "N/A"}</p>
         `);
-      }, 100);
+      }, 150);
       $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
       $(this)
@@ -84,7 +84,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   // Minimize other forms
   setTimeout(() => {
     $(".toggle.minimize").not(":last").trigger("click");
-  }, 800);
+  }, 1000);
 
   updateCounter();
 
@@ -265,7 +265,9 @@ const submitForm = () => {
   })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
-      window.location.replace(`/quizzes/${quizID}`);
+      setTimeout(() => {
+        window.location.replace(`/quizzes/${quizID}`);
+      }, 500);
     });
 
 };
