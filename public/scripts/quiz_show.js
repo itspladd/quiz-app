@@ -187,9 +187,14 @@ const submitResults = (data, quizID, sessionID) => {
     data
   })
     .then(resultID => {
+      // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+      console.error("The resultID received from the server was invalid. Redirecting to quiz show page.")
+      window.location.replace(`/quizzes/${quizID}`);
+    });
 
 }
 
