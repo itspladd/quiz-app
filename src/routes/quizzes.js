@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const utils = require("../lib/utils");
+const moment = require("moment");
 
 module.exports = (db) => {
 
@@ -69,7 +70,7 @@ module.exports = (db) => {
         quizData = quiz;
         creationDate = new Date(quiz.creation_date);
         quizData.relative_time = utils.convertTimestamp(quiz.creation_date);
-        quizData.creation_date = creationDate.toDateString();
+        quizData.creation_date = moment(creationDate).format("LLLL");
         return db.getReviewsByQuizId(quiz_id);
       })
       .then(reviewData => {

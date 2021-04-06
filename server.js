@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
-const dayjs = require("dayjs");
+const moment = require("moment");
 const bcrypt = require("bcrypt");
 const path = require("path");
 
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   }
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
-  const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
+  const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
   db.getUserByID(cookieUserID)
     .then(userData => {
       res.locals.vars = {
