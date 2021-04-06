@@ -282,10 +282,6 @@ form .custom-select:focus {
   font-size: 0.8rem;
 }
 
-#quiz-session {
-  display: none;
-}
-
 #quiz-question {
   min-height: 8rem;
 }

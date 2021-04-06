@@ -41,6 +41,7 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
       clearInterval(loader);
       console.log("quiz data received from server!")
       console.log("STARTING QUIZ")
+      $("#quiz-front").remove();
       callback(quizInfo, quizData);
       return
     }
@@ -53,7 +54,7 @@ const playQuiz = (quizInfo, quizData, number = 0) => {
 
   // Clear the page
   console.log("Clearing page")
-  $("#main-split-content").empty();
+  $("#quiz-session").remove();
 
   // Obtain question count
   const numQuestions = quizData.questions.length;
@@ -151,6 +152,15 @@ const processResults = () => {
   }
   console.log(`You answered ${score} out of ${length} questions correctly!`);
 
+  complete = true;
+
+  // Show quiz end component
+  // $("#quiz-end").css("display", "block");
+  $("#quiz-end").addClass("d-flex").removeClass("d-none");
+
+
+  // createQuizEndForm();
+
   // Render a form to submit a post request that will:
 
   // Send the session data to the server
@@ -170,28 +180,8 @@ const processResults = () => {
 
 }
 
-// Create the quiz end component with a button to view results
-const createQuizEndForm = () => {
-
-  // Clear the page
-  console.log("Clearing page")
-  $("#main-split-content").empty();
-
-  const $component = $(`
-    <div id="quiz-end" class="d-flex flex-column">
-      <p class="lead">You've reached the end of</p>
-      <p class="h1"><%= quizData.title %> </p>
-      <div>
-        <button id="submit-results" type="button" class="btn-custom">
-          View Results
-        </button>
-      </div>
-    </div>
-  `);
-  $("main-split-content").append($component);
-}
-
 const userAnswers = [];
+let complete = false;
 
 $(document).ready(function() {
 
