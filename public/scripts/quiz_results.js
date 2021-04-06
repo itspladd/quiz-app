@@ -19,8 +19,8 @@ $(document).ready(function() {
 
     const button = $(this);
 
-    // Copy quiz link to clipboard
-    copyText($("#quiz-link").html());
+    // Copy results link to clipboard
+    copyText(window.location.href);
 
     // Change share button appearance
     button.addClass("btn-custom-blue");
