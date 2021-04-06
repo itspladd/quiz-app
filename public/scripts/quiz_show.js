@@ -21,9 +21,9 @@ const loadQuiz = (quizInfo, delay = 5000) => {
 
   // Submit a POST request with the given quiz ID
   $.ajax({
-    url: `/quizzes/${quizInfo.id}/sessions`,
-    type: "POST"
-  })
+      url: `/quizzes/${quizInfo.id}/sessions`,
+      type: "POST"
+    })
     .then(res => {
       quizData = res;
     });
@@ -149,8 +149,14 @@ const getNextQuestion = (quizInfo, quizData, number = 0) => {
 
   } else {
 
+    // Store session data
+    sessionData = {
+      quizID: quizInfo.id,
+      sessionID: quizData.sessionID
+    }
+
     // When there are no more questions remaining, process the user response data
-    processResults(quizInfo.id, quizData.sessionID);
+    processResults(sessionData.quizID, sessionData.sessionID);
     complete = true;
     return;
 
@@ -185,10 +191,10 @@ const processResults = (quizID, sessionID) => {
 const submitResults = (data, quizID, sessionID) => {
 
   $.ajax({
-    url: `/quizzes/${quizID}/sessions/${sessionID}`,
-    type: "PUT",
-    data
-  })
+      url: `/quizzes/${quizID}/sessions/${sessionID}`,
+      type: "PUT",
+      data
+    })
     .then(resultID => {
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
@@ -199,7 +205,58 @@ const submitResults = (data, quizID, sessionID) => {
 
 };
 
+// Return true if the review form is valid, otherwise display an error
+const showReviewErrors = () => {
+  const title = $("#review-title").val().trim();
+  const comment = $("#review-comment").val().trim();
+  const rating = $("#review-rating").val().trim();
+
+  const $error = $("#review-error");
+
+  if (!title || !comment || !rating) {
+    $error.html("Missing required fields");
+  } else if (title.length > 60) {
+    $error.html("Title exceeds 60-character limit");
+  } else if (comment.length > 90) {
+    $error.html("Comment exceeds 90-character limit");
+  } else if (!(["1", "2", "3", "4", "5"].includes(rating))) {
+    $error.html("Invalid rating");
+  } else {
+    $error.addClass("d-none");
+    return true
+  }
+}
+
+// Send a POST request to the server with the user review form data
+const submitReview = () => {
+
+  const data = {
+    quiz_id: sessionData.quizID,
+    session_id: sessionData.sessionID,
+    user_id: $("#review-user").val().trim(),
+    title: $("#review-title").val().trim(),
+    comment: $("#review-comment").val().trim(),
+    rating: Number($("#review-rating").val().trim())
+  }
+
+  $.ajax({
+      url: `/quizzes/${data.quiz_id}/reviews`,
+      type: "POST",
+      data
+    })
+    .then(() => {
+      $("#quiz-review-form").remove();
+      $("#review-submitted").removeClass("d-none");
+    })
+    .catch(() => {
+      $("#review-error").removeClass("d-none");
+      $("#review-error").html("An error occurred")
+    });
+
+}
+
 const userAnswers = [];
+let sessionData = {};
 let complete = false;
 
 $(document).ready(function() {
@@ -208,10 +265,22 @@ $(document).ready(function() {
   const quizInfo = getEjsData();
 
   // When the user clicks play, send the quizID to the server and create a new session
-  // The server will respond with quiz question data
   $("#play-quiz").on("click", function() {
 
     loadQuiz(quizInfo);
+
+  });
+
+  // When the user submits a review, send the form data to the server
+  $("#review-form").on("submit", function(event) {
+    event.preventDefault();
+
+    // Check that the form is complete
+    const isValid = showReviewErrors();
+
+    if (isValid) {
+      submitReview();
+    }
 
   });
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Some Quiz - InquizitorApp</title>
+  <title><%= quizData.title %> - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
   <script type="text/javascript" src="/scripts/quiz_show.js"></script>
 </head>
@@ -36,16 +36,12 @@
 
             <div class="divider-h mb-4"></div>
 
-            <!-- Reviews -->
+            <!-- REVIEWS -->
             <p class="h4 mt-0">Recent Reviews</p>
-
             <% for (const review of quizData.reviews) { %>
-
             <div class="d-flex flex-row quiz-review">
-
               <div class="div d-flex flex-column">
                 <span class="review-title"><%= review.title %></span>
-
                 <div class="d-flex flex-row align-items-center">
                   <div>
                     <% for (let i = 0; i < review.rating; i++) { %>
@@ -55,24 +51,59 @@
                 </div>
                 <span class="review-comment mt-2"><%= review.comment %> </span>
                 <span class="review-timestamp text-muted"> <%= review.timestamp %> by <%= review.username %> </span>
-
               </div>
-
             </div>
-
             <% } %>
+
           </div>
 
           <!-- RESULTS FORM -->
           <div id="quiz-end" class="d-none flex-column justify-content-center">
+
             <p class="lead">Hooray! You've reached the end of</p>
             <p class="h1 d-flex"><%= quizData.title %> </p>
-            <div class="divider-h"></div>
             <div>
-              <button id="submit-quiz" type="button" class="btn-custom">
+              <button id="submit-quiz" type="button" class="btn-custom my-3">
                 View Results
               </button>
             </div>
+
+            <div class="divider-h mt-3 mb-2"></div>
+
+            <div id="quiz-review-form">
+              <p class="lead mt-3">Enjoy this quiz? Leave a review below!</p>
+              <form id="review-form" class="form">
+                <div class="form-group mb-2">
+                  <!-- USER DATA -->
+                  <input id="review-user" class="d-none" type="text" value="<%= userData.id %>">
+                  <!-- REVIEW TITLE -->
+                  <label for="title" class="form-label text-muted">Review Title</label>
+                  <input id="review-title" class="form-control" type="text" name="title" maxlength="60" placeholder="Great quiz!" required>
+                  <!-- REVIEW COMMENT -->
+                  <label for="comment" class="form-label text-muted mt-2">Review Comment</label>
+                  <input id="review-comment" class="form-control" type="text" name="comment" maxlength="90" placeholder="Challenging and intriguing questions! Highly recommended!" required>
+                  <!-- REVIEW RATING -->
+                  <label for="rating" class="form-label text-muted mt-2">Review Rating</label>
+                  <select id="review-rating" class="custom-select" required>
+                    <option selected disabled value="">Select a rating...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <!-- SUBMIT -->
+                  <button type="submit" class="btn-custom mt-5">Submit Review</button>
+                  <span id="review-error" class="ml-2"></span>
+                </div>
+              </form>
+            </div>
+
+            <!-- SUBMISSION SUCCESS MESSAGE -->
+            <div id="review-submitted" class="d-none">
+              <p class="lead mt-3">Your review has been submitted! Thank you!</p>
+            </div>
+
           </div>
 
         </div>
