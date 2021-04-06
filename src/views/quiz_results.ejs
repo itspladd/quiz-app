@@ -70,7 +70,32 @@
     </ul>
     <% } %>
   </ul>
+
   <%- include("partials/_footer.ejs") %>
+
+  <!-- EJS Variable Fetcher (don't modify below!) -->
+  <p>EJS Variables</p>
+  <ul id="data-ejs">
+    <% for (const key in quizData) { %>
+    <li>
+      <%= key %>:
+      <span class="data-quiz-key" title="<%= key %>"><%= quizData[key] %></span>
+    </li>
+    <% } %>
+    <% for (const key in userData) { %>
+      <li>
+        <%= key %>:
+        <span class="data-user-key" title="<%= key %>"><%= userData[key] %></span>
+      </li>
+    <% } %>
+    <% for (const key in sessionData) { %>
+      <li>
+        <%= key %>:
+        <span class="data-session-key" title="<%= key %>"><%= sessionData[key] %></span>
+      </li>
+    <% } %>
+  </ul>
+  <!------------------------------------------->
 
 </body>
 
