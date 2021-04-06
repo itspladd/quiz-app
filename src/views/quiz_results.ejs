@@ -25,7 +25,7 @@
 
           <!-- SCORE AND DURATION-->
           <h1 id="results-score" class="h4 my-5">
-            <span id="results-username" class="results-bold"><%= userData.username %></span> scored <span id="results-score-actual" class="results-bold">5</span> out of <span id="results-score-max" class="results-bold">8</span> questions correctly!
+            <span id="results-username" class="results-bold"><%= userData.username %></span> scored <span id="results-score-actual" class="results-bold">5</span> out of <span id="results-score-max" class="results-bold"><%= sessionData.responses.length %> </span> questions correctly!
           </h1>
 
           <!-- QUIZ INFO -->
@@ -34,8 +34,8 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-md-between">
             <div class="d-flex flex-column">
-              <span id="results-date">Monday, April 5, 2021 @ 1:23 PM</span>
-              <span id="results-duration">Duration: 4:12</span>
+              <span id="results-date"><%= sessionData.end_time %> </span>
+              <span id="results-duration"><%= sessionData.duration || "<duration>" %> </span>
             </div>
 
             <!-- SHARE BUTTON -->
