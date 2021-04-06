@@ -15,18 +15,18 @@
 //        question => a string => the question body
 //        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
 
-// Retrieve quizData from EJS variables
-const getQuizData = () => {
+// Retrieve quizInfo from EJS variables
+const getQuizInfo = () => {
 
-  const quizData = {};
+  const quizInfo = {};
   const ejsData = $("#data-ejs .data-key");
   for (const dataKey of ejsData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
-    quizData[key] = value;
+    quizInfo[key] = value;
   }
 
-  return quizData;
+  return quizInfo;
 
 };
 
@@ -204,7 +204,7 @@ let complete = false;
 $(document).ready(function() {
 
   // Get quiz information from EJS
-  const quizInfo = getQuizData();
+  const quizInfo = getQuizInfo();
 
   // When the user clicks play, send the quizID to the server and create a new session
   // The server will respond with quiz question data
