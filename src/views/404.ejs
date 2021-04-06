@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>404 - InquizitorApp</title>
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/favicon.ico" />
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>404 - InquizitorApp</title>
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/favicon.ico" />
+  <%- include("partials/_imports.ejs") %>
+</head>
 
-    <%- include("partials/_header.ejs", {userData}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {userData}) %>
 
-      <!-- MAIN WINDOW (FULL) -->
-      <div class="col-12">
-        <section id="main-full" class="border-red error-404 d-flex flex-column justify-content-center">
-          <p class="display-4">404: Page not found</p>
-          <div class="divider-h d-block border-red"></div>
-          <p class="lead">Sorry, the URL you entered is invalid or no longer exists. :(</p>
-          <br>
-          <a href="/">
-            <button class="btn-custom btn-custom-red">Back to safety</button>
-          </a>
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      </main>
+    <!-- MAIN WINDOW (FULL) -->
+    <div class="col-12">
+      <section id="main-full" class="border-red error-404 d-flex flex-column justify-content-center">
+        <p class="display-4">404: Page not found</p>
+        <div class="divider-h d-block border-red"></div>
+        <p class="lead">Sorry, the URL you entered is invalid or no longer exists. :(</p>
+        <br>
+        <a href="/">
+          <button class="btn-custom btn-custom-red">Back to safety</button>
+        </a>
+      </section>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>

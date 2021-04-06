@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>InquizitorApp</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+</head>
 
-    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8 m-auto">
-        <section id="main-split" class="overflow-auto">
-          <!-- MAIN TITLE -->
-          <div id="main-title" class="mb-5">
-            Featured
-          </div>
-          <!-- MAIN CONTENT -->
-          <div id="main-split-content">
-            <% for (const quiz of quizData) { %>
-              <a href="/quizzes/<%= quiz.id %> ">
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-                  <div class="col-8">
-                    <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
-                    <p class="quiz-desc d-none d-xl-inline"><%= quiz.description %></p>
-                    <p class="quiz-author d-none d-md-block my-1 text-muted">Submitted by <%= quiz.author %></p>
-                  </div>
-                    <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
-                </div>
-              </a>
-            <% } %>
-          </div>
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div id="side-section" class="col-12 col-lg-4">
-        <!-- USER PANEL -->
-        <%- include("partials/_side_top.ejs", userData) %>
-        <!-- LEADERBOARDS -->
-        <%- include("partials/_side_bottom.ejs", rankData) %>
-      </div>
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto">
+        <!-- MAIN TITLE -->
+        <div id="main-title" class="mb-5">
+          Featured
+        </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
+          <% for (const quiz of quizData) { %>
+          <a href="/quizzes/<%= quiz.id %> ">
+            <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+              <div class="col-8">
+                <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
+                <p class="quiz-desc d-none d-xl-inline"><%= quiz.description %></p>
+                <p class="quiz-author d-none d-md-block my-1 text-muted">Submitted by <%= quiz.author %></p>
+              </div>
+              <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
+            </div>
+          </a>
+          <% } %>
+        </div>
+      </section>
+    </div>
 
-    </main>
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>

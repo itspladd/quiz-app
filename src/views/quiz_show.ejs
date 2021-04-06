@@ -1,92 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Some Quiz - InquizitorApp</title>
-    <%- include("partials/_imports.ejs") %>
-    <script type="text/javascript" src="/scripts/quiz_show.js"></script>
-  </head>
 
-  <body>
+<head>
+  <title>Some Quiz - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_show.js"></script>
+</head>
 
-    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8 m-auto">
-        <section id="main-split" class="overflow-auto">
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-          <!-- MAIN CONTENT -->
-          <div id="main-split-content">
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto">
 
-            <!-- QUIZ FRONT PAGE -->
-            <div id="quiz-front" class="d-flex flex-column">
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
 
-              <!-- QUIZ INFO -->
-              <p class="h1"><%= quizData.title %> </p>
-              <p class="lead"><%= quizData.description %></p>
-              <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %> (<%= quizData.relative_time %>)</p>
+          <!-- QUIZ FRONT PAGE -->
+          <div id="quiz-front" class="d-flex flex-column">
 
-              <div>
-                <button id="play-quiz" type="button" class="btn-custom">
-                  Start Quiz
-                </button>
-              </div>
+            <!-- QUIZ INFO -->
+            <p class="h1"><%= quizData.title %> </p>
+            <p class="lead"><%= quizData.description %></p>
+            <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %> (<%= quizData.relative_time %>)</p>
 
-              <div class="divider-h"></div>
+            <div>
+              <button id="play-quiz" type="button" class="btn-custom">
+                Start Quiz
+              </button>
+            </div>
 
-              <!-- Reviews -->
-              <p class="h4 mt-0">Recent Reviews</p>
+            <div class="divider-h"></div>
 
-              <% for (const review of quizData.reviews) { %>
+            <!-- Reviews -->
+            <p class="h4 mt-0">Recent Reviews</p>
 
-                <div class="d-flex flex-row quiz-review">
+            <% for (const review of quizData.reviews) { %>
 
-                  <div class="div d-flex flex-column">
-                    <span class="review-title"><%= review.title %></span>
+            <div class="d-flex flex-row quiz-review">
 
-                    <div class="d-flex flex-row align-items-center">
-                      <div>
-                        <% for (let i = 0; i < review.rating; i++) { %>
-                          <img src="/images/star.png" alt="star">
-                        <% } %>
-                      </div>
-                    </div>
-                    <span class="review-comment mt-2"><%= review.comment %> </span>
-                    <span class="review-timestamp text-muted"> <%= review.timestamp %> by <%= review.username %> </span>
+              <div class="div d-flex flex-column">
+                <span class="review-title"><%= review.title %></span>
 
+                <div class="d-flex flex-row align-items-center">
+                  <div>
+                    <% for (let i = 0; i < review.rating; i++) { %>
+                    <img src="/images/star.png" alt="star">
+                    <% } %>
                   </div>
-
                 </div>
+                <span class="review-comment mt-2"><%= review.comment %> </span>
+                <span class="review-timestamp text-muted"> <%= review.timestamp %> by <%= review.username %> </span>
 
-              <% } %>
-            </div>
-
-            <!-- RESULTS FORM -->
-            <div id="quiz-end" class="d-none flex-column justify-content-center">
-              <p class="lead">Hooray! You've reached the end of</p>
-              <p class="h1 d-flex"><%= quizData.title %> </p>
-              <div class="divider-h"></div>
-              <div>
-                <button id="submit-quiz" type="button" class="btn-custom">
-                  View Results
-                </button>
               </div>
+
             </div>
 
+            <% } %>
           </div>
-        </section>
-      </div>
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div id="side-section" class="col-12 col-lg-4">
-        <!-- USER PANEL -->
-        <%- include("partials/_side_top.ejs", userData) %>
-        <!-- LEADERBOARDS -->
-        <%- include("partials/_side_bottom.ejs", rankData) %>
-      </div>
+          <!-- RESULTS FORM -->
+          <div id="quiz-end" class="d-none flex-column justify-content-center">
+            <p class="lead">Hooray! You've reached the end of</p>
+            <p class="h1 d-flex"><%= quizData.title %> </p>
+            <div class="divider-h"></div>
+            <div>
+              <button id="submit-quiz" type="button" class="btn-custom">
+                View Results
+              </button>
+            </div>
+          </div>
 
-    </main>
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
@@ -94,21 +95,21 @@
   <p>EJS Variables</p>
   <ul id="data-ejs">
     <% for (const key in quizData) { %>
-      <li>
-        <%= key %>:
-        <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
-      </li>
+    <li>
+      <%= key %>:
+      <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
+    </li>
     <% } %>
   </ul>
   <p>quizData.reviews</p>
   <ul>
-  <% for (const key in quizData.reviews[0]) { %>
+    <% for (const key in quizData.reviews[0]) { %>
     <li><%= key %>: <%= quizData.reviews[0][key] %></li>
-  <% } %>
+    <% } %>
   </ul>
   <!------------------------------------------->
 
 
-  </body>
+</body>
 
 </html>

@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Create Quiz - InquizitorApp</title>
-    <%- include("partials/_imports.ejs") %>
-    <script type="text/javascript" src="/scripts/quiz_new.js"></script>
-  </head>
 
-  <body>
+<head>
+  <title>Create Quiz - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_new.js"></script>
+</head>
 
-    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8 m-auto">
-        <section id="main-split" class="overflow-auto border-blue">
-          <!-- MAIN TITLE -->
-          <div id="main-title" class="mb-5">
-            Create Quiz
-          </div>
-          <!-- MAIN CONTENT -->
-          <div id="main-split-content">
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto border-blue">
+        <!-- MAIN TITLE -->
+        <div id="main-title" class="mb-5">
+          Create Quiz
+        </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
           <!-- FORM -->
           <div class="d-flex flex-column justify-content-center">
             <form id="new-quiz-form" class="form" action="/quizzes" method="POST">
@@ -73,22 +74,22 @@
               </div>
             </form>
           </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
+    </div>
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div id="side-section" class="col-12 col-lg-4">
-        <!-- USER PANEL -->
-        <%- include("partials/_side_top.ejs", userData) %>
-        <!-- LEADERBOARDS -->
-        <%- include("partials/_side_bottom.ejs", rankData) %>
-      </div>
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
 
-    </main>
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>

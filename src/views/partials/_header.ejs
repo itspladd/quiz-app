@@ -1,54 +1,52 @@
 <header>
   <nav class="navbar navbar-expand-xl navbar-dark fixed-top" id="navigation">
     <div class="container">
-        <a class="navbar-brand ml-lg-3" href="/">InquizitorApp<img src="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/lightbulb-light.png" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav d-flex flex-column flex-xl-row m-0 justify-content-xl-between w-100">
+      <a class="navbar-brand ml-lg-3" href="/">InquizitorApp<img src="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/lightbulb-light.png" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <div id="app-links" class="d-flex flex-column flex-xl-row align-items-xl-center ml-lg-3">
-              <!-- APP NAV LINKS (always shown) -->
-              <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/" ? "active" : "inactive"%>" href="/">HOME</a></li>
-              <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/quizzes" ? "active" : "inactive"%>" href="/quizzes">ALL QUIZZES</a></li>
+      <!-- NAV BAR-->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav d-flex flex-column flex-xl-row m-0 justify-content-xl-between w-100">
 
-              <!-- APP NAV LINKS (shown if user is currently logged in)-->
-              <% if (userData) { %>
-                <li class="nav-item my-2 ml-xl-4"><a class="nav-blue nav-link <%= currentPage === "/quizzes/new" ? "active" : "inactive"%>" href="/quizzes/new">CREATE</a></li>
-                <li class="nav-item my-2 ml-xl-4"><a class="nav-green nav-link <%= currentPage === "/study" ? "active" : "inactive"%>" href="/study">STUDY</a></li>
-                <li class="nav-item my-2 ml-xl-4"><a class="nav-purple nav-link <%= currentPage === "/users/dashboard" ? "active" : "inactive"%>" href="/users/dashboard">DASHBOARD</a></li>
-                  <% } %>
-                </div>
+          <!-- APP NAV LINKS -->
+          <div id="app-links" class="d-flex flex-column flex-xl-row align-items-xl-center ml-lg-3">
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/" ? "active" : "inactive"%>" href="/">HOME</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/quizzes" ? "active" : "inactive"%>" href="/quizzes">ALL QUIZZES</a></li>
+            <% if (userData) { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-blue nav-link <%= currentPage === "/quizzes/new" ? "active" : "inactive"%>" href="/quizzes/new">CREATE</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-green nav-link <%= currentPage === "/study" ? "active" : "inactive"%>" href="/study">STUDY</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-purple nav-link <%= currentPage === "/users/dashboard" ? "active" : "inactive"%>" href="/users/dashboard">DASHBOARD</a></li>
+            <% } %>
+          </div>
 
-                <div id="user-links" class="d-flex flex-column flex-xl-row align-items-xl-center mx-lg-3">
-                  <% if (!userData) { %>
+          <!-- USER PANEL NAV LINKS -->
+          <div id="user-links" class="d-flex flex-column flex-xl-row align-items-xl-center mx-lg-3">
+            <% if (!userData) { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
+            <% } else { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/account" ? "active" : "inactive"%>" href="/account">ACCOUNT</a></li>
+            <li class="nav-item my-2 ml-xl-4">
+              <form class="form-inline" action="/logout" method="POST">
+                <button id="nav-logout" type="submit" class="btn-nav">
+                  LOGOUT
+                </button>
+              </form>
+            </li>
+            <% } %>
+          </div>
 
-                    <!-- USER NAV LINKS (shown if user is currently not logged in) -->
-                    <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
-                    <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
+        </ul>
+      </div>
 
-                  <% } else { %>
-
-                    <!-- USER NAV LINKS (shown if user is currently logged in) -->
-                    <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/account" ? "active" : "inactive"%>" href="/account">ACCOUNT</a></li>
-                    <li class="nav-item my-2 ml-xl-4">
-                      <form class="form-inline" action="/logout" method="POST">
-                        <button id="nav-logout" type="submit" class="btn-nav">
-                          LOGOUT
-                        </button>
-                      </form>
-                    </li>
-
-                <% } %>
-              </div>
-
-            </ul>
-        </div>
     </div>
   </nav>
+
   <!-- SPACER -->
   <div id="nav-spacer" class="mt-3 mt-xl-2"></div>
+
 </header>
 
 <!-- FLASH MESSAGES -->

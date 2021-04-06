@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Results - InquizitorApp</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>Results - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+</head>
 
-    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8 m-auto">
-        <section id="main-split" class="overflow-auto">
-          <!-- MAIN TITLE -->
-          <div id="main-title" class="mb-5">
-            Quiz Results
-          </div>
-          <!-- MAIN CONTENT -->
-          <div id="main-split-content">
-            <!-- CONTENT HERE -->
-          </div>
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div id="side-section" class="col-12 col-lg-4">
-        <!-- USER PANEL -->
-        <%- include("partials/_side_top.ejs", userData) %>
-        <!-- LEADERBOARDS -->
-        <%- include("partials/_side_bottom.ejs", rankData) %>
-      </div>
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto">
+        <!-- MAIN TITLE -->
+        <div id="main-title" class="mb-5">
+          Quiz Results
+        </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
+          <!-- CONTENT HERE -->
+        </div>
+      </section>
+    </div>
 
-    </main>
-    <p>User data available:</p>
-    <ul>
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
+  <p>User data available:</p>
+  <ul>
     <% for (let key in userData) { %>
-      <li><%= key %>: <%= userData[key] %></li>
+    <li><%= key %>: <%= userData[key] %></li>
 
     <% } %>
-    </ul>
+  </ul>
 
-    <p>Quiz data available:</p>
-    <ul>
+  <p>Quiz data available:</p>
+  <ul>
     <% for (let key in quizData) { %>
-      <li><%= key %>: <%= quizData[key] %></li>
+    <li><%= key %>: <%= quizData[key] %></li>
 
     <% } %>
-    </ul>
+  </ul>
 
-    
-    <p>Session data available:</p>
-    <ul>
+
+  <p>Session data available:</p>
+  <ul>
     <% for (let key in sessionData) { %>
-      <li><%= key %>: <%= sessionData[key] %></li>
+    <li><%= key %>: <%= sessionData[key] %></li>
 
     <% } %>
-    </ul>
-    <p>Responses:</p>
-    <ul>
+  </ul>
+  <p>Responses:</p>
+  <ul>
     <% for (let response of sessionData.responses) { %>
-      <li>question: <%= response.question %></li>
-      <ul>
-        <li>answer: <%= response.answer.answer %></li>
-        <li>is_correct: <%= response.answer.is_correct %></li>
-        <li>explanation: <%= response.answer.explanation %></li>
-      </ul>
-    <% } %>
+    <li>question: <%= response.question %></li>
+    <ul>
+      <li>answer: <%= response.answer.answer %></li>
+      <li>is_correct: <%= response.answer.is_correct %></li>
+      <li>explanation: <%= response.answer.explanation %></li>
     </ul>
+    <% } %>
+  </ul>
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>
