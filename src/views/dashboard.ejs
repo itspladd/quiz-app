@@ -21,7 +21,42 @@
         </div>
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
-          <!-- CONTENT HERE -->
+
+          <!-- MY QUIZZES -->
+          <p class="h4 mt-0 mb-4">My Quizzes</p>
+          <!-- <% //for (const quiz of userQuizzes) { %> -->
+          <!-- <a href="/quizzes/<%= //quiz.id %> "> -->
+            <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+              <div class="col-8">
+                <p class="quiz-title mb-0 mt-0">My Quiz Title<%= //quiz.title %></p>
+                <p class="quiz-date d-none d-xl-inline">My Quiz Desc<%= //quiz.description %></p>
+                <p class="quiz-author d-none d-md-block my-1 text-muted">Jan 1, 2021<%= //quiz.creation_date %></p>
+              </div>
+              <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
+            </div>
+          <!-- </a> -->
+          <!-- <% //} %> -->
+
+          <!-- QUIZ HISTORY -->
+          <p class="h4 mt-4 mb-4">Quiz History</p>
+          <!-- <% //for (const session of userHistory) { %> -->
+          <!-- <a href="/results/<%= //session.result_id %> "> -->
+            <div class="past-quiz d-flex flex-row justify-content-between align-items-center list-quiz">
+              <div class="col-8">
+                <p class="quiz-title mb-0 mt-0">Quiz Title<%= //session.quiz_title %></p>
+                <p class="quiz-author d-none d-md-block my-1 text-muted">Completed on: Jan 1, 2021<%= //session.end_time %></p>
+              </div>
+              <!-- BUTTON LINK TO RESULTS (if it exists) -->
+              <% //if (session.result_id) { %>
+                <a href="/results/<%= //session.result_id %> ">
+                  <button type="button" class="btn-custom mr-2">
+                    Results
+                  </button>
+                </a>
+              <% //} %>
+            </div>
+          <!-- </a> -->
+          <!-- <% //} %> -->
         </div>
       </section>
     </div>
