@@ -15,17 +15,17 @@ const getQuizData = () => {
 
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
-const loadQuiz = (quizID, callback, delay = 5000) => {
+const loadQuiz = (quizInfo, callback, delay = 5000) => {
 
-  let data;
+  let quizData;
 
   // Submit a post request with data = quizID and do NOT redirect
   $.ajax({
-    url: `/quizzes/${quizID}/sessions`,
+    url: `/quizzes/${quizInfo.id}/sessions`,
     type: "POST"
   })
     .then(res => {
-      data = res;
+      quizData = res;
     });
 
   const timeout = setTimeout(() => {
@@ -36,56 +36,66 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
 
   const loader = setInterval(() => {
     console.log("downloading...");
-    if (data) {
+    if (quizData) {
       clearTimeout(timeout);
       clearInterval(loader);
       console.log("quiz data received from server!")
-      callback(data);
+      console.log("STARTING QUIZ")
+      callback(quizInfo, quizData);
       return
     }
   }, 10)
 
 }
 
-const playQuiz = (data) => {
+const playQuiz = (quizInfo, quizData, number = 0) => {
 
-  console.log("STARTING QUIZ")
 
-  // Hide quiz front component
-  removeElement($("#quiz-front"));
-  console.log("Removing front component")
+  // Clear the page
+  console.log("Clearing page")
+  $("#main-split-content").empty();
 
   // Obtain question count
-  const numQuestions = data.questions.length;
+  const numQuestions = quizData.questions.length;
 
-  // Create first question page component
-  let number = 0;
-  createQuestionPage(data, number);
+  // Create question page component
+  createQuestionPage(quizInfo, quizData, number);
 
 }
 
 // Given quiz data and a question number, create a single quiz question page component
-const createQuestionPage = (data, number) => {
+const createQuestionPage = (quizInfo, quizData, number) => {
 
   // If the given number exceeds the actual number of questions available, exit
-  if (number > data.questions.length) return false;
+  if (number > quizData.questions.length - 1) {
+    console.log("Reached end of quiz!")
+    console.log("User answers:")
+    console.log(userAnswers);
+    return false;
+  }
 
-  const question = 123;
+  const data = quizData.questions[number];
+
+  const title = quizInfo.title;
+  const length = quizData.questions.length;
+  const question = data.question.body;
+  const answers = data.answers;
+  // Each answer has question_id, body, is_correct, explanation
 
   // Create parent container
   const $parent = $(`<div id="quiz-session" class="d-flex flex-column">`);
 
   // Create quiz title
   const $title = $(`
-  <div id="quiz-title" class="text-muted initialism">
-    ${data.title}
-  </div>
+    <div id="quiz-title" class="text-muted initialism">
+      ${title}
+    </div>
   `)
 
   // Create quiz question number
   const $number = $(`
     <div id="quiz-question-number" class="mt-4 mb-3">
-      Question ${number} of ${length}
+      Question ${number + 1} of ${length}
     </div>
   `);
 
@@ -99,7 +109,17 @@ const createQuestionPage = (data, number) => {
   // Create answers container with all options
   const $answersContainer = $(`<div id="quiz-answers" class="d-flex flex-column">`);
   for (const option of answers) {
-    const $opt = $(`<span class="quiz-option d-flex align-items-center">${option}</span>`);
+    // Create the answer option element
+    const $opt = $(`<span class="quiz-option d-flex align-items-center">${option.body}</span>`);
+    // Set the variables associated with this specific answer
+    const optionData = option;
+    // Bind a click event handler to the option component
+    $($opt).bind("click", function() {
+      alert(optionData.is_correct);
+      userAnswers.push(optionData);
+      // Generate the next quiz page
+      playQuiz(quizInfo, quizData, number + 1);
+    });
     $answersContainer.append($opt);
   }
 
@@ -115,17 +135,20 @@ const createQuestionPage = (data, number) => {
 
 }
 
+const userAnswers = [];
+
 $(document).ready(function() {
 
   // Get EJS variable data
   const quizInfo = getQuizData();
   const playButton = $("#play-quiz");
 
+
   // When the user clicks play, send the quizID to the server
   // Expected response: JSON containing the keys "sessionID", "questions"
   playButton.on("click", function() {
 
-    loadQuiz(quizInfo.id, playQuiz);
+    loadQuiz(quizInfo, playQuiz);
 
   })
 
