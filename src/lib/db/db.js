@@ -17,7 +17,7 @@ const { Pool } = require("pg");
 const pool = new Pool(dbParams);
 
 module.exports = {
-  query: (queryString, queryParams) => {
+  query: function(queryString, queryParams) {
     // Optional logging, enable to check queries as they run
     /*console.log("Querying...");
     console.log(queryString);
@@ -28,32 +28,48 @@ module.exports = {
       /* console.log('returning: ', res.rows ) */
         return res.rows;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   },
 
   /**
-   * Build the data needed to insert a new object into the database.
-   * @param  {Object} object
-   *         The data to be added.
+   * Build the data needed to insert a new object into the database, then run query() to insert.
+   * @param  {String} table
+   *         The table to insert the data into.
+   * @param  {Object} dataArray
+   *         Array of objects to be added. All object keys must match columns in the target table.
    * @return {Object}
-   *         The column names, query variables, and query parameters.
-   *
-   * Build your queryString with `INSERT INTO [table] (${columns}) VALUES (${vars})`
-   * The run db.query with (queryString, queryParams).
+   *         A promise to the added data.
    *
    */
-  buildInsertQueryParams: function(obj) {
-    const keysArray = Object.keys(obj);
-    const numVars = keysArray.length;
-    const queryParams = Object.values(obj);
-
-    columns = keysArray.join(", ");
-    let vars = "";
-    for (let i = 1; i <= numVars; i++) {
-      vars += i !== 1 ? ", " : "";
-      vars += `$${i}`;
+  insert: function(table, data) {
+    // If it's a single object rather than an array, turn it into an array.
+    if(!Array.isArray(data)) {
+      data = [data];
     }
+    // Initialize the array that will hold the values and table name.
+    // Give it the table name and the columns.
+    const columnsString = Object.keys(data[0]).join(", ");
 
-    return {columns, vars, queryParams};
+    let queryString = `INSERT INTO ${table} (${columnsString}) VALUES `;
+    // Now we build the variable string for the values, while adding them to queryParams.
+    let varNumber = 1;
+    const startVar = varNumber;
+    const queryParams = [];
+    for (let row of data) {
+      queryString += (varNumber === startVar) ? "(" : ", (";
+      const values = Object.values(row);
+      const varsArr = []
+      for (let value of values) {
+        queryParams.push(value);
+        varsArr.push(`$${varNumber}`);
+        varNumber++;
+      }
+      queryString += varsArr.join(", ");
+      queryString += ")"
+    }
+    queryString += " RETURNING *;"
+    return pool.query(queryString, queryParams)
+    .then(res => res.rows)
+    .catch(err => console.error(err));
   }
 };

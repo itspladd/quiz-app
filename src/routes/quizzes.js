@@ -94,9 +94,6 @@ module.exports = (db) => {
   // Create a new quiz
   // Restrictions: user must be logged in
   router.post("/", (req, res) => {
-    // This is what is received from the form's post request:
-    console.log("From the POST request...");
-    console.log(req.body);
 
     const {
       userData
@@ -127,7 +124,7 @@ module.exports = (db) => {
             req.flash("success", "Quiz created successfully!");
             res.json(quiz.id);
           })
-          .catch(err => console.log(err));
+          .catch(err => console.error(err));
       }
     }
 
@@ -147,38 +144,51 @@ module.exports = (db) => {
     const user_id = userData ? userData.id : null;
 
     db.getQuizQuestionsAndAnswers(quiz_id)
-      .then(questions => {
-        // If there's no data, it means quiz_id was invalid and there were no Q's and A's
-        // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
-        // Just make sure this redirect goes through if no data is received
-        if (questions.length === 0) {
-          res.redirect("/404");
+    .then(questions => {
+      // If there's no data, it means quiz_id was invalid and there were no Q's and A's
+      // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
+      // Just make sure this redirect goes through if no data is received
+      if (questions.length === 0) {
+        res.redirect("/404");
 
-          // If the quiz exists and its questions/answers were retrieved successfully...
-        } else {
-          // Create a new entry in the quiz_sessions table
-          db.addSession({quiz_id, user_id})
-            .then(session => {
-              console.log(`New session started by ${userData.username || "anonymous"}!`);
-              // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
-              // containing all of a quiz's questions and answers
-              // question => a row from the questions table connected to
-              // answers => the 4 rows from the answers table
+        // If the quiz exists and its questions/answers were retrieved successfully...
+      } else {
+        // Create a new entry in the quiz_sessions table
+        db.addSession({quiz_id, user_id})
+          .then(session => {
+            console.log(`New session started by ${userData.username || "anonymous"}!`);
+            // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
+            // containing all of a quiz's questions and answers
+            // question => a row from the questions table connected to
+            // answers => the 4 rows from the answers table
 
-              // Add the sessionID to the quizData array
-              const data = {
-                questions,
-                sessionID: session.id
-              }
-              // Send all of the data back to the client as a JSON
-              res.json(data);
-            })
-            .catch(err => console.log(err));
+            // Add the sessionID to the quizData array
+            const data = {
+              questions,
+              sessionID: session.id
+            }
+            // Send all of the data back to the client as a JSON
+            res.json(data);
+          })
+          .catch(err => console.error(err));
 
-        }
-      })
+      }
+    });
   });
 
+  router.put("/:quizID/sessions/:sessionID", (req, res) => {
+    const data = req.body;
+    const session_id = req.params.sessionID;
+    const dummyData = [
+      { username: "Pumpkinberry", password: "password", email: "email@email.email" },
+      { username: "Jambo", password: "password", email: "email@email.email1" },
+      { username: "Nano", password: "password", email: "email@email.email2" },
+      { username: "Brapsody", password: "password", email: "email@email.email3" },
+      { username: "Siha", password: "password", email: "email@email.email4" },
+    ];
+    db.insert("users", dummyData)
+    .then(rows => console.log(rows))
+  });
   /*STRETCH: global results from this quiz
     router.get("/:quizID/results", (req, res) => {
     res.render("quiz_results");

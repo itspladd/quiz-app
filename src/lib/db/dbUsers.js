@@ -83,13 +83,7 @@ module.exports = {
    */
   addUser: (userData) => {
     // Extract the user data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(userData);
-    const queryString = `
-      INSERT INTO users (${columns})
-      VALUES (${vars})
-      RETURNING *;
-    `;
-    return db.query(queryString, queryParams)
+    return db.insert("users", userData)
       .then(rows => rows[0]);
   }
 };
