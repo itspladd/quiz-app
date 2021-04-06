@@ -17,29 +17,81 @@
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto">
         <!-- MAIN TITLE -->
-        <div id="main-title" class="mb-5">
-          Quiz Results
+        <div id="main-title">
+          Results
         </div>
         <!-- MAIN CONTENT -->
-        <div id="main-split-content">
-          <h1 id="results-score" class="h3">Score: 5 out of 8 (62.5%)</h1>
-          <p id="results-duration" class="lead">Duration: 4:12</p>
+        <div id="main-split-content" class="d-flex flex-column">
+
+          <!-- SCORE AND DURATION-->
+          <h1 id="results-score" class="h4 my-5">
+            <span id="results-username"><%= userData.username %></span>, you scored <span id="results-score-actual">5</span> out of <span id="results-score-max">8</span> questions correctly!
+          </h1>
+
+          <!-- QUIZ INFO -->
+          <p class="h5 mb-3"><a href="/quizzes/<%= quizData.id %>"><%= quizData.title %></a>
+          </p>
+
+          <div class="d-flex flex-column flex-md-row justify-content-md-between">
+            <div class="d-flex flex-column">
+              <span id="results-date">Monday, April 5, 2021 @ 1:23 PM</span>
+              <span id="results-duration">Duration: 4:12</span>
+            </div>
+
+            <!-- SHARE BUTTON -->
+            <div>
+              <button id="share-btn" type="button" class="btn-custom mt-3 mt-md-0">
+                Share this page
+              </button>
+            </div>
+          </div>
+
           <div class="divider-h mb-4"></div>
+
+          <!-- ALL USER RESPONSES -->
           <p class="lead mt-0">Responses</p>
-          <div id="results-responses" class="border">
-            <div class="results-question">
-              Question: What is the capital of Canada
+
+          <div id="results-responses">
+
+            <!-- A SINGLE RESPONSE-->
+            <div class="results-response response-correct">
+              <div class="results-correctness mb-1">
+                INCORRECT
+              </div>
+              <div class="results-question mb-1">
+                What is the capital of Canada?
+              </div>
+              <div class="results-option">
+                Toronto
+              </div>
             </div>
-            <div class="results-option">
-              You answered: Toronto
+
+            <div class="results-response response-correct">
+              <div class="results-correctness mb-1">
+                INCORRECT
+              </div>
+              <div class="results-question mb-1">
+                What is the capital of Canada?
+              </div>
+              <div class="results-option">
+                Toronto
+              </div>
             </div>
-            <div class="results-correctness">
-              INCORRECT
+
+            <div class="results-response response-correct">
+              <div class="results-correctness mb-1">
+                INCORRECT
+              </div>
+              <div class="results-question mb-1">
+                What is the capital of Canada?
+              </div>
+              <div class="results-option">
+                Toronto
+              </div>
             </div>
+
           </div>
 
-
-          </div>
         </div>
       </section>
     </div>

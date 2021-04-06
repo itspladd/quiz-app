@@ -346,6 +346,46 @@ form .custom-select:focus {
   background-color: #1a1b2b;
 }
 
+#results-username {
+  font-weight: 700;
+}
+
+#results-score-actual,
+#results-score-max {
+  font-weight: 700;
+  color: #fad207;
+}
+
+.results-response {
+  border: 2px solid #ffffff79;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.results-response .results-question {
+  font-weight: 700;
+}
+
+.response-incorrect {
+  border-color: #e22d4b;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.response-incorrect .results-correctness {
+  color: #e22d4b;
+}
+
+.response-correct {
+  border-color: #31f37b;
+  background-color: rgba(0, 255, 42, 0.1);
+}
+
+.response-correct .results-correctness {
+  color: #31f37b;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;

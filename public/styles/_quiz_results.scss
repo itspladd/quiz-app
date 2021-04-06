@@ -1,1 +1,43 @@
 @import "global";
+
+#results-username {
+  font-weight: 700
+}
+#results-score-actual,
+#results-score-max {
+  font-weight: 700;
+  color: $primary;
+}
+
+.results-response {
+  border: 2px solid $light;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+
+  .results-question {
+    font-weight: 700;
+  }
+
+}
+
+.response-incorrect {
+  border-color: $red;
+  background-color: rgba(255, 0, 0, 0.1);
+
+  .results-correctness {
+    color: $red;
+  }
+
+}
+
+.response-correct {
+  border-color: $green;
+  background-color: rgba(0, 255, 42, 0.1);
+
+  .results-correctness {
+    color: $green;
+  }
+
+}

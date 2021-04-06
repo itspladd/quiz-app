@@ -34,7 +34,7 @@ $(document).ready(function() {
   // quizData: author_id, category_id, description, id, title
   // userData: id, username
   // sessionData: end_time, id, responses, start_time
-  // sessData.responses: { question, answer, is_correct }
+  // sessionData.responses: { question, answer, is_correct }
 
   // Get quiz, user, and session info from EJS
   const { quizData, userData, sessionData } = getEJSData();
