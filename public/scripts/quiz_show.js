@@ -69,6 +69,16 @@ const loadQuiz = (quizInfo, delay = 5000) => {
 
 };
 
+// Return a new array containing the elements of the given array in a randomized order
+const shuffleArray = (array) => {
+  const deepCopy = array.slice();
+  const shuffled = [];
+  while (deepCopy.length > 0) {
+    shuffled.push(deepCopy.splice(Math.floor(Math.random() * deepCopy.length), 1)[0]);
+  }
+  return shuffled;
+}
+
 // Randomize the order of questions and responses
 const shuffle = (quizData) => {
 
