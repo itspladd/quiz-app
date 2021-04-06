@@ -57,14 +57,22 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
     if (quizData) {
       clearTimeout(timeout);
       clearInterval(loader);
-      // Clear the quiz front page and start the quiz
+      // Clear the quiz front page
       $("#quiz-front").remove();
+      // TODO: Shuffle the questions and responses
+      // const quizData = shuffle(quizData);
+      // Start the quiz
       callback(quizInfo, quizData);
       return;
     }
   }, 10);
 
 };
+
+// Randomize the order of questions and responses
+const shuffle = (quizData) => {
+
+}
 
 // Progress through the quiz, creating question pages successively
 const playQuiz = (quizInfo, quizData, number = 0) => {
@@ -180,7 +188,7 @@ const processResults = (quizID, sessionID) => {
 
 };
 
-// Sends a POST request to the server with the user response data
+// Send a POST request to the server with the user response data
 const submitResults = (data, quizID, sessionID) => {
 
   // Submit a POST request with the quiz data
