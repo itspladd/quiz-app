@@ -68,8 +68,8 @@ module.exports = (db) => {
       .then(rows => {
         // Convert date/time data to a more readable format
         quizData = rows[0];
-        creationDate = new Date(quiz.creation_time);
-        quizData.relative_time = utils.convertTimestamp(quiz.creation_time);
+        creationDate = new Date(quizData.creation_time);
+        quizData.relative_time = utils.convertTimestamp(quizData.creation_time);
         quizData.creation_time = moment(creationDate).format("LLLL");
         return db.getReviewsByQuizId(quiz_id);
       })
