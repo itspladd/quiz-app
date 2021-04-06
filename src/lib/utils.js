@@ -51,7 +51,7 @@ const convertTimestamp = (timestamp, timestamp2) => {
     const minutes = Math.floor(seconds / 60);
     return `${minutes} minute${minutes === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 2) {
-    return `${seconds} seconds`;
+    return `${seconds} seconds${appendAgo}`;
   } else {
     return minimumResponse;
   }
