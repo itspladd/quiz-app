@@ -11,13 +11,19 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-    const templateVars = {
-      alerts,
-      userData,
-      currentPage,
-      rankData
-    };
-    res.render("dashboard", templateVars);
+    if (!userData) {
+      req.flash("warning", "You must be logged in to access that page!");
+      res.redirect("/login");
+    } else {
+      db.getQuizzesForUser(userData.id)
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        rankData
+      };
+      res.render("dashboard", templateVars);
+    }
   });
 
   // /users/:userid
