@@ -21,7 +21,7 @@ module.exports = (db) => {
 //        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
 
   // /results/:resultID
-  router.get("/:result", (req, res) => {
+  router.get("/:resultID", (req, res) => {
     const {
       alerts,
       userData,
