@@ -1,4 +1,6 @@
-require("dotenv").config({path: __dirname + "/.env"});
+require("dotenv").config({
+  path: __dirname + "/.env"
+});
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
@@ -21,8 +23,10 @@ const {
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
 app.set("view engine", "ejs"); // set the view engine to EJS
-app.set("views","./src/views"); // set the views directory
-app.use(bodyParser.urlencoded({ extended: true })); // parse req body
+app.set("views", "./src/views"); // set the views directory
+app.use(bodyParser.urlencoded({
+  extended: true
+})); // parse req body
 app.use(cookieSession({ // configure cookies
   name: "session",
   keys: ["userID", "visitorID"],
@@ -53,13 +57,6 @@ app.use((req, res, next) => {
       next();
     })
     .catch((err) => console.error(err));
-
-  //////////////////////////////////////////
-
-  // console.log("COOKIES:");
-  // console.log("visitorID:", visitorID);
-  // console.log("userID:", cookieUserID);
-  //////////////////////////////////////////
 });
 
 // RESOURCE ROUTES ///////////////////////////////////
@@ -184,7 +181,7 @@ app.post("/register", (req, res) => {
           res.redirect("/register");
         } else {
           db.getUserByEmail(email)
-          // ERROR: Email is taken
+            // ERROR: Email is taken
             .then(userData => {
               if (userData) {
                 console.log("The email you entered is already in use.");
@@ -193,7 +190,11 @@ app.post("/register", (req, res) => {
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
                 const hashedPassword = bcrypt.hashSync(password, 10);
-                db.addUser({ username, email, password: hashedPassword })
+                db.addUser({
+                    username,
+                    email,
+                    password: hashedPassword
+                  })
                   .then(userData => {
                     req.session.userID = userData.id;
                     console.log("Registration successful. Welcome to InquizitorApp!");
@@ -224,11 +225,22 @@ app.get("/404", (req, res) => {
 
 // Home page
 app.get("/", (req, res) => {
-  // Top 3 featured
-  const quizData = [
-    { id: "1", title: "Quiz Name", description: "This is the description."},
-    { id: "2", title: "Quiz Name", description: "This is the description."},
-    { id: "3", title: "Quiz Name", description: "This is the description."},
+  // Top 3 featured quizzes (admin-selected)
+  const quizData = [{
+      id: "1",
+      title: "Quiz Name",
+      description: "This is the description."
+    },
+    {
+      id: "2",
+      title: "Quiz Name",
+      description: "This is the description."
+    },
+    {
+      id: "3",
+      title: "Quiz Name",
+      description: "This is the description."
+    },
   ];
   const {
     alerts,
