@@ -1,11 +1,12 @@
 @import "global";
 
-#results-username {
-  font-weight: 700
-}
+#results-username,
 #results-score-actual,
 #results-score-max {
   font-weight: 700;
+}
+#results-score-actual,
+#results-score-max {
   color: $primary;
 }
 

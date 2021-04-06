@@ -25,7 +25,7 @@
 
           <!-- SCORE AND DURATION-->
           <h1 id="results-score" class="h4 my-5">
-            <span id="results-username"><%= userData.username %></span>, you scored <span id="results-score-actual">5</span> out of <span id="results-score-max">8</span> questions correctly!
+            <span id="results-username" class="results-bold"><%= userData.username %></span> scored <span id="results-score-actual" class="results-bold">5</span> out of <span id="results-score-max" class="results-bold">8</span> questions correctly!
           </h1>
 
           <!-- QUIZ INFO -->
@@ -56,7 +56,7 @@
             <!-- A SINGLE RESPONSE-->
             <div class="results-response response-correct">
               <div class="results-correctness mb-1">
-                INCORRECT
+                CORRECT
               </div>
               <div class="results-question mb-1">
                 What is the capital of Canada?
@@ -66,7 +66,7 @@
               </div>
             </div>
 
-            <div class="results-response response-correct">
+            <div class="results-response response-incorrect">
               <div class="results-correctness mb-1">
                 INCORRECT
               </div>
@@ -80,7 +80,7 @@
 
             <div class="results-response response-correct">
               <div class="results-correctness mb-1">
-                INCORRECT
+                CORRECT
               </div>
               <div class="results-question mb-1">
                 What is the capital of Canada?

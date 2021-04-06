@@ -346,13 +346,14 @@ form .custom-select:focus {
   background-color: #1a1b2b;
 }
 
-#results-username {
+#results-username,
+#results-score-actual,
+#results-score-max {
   font-weight: 700;
 }
 
 #results-score-actual,
 #results-score-max {
-  font-weight: 700;
   color: #fad207;
 }
 
