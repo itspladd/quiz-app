@@ -31,6 +31,7 @@
             scored
             <% const actualScore = sessionData.responses.filter(question => question.answer.is_correct).length %>
             <% const maxScore = sessionData.responses.length %>
+            <% const perfect = actualScore === maxScore %>
             <span class="results-bold <%= actualScore === 0 ? "red" : actualScore < maxScore ? "yellow" : "green" %>">
               <%= actualScore %>
             </span>
@@ -47,8 +48,8 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-md-between">
             <div class="d-flex flex-column">
-              <%= sessionData.end_time %>
-              Duration: <%= sessionData.duration %>
+              <span><%= sessionData.end_time %></span>
+              <span>Duration: <%= sessionData.duration %></span>
             </div>
 
             <!-- SHARE BUTTON -->
@@ -64,7 +65,7 @@
           <div class="divider-h mb-4"></div>
 
           <!-- ALL USER RESPONSES -->
-          <p class="lead mt-0">Responses</p>
+          <p class="lead mt-0">Responses <%= perfect ? "" : "(click to reveal correct answers)" %> </p>
 
           <% for (const response of sessionData.responses) { %>
 
@@ -78,16 +79,16 @@
                 <%= response.question %>
               </div>
               <!-- ANSWER BODY -->
-              <%= response.answer.answer %>
+              <%= (response.answer.is_correct ? "✔️ " : "❌ ") + response.answer.answer %>
               <!-- CORRECT ANSWER (if incorrect) -->
               <% if (!response.answer.is_correct) { %>
-                <p class="mt-3 mb-0"><span class="results-bold">Correct Answer:</span> <%= response.actual_answer %> </p>
+                <p class="d-none results-actual mt-3 mb-0"><span class="results-bold">Correct Answer:</span> <%= response.actual_answer %> </p>
               <% } %>
             </div>
 
           <% } %>
 
-        </div>
+          </div>
       </section>
     </div>
 
