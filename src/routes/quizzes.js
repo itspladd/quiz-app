@@ -185,6 +185,16 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/:quizID/reviews", (req, res) => {
+    const reviewData = req.body;
+    db.addReview(reviewData)
+    .then(rows => res.json(rows[0]))
+    .catch(err => {
+      req.flash("warning", "Sorry, there was a problem when submitting your review.");
+      res.redirect("/");
+    });
+  });
+
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
     const data = req.body;
     session_id = data.session_id;

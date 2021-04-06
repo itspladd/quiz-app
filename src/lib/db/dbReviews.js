@@ -12,6 +12,9 @@ module.exports = {
     `;
     const queryParams = [id];
     return db.query(queryString, queryParams);
-  }
+  },
 
+  addReview: function(reviewData) {
+    return db.insert("quiz_reviews", reviewData);
+  }
 };
