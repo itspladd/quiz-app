@@ -137,14 +137,10 @@ module.exports = {
         // Add the quiz id to each question and add its database promise to the array
         for (let question of questions) {
           question["quiz_id"] = quiz.id;
-          questionPromises.push(this.addQuestion(question));
+          questionPromises.push(this.addQuestion(question)[0]);
         }
         // Return once all have resolved
         return Promise.all(questionPromises);
-      })
-      .then(promiseArr => {
-        // The quiz is still the first element in the array, so we return that
-        return promiseArr[0];
       })
       .catch(err => console.error(err));
   },
@@ -178,14 +174,10 @@ module.exports = {
         // Add the question id to each answer and add its database promise to the array
         for (let answer of answers) {
           answer["question_id"] = question.id;
-          answerPromises.push(this.addAnswer(answer));
+          answerPromises.push(this.addAnswer(answer)[0]);
         }
         // Return once all have resolved
         return Promise.all(answerPromises);
-      })
-      .then(promiseArr => {
-        // The question is still the first element in the array, so we return that
-        return promiseArr[0];
       })
       .catch(err => console.error(err));
   },
@@ -203,7 +195,6 @@ module.exports = {
     // Extract the answer data into queryParams and the keys into an array
 
     return db.insert("answers", answerData)
-      .then(rows => rows[0])
       .catch(err => console.error(err));
   }
 

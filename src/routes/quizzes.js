@@ -120,9 +120,11 @@ module.exports = (db) => {
         quiz.author_id = userData.id;
         // After quiz is constructed with all of the values it needs, pass it into db.addQuiz();
         db.addQuiz(quiz)
-          .then(quiz => {
+          .then(rows => {
+            // addQuiz returns an array of promises to all the quiz/question/answer data, but the quiz itself is the first element
+            const quizData = rows[0];
             req.flash("success", "Quiz created successfully!");
-            res.json(quiz.id);
+            res.json(quizData.id);
           })
           .catch(err => console.error(err));
       }
