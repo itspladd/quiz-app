@@ -32,8 +32,7 @@ module.exports = {
       WHERE quizzes.id = $1;
     `;
     const queryParams = [id];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   getQuizzesForUser: function(userID) {

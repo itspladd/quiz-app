@@ -65,9 +65,9 @@ module.exports = (db) => {
     let quizData;
     const quiz_id = req.params.quizID;
     db.getQuizByID(req.params.quizID)
-      .then(quiz => {
+      .then(rows => {
         // Convert date/time data to a more readable format
-        quizData = quiz;
+        quizData = rows[0];
         creationDate = new Date(quiz.creation_time);
         quizData.relative_time = utils.convertTimestamp(quiz.creation_time);
         quizData.creation_time = moment(creationDate).format("LLLL");
