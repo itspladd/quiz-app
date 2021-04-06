@@ -16,8 +16,7 @@ module.exports = {
       WHERE username = $1
     `;
     const queryParams = [username];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -34,8 +33,7 @@ module.exports = {
       WHERE email = $1
     `;
     const queryParams = [email];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**

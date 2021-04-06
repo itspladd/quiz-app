@@ -173,7 +173,8 @@ app.post("/register", (req, res) => {
     res.redirect("/register");
   } else {
     db.getUserByUsername(username)
-      .then(userData => {
+      .then(rows => {
+        const userData = rows[0];
         // ERROR: Username is taken
         if (userData) {
           console.log("The username you entered is already in use.");
@@ -182,7 +183,8 @@ app.post("/register", (req, res) => {
         } else {
           db.getUserByEmail(email)
             // ERROR: Email is taken
-            .then(userData => {
+            .then(rows => {
+              const userData = rows[0]; 
               if (userData) {
                 console.log("The email you entered is already in use.");
                 req.flash("danger", "The email you entered is already in use.");
