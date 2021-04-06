@@ -1,7 +1,7 @@
 // Appends a question component to the given element
-const addQuestionComponent = (element) => {
+const addQuestionComponent = (element, additionalResponses = 2) => {
 
-  const $newForm = $(`
+  let str = `
     <div class="form-group new-question d-flex flex-column">
       <header class="d-flex flex-row justify-content-between">
         <label for="question" class="question-label form-label text-muted mt-2">Question</label>
@@ -13,8 +13,14 @@ const addQuestionComponent = (element) => {
         <input class="input-response form-control" type="text" maxlength="250">
         <label for="answer" class="form-label text-muted mt-2">Incorrect Answers</label>
         <input class="input-response form-control" type="text" maxlength="250">
-        <input class="input-response form-control mt-3" type="text" maxlength="250">
-        <input class="input-response form-control mt-3" type="text" maxlength="250">
+  `;
+
+  // Add additional response options (base minimum of 2 in total)
+  for (let i = 0; i < additionalResponses; i++) {
+    str += `<input class="input-response form-control mt-3" type="text" maxlength="250">`
+  };
+
+  str+= `
       </div>
       <div class="question-control d-flex flex-row justify-content-between mt-3">
         <span class="toggle minimize text-muted">hide</span>
@@ -23,9 +29,11 @@ const addQuestionComponent = (element) => {
         </div>
       </div>
     </div>
-  `);
+  `;
 
-  // Add delete button click event handler
+  const $newForm = $(str);
+
+  // Bind a click event handler to the delete button
   const deleteBtn = $newForm.find(".icon-del");
   $(deleteBtn).bind("click", function() {
     const component = $(this).closest(".new-question");
@@ -33,9 +41,9 @@ const addQuestionComponent = (element) => {
     setTimeout(() => {
       updateCounter();
     }, 800);
-    // Update counter
   });
 
+  // Bind a click event handler to the show/hide form toggler
   $($newForm).bind("click", function(event) {
     const $target = $(event.target);
     if ($($target).is(".toggle.maximize")) {
@@ -53,7 +61,10 @@ const addQuestionComponent = (element) => {
       const question = $(this).find("input").val();
       const answer = $(this).find(".input-response:first").val();
       setTimeout(() => {
-        $(this).find(".min-question").html(`<p class="lead">${question || "N/A"}</p><p class="mb-0">Answer: ${answer || "N/A"}</p>`);
+        $(this).find(".min-question").html(`
+          <p class="lead">${question || "N/A"}</p>
+          <p class="mb-0">Answer: ${answer || "N/A"}</p>
+        `);
       }, 100);
       $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
@@ -65,7 +76,7 @@ const addQuestionComponent = (element) => {
     }
   });
 
-  // Add form to all questions container
+  // Add the form to the all questions container
   $newForm.css("display", "none").css("min-height", "0");
   element.append($newForm);
   addElement($newForm);
@@ -74,7 +85,7 @@ const addQuestionComponent = (element) => {
   setTimeout(() => {
     $(".toggle.minimize").not(":last").trigger("click");
   }, 800);
-  // Update counter
+
   updateCounter();
 
 };
@@ -85,11 +96,12 @@ const updateCounter = () => {
   const num = getNumQuestions();
   $("#questions-counter")
     .html(`Questions${num ? ` ( ${num} )` : ""}`);
+
   updateLabels();
 
 };
 
-// Update question # labels
+// Update the question form # labels
 const updateLabels = () => {
 
   let number = 1;
@@ -107,7 +119,7 @@ const getNumQuestions = () => {
 
 };
 
-// Display field errors, if any
+// Display any field errors
 const showError = (errorMsg) => {
 
   const errorComponent = $("#new-quiz-error");
@@ -120,12 +132,11 @@ const showError = (errorMsg) => {
 };
 
 // Check that the form is complete and that there are sufficient questions and responses
-const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
+const getQuestionFormErrors = (minQuestions = 2, minResponses = 4) => {
 
   let error = null;
 
   const questions = $("#add-questions").children();
-  // There must be at least 2 questions
   if (questions.length < minQuestions) {
     error = `Minimum of ${minQuestions} questions must be provided`;
   }
@@ -154,12 +165,14 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
         valid = false;
       }
     }
+
+    // Check for the minimum number of responses
     if (responses.length < minResponses) {
       error = `Minimum of ${minResponses} responses per question must be provided`;
       valid = false;
     }
 
-    // Highlight question green/red if valid/invalid
+    // Highlight question forms green/red if valid/invalid
     $(question).closest(".new-question")
       .css("border-color", valid ? "#31f37b" : "#e22d4b")
       .addClass(valid ? "valid-question" : "invalid-question");
@@ -178,12 +191,12 @@ const getQuestionFormErrors = (minQuestions = 1, minResponses = 4) => {
 const getQuizFormErrors = () => {
 
   let error = null;
-  const title = $("#quiz-title").val().trim();
-  const desc = $("#quiz-desc").val().trim();
+  const title = getValue("#quiz-title");
+  const desc = getValue("#quiz-desc");
   const categoryIDs = ["1", "2", "3"];
-  const category = $("#quiz-category").val().trim();
+  const category = getValue("#quiz-category");
   const publicValues = ["true", "false"];
-  const visibility = $("#quiz-visibility").val().trim();
+  const visibility = getValue("#quiz-visibility");
 
   if (!title || !desc || !category || !visibility) {
     error = "Missing required fields";
@@ -203,32 +216,33 @@ const getQuizFormErrors = () => {
 
 };
 
-// Sanitize user input values
-const sanitize = (string) => {
+// Retrieve and trim an input field's value
+const getValue = (inputField) => {
 
-  // const div = document.createElement("div");
-  // div.appendChild(document.createTextNode(string.trim()));
-  // return div.innerHTML;
-  return string.trim();
+  return $(inputField).val().trim();
 
 };
 
 // Submit form handler
 const submitForm = () => {
 
-  const title = sanitize($("#quiz-title").val());
-  const description = sanitize($("#quiz-desc").val());
-  const category_id = sanitize($("#quiz-category").val());
-  const public = sanitize($("#quiz-visibility").val());
+  // Retrieve quiz info form data
+  const title = getValue("#quiz-title");
+  const description = getValue("#quiz-desc");
+  const category_id = getValue("#quiz-category");
+  const public = getValue("#quiz-visibility");
+
+  // Retrieve quiz question form data
+  // TODO: Add an explanation field for the correct answer
   const questions = [];
   const allQuestions = $(".input-question");
   for (const questionField of allQuestions) {
-    const questionValue = sanitize($(questionField).val());
+    const questionValue = getValue(questionField);
     const responseFields = $(questionField).next().find(".input-response");
     const responseValues = [];
     for (const responseField of responseFields) {
-      const responseValue = sanitize($(responseField).val());
-      const answer = { body: responseValue, explanation: "why tho D:" };
+      const responseValue = getValue(responseField);
+      const answer = { body: responseValue, explanation: null };
       responseValues.push(answer);
     }
     const question = {
@@ -238,19 +252,17 @@ const submitForm = () => {
     questions.push(question);
   }
 
-  const data = {
-    title,
-    description,
-    category_id,
-    public,
-    questions
-  };
-
   // Submit a post request with the quiz data
   $.ajax({
     url: "/quizzes",
     type: "POST",
-    data
+    data: {
+      title,
+      description,
+      category_id,
+      public,
+      questions
+    }
   })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
@@ -265,13 +277,7 @@ $(document).ready(function() {
   const addQuestionBtn = $(".icon-add");
   const quizForm = $("#new-quiz-form");
 
-  // Add initial question forms
-  const initialForms = 0;
-  for (let i = 0; i < initialForms; i++) {
-    addQuestionComponent(questionsList);
-  }
-
-  // Add a new question when the user clicks the + add question button
+  // Add a new question when the user clicks the add question button
   addQuestionBtn.on("click", function() {
 
     addQuestionComponent(questionsList);
@@ -283,13 +289,9 @@ $(document).ready(function() {
 
     event.preventDefault();
 
-    // Minimize forms
-    // $(".toggle.minimize").trigger("click");
-
     // Display question form errors, if any
     const error = getQuizFormErrors() || getQuestionFormErrors();
     showError(error);
-
 
     // If there are no errors, construct data to be sent to the server
     if (!error) {
