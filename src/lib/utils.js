@@ -26,10 +26,12 @@ const generateRandomString = (length) => {
 const convertTimestamp = (timestamp, timestamp2) => {
   // Retrieve current date in milliseconds and calculate difference
   let appendAgo = "";
+  let minimumResponse = "under 2 seconds. Did you actually look at the quiz?"
   if(!timestamp2) {
     const currentDate = timestamp2 || new Date();
     timestamp2 = Math.floor(currentDate.getTime());
     appendAgo = " ago";
+    minimumResponse = "Just now";
   }
   const seconds = Math.floor((timestamp2 - timestamp) / 1000);
   // Return a message based on difference
@@ -51,7 +53,7 @@ const convertTimestamp = (timestamp, timestamp2) => {
   } else if (seconds > 2) {
     return `${seconds} seconds`;
   } else {
-    return "Just now";
+    return minimumResponse;
   }
 };
 
