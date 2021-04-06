@@ -39,6 +39,6 @@ $(document).ready(function() {
     if (!isCorrect) {
       $(this).find(".results-actual").removeClass("d-none");
     }
-  })
+  });
 
 });

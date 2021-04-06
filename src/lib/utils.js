@@ -26,8 +26,8 @@ const generateRandomString = (length) => {
 const convertTimestamp = (timestamp, timestamp2) => {
   // Retrieve current date in milliseconds and calculate difference
   let appendAgo = "";
-  let minimumResponse = "< 2 seconds"
-  if(!timestamp2) {
+  let minimumResponse = "< 2 seconds";
+  if (!timestamp2) {
     const currentDate = timestamp2 || new Date();
     timestamp2 = Math.floor(currentDate.getTime());
     appendAgo = " ago";

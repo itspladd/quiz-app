@@ -153,7 +153,7 @@ const getNextQuestion = (quizInfo, quizData, number = 0) => {
     sessionData = {
       quizID: quizInfo.id,
       sessionID: quizData.sessionID
-    }
+    };
 
     // When there are no more questions remaining, process the user response data
     processResults(sessionData.quizID, sessionData.sessionID);
@@ -223,9 +223,9 @@ const showReviewErrors = () => {
     $error.html("Invalid rating");
   } else {
     $error.addClass("d-none");
-    return true
+    return true;
   }
-}
+};
 
 // Send a POST request to the server with the user review form data
 const submitReview = () => {
@@ -237,7 +237,7 @@ const submitReview = () => {
     title: $("#review-title").val().trim(),
     comment: $("#review-comment").val().trim(),
     rating: Number($("#review-rating").val().trim())
-  }
+  };
 
   $.ajax({
     url: `/quizzes/${data.quiz_id}/reviews`,
@@ -250,10 +250,10 @@ const submitReview = () => {
     })
     .catch(() => {
       $("#review-error").removeClass("d-none");
-      $("#review-error").html("An error occurred")
+      $("#review-error").html("An error occurred");
     });
 
-}
+};
 
 const userAnswers = [];
 let sessionData = {};
