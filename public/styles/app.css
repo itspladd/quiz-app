@@ -350,6 +350,10 @@ form .custom-select:focus {
   font-size: 0.8rem;
 }
 
+#review-submitted {
+  color: #31f37b;
+}
+
 #results-score {
   margin: 2rem 0;
 }
@@ -373,10 +377,6 @@ form .custom-select:focus {
 
 #results-score .results-username {
   padding-left: 0;
-}
-
-#share-btn {
-  width: 10rem;
 }
 
 .results-bold {
@@ -556,6 +556,10 @@ select {
   bottom: 0;
 }
 
+#share-btn {
+  width: 9rem;
+}
+
 .btn-custom {
   color: #faa515;
   background-color: #1a1b2b;
@@ -621,6 +625,23 @@ select {
 .btn-custom-blue:active, .btn-custom-blue:focus {
   -webkit-box-shadow: 0px 0px 1px 2px #0072cf;
           box-shadow: 0px 0px 1px 2px #0072cf;
+}
+
+.btn-custom-green {
+  color: #31f37b;
+  background-color: #1a1b2b;
+  border-color: #31f37b;
+  outline: #31f37b;
+}
+
+.btn-custom-green:hover {
+  border-color: #31f37b;
+  background-color: #31f37b;
+}
+
+.btn-custom-green:active, .btn-custom-green:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #23ce64;
+          box-shadow: 0px 0px 1px 2px #23ce64;
 }
 
 .highlight {
