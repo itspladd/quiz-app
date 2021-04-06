@@ -5,7 +5,7 @@
  * @return {string}
  *         A string of random alphanumeric characters.
  */
-const generateRandomString = (length) => {
+ const generateRandomString = (length) => {
   const alpha = "abcdefghijklmnopqrstuvwxyz";
   const num = "1234567890";
   const alphaNum = alpha + alpha.toUpperCase() + num;
@@ -16,6 +16,13 @@ const generateRandomString = (length) => {
   return randomStr;
 };
 
+/**
+ * Returns a string describing the relative time since the given timestamp (milliseconds)
+ * @param  {number} timestamp
+ *         The UNIX timestamp (in milliseconds) to convert
+ * @return {string}
+ *         A string describing the elapsed time
+ */
 const convertTimestamp = (timestamp) => {
   // Retrieve current date in milliseconds and calculate difference
   const currentDate = new Date();

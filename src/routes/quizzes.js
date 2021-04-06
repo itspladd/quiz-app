@@ -156,7 +156,7 @@ module.exports = (db) => {
         // Create a new entry in the quiz_sessions table
         db.addSession({quiz_id, user_id})
           .then(session => {
-            console.log(`New session started by ${userData.username || "anonymous"}!`);
+            console.log(`New session started by ${userData ? userData.username : "anonymous" }`);
             // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
             // containing all of a quiz's questions and answers
             // question => a row from the questions table connected to
@@ -180,7 +180,7 @@ module.exports = (db) => {
     const data = req.body;
     session_id = data.session_id;
     console.log(data);
-    const sessionAnswers = data.answers.map(elem => { 
+    const sessionAnswers = data.answers.map(elem => {
       return { session_id, answer_id: elem };
     })
     console.log(sessionAnswers);
