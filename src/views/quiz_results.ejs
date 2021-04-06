@@ -4,6 +4,7 @@
 <head>
   <title>Results - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_results.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,24 @@
         </div>
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
-          <!-- CONTENT HERE -->
+          <h1 id="results-score" class="h3">Score: 5 out of 8 (62.5%)</h1>
+          <p id="results-duration" class="lead">Duration: 4:12</p>
+          <div class="divider-h mb-4"></div>
+          <p class="lead mt-0">Responses</p>
+          <div id="results-responses" class="border">
+            <div class="results-question">
+              Question: What is the capital of Canada
+            </div>
+            <div class="results-option">
+              You answered: Toronto
+            </div>
+            <div class="results-correctness">
+              INCORRECT
+            </div>
+          </div>
+
+
+          </div>
         </div>
       </section>
     </div>

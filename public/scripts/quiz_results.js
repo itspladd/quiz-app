@@ -1,30 +1,48 @@
 // Retrieve quizInfo from EJS variables
 const getEJSData = () => {
 
-  const quizInfo = {};
+  const quizData = {};
   const ejsQuizData = $("#data-ejs .data-quiz-key");
   for (const dataKey of ejsQuizData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
-    quizInfo[key] = value;
+    quizData[key] = value;
   }
 
-  const userInfo = {};
+  const userData = {};
   const ejsUserData = $("#data-ejs .data-user-key");
   for (const dataKey of ejsUserData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
-    userInfo[key] = value;
+    userData[key] = value;
   }
 
-  const sessionInfo = {};
+  const sessionData = {};
   const ejsSessionData = $("#data-ejs .data-session-key");
   for (const dataKey of ejsSessionData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
-    sessionInfo[key] = value;
+    sessionData[key] = value;
   }
 
-  return { quizInfo, userInfo, sessionInfo };
+  return { quizData, userData, sessionData };
 
 };
+
+$(document).ready(function() {
+
+  // quizData: author_id, category_id, description, id, title
+  // userData: id, username
+  // sessionData: end_time, id, responses, start_time
+  // sessData.responses: { question, answer, is_correct }
+
+  // Get quiz, user, and session info from EJS
+  const { quizData, userData, sessionData } = getEJSData();
+
+
+
+
+
+
+
+})
