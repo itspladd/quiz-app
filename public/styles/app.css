@@ -560,10 +560,6 @@ select {
   bottom: 0;
 }
 
-#share-btn {
-  width: 9rem;
-}
-
 .btn-custom {
   color: #faa515;
   background-color: #fad10710;
@@ -616,7 +612,7 @@ select {
 
 .btn-custom-blue {
   color: #008cff;
-  background-color: #0072cf2a;
+  background-color: #0053cf2a;
   border-color: #008cff;
   outline: #008cff;
 }

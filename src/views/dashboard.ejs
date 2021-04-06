@@ -22,9 +22,9 @@
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
 
-          <!-- TEMPORARY -->
-          <% const userQuizzes = [1]; %>
-          <% const userHistory = [1]; %>
+          <!-- TEMPORARY (change to empty list to preview no user quizzes/history)-->
+          <% const userQuizzes = [1] %>
+          <% const userHistory = [1] %>
           <!--------------->
 
           <!-- MY QUIZZES -->
@@ -38,14 +38,21 @@
                     <p class="quiz-author d-none d-md-block my-1 text-muted">Jan 1, 2021<%= quiz.creation_date %></p>
                   </div>
                   <div class="user-dash-control d-flex flex-column">
-                    <button type="button" class="btn-custom btn-custom-green mb-3 mr-2">
+                    <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-3 mr-2">
                       View
                     </button>
-                    <button type="button" class="btn-custom btn-custom-red mr-2">
+                    <button type="button" class="btn-custom btn-custom-red btn-custom-md mr-2">
                       Delete
                     </button>
                   </div>
                 </div>
+            <% } %>
+            <!-- CREATE A QUIZ (if the user has no quizzes) -->
+            <% if (!userQuizzes.length) { %>
+              <p class="lead">You don't have any quizzes yet. :(</p>
+              <button type="button" class="btn-custom btn-custom-blue mr-2">
+                Create Quiz
+              </button>
             <% } %>
           </div>
 
@@ -62,12 +69,19 @@
                   </div>
                   <div class="user-dash-control flex-column <%= true || session.result_id ? "d-flex" : "d-none" %> ">
                     <a href="/results/<%= session.result_id %> ">
-                      <button type="button" class="btn-custom btn-custom-yellow mb-2 mr-2">
+                      <button type="button" class="btn-custom btn-custom-yellow btn-custom-md mb-2 mr-2">
                         Results
                       </button>
                     </a>
                   </div>
                 </div>
+            <% } %>
+            <!-- BROWSE QUIZZES (if the user has no quiz history) -->
+            <% if (!userHistory.length) { %>
+              <p class="lead">You haven't taken any quizzes yet. :(</p>
+              <button type="button" class="btn-custom mr-2">
+                Browse Quizzes
+              </button>
             <% } %>
           </div>
 
