@@ -23,29 +23,33 @@ const generateRandomString = (length) => {
  * @return {string}
  *         A string describing the elapsed time
  */
-const convertTimestamp = (timestamp) => {
+const convertTimestamp = (timestamp, timestamp2) => {
   // Retrieve current date in milliseconds and calculate difference
-  const currentDate = new Date();
-  const currentDateTs = Math.floor(currentDate.getTime());
-  const seconds = Math.floor((currentDateTs - timestamp) / 1000);
+  let appendAgo = "";
+  if(!timestamp2) {
+    const currentDate = timestamp2 || new Date();
+    timestamp2 = Math.floor(currentDate.getTime());
+    appendAgo = " ago";
+  }
+  const seconds = Math.floor((timestamp2 - timestamp) / 1000);
   // Return a message based on difference
   if (seconds > 365 * 24 * 3600) {
     const years = Math.floor(seconds / (365 * 24 * 3600));
-    return `${years} year${years === 1 ? "" : "s"} ago`;
+    return `${years} year${years === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 30 * 24 * 3600) {
     const months = Math.floor(seconds / (30 * 24 * 3600));
-    return `${months} month${months === 1 ? "" : "s"} ago`;
+    return `${months} month${months === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 24 * 3600) {
     const days = Math.floor(seconds / (24 * 3600));
-    return `${days} day${days === 1 ? "" : "s"} ago`;
+    return `${days} day${days === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 3600) {
     const hours = Math.floor(seconds / (3600));
-    return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+    return `${hours} hour${hours === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 60) {
     const minutes = Math.floor(seconds / 60);
-    return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+    return `${minutes} minute${minutes === 1 ? "" : "s"}${appendAgo}`;
   } else if (seconds > 2) {
-    return `${seconds} seconds ago`;
+    return `${seconds} seconds`;
   } else {
     return "Just now";
   }

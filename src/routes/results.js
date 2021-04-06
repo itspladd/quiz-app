@@ -29,7 +29,8 @@ module.exports = (db) => {
       rankData
     } = res.locals.vars;
     db.getResults(req.params.resultID)
-      .then(resultData => {
+      .then(rows => {
+        resultData = rows[0];
         const {
           userData,
           quizData,
