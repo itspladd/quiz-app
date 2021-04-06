@@ -178,11 +178,16 @@ module.exports = (db) => {
 
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
     const data = req.body;
-    const session_id = req.params.sessionID;
+    session_id = data.session_id;
     console.log(data);
-
-    /* db.insert("users", dummyData)
-    .then(rows => console.log(rows)) */
+    const sessionAnswers = data.answers.map(elem => { 
+      return { session_id, answer_id: elem };
+    })
+    console.log(sessionAnswers);
+    db.insert("session_answers", sessionAnswers)
+    .then(rows => db.insert("results", { session_id }))
+    .then(rows => res.json(rows[0].id))
+    .catch(err => console.error(err));
   });
   /*STRETCH: global results from this quiz
     router.get("/:quizID/results", (req, res) => {

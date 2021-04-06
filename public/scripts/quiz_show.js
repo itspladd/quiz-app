@@ -182,11 +182,12 @@ const submitResults = (data, quizID, sessionID) => {
 
   // Submit a post request with the quiz data
   $.ajax({
-    url: `/${quizID}/sessions/${sessionID}`,
+    url: `/quizzes/${quizID}/sessions/${sessionID}`,
     type: "PUT",
     data
   })
     .then(resultID => {
+      console.log(resultID);
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
     })
