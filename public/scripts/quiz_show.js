@@ -60,9 +60,9 @@ const loadQuiz = (quizInfo, delay = 5000) => {
       // Clear the quiz front page
       $("#quiz-front").remove();
       // TODO: Shuffle the questions and responses
-      // const quizData = shuffle(quizData);
+      const shuffledQuizData = shuffleQuizData(quizData);
       // Start the quiz
-      getNextQuestion(quizInfo, quizData);
+      getNextQuestion(quizInfo, shuffledQuizData);
       return;
     }
   }, 10);
@@ -71,16 +71,28 @@ const loadQuiz = (quizInfo, delay = 5000) => {
 
 // Return a new array containing the elements of the given array in a randomized order
 const shuffleArray = (array) => {
+
   const deepCopy = array.slice();
   const shuffled = [];
   while (deepCopy.length > 0) {
     shuffled.push(deepCopy.splice(Math.floor(Math.random() * deepCopy.length), 1)[0]);
   }
   return shuffled;
+
 }
 
-// Randomize the order of questions and responses
-const shuffle = (quizData) => {
+// Shuffle the order of questions and responses in quizData
+const shuffleQuizData = (quizData) => {
+
+  let shuffledQuestions = shuffleArray(quizData.questions);
+  for (let i = 0; i < shuffledQuestions.length; i++) {
+    const shuffledAnswers = shuffleArray(shuffledQuestions[i].answers);
+    shuffledQuestions[i].answers = shuffledAnswers;
+  }
+
+  quizData.questions = shuffledQuestions;
+
+  return quizData;
 
 }
 
