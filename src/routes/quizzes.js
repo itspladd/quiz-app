@@ -1,7 +1,7 @@
 const e = require("express");
 const express = require("express");
 const router = express.Router();
-const utils = require("../lib/utils")
+const utils = require("../lib/utils");
 
 module.exports = (db) => {
 
