@@ -10,10 +10,6 @@ const parseResults = (rows) => {
   // Some data is the same in every row, so we save a single row
   // to singletonRow to extract all that data before parsing the other rows.
   singletonRow = rows[0];
-  const userData = {
-    id: singletonRow.user_id,
-    username: singletonRow.username
-  };
   const quizData = {
     id: singletonRow.quiz_id,
     author_id: singletonRow.author_id,
@@ -56,13 +52,14 @@ const parseResults = (rows) => {
   // Bundle some singleton data with the extracted responses data.
   const sessionData = {
     id: singletonRow.session_id,
+    user_id: singletonRow.user_id,
+    username: singletonRow.username,
     duration: utils.convertTimestamp(singletonRow.start_time, singletonRow.end_time),
     end_time: moment(singletonRow.end_time).format("LLLL"),
     correct_answers,
     responses
   };
   return [{
-    userData,
     quizData,
     sessionData
   }];

@@ -32,7 +32,6 @@ module.exports = (db) => {
       .then(rows => {
         resultData = rows[0];
         const {
-          userData,
           quizData,
           sessionData
         } = resultData;
