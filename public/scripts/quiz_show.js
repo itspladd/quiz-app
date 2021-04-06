@@ -58,11 +58,9 @@ const playQuiz = (data) => {
   // Obtain question count
   const numQuestions = data.questions.length;
 
-  console.log("there are these many questions", data.questions.length);
-
   // Create first question page component
   let number = 0;
-  // const currentPage = createQuestionPage(questionData, number);
+  createQuestionPage(data, number);
 
 }
 
