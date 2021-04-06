@@ -15,29 +15,29 @@
 //        question => a string => the question body
 //        answer => an object => a single row from the session_answers JOIN answers WHERE session_answers.answer_id = answers.id
 
-// Retrieve quizData from EJS variables
-const getQuizData = () => {
+// Retrieve quizInfo from EJS variables
+const getQuizInfo = () => {
 
-  const quizData = {};
+  const quizInfo = {};
   const ejsData = $("#data-ejs .data-key");
   for (const dataKey of ejsData) {
     const key = $(dataKey).attr("title");
     const value = $(dataKey).html();
-    quizData[key] = value;
+    quizInfo[key] = value;
   }
 
-  return quizData;
+  return quizInfo;
 
 };
 
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
 // TODO: Display an error on receiving a 404 status code (happens when quizID in the ajax url is invalid)
-const loadQuiz = (quizInfo, callback, delay = 5000) => {
+const loadQuiz = (quizInfo, delay = 5000) => {
 
   let quizData;
 
-  // Submit a post request with data = quizID and do NOT redirect
+  // Submit a POST request with the given quiz ID
   $.ajax({
     url: `/quizzes/${quizInfo.id}/sessions`,
     type: "POST"
@@ -46,36 +46,39 @@ const loadQuiz = (quizInfo, callback, delay = 5000) => {
       quizData = res;
     });
 
+  // Timeout after the given delay if no response is received from the server
   const timeout = setTimeout(() => {
     clearInterval(loader);
     return;
   }, delay);
 
+  // Check for server response data on an interval, clearing the timeout and interval once received
   const loader = setInterval(() => {
     if (quizData) {
       clearTimeout(timeout);
       clearInterval(loader);
+      // Clear the quiz front page
       $("#quiz-front").remove();
-      callback(quizInfo, quizData);
+      // TODO: Shuffle the questions and responses
+      // const quizData = shuffle(quizData);
+      // Start the quiz
+      getNextQuestion(quizInfo, quizData);
       return;
     }
   }, 10);
 
 };
 
-// Progress through the quiz, creating question pages successively
-const playQuiz = (quizInfo, quizData, number = 0) => {
+// Randomize the order of questions and responses
+const shuffle = (quizData) => {
+
+}
+
+// Given quiz data and a question number, create a single quiz question page component
+const getNextQuestion = (quizInfo, quizData, number = 0) => {
 
   // Clear the page of any previous questions
   $("#quiz-session").remove();
-
-  // Create a single question page component
-  createQuestionPage(quizInfo, quizData, number);
-
-};
-
-// Given quiz data and a question number, create a single quiz question page component
-const createQuestionPage = (quizInfo, quizData, number) => {
 
   // If there are questions remaining, display the next one
   if (number < quizData.questions.length) {
@@ -111,34 +114,34 @@ const createQuestionPage = (quizInfo, quizData, number) => {
       </div>
     `);
 
-    // Create answers container with all options
+    // Create the answers container with all options
     const $answersContainer = $("<div id=\"quiz-answers\" class=\"d-flex flex-column\">");
-    for (const option of answers) {
+    for (const optionData of answers) {
       // Create the answer option element
-      const $opt = $(`<span class="quiz-option d-flex align-items-center">${option.body}</span>`);
-      // Set the variables associated with this specific answer
-      const optionData = option;
-      // Bind a click event handler to the option component containing response data
+      const $opt = $(`<span class="quiz-option d-flex align-items-center">${optionData.body}</span>`);
+      // Bind a click event handler to the option component containing the response data
       $($opt).bind("click", function() {
         const userResponse = {
           question,
           answer: optionData
         };
+        // Store the answer data associated with the selected option in a global variable
         userAnswers.push(userResponse);
-        // Generate the next quiz page
-        playQuiz(quizInfo, quizData, number + 1);
+        // Generate the next question page
+        getNextQuestion(quizInfo, quizData, number + 1);
       });
+      // Add the option component to the answers container
       $answersContainer.append($opt);
     }
 
-    // Append child components to the parent container
+    // Append all of the child components to the parent
     $parent
       .append($title)
       .append($number)
       .append($question)
       .append($answersContainer);
 
-    // Append parent to the main container
+    // Append the parent to the main container
     $("#main-split-content").append($parent);
 
   } else {
@@ -175,26 +178,20 @@ const processResults = (quizID, sessionID) => {
 
 };
 
-// Sends a POST request to the server with the user response data
+// Send a POST request to the server with the user response data
 const submitResults = (data, quizID, sessionID) => {
 
-  console.log(data);
-
-  // Submit a post request with the quiz data
   $.ajax({
     url: `/quizzes/${quizID}/sessions/${sessionID}`,
     type: "PUT",
     data
   })
     .then(resultID => {
-      console.log(resultID);
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
     })
-    .catch(err => {
-      console.log(err);
-      console.error("The resultID received from the server was invalid. Redirecting to quiz show page.");
-      window.location.replace(`/quizzes/${quizID}`);
+    .catch(() => {
+      window.location.replace(`/404`);
     });
 
 };
@@ -205,13 +202,13 @@ let complete = false;
 $(document).ready(function() {
 
   // Get quiz information from EJS
-  const quizInfo = getQuizData();
+  const quizInfo = getQuizInfo();
 
   // When the user clicks play, send the quizID to the server and create a new session
   // The server will respond with quiz question data
   $("#play-quiz").on("click", function() {
 
-    loadQuiz(quizInfo, playQuiz);
+    loadQuiz(quizInfo);
 
   });
 
