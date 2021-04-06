@@ -155,9 +155,9 @@ module.exports = (db) => {
         } else {
           // Create a new entry in the quiz_sessions table
           db.addSession({
-              quiz_id,
-              user_id
-            })
+            quiz_id,
+            user_id
+          })
             .then(session => {
               console.log(`New session started by ${userData ? userData.username : "anonymous" }`);
               // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
@@ -169,7 +169,7 @@ module.exports = (db) => {
               const data = {
                 questions,
                 sessionID: session.id
-              }
+              };
               // Send all of the data back to the client as a JSON
               res.json(data);
             })
@@ -188,7 +188,7 @@ module.exports = (db) => {
         session_id,
         answer_id: elem
       };
-    })
+    });
     console.log(sessionAnswers);
     db.insert("session_answers", sessionAnswers)
       .then(rows => db.markSessionEndTime(session_id))

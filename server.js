@@ -191,10 +191,10 @@ app.post("/register", (req, res) => {
               } else {
                 const hashedPassword = bcrypt.hashSync(password, 10);
                 db.addUser({
-                    username,
-                    email,
-                    password: hashedPassword
-                  })
+                  username,
+                  email,
+                  password: hashedPassword
+                })
                   .then(userData => {
                     req.session.userID = userData.id;
                     console.log("Registration successful. Welcome to InquizitorApp!");
@@ -227,20 +227,20 @@ app.get("/404", (req, res) => {
 app.get("/", (req, res) => {
   // Top 3 featured quizzes (admin-selected)
   const quizData = [{
-      id: "1",
-      title: "Quiz Name",
-      description: "This is the description."
-    },
-    {
-      id: "2",
-      title: "Quiz Name",
-      description: "This is the description."
-    },
-    {
-      id: "3",
-      title: "Quiz Name",
-      description: "This is the description."
-    },
+    id: "1",
+    title: "Quiz Name",
+    description: "This is the description."
+  },
+  {
+    id: "2",
+    title: "Quiz Name",
+    description: "This is the description."
+  },
+  {
+    id: "3",
+    title: "Quiz Name",
+    description: "This is the description."
+  },
   ];
   const {
     alerts,

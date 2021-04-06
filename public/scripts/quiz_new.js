@@ -17,8 +17,8 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
 
   // Add additional response options (base minimum of 2 in total)
   for (let i = 0; i < additionalResponses; i++) {
-    str += `<input class="input-response form-control mt-3" type="text" maxlength="250">`
-  };
+    str += "<input class=\"input-response form-control mt-3\" type=\"text\" maxlength=\"250\">";
+  }
 
   str += `
       </div>
@@ -255,16 +255,16 @@ const submitForm = () => {
 
   // Submit a post request with the quiz data
   $.ajax({
-      url: "/quizzes",
-      type: "POST",
-      data: {
-        title,
-        description,
-        category_id,
-        public,
-        questions
-      }
-    })
+    url: "/quizzes",
+    type: "POST",
+    data: {
+      title,
+      description,
+      category_id,
+      public,
+      questions
+    }
+  })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
       setTimeout(() => {

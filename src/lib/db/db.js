@@ -61,16 +61,16 @@ module.exports = {
     for (let row of data) {
       queryString += (varNumber === startVar) ? "(" : ", (";
       const values = Object.values(row);
-      const varsArr = []
+      const varsArr = [];
       for (let value of values) {
         queryParams.push(value);
         varsArr.push(`$${varNumber}`);
         varNumber++;
       }
       queryString += varsArr.join(", ");
-      queryString += ")"
+      queryString += ")";
     }
-    queryString += " RETURNING *;"
+    queryString += " RETURNING *;";
     return pool.query(queryString, queryParams)
       .then(res => res.rows)
       .catch(err => console.error(err));
