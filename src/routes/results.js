@@ -28,13 +28,20 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-    const templateVars = {
-      alerts,
-      userData,
-      currentPage,
-      rankData
-    };
-    res.render("quiz_results", templateVars);
+    db.getResults(req.params.resultID)
+    .then(resultData => {
+      const { userData, quizData, sessionData } = resultData;
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        rankData,
+        userData,
+        quizData,
+        sessionData
+      };
+      res.render("quiz_results", templateVars);
+    })
   });
 
   return router;

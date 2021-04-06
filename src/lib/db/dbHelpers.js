@@ -8,11 +8,13 @@ const users = require("./dbUsers");
 const quizzes = require("./dbQuizzes");
 const sessions = require("./dbSessions");
 const reviews = require("./dbReviews");
+const results = require("./dbResults");
 
 module.exports = {
   ...db,
   ...users,
   ...quizzes,
   ...sessions,
-  ...reviews
+  ...reviews,
+  ...results
 };

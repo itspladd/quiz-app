@@ -185,6 +185,7 @@ module.exports = (db) => {
     })
     console.log(sessionAnswers);
     db.insert("session_answers", sessionAnswers)
+    .then(rows => db.markSessionEndTime(session_id))
     .then(rows => db.insert("results", { session_id }))
     .then(resultRows => res.json(resultRows[0].id))
     .catch(err => console.error(err));
