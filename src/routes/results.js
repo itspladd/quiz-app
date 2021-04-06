@@ -3,8 +3,8 @@ const router = express.Router();
 
 module.exports = (db) => {
 
-  // /results/:sessionID
-  router.get("/:sessionID", (req, res) => {
+  // /results/:resultID
+  router.get("/:resultID", (req, res) => {
     const {
       alerts,
       userData,
@@ -18,6 +18,9 @@ module.exports = (db) => {
       rankData
     };
     res.render("quiz_results", templateVars);
+const db = require("./db");
+
+module.exports = {
   });
 
   return router;
