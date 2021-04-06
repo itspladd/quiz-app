@@ -10,14 +10,14 @@
 
             <div id="app-links" class="d-flex flex-column flex-xl-row align-items-xl-center ml-lg-3">
               <!-- APP NAV LINKS (always shown) -->
-              <li class="nav-item my-2 ml-xl-3"><a class="nav-link <%= currentPage === "/" ? "active" : "inactive"%>" href="/">HOME</a></li>
-              <li class="nav-item my-2 ml-xl-3"><a class="nav-primary nav-link <%= currentPage === "/quizzes" ? "active" : "inactive"%>" href="/quizzes">ALL QUIZZES</a></li>
+              <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/" ? "active" : "inactive"%>" href="/">HOME</a></li>
+              <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/quizzes" ? "active" : "inactive"%>" href="/quizzes">ALL QUIZZES</a></li>
 
               <!-- APP NAV LINKS (shown if user is currently logged in)-->
               <% if (userData) { %>
-                <li class="nav-item my-2 ml-xl-3"><a class="nav-blue nav-link <%= currentPage === "/quizzes/new" ? "active" : "inactive"%>" href="/quizzes/new">CREATE</a></li>
-                <li class="nav-item my-2 ml-xl-3"><a class="nav-green nav-link <%= currentPage === "/study" ? "active" : "inactive"%>" href="/study">STUDY</a></li>
-                <li class="nav-item my-2 ml-xl-3"><a class="nav-purple nav-link <%= currentPage === "/users/dashboard" ? "active" : "inactive"%>" href="/users/dashboard">DASHBOARD</a></li>
+                <li class="nav-item my-2 ml-xl-4"><a class="nav-blue nav-link <%= currentPage === "/quizzes/new" ? "active" : "inactive"%>" href="/quizzes/new">CREATE</a></li>
+                <li class="nav-item my-2 ml-xl-4"><a class="nav-green nav-link <%= currentPage === "/study" ? "active" : "inactive"%>" href="/study">STUDY</a></li>
+                <li class="nav-item my-2 ml-xl-4"><a class="nav-purple nav-link <%= currentPage === "/users/dashboard" ? "active" : "inactive"%>" href="/users/dashboard">DASHBOARD</a></li>
                   <% } %>
                 </div>
 
@@ -25,14 +25,14 @@
                   <% if (!userData) { %>
 
                     <!-- USER NAV LINKS (shown if user is currently not logged in) -->
-                    <li class="nav-item my-2 ml-xl-3"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
-                    <li class="nav-item my-2 ml-xl-3"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
+                    <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
+                    <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
 
                   <% } else { %>
 
                     <!-- USER NAV LINKS (shown if user is currently logged in) -->
-                    <li class="nav-item my-2 ml-xl-3"><a class="nav-link <%= currentPage === "/account" ? "active" : "inactive"%>" href="/account">ACCOUNT</a></li>
-                    <li class="nav-item my-2 ml-xl-3">
+                    <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/account" ? "active" : "inactive"%>" href="/account">ACCOUNT</a></li>
+                    <li class="nav-item my-2 ml-xl-4">
                       <form class="form-inline" action="/logout" method="POST">
                         <button id="nav-logout" type="submit" class="btn-nav">
                           LOGOUT
