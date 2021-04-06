@@ -152,28 +152,6 @@ form .custom-select:focus {
   border-color: #e22d4b;
 }
 
-.list-quiz {
-  border: 2px solid #ffffff79;
-  border-radius: 0.25rem;
-  min-height: 10rem;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  word-wrap: break-word;
-}
-
-.list-quiz p {
-  color: #eeeeee;
-}
-
-.list-quiz:hover {
-  border-color: #eeeeee;
-  background-color: #222338;
-}
-
-.list-quiz:hover img {
-  opacity: 1;
-}
-
 .quiz-title {
   font-size: 1.5rem;
 }
@@ -692,5 +670,27 @@ select {
 
 .border-white {
   border-color: #eeeeee;
+}
+
+.list-quiz {
+  border: 2px solid #ffffff79;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.list-quiz p {
+  color: #eeeeee;
+}
+
+.list-quiz:hover {
+  border-color: #eeeeee;
+  background-color: #222338;
+}
+
+.list-quiz:hover img {
+  opacity: 1;
 }
 /*# sourceMappingURL=app.css.map */

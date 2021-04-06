@@ -23,8 +23,8 @@
         <div id="main-split-content">
 
           <!-- TEMPORARY (change to empty list to preview no user quizzes/history)-->
-          <% const userQuizzes = [1] %>
-          <% const userHistory = [1] %>
+          <% const userQuizzes = [1,1,1,1,1,1,1,1,1,1] %>
+          <% const userHistory = [1,1,1,1,1,1,1,1] %>
           <!--------------->
 
           <!-- MY QUIZZES -->
@@ -67,7 +67,7 @@
                     <p class="quiz-title mb-0 mt-0">Quiz Title<%= session.quiz_title %></p>
                     <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time ? `Completed on: ${session.end_time}` : "Abandoned" %></p>
                   </div>
-                  <div class="user-dash-control flex-column <%= true || session.result_id ? "d-flex" : "d-none" %> ">
+                  <div class="user-dash-control flex-column <%= session.result_id ? "d-flex" : "d-none" %> ">
                     <a href="/results/<%= session.result_id %> ">
                       <button type="button" class="btn-custom btn-custom-yellow btn-custom-md mb-2 mr-2">
                         Results

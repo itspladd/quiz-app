@@ -283,3 +283,27 @@ select {
 .border-white {
   border-color: $white;
 }
+
+.list-quiz {
+  border: 2px solid $light;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+
+  p {
+    color: $white;
+  }
+
+  &:hover {
+    border-color: $white;
+    background-color: $tertiary;
+
+    img {
+      opacity: 1;
+    }
+
+  }
+
+}
