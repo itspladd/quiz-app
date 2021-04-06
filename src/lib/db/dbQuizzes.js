@@ -109,10 +109,9 @@ module.exports = {
             explanation: row.answer_explanation
           });
 
-        }
-        console.log(questionData);
-        return questionData;
-      });
+      };
+      return questionData;
+    });
   },
 
   /**
@@ -131,15 +130,7 @@ module.exports = {
     // Separate the quiz metadata from the questions
     const questions = quizData.questions;
     delete quizData.questions;
-
-    // Extract the user data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(quizData);
-    const queryString = `
-      INSERT INTO quizzes (${columns})
-      VALUES (${vars})
-      RETURNING *;
-    `;
-    return db.query(queryString, queryParams)
+    return db.insert("quizzes", quizData)
       .then(rows => {
       // Save the quiz object
         const quiz = rows[0];
@@ -179,16 +170,8 @@ module.exports = {
 
     delete questionData.answers;
 
-    // Extract the question data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(questionData);
-    const queryString = `
-      INSERT INTO questions (${columns})
-      VALUES (${vars})
-      RETURNING *;
-    `;
-
     // Return a promise to the query completion, value is the question object
-    return db.query(queryString, queryParams)
+    return db.insert("questions", questionData)
       .then(rows => {
       // Save the question object
         const question = rows[0];
@@ -222,13 +205,8 @@ module.exports = {
      */
   addAnswer: function(answerData) {
     // Extract the answer data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(answerData);
-    const queryString = `
-      INSERT INTO answers (${columns})
-      VALUES (${vars})
-      RETURNING *;
-    `;
-    return db.query(queryString, queryParams)
+
+    return db.insert("answers", answerData)
       .then(rows => rows[0])
       .catch(err => console.error(err));
   }

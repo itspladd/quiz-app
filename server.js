@@ -66,9 +66,11 @@ app.use((req, res, next) => {
 
 const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
+const resultsRoutes = require("./src/routes/results");
 
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
+app.use("/results", resultsRoutes(db));
 
 // ENDPOINTS & ROUTES ////////////////////////////////
 

@@ -10,6 +10,7 @@ const sessions = require("./dbSessions");
 const reviews = require("./dbReviews");
 
 module.exports = {
+  ...db,
   ...users,
   ...quizzes,
   ...sessions,
