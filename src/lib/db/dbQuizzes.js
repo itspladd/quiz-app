@@ -56,8 +56,7 @@ module.exports = {
         answers.id AS answer_id,
         answers.question_id AS answer_question_id,
         answers.body AS answer_body,
-        answers.is_correct AS answer_is_correct,
-        answers.explanation AS answer_explanation
+        answers.is_correct AS answer_is_correct
       FROM questions
         JOIN answers ON answers.question_id = questions.id
       WHERE quiz_id = $1
@@ -105,8 +104,7 @@ module.exports = {
             id: row.answer_id,
             question_id: row.answer_question_id,
             body: row.answer_body,
-            is_correct: row.answer_is_correct,
-            explanation: row.answer_explanation
+            is_correct: row.answer_is_correct
           });
 
         }
@@ -197,8 +195,7 @@ module.exports = {
    * Adds a new answer to the database.
    * @param  { { question_id: int,
    *             body: string,
-   *             is_correct: boolean,
-   *             explanation: string } } quiz
+   *             is_correct: boolean } } quiz
    *         The answer data to be added.
    * @return {Promise<{}>}
    *         A promise to the answer.

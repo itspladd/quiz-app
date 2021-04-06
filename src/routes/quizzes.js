@@ -142,7 +142,7 @@ module.exports = (db) => {
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-
+    console.log(req.body)
     db.getQuizQuestionsAndAnswers(quiz_id)
       .then(questions => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's
