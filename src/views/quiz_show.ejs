@@ -75,7 +75,7 @@
               <form id="review-form" class="form">
                 <div class="form-group mb-2">
                   <!-- USER DATA -->
-                  <input id="review-user" class="d-none" type="text" value="<%= userData.id %>">
+                  <input id="review-user" class="d-none" type="text" value="<%= userData ? userData.id : null %>">
                   <!-- REVIEW TITLE -->
                   <label for="title" class="form-label text-muted">Review Title</label>
                   <input id="review-title" class="form-control" type="text" name="title" maxlength="60" placeholder="Great quiz!" required>
