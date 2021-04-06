@@ -50,8 +50,7 @@ module.exports = {
       WHERE username = $1 OR email = $1
     `;
     const queryParams = [login];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
