@@ -70,6 +70,8 @@
 
             <div class="divider-h mt-3 mb-2"></div>
 
+            <!-- REVIEW FORM (shown only if the user is logged in) -->
+            <% if (userData) { %>
             <div id="quiz-review-form">
               <p class="lead mt-3">Enjoy this quiz? Leave a review below!</p>
               <form id="review-form" class="form">
@@ -103,6 +105,8 @@
             <div id="review-submitted" class="d-none">
               <p class="lead mt-3">Your review has been submitted! Thank you!</p>
             </div>
+
+            <% } %>
 
           </div>
 
