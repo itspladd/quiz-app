@@ -23,6 +23,9 @@
 
 }
 
+#quiz-session {
+  display: none;
+}
 
 #quiz-question {
   min-height: 8rem;
@@ -75,4 +78,8 @@
       background-color: $tertiary-darker;
     }
   }
+}
+
+#play-quiz {
+
 }

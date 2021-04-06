@@ -1,5 +1,5 @@
 // Remove an element
-const removeElement = (element, delay = 800) => {
+const removeElement = (element, delay = 800, temporary = false) => {
   element
     .css("min-height", "0")
     .animate({
@@ -10,7 +10,11 @@ const removeElement = (element, delay = 800) => {
     })
     .slideUp(400);
   setTimeout(() => {
-    element.remove();
+    if (temporary) {
+      element.css("display", "none");
+    } else {
+      element.remove();
+    }
   }, delay);
 };
 
@@ -20,7 +24,7 @@ const addElement = (element, delay = 400) => {
   setTimeout(() => {
     element
       .slideDown(delay)
-      // .css("display", "block")
+      .css("display", "block")
       .css("opacity", 0)
       .animate({
         queue: true,

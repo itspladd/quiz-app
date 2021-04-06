@@ -18,6 +18,7 @@ const getQuizData = () => {
 const loadQuiz = (quizID, callback, delay = 5000) => {
 
   let data;
+
   // Submit a post request with data = quizID and do NOT redirect
   $.ajax({
     url: `/quizzes/${quizID}/sessions`,
@@ -30,6 +31,7 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
   const timeout = setTimeout(() => {
     clearInterval(loader);
     console.log("timed out - no data received from server");
+    return
   }, delay);
 
   const loader = setInterval(() => {
@@ -37,7 +39,9 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
     if (data) {
       clearTimeout(timeout);
       clearInterval(loader);
+      console.log("quiz data received from server!")
       callback(data);
+      return
     }
   }, 10)
 
@@ -45,39 +49,33 @@ const loadQuiz = (quizID, callback, delay = 5000) => {
 
 const playQuiz = (data) => {
 
-  const sessionID = data.sessionID;
-
   console.log("STARTING QUIZ")
 
-  showSession(data);
-
   // Hide quiz front component
-  $("#quiz-front").fadeOut();
+  removeElement($("#quiz-front"));
+  console.log("Removing front component")
 
-  // Create question page component
-  let number = 1;
-  const length = data.questions.length;
+  // Obtain question count
+  const numQuestions = data.questions.length;
 
-  let current = 0;
+  console.log("there are these many questions", data.questions.length);
 
-  for (const entry of data.questions) {
-    console.log(entry);
-    // const question = entry.question.body;
-    // const answers = entry.answers.map(ans => ans.body);
-    // const component = createQuestionPage(question, answers, number, length);
-    // number++;
-  }
-
-
-
+  // Create first question page component
+  let number = 0;
+  // const currentPage = createQuestionPage(questionData, number);
 
 }
 
-// Given a question number and array of answers, create a quiz question page
-const createQuestionPage = (question, answers, number, length) => {
+// Given quiz data and a question number, create a single quiz question page component
+const createQuestionPage = (data, number) => {
 
-  // Get parent container
-  const $parent = $("#quiz-session");
+  // If the given number exceeds the actual number of questions available, exit
+  if (number > data.questions.length) return false;
+
+  const question = 123;
+
+  // Create parent container
+  const $parent = $(`<div id="quiz-session" class="d-flex flex-column">`);
 
   // Create quiz title
   const $title = $(`
@@ -114,12 +112,12 @@ const createQuestionPage = (question, answers, number, length) => {
     .append($question)
     .append($answersContainer)
 
-  return $parent;
+  // Append parent to the main container
+  $("#main-split-content").append($parent);
 
 }
 
 $(document).ready(function() {
-
 
   // Get EJS variable data
   const quizInfo = getQuizData();

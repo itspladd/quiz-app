@@ -19,10 +19,6 @@
           <!-- MAIN CONTENT -->
           <div id="main-split-content">
 
-            <!-- QUIZ SESSION -->
-            <div id="quiz-session" class="d-flex flex-column">
-            </div>
-
             <!-- QUIZ FRONT PAGE -->
             <div id="quiz-front" class="d-flex flex-column">
 
@@ -31,9 +27,11 @@
               <p class="lead"><%= quizData.description %></p>
               <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_date %> (<%= quizData.relative_time %>)</p>
 
-              <button id="play-quiz" type="button">
-                START QUIZ
-              </button>
+              <div>
+                <button id="play-quiz" type="button" class="btn-custom">
+                  START QUIZ
+                </button>
+              </div>
 
               <div class="divider-h"></div>
 
@@ -78,22 +76,25 @@
 
     </main>
 
-    <p>Quiz data:</p>
-    <ul>
+  <%- include("partials/_footer.ejs") %>
+
+  <!-- EJS Variable Fetcher (don't modify below!) -->
+  <p>EJS Variables</p>
+  <ul id="data-ejs">
     <% for (const key in quizData) { %>
       <li>
         <%= key %>:
         <span class="data-key" title="<%= key %>"><%= quizData[key] %></span>
       </li>
     <% } %>
-    </ul>
-    <p>Review data (quizData.reviews, array of objects, this is just from one review as an example):</p>
-    <ul>
-      <% for (const key in quizData.reviews[0]) { %>
-        <li><%= key %>: <%= quizData.reviews[0][key] %></li>
-      <% } %>
-      </ul>
-  <%- include("partials/_footer.ejs") %>
+  </ul>
+  <p>quizData.reviews</p>
+  <ul>
+  <% for (const key in quizData.reviews[0]) { %>
+    <li><%= key %>: <%= quizData.reviews[0][key] %></li>
+  <% } %>
+  </ul>
+  <!------------------------------------------->
 
 
   </body>
