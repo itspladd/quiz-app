@@ -66,27 +66,27 @@ module.exports = {
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams)
       .then(rows => {
-      // Organize the data into the necessary structure, as follows:
-      /* questionData: [
-        {
-          question: {//question info here},
-          answers: [
-            {answer1 data},
-            {answer2 data}
-          ]},
-        {
-          question... },
-      ]
-      */
+        // Organize the data into the necessary structure, as follows:
+        /* questionData: [
+          {
+            question: {//question info here},
+            answers: [
+              {answer1 data},
+              {answer2 data}
+            ]},
+          {
+            question... },
+        ]
+        */
         const questionData = [];
 
         // Initialize to the first question and array counter
         let currentQuestionID = null;
         let index = -1;
         for (let row of rows) {
-        // If we're on a new question...
+          // If we're on a new question...
           if (row.question_id !== currentQuestionID) {
-          // Add the question and start the answer array
+            // Add the question and start the answer array
             currentQuestionID = row.question_id;
             questionData.push({
               question: {
@@ -109,9 +109,9 @@ module.exports = {
             explanation: row.answer_explanation
           });
 
-      };
-      return questionData;
-    });
+        };
+        return questionData;
+      });
   },
 
   /**
@@ -132,7 +132,7 @@ module.exports = {
     delete quizData.questions;
     return db.insert("quizzes", quizData)
       .then(rows => {
-      // Save the quiz object
+        // Save the quiz object
         const quiz = rows[0];
         // Create the array to hold all the promises from adding each question
         // The quiz object is the first thing in this array, so we can access it later
@@ -146,7 +146,7 @@ module.exports = {
         return Promise.all(questionPromises);
       })
       .then(promiseArr => {
-      // The quiz is still the first element in the array, so we return that
+        // The quiz is still the first element in the array, so we return that
         return promiseArr[0];
       })
       .catch(err => console.error(err));
@@ -173,7 +173,7 @@ module.exports = {
     // Return a promise to the query completion, value is the question object
     return db.insert("questions", questionData)
       .then(rows => {
-      // Save the question object
+        // Save the question object
         const question = rows[0];
         // Create the array to hold all the promises from adding each answer
         // The question object is the first thing in this array, so we can access it later
@@ -187,7 +187,7 @@ module.exports = {
         return Promise.all(answerPromises);
       })
       .then(promiseArr => {
-      // The question is still the first element in the array, so we return that
+        // The question is still the first element in the array, so we return that
         return promiseArr[0];
       })
       .catch(err => console.error(err));
@@ -196,13 +196,13 @@ module.exports = {
   /**
    * Adds a new answer to the database.
    * @param  { { question_id: int,
-     *             body: string,
-     *             is_correct: boolean,
-     *             explanation: string } } quiz
-     *         The answer data to be added.
-     * @return {Promise<{}>}
-     *         A promise to the answer.
-     */
+   *             body: string,
+   *             is_correct: boolean,
+   *             explanation: string } } quiz
+   *         The answer data to be added.
+   * @return {Promise<{}>}
+   *         A promise to the answer.
+   */
   addAnswer: function(answerData) {
     // Extract the answer data into queryParams and the keys into an array
 
@@ -210,4 +210,5 @@ module.exports = {
       .then(rows => rows[0])
       .catch(err => console.error(err));
   }
+
 };

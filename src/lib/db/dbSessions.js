@@ -1,9 +1,10 @@
 const db = require("./db");
 
 module.exports = {
+
   addSession: function(sessionData) {
     return db.insert("quiz_sessions", sessionData)
-    .then(rows => rows[0]);
+      .then(rows => rows[0]);
   },
 
   markSessionEndTime: function(session_id) {
@@ -15,4 +16,5 @@ module.exports = {
     const queryParams = [session_id];
     return db.query(queryString, queryParams);
   }
+
 };

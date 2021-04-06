@@ -13,10 +13,13 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const { Pool } = require("pg");
+const {
+  Pool
+} = require("pg");
 const pool = new Pool(dbParams);
 
 module.exports = {
+
   query: function(queryString, queryParams) {
     // Optional logging, enable to check queries as they run
     /*console.log("Querying...");
@@ -24,8 +27,8 @@ module.exports = {
     console.log(queryParams); */
     return pool.query(queryString, queryParams)
       .then(res => {
-      // Optional logging, enable to check queries as they run
-      /* console.log('returning: ', res.rows ) */
+        // Optional logging, enable to check queries as they run
+        /* console.log('returning: ', res.rows ) */
         return res.rows;
       })
       .catch(err => console.error(err));
@@ -43,7 +46,7 @@ module.exports = {
    */
   insert: function(table, data) {
     // If it's a single object rather than an array, turn it into an array.
-    if(!Array.isArray(data)) {
+    if (!Array.isArray(data)) {
       data = [data];
     }
     // Initialize the array that will hold the values and table name.
@@ -69,7 +72,8 @@ module.exports = {
     }
     queryString += " RETURNING *;"
     return pool.query(queryString, queryParams)
-    .then(res => res.rows)
-    .catch(err => console.error(err));
+      .then(res => res.rows)
+      .catch(err => console.error(err));
   }
+
 };

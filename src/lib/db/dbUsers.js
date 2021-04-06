@@ -86,4 +86,5 @@ module.exports = {
     return db.insert("users", userData)
       .then(rows => rows[0]);
   }
+
 };

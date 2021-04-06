@@ -1,6 +1,7 @@
 const db = require("./db");
 
 module.exports = {
+
   getReviewsByQuizId: function(id) {
     const queryString = `
       SELECT reviews.*, users.username
@@ -11,5 +12,6 @@ module.exports = {
     `;
     const queryParams = [id];
     return db.query(queryString, queryParams);
-  },
+  }
+
 };

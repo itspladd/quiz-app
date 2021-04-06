@@ -1,7 +1,10 @@
-const { response } = require("express");
 const db = require("./db");
+const {
+  response
+} = require("express");
 
 module.exports = {
+
   getResults: function(result_id) {
     const queryString = `
       SELECT username,
@@ -30,36 +33,52 @@ module.exports = {
     `;
     const queryParams = [result_id];
     return db.query(queryString, queryParams)
-    .then(rows => {
-      singletonRow = rows[0];
-      const userData = {
-        id: singletonRow.user_id,
-        username: singletonRow.username
-      };
-      const quizData = {
-        id: singletonRow.quiz_id,
-        author_id: singletonRow.author_id,
-        title: singletonRow.title,
-        description: singletonRow.description,
-        category_id: singletonRow.category_id
-      }
+      .then(rows => {
+        singletonRow = rows[0];
+        const userData = {
+          id: singletonRow.user_id,
+          username: singletonRow.username
+        };
+        const quizData = {
+          id: singletonRow.quiz_id,
+          author_id: singletonRow.author_id,
+          title: singletonRow.title,
+          description: singletonRow.description,
+          category_id: singletonRow.category_id
+        }
 
-      const responses = [];
-      for (let row of rows) {
-        const question = row.question;
-        let { answer, is_correct, explanation } = row;
-        answer = { answer, is_correct, explanation };
-        const response = { question, answer };
-        responses.push(response);
-      };
+        const responses = [];
+        for (let row of rows) {
+          const question = row.question;
+          let {
+            answer,
+            is_correct,
+            explanation
+          } = row;
+          answer = {
+            answer,
+            is_correct,
+            explanation
+          };
+          const response = {
+            question,
+            answer
+          };
+          responses.push(response);
+        };
 
-      const sessionData = {
-        id: singletonRow.session_id,
-        start_time: singletonRow.start_time,
-        end_time: singletonRow.end_time,
-        responses
-      }
-      return {userData, quizData, sessionData};
-    });
+        const sessionData = {
+          id: singletonRow.session_id,
+          start_time: singletonRow.start_time,
+          end_time: singletonRow.end_time,
+          responses
+        }
+        return {
+          userData,
+          quizData,
+          sessionData
+        };
+      });
   }
+
 }

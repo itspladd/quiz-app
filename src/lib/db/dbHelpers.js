@@ -11,10 +11,12 @@ const reviews = require("./dbReviews");
 const results = require("./dbResults");
 
 module.exports = {
+
   ...db,
   ...users,
   ...quizzes,
   ...sessions,
   ...reviews,
   ...results
+
 };
