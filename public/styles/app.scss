@@ -197,6 +197,24 @@ select {
 
 }
 
+.btn-custom-blue {
+  color: $blue;
+  background-color: $tertiary-darker;
+  border-color: $blue;
+  outline: $blue;
+
+  &:hover {
+    border-color: $blue;
+    background-color: $blue;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $blue-darker;
+  }
+
+}
+
 .highlight {
   color: $primary-darker;
 }

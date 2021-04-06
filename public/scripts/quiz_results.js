@@ -1,45 +1,37 @@
-// Retrieve quizInfo from EJS variables
-const getEJSData = () => {
-
-  const quizData = {};
-  const ejsQuizData = $("#data-ejs .data-quiz-key");
-  for (const dataKey of ejsQuizData) {
-    const key = $(dataKey).attr("title");
-    const value = $(dataKey).html();
-    quizData[key] = value;
-  }
-
-  const userData = {};
-  const ejsUserData = $("#data-ejs .data-user-key");
-  for (const dataKey of ejsUserData) {
-    const key = $(dataKey).attr("title");
-    const value = $(dataKey).html();
-    userData[key] = value;
-  }
-
-  const sessionData = {};
-  const ejsSessionData = $("#data-ejs .data-session-key");
-  for (const dataKey of ejsSessionData) {
-    const key = $(dataKey).attr("title");
-    const value = $(dataKey).html();
-    sessionData[key] = value;
-  }
-
-  return { quizData, userData, sessionData };
-
+const copyText = (str) => {
+  const $temp = document.createElement('textarea');
+  $temp.value = str;
+  document.body.appendChild($temp);
+  $temp.select();
+  document.execCommand('copy');
+  document.body.removeChild($temp);
 };
 
 $(document).ready(function() {
 
-  // quizData: author_id, category_id, description, id, title
-  // userData: id, username
-  // sessionData: end_time, id, responses, start_time
-  // sessionData.responses: { question, answer, is_correct }
+  let revert;
 
-  // Get quiz, user, and session info from EJS
-  const { quizData, userData, sessionData } = getEJSData();
+  $("#share-btn").on("click", function() {
 
+    // Clear any previous timeouts
+    clearTimeout(revert);
 
+    const button = $(this);
+
+    // Copy quiz link to clipboard
+    copyText($("#quiz-link").html())
+
+    // Change share button appearance
+    button.addClass("btn-custom-blue")
+    button.html("Link copied!")
+
+    // Revert appearance after 2 seconds
+    revert = setTimeout(() => {
+      button.removeClass("btn-custom-blue")
+      button.html("Share this page")
+    }, 2000);
+
+  })
 
 
 

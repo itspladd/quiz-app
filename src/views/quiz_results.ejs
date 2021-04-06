@@ -24,8 +24,21 @@
         <div id="main-split-content" class="d-flex flex-column">
 
           <!-- SCORE AND DURATION-->
-          <h1 id="results-score" class="h4 my-5">
-            <span id="results-username" class="results-bold"><%= userData.username %></span> scored <span id="results-score-actual" class="results-bold">5</span> out of <span id="results-score-max" class="results-bold"><%= sessionData.responses.length %> </span> questions correctly!
+          <h1 id="results-score" class="h4 d-flex align-items-center flex-wrap">
+            <span class="results-bold results-username">
+              <%= userData.username %>
+            </span>
+            scored
+            <% const actualScore = sessionData.responses.filter(question => question.answer.is_correct).length %>
+            <% const maxScore = sessionData.responses.length %>
+            <span class="results-bold <%= actualScore === 0 ? "red" : actualScore < maxScore ? "yellow" : "green" %>">
+              <%= actualScore %>
+            </span>
+            out of
+            <span class="results-bold <%= actualScore === 0 ? "red" : actualScore < maxScore ? "yellow" : "green" %>">
+              <%= maxScore %>
+            </span>
+            questions correctly!
           </h1>
 
           <!-- QUIZ INFO -->
@@ -34,8 +47,8 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-md-between">
             <div class="d-flex flex-column">
-              <span id="results-date"><%= sessionData.end_time %> </span>
-              <span id="results-duration"><%= sessionData.duration || "<duration>" %> </span>
+              <%= sessionData.end_time %>
+              Duration: <%= sessionData.duration || "<duration>" %>
             </div>
 
             <!-- SHARE BUTTON -->
@@ -43,7 +56,9 @@
               <button id="share-btn" type="button" class="btn-custom mt-3 mt-md-0">
                 Share this page
               </button>
+              <div id="quiz-link" class="d-none">/quizzes/<%= quizData.id %></div>
             </div>
+
           </div>
 
           <div class="divider-h mb-4"></div>
@@ -51,46 +66,26 @@
           <!-- ALL USER RESPONSES -->
           <p class="lead mt-0">Responses</p>
 
-          <div id="results-responses">
+          <% for (const response of sessionData.responses) { %>
 
-            <!-- A SINGLE RESPONSE-->
-            <div class="results-response response-correct">
+            <div class="results-response response-<%= response.answer.is_correct ? "correct" : "incorrect" %>">
+              <!-- CORRECT/INCORRECT-->
               <div class="results-correctness mb-1">
-                CORRECT
+                <%= response.answer.is_correct ? "CORRECT" : "INCORRECT" %>
               </div>
-              <div class="results-question mb-1">
-                What is the capital of Canada?
+              <!-- QUESTION BODY -->
+              <div class="results-bold mb-1">
+                <%= response.question %>
               </div>
-              <div class="results-option">
-                Toronto
-              </div>
+              <!-- ANSWER BODY -->
+              <%= response.answer.answer %>
+              <!-- CORRECT ANSWER (if incorrect) -->
+              <% if (!response.answer.is_correct) { %>
+                <p class="mt-3 mb-0">Answer: <%= response.actual_answer %> </p>
+              <% } %>
             </div>
 
-            <div class="results-response response-incorrect">
-              <div class="results-correctness mb-1">
-                INCORRECT
-              </div>
-              <div class="results-question mb-1">
-                What is the capital of Canada?
-              </div>
-              <div class="results-option">
-                Toronto
-              </div>
-            </div>
-
-            <div class="results-response response-correct">
-              <div class="results-correctness mb-1">
-                CORRECT
-              </div>
-              <div class="results-question mb-1">
-                What is the capital of Canada?
-              </div>
-              <div class="results-option">
-                Toronto
-              </div>
-            </div>
-
-          </div>
+          <% } %>
 
         </div>
       </section>
