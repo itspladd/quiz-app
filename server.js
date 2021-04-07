@@ -227,6 +227,29 @@ app.post("/register", (req, res) => {
   }
 });
 
+// Form to configure account
+app.get("/account", (req, res) => {
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  // ERROR: User is not logged in
+  if (!userData) {
+    console.log("You must be logged in to do that!");
+    req.flash("warning", "You must be logged in to do that!");
+    res.redirect("/login");
+  } else {
+    // SUCCESS: User is logged in
+    const templateVars = {
+      alerts,
+      userData,
+      currentPage
+    };
+    res.render("account", templateVars);
+  }
+});
+
 // Error 404 page
 app.get("/404", (req, res) => {
   const {
