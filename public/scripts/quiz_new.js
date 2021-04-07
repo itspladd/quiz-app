@@ -23,7 +23,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   str += `
       </div>
       <div class="question-control d-flex flex-row justify-content-between mt-3">
-        <span class="toggle minimize text-muted">hide</span>
+        <div class="toggle minimize">hide</div>
         <div class="d-flex flex-row align-items-center">
           <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
         </div>
@@ -80,11 +80,6 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   $newForm.css("display", "none").css("min-height", "0");
   element.append($newForm);
   addElement($newForm);
-
-  // Minimize other forms
-  // setTimeout(() => {
-  //   $(".toggle.minimize").not(":last").trigger("click");
-  // }, 1000);
 
   updateCounter();
 

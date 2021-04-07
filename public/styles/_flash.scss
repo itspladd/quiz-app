@@ -8,14 +8,17 @@
 .alert-success {
   color: $green;
   border-color: $green;
+  background-color: $green-transparent;
 }
 
 .alert-warning {
   color: $primary;
   border-color: $primary;
+  background-color: $yellow-transparent;
 }
 
 .alert-danger {
   color: $red;
   border-color: $red;
+  background-color: $red-transparent;
 }

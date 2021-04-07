@@ -141,16 +141,19 @@ form .custom-select:focus {
 .alert-success {
   color: #31f37b;
   border-color: #31f37b;
+  background-color: #23ce6515;
 }
 
 .alert-warning {
   color: #fad207;
   border-color: #fad207;
+  background-color: #fad10710;
 }
 
 .alert-danger {
   color: #e22d4b;
   border-color: #e22d4b;
+  background-color: #bd294218;
 }
 
 .quiz-title {
@@ -236,6 +239,19 @@ form .custom-select:focus {
 }
 
 .question-control .icon:hover {
+  opacity: 1;
+}
+
+.maximize,
+.minimize {
+  font-size: 0.8rem;
+  color: white;
+  opacity: 0.5;
+}
+
+.maximize:hover,
+.minimize:hover {
+  cursor: pointer;
   opacity: 1;
 }
 
@@ -692,7 +708,7 @@ select {
 }
 
 #page-footer {
-  border: 25px solid #222338;
+  border: 5px solid #222338;
   position: fixed;
   bottom: 0px;
 }

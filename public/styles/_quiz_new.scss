@@ -65,3 +65,14 @@
   }
 
 }
+
+.maximize,
+.minimize {
+  font-size: 0.8rem;
+  color: white;
+  opacity: 0.5;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+}
