@@ -12,15 +12,6 @@ const unselectTab = (tab, content) => {
 
 }
 
-// // Send a DELETE request to the server with the given quiz ID
-// const deleteQuiz = (quizID) => {
-//   $.ajax({
-//     url: `/quizzes/${quizID}`,
-//     type: "DELETE",
-//     data: quizID
-//   })
-// }
-
 $(document).ready(function() {
 
   const quizTab = $("#tab-quizzes");
@@ -50,17 +41,5 @@ $(document).ready(function() {
       currentContent = historyContent;
     }
   });
-
-  // // Delete a quiz
-  // $(".delete-quiz").on("click", function() {
-
-  //   const quizID = $(this).attr("data-id");
-
-  //   // Submit a delete request to the server with the given quiz ID
-  //   // deleteQuiz(quizID);
-
-
-  // })
-
 
 });
