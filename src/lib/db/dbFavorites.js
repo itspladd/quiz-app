@@ -10,9 +10,9 @@ module.exports = {
     const queryString = `
       DELETE 
       FROM favorites
-      WHERE quiz_id = $1
-        AND user_id = $2
-      RETURNING quiz_id
+      WHERE user_id = $1
+        AND quiz_id = $2
+      RETURNING *
     `;
     const { user_id, quiz_id } = favoriteData;
     const queryParams = [user_id, quiz_id];

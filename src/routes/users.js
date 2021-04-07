@@ -69,19 +69,29 @@ module.exports = (db) => {
   });
 
   router.post("/:userID/favorites/:quizID", (req, res) => {
-    db.addFavorite(req.params.userID, req.params.quizID)
+    const {userID, quizID} = req.params;
+    db.addFavorite({ user_id: userID, quiz_id: quizID })
     .then(rows => {
-      quiz_id = rows[0];
+      quiz_id = rows[0].quiz_id;
       req.flash("success", "Quiz added to favorites!");
       res.redirect(`/quizzes/${quiz_id}`)
     })
     .catch(err => console.error(err));
-
   });
 
   router.delete("/:userID/favorites/:quizID", (req, res) => {
-    console.log(req);
-    
+    const {userID, quizID} = req.params;
+    db.deleteFavorite({ user_id: userID, quiz_id: quizID })
+    .then(rows => {
+      quiz_id = rows[0].quiz_id;
+      req.flash("success", "Quiz removed from favorites!");
+      res.redirect(`/quizzes/${quiz_id}`)
+    })
+    .catch(err => {
+      console.error(err);
+      req.flash("danger", "Oops, something went wrong! Try again later.");
+      res.redirect(`/quizzes/${quizID}`);
+    });
   });
 
   return router;
