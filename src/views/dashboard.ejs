@@ -50,9 +50,11 @@
                   </div>
                   <div class="user-dash-control d-flex flex-column">
                     <a href="/quizzes/<%= quiz.id %>"></a>
+                    <!-- BUTTON WITH VIEW QUIZ LINK -->
                     <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
                       View
                     </button>
+                    <!-- BUTTON WITH DELETE QUIZ REQUEST -->
                     <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
                       <button data-id="<%= quiz.id %>" type="submit" class="delete-quiz btn-custom btn-custom-red btn-custom-md mr-2">
                         Delete
@@ -79,6 +81,7 @@
                     <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time ? `Completed on: ${session.end_time}` : "Abandoned" %></p>
                   </div>
                   <div class="user-dash-control flex-column <%= true || session.result_id ? "d-flex" : "d-none" %> ">
+                    <!-- BUTTON WITH LINK TO RESULTS (if it exists) -->
                     <a href="/results/<%= session.result_id %> ">
                       <button type="button" class="btn-custom btn-custom-yellow btn-custom-md mr-2">
                         Results
