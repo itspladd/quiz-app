@@ -177,6 +177,15 @@ app.post("/register", (req, res) => {
   if (!username || !email || !password) {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
+  } else if (username.length > 12) {
+    req.flash("danger", "Username is too long (maximum 12 characters).");
+    res.redirect("/register");
+  } else if (password.length > 24) {
+    req.flash("danger", "Password is too long (maximum 24 characters).");
+    res.redirect("/register");
+  } else if (email.length > 24) {
+    req.flash("danger", "Email is too long.");
+    res.redirect("/register");
   } else {
     db.getUserByUsername(username)
       .then(rows => {
