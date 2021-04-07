@@ -88,7 +88,46 @@ module.exports = (db) => {
     }
   });
 
+  // Patch request for updating a user's avatar
+  // TODO: db.updateUserAvatar
+  router.patch("/:userID", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+    const userID = Number(req.params.userID);
+    if (userData.id !== userID) {
+      req.flash("danger", "You don't have permission to do that!");
+      res.redirect("/");
+    } else {
+      const avatarID = Number(req.body.avatar_id);
+      db.updateUserAvatar(userID, avatarID)
+      .then(res => {
+        req.flash("success", "Avatar updated successfully!");
+        res.redirect(`/users/${userData.id}`);
+      })
+      .catch(err => console.error(err));
+    }
+  })
 
+  // Delete request for deleting a user's account
+  // TODO: db.deleteUserByID
+  router.delete("/:userID", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+    const userID = Number(req.params.userID);
+    if (userData.id !== userID) {
+      req.flash("danger", "You don't have permission to do that!");
+      res.redirect("/");
+    } else {
+      db.deleteUserByID(userID)
+      .then(res => {
+        req.flash("success", "Account deleted successfully! Goodbye!");
+        res.redirect("/");
+      })
+      .catch(err => console.error(err));
+    }
+  })
 
   return router;
 };

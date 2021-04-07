@@ -23,24 +23,23 @@
 
             <!-- CHANGE AVATAR -->
             <p class="lead">Choose an avatar:</p>
-            <form class="form mb-5" action="/users/<% userData.id %>?_method=PATCH" method="POST">
-              <div class="form-group mb-2">
-                <div id="account-avatars" class="d-flex flex-wrap justify-content-start">
-                  <% for (let i = 1; i < 23; i++) { %>
-                    <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
-                      <input type="image" src="/images/avatars/<%= i %>.png" value="<%= i %>" alt="Submit">
-                    </form>
-                  <% } %>
-                </div>
+            <div class="form-group mb-2">
+              <div id="account-avatars" class="d-flex flex-wrap justify-content-start">
+                <% for (let i = 1; i < 23; i++) { %>
+                  <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
+                    <input type="hidden" name="avatar_id" value="<%= i %>" />
+                    <input type="image" src="/images/avatars/<%= i %>.png" alt="Submit">
+                  </form>
+                <% } %>
               </div>
-            </form>
+            </div>
 
             <div class="divider-h mb-3"></div>
 
             <!-- DELETE ACCOUNT -->
             <p class="lead">Delete your account:</p>
             <p>To delete your account, press the button below. Be careful, this action is <strong>irreversible</strong> and all of your content on InquizitorApp including your quizzes and reviews will be removed. <em>It will be as if you never existed. :(</em></p>
-            <form class="mt-2" method="POST" action="/users/<% userData.id %>?_method=DELETE">
+            <form class="mt-2" method="POST" action="/users/<%= userData.id %>?_method=DELETE">
               <button type="submit" class="btn-custom btn-custom-red mr-2">
                 Delete Account
               </button>
