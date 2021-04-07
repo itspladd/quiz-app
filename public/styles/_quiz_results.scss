@@ -35,7 +35,7 @@
 
 .response-incorrect {
   border-color: $red;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: $red-transparent;
 
   .results-correctness {
     color: $red;
@@ -45,7 +45,7 @@
 
 .response-correct {
   border-color: $green;
-  background-color: rgba(0, 255, 42, 0.1);
+  background-color: $green-transparent;
 
   .results-correctness {
     color: $green;

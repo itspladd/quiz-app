@@ -4,6 +4,7 @@
 <head>
   <title>Dashboard - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/dashboard.js"></script>
 </head>
 
 <body>
@@ -14,14 +15,91 @@
 
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="overflow-auto border-purple">
+      <section id="main-split" class="border-purple">
         <!-- MAIN TITLE -->
         <div id="main-title" class="mb-5">
           Dashboard
         </div>
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
-          <!-- CONTENT HERE -->
+
+          <!-- TEMPORARY (change to empty list to preview no user quizzes/history)-->
+          <% const userQuizzes = [1,1,1,1,1,1,1,1,1,1] %>
+          <% const userHistory = [1,1,1,1,1,1,1] %>
+          <!--------------->
+
+          <!-- DASHBOARD TABS -->
+
+          <button id="tab-quizzes" type="button" class="active-tab tab-btn mr-2">
+            My Quizzes (<%= userQuizzes.length %>)
+          </button>
+          <button id="tab-history" type="button" class="tab-btn mr-2">
+            My History
+          </button>
+
+          <!-- DASHBOARD CONTENT -->
+
+          <!-- MY QUIZZES -->
+          <div id="user-quizzes" class="main-fixed">
+            <% for (const quiz of userQuizzes) { %>
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz">
+                  <div class="col-8">
+                    <p class="quiz-title mb-0 mt-0">My Quiz Title<%= quiz.title %></p>
+                    <p class="quiz-date d-none d-xl-inline">My Quiz Desc<%= quiz.description %></p>
+                    <p class="quiz-author d-none d-md-block my-1 text-muted">Jan 1, 2021<%= quiz.creation_date %></p>
+                  </div>
+                  <div class="user-dash-control d-flex flex-column">
+                    <!-- BUTTON WITH VIEW QUIZ LINK -->
+                    <a href="/quizzes/<%= quiz.id %>">
+                      <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
+                        View
+                      </button>
+                    </a>
+                    <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
+                      <button type="submit" class="delete-quiz btn-custom btn-custom-red btn-custom-md mr-2">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+            <% } %>
+            <!-- CREATE A QUIZ (if the user has no quizzes) -->
+            <% if (!userQuizzes.length) { %>
+              <p class="lead">You don't have any quizzes yet. :(</p>
+              <button type="button" class="btn-custom btn-custom-blue mr-2">
+                Create Quiz
+              </button>
+            <% } %>
+          </div>
+
+          <!-- QUIZ HISTORY -->
+          <div id="user-history" class="main-fixed d-none">
+            <% for (const session of userHistory) { %>
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                  <div class="col-8">
+                    <p class="quiz-title mb-0 mt-0">Quiz Title<%= session.quiz_title %></p>
+                    <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time ? `Completed on: ${session.end_time}` : "Abandoned" %></p>
+                  </div>
+                  <div class="user-dash-control flex-column <%= true || session.result_id ? "d-flex" : "d-none" %> ">
+                    <!-- BUTTON WITH LINK TO RESULTS (if it exists) -->
+                    <a href="/results/<%= session.result_id %> ">
+                      <button type="button" class="btn-custom btn-custom-yellow btn-custom-md mr-2">
+                        Results
+                      </button>
+                    </a>
+                  </div>
+                </div>
+            <% } %>
+            <!-- BROWSE QUIZZES (if the user has no quiz history) -->
+            <% if (!userHistory.length) { %>
+              <p class="lead">You haven't taken any quizzes yet. :(</p>
+              <button type="button" class="btn-custom mr-2">
+                Browse Quizzes
+              </button>
+            <% } %>
+          </div>
+
         </div>
       </section>
     </div>
