@@ -8,5 +8,6 @@ CREATE TABLE quizzes (
   description VARCHAR(60) NOT NULL,
   views INTEGER DEFAULT 0,
   creation_time TIMESTAMP DEFAULT NOW(),
-  public BOOLEAN DEFAULT FALSE
+  public BOOLEAN DEFAULT FALSE,
+  active BOOLEAN DEFAULT TRUE
 );

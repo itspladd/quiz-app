@@ -221,7 +221,6 @@ module.exports = (db) => {
     .then(rows => {
       const author = rows[0].author_id;
       if (userData.id !== author) {
-        console.log(userData.id, author)
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
@@ -229,6 +228,30 @@ module.exports = (db) => {
         db.toggleQuizPublic(req.params.quizID)
         .then(rows => {
           req.flash("success", "Update successful!");
+          res.redirect("/users/dashboard");
+        })
+        .catch(err => console.error(err));
+      }
+    })
+    .catch(err => console.error(err));
+  })
+
+  // User can "delete" a quiz, which just deactivates it in our DB.
+  router.delete("/:quizID", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+    db.getQuizAuthor(req.params.quizID)
+    .then(rows => {
+      const author = rows[0].author_id;
+      if (userData.id !== author) {
+        req.flash("danger", "You don't have permission to do that!");
+        res.redirect("/");
+        return;
+      } else {
+        db.toggleQuizActive(req.params.quizID)
+        .then(rows => {
+          req.flash("success", "Quiz deleted!");
           res.redirect("/users/dashboard");
         })
         .catch(err => console.error(err));

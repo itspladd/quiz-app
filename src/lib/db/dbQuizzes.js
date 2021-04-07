@@ -12,10 +12,13 @@ module.exports = {
   getPublicQuizzes: function(searchParameters) {
     let queryString = `
       SELECT quizzes.*,
+        categories.title AS category_title,
         users.username AS author
         FROM quizzes
         JOIN users ON author_id = users.id
+        JOIN categories ON category_id = categories.id
       WHERE public = TRUE
+        AND active
     `;
     const queryParams = [];
     // Close out the query
@@ -30,6 +33,7 @@ module.exports = {
       FROM quizzes
         JOIN users ON users.id = author_id
       WHERE quizzes.id = $1
+        AND active
       ORDER BY creation_time DESC;
     `;
     const queryParams = [id];
@@ -41,7 +45,8 @@ module.exports = {
       SELECT quizzes.*
       FROM quizzes
       JOIN users ON users.id = author_id
-      WHERE author_id = $1
+      WHERE author_id = $1 
+        AND active
       ORDER BY creation_time DESC;
     `;
     const queryParams = [userID];
@@ -206,6 +211,16 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  toggleQuizActive: function(quiz_id) {
+    const queryString = `
+    UPDATE quizzes
+    SET active = NOT active
+    WHERE id = $1
+    `;
+    const queryParams = [quiz_id];
+    return db.query(queryString, queryParams);
+  },
+
   getQuizAuthor: function(quiz_id) {
     const queryString = `
     SELECT author_id
@@ -215,5 +230,6 @@ module.exports = {
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams);
   },
+
 
 };
