@@ -38,9 +38,7 @@ module.exports = (db) => {
         return isQuizFavoritedByUser(userData.id, quizData.id);
       })
       .then(rows => {
-        if (rows.length > 0) {
-          quizData.is_favorited = true;
-        }
+        quizData.is_favorited = (rows.length > 0);
         const templateVars = {
           alerts,
           userData,
