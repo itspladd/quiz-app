@@ -12,10 +12,10 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
-    
+
     let userQuizzes, userHistory;
     if (!userData) {
-      req.flash("warning", "You must be logged in to access that page!");
+      req.flash("warning", "You must be logged in to do that!");
       res.redirect("/login");
     } else {
       db.getQuizzesForUser(userData.id)

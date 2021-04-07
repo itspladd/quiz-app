@@ -227,7 +227,7 @@ module.exports = (db) => {
       } else {
         db.toggleQuizPublic(req.params.quizID)
         .then(rows => {
-          req.flash("success", "Update successful!");
+          req.flash("success", "Quiz updated successfully!");
           res.redirect("/users/dashboard");
         })
         .catch(err => console.error(err));
@@ -251,7 +251,7 @@ module.exports = (db) => {
       } else {
         db.toggleQuizActive(req.params.quizID)
         .then(rows => {
-          req.flash("success", "Quiz deleted!");
+          req.flash("success", "Quiz deleted successfully!");
           res.redirect("/users/dashboard");
         })
         .catch(err => console.error(err));
