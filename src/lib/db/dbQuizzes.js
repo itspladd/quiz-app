@@ -72,8 +72,14 @@ module.exports = {
           ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric 
           / COUNT(*)::numeric )
           * 100)::integer
-          AS score
+          AS score,
+        (SELECT COUNT(*)
+          FROM questions
+          JOIN quizzes
+           ON quizzes.id = questions.quiz_id
+          WHERE quizzes.id = $1) AS num_questions
       FROM quizzes
+        JOIN questions ON questions.quiz_id = quizzes.id
         JOIN quiz_sessions AS sessions ON sessions.quiz_id = quizzes.id
         JOIN session_answers ON sessions.id = session_answers.session_id
         JOIN answers ON session_answers.answer_id = answers.id
