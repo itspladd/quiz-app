@@ -67,12 +67,21 @@ module.exports = {
     const queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
-        users.username AS author
+        users.username AS author,
+        ROUND(
+          ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric 
+          / COUNT(*)::numeric )
+          * 100)::integer
+          AS score
       FROM quizzes
+        JOIN quiz_sessions AS sessions ON sessions.quiz_id = quizzes.id
+        JOIN session_answers ON sessions.id = session_answers.session_id
+        JOIN answers ON session_answers.answer_id = answers.id
         JOIN categories ON category_id = categories.id
         JOIN users ON users.id = author_id
       WHERE quizzes.id = $1
         AND active
+      GROUP BY quizzes.id, categories.title, users.username
       ORDER BY creation_time DESC;
     `;
     const queryParams = [id];
