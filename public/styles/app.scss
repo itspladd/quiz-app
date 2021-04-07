@@ -301,7 +301,7 @@ select {
 .list-quiz {
   border: 2px solid $light;
   border-radius: 0.25rem;
-  min-height: 10rem;
+  min-height: 8rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
@@ -320,6 +320,10 @@ select {
 
   }
 
+  .quiz-title {
+    font-size: 1.2rem;
+  }
+
 }
 
 .tab-btn {
@@ -336,6 +340,16 @@ select {
 
   &.active-tab {
     background-color: $tertiary;
+  }
+
+}
+
+@media (min-width: 1202px) {
+
+  .list-quiz {
+    .quiz-title {
+      font-size: 1.5rem;
+    }
   }
 
 }

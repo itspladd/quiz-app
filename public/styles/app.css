@@ -710,7 +710,7 @@ select {
 .list-quiz {
   border: 2px solid #ffffff79;
   border-radius: 0.25rem;
-  min-height: 10rem;
+  min-height: 8rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
@@ -729,6 +729,10 @@ select {
   opacity: 1;
 }
 
+.list-quiz .quiz-title {
+  font-size: 1.2rem;
+}
+
 .tab-btn {
   border: 1px solid #2e2f4b;
   border-bottom: transparent;
@@ -744,5 +748,11 @@ select {
 
 .tab-btn.active-tab {
   background-color: #222338;
+}
+
+@media (min-width: 1202px) {
+  .list-quiz .quiz-title {
+    font-size: 1.5rem;
+  }
 }
 /*# sourceMappingURL=app.css.map */
