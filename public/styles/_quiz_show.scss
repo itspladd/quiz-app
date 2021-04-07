@@ -52,6 +52,10 @@
   color: $red;
 }
 
+#review-submitted {
+  color: $green;
+}
+
 .quiz-option {
   font-size: 0.9rem;
   border: 2px solid $white;
@@ -97,6 +101,8 @@
 
 }
 
-#review-submitted {
-  color: $green;
+.quiz-stats {
+
+  margin-bottom: 0;
+
 }

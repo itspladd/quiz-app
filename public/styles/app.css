@@ -282,6 +282,10 @@ form .custom-select:focus {
   color: #e22d4b;
 }
 
+#review-submitted {
+  color: #31f37b;
+}
+
 .quiz-option {
   font-size: 0.9rem;
   border: 2px solid #eeeeee;
@@ -328,8 +332,8 @@ form .custom-select:focus {
   font-size: 0.8rem;
 }
 
-#review-submitted {
-  color: #31f37b;
+.quiz-stats {
+  margin-bottom: 0;
 }
 
 #results-score {
