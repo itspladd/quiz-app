@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const moment = require("moment");
 
 module.exports = (db) => {
 
@@ -20,6 +21,9 @@ module.exports = (db) => {
       db.getQuizzesForUser(userData.id)
       .then(rows => {
         userQuizzes = rows;
+        for (let quiz of userQuizzes) {
+          quiz.creation_time = moment(quiz.creation_time).format("LLLL");
+        }
         const templateVars = {
           alerts,
           userData,

@@ -24,7 +24,7 @@
         <div id="main-split-content">
 
           <!-- TEMPORARY (change to empty list to preview no user quizzes/history)-->
-          <% const userQuizzes = [] %>
+
           <% const userHistory = [] %>
           <!--------------->
 
@@ -46,7 +46,7 @@
                   <div class="col-8">
                     <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
                     <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
-                    <p class="quiz-author d-none d-md-block my-1 text-muted"><%= quiz.creation_date %></p>
+                    <p class="quiz-author d-none d-md-block my-1 text-muted">Created <%= quiz.creation_time %></p>
                   </div>
                   <div class="user-dash-control d-flex flex-column">
                     <!-- BUTTON WITH VIEW QUIZ LINK -->
