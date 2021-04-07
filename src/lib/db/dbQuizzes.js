@@ -83,16 +83,22 @@ module.exports = {
       SELECT quizzes.*,
         categories.title AS category_title,
         users.username AS author,
-        ROUND(
-          ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric
-          / COUNT(*)::numeric )
-          * 100)::integer
-          AS score,
-        (SELECT COUNT(*)
-          FROM questions
-          JOIN quizzes
-           ON quizzes.id = questions.quiz_id
-          WHERE quizzes.id = $1) AS num_questions
+          ROUND(
+            ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric
+            / COUNT(*)::numeric )
+            * 100)::integer
+        AS score,
+          (SELECT COUNT(*)
+            FROM questions
+            JOIN quizzes
+            ON quizzes.id = questions.quiz_id
+            WHERE quizzes.id = $1)
+        AS num_questions,
+          (SELECT COUNT(*)
+            FROM quiz_sessions
+            JOIN quizzes ON quiz_sessions.quiz_id = quizzes.id
+            WHERE quizzes.id = $1)
+        AS total_plays
       FROM quizzes
         FULL OUTER JOIN quiz_sessions AS sessions ON sessions.quiz_id = quizzes.id
         JOIN questions ON questions.quiz_id = quizzes.id
