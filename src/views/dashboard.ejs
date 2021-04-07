@@ -42,19 +42,22 @@
           <!-- MY QUIZZES -->
           <div id="user-quizzes" class="main-fixed">
             <% for (const quiz of userQuizzes) { %>
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz">
                   <div class="col-8">
                     <p class="quiz-title mb-0 mt-0">My Quiz Title<%= quiz.title %></p>
                     <p class="quiz-date d-none d-xl-inline">My Quiz Desc<%= quiz.description %></p>
                     <p class="quiz-author d-none d-md-block my-1 text-muted">Jan 1, 2021<%= quiz.creation_date %></p>
                   </div>
                   <div class="user-dash-control d-flex flex-column">
+                    <a href="/quizzes/<%= quiz.id %>"></a>
                     <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
                       View
                     </button>
-                    <button type="button" class="btn-custom btn-custom-red btn-custom-md mr-2">
-                      Delete
-                    </button>
+                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
+                      <button data-id="<%= quiz.id %>" type="submit" class="delete-quiz btn-custom btn-custom-red btn-custom-md mr-2">
+                        Delete
+                      </button>
+                    </form>
                   </div>
                 </div>
             <% } %>
