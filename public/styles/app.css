@@ -585,6 +585,10 @@ select {
   bottom: 0;
 }
 
+#share-btn {
+  width: 7.5rem;
+}
+
 .btn-custom {
   color: #faa515;
   background-color: #fad10710;
