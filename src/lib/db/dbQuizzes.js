@@ -72,7 +72,7 @@ module.exports = {
       WHERE public = TRUE
         AND active
       GROUP BY quizzes.id
-      ORDER BY COUNT(quiz_sessions.*)
+      ORDER BY COUNT(quiz_sessions.*) DESC
       LIMIT 7
     `;
     return db.query(queryString, []);
