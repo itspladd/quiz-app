@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { json } = require("body-parser");
 
 let dbParams = {};
 if (process.env.DATABASE_URL) {
@@ -12,7 +13,6 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
-
 const {
   Pool
 } = require("pg");
