@@ -459,7 +459,7 @@ form .custom-select:focus {
 }
 
 #side-split-bottom p img {
-  width: 2.5rem;
+  width: 2.1rem;
   margin-right: 1.5rem;
 }
 
@@ -468,13 +468,14 @@ form .custom-select:focus {
 }
 
 #trending .trending-number {
-  font-size: 2rem;
-  margin-right: 2rem;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  width: 3rem;
 }
 
 #trending .trending-item {
   height: 4rem;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -493,11 +494,15 @@ form .custom-select:focus {
 
 #trending .trending-item .trending-title {
   font-weight: bold;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 #trending .trending-item .trending-plays {
   font-size: 0.8rem;
+}
+
+#trending .trending-item .trending-go {
+  width: 2rem;
 }
 
 #side-full {

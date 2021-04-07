@@ -3,17 +3,25 @@
 
   <div id="trending">
 
-    <div class="trending-item">
-      <div class="d-flex flex-row align-items-center">
-        <div class="trending-number">
-          #1
-        </div>
-        <div>
-          <div class="trending-title">Quiz Title</div>
-          <div class="trending-plays">Total Plays: 1337</div>
+    <% const rankData = [] %>
+
+    <% for (let i = 0; i < rankData.length; i++) { %>
+
+      <div class="trending-item">
+        <div class="d-flex flex-row align-items-center justify-content-start">
+          <div class="trending-number d-flex justify-content-center">
+            #<%= i + 1 %>
+          </div>
+          <div>
+            <div class="trending-title">
+              <%= rankData[i].title %>
+            </div>
+            <div class="trending-plays">Total Plays: <%= rankData[i].total_plays %> </div>
+          </div>
         </div>
       </div>
-    </div>
+
+    <% } %>
 
   </div>
 </section>
