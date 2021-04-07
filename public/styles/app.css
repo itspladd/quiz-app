@@ -391,24 +391,6 @@ form .custom-select:focus {
   width: 6rem;
 }
 
-.tab-btn {
-  border: 1px solid #2e2f4b;
-  border-bottom: transparent;
-  background-color: #1a1b2b;
-  color: #eeeeee;
-  padding: 0.5rem 1rem;
-}
-
-#tab-quizzes:hover,
-#tab-history:hover {
-  background-color: #222338;
-}
-
-#tab-quizzes.active-tab,
-#tab-history.active-tab {
-  background-color: #222338;
-}
-
 #user-quizzes {
   font-size: 0.8rem;
 }
@@ -729,5 +711,21 @@ select {
 
 .list-quiz:hover img {
   opacity: 1;
+}
+
+.tab-btn {
+  border: 1px solid #2e2f4b;
+  border-bottom: transparent;
+  background-color: #1a1b2b;
+  color: #eeeeee;
+  padding: 0.5rem 1rem;
+}
+
+.tab-btn:hover {
+  background-color: #222338;
+}
+
+.tab-btn.active-tab {
+  background-color: #222338;
 }
 /*# sourceMappingURL=app.css.map */

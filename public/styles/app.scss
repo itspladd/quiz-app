@@ -315,3 +315,20 @@ select {
   }
 
 }
+
+.tab-btn {
+  border: 1px solid $tertiary-lighter;
+  border-bottom: transparent;
+  background-color: $tertiary-darker;
+  color: $white;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    background-color: $tertiary;
+  }
+
+  &.active-tab {
+    background-color: $tertiary;
+  }
+
+}
