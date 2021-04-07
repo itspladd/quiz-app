@@ -687,14 +687,14 @@ select {
   padding-bottom: 0.5rem;
 }
 
-#page-footer {
-  border: 0.25rem solid #222338;
-  position: fixed;
-  bottom: 0;
-}
-
 #share-btn {
   width: 7.5rem;
+}
+
+#page-footer {
+  border: 25px solid #222338;
+  position: fixed;
+  bottom: 0px;
 }
 
 .btn-custom {

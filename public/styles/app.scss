@@ -142,14 +142,14 @@ select {
 
 }
 
-#page-footer {
-  border: 0.25rem solid $tertiary;
-  position: fixed;
-  bottom: 0;
-}
-
 #share-btn {
   width: 7.5rem;
+}
+
+#page-footer {
+  border: 25px solid $tertiary;
+  position: fixed;
+  bottom: 0px;
 }
 
 .btn-custom {
