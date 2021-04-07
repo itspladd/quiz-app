@@ -56,9 +56,15 @@
                         View
                       </button>
                     </a>
+                    <!-- BUTTON WITH PATCH QUIZ REQUEST -->
+                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=PATCH">
+                      <button type="submit" class="btn-custom <%= quiz.public ? "" : "btn-custom-blue" %> btn-custom-md mb-2 mr-2">
+                        <%= quiz.public ? "Unlist" : "Publish" %>
+                      </button>
+                    </form>
                     <!-- BUTTON WITH DELETE QUIZ REQUEST -->
                     <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
-                      <button type="submit" class="delete-quiz btn-custom btn-custom-red btn-custom-md mr-2">
+                      <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
                         Delete
                       </button>
                     </form>
