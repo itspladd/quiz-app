@@ -50,7 +50,11 @@ module.exports = {
     let queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
-        users.username AS author
+        users.username AS author,
+          (CASE 
+            WHEN quizzes.coverphoto_url IS NULL
+            THEN categories.coverphoto_url END) 
+        AS coverphoto_url
         FROM quizzes
         JOIN users ON author_id = users.id
         JOIN categories ON category_id = categories.id
@@ -83,6 +87,10 @@ module.exports = {
       SELECT quizzes.*,
         categories.title AS category_title,
         users.username AS author,
+          (CASE 
+            WHEN quizzes.coverphoto_url IS NULL
+            THEN categories.coverphoto_url END) 
+        AS coverphoto_url,
           ROUND(
             ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric
             / COUNT(*)::numeric )
@@ -108,7 +116,7 @@ module.exports = {
         JOIN users ON users.id = author_id
       WHERE quizzes.id = $1
         AND active
-      GROUP BY quizzes.id, categories.title, users.username
+      GROUP BY quizzes.id, categories.id, users.username
       ORDER BY creation_time DESC;
     `;
     const queryParams = [id];

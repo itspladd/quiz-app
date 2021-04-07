@@ -11,16 +11,17 @@
     border: 2px solid transparent;
     opacity: 0.9;
     padding: 0.1rem;
+
     &:hover:not(.current) {
       border-color: $white;
-      // border-radius: 100%;
       opacity: 1;
     }
+
     &.current {
       border: 2px solid $white;
       background-color: $tertiary-lighter;
-      // border-radius: 25%;
     }
+
   }
 
 }

@@ -29,13 +29,14 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
+    const user_id = userData ? userData.id : null;
     let resultData, sessionData, quizData;
     db.getResults(req.params.resultID)
       .then(rows => {
         resultData = rows[0];
         quizData = resultData.quizData;
         sessionData = resultData.sessionData;
-        return isQuizFavoritedByUser(userData.id, quizData.id);
+        return isQuizFavoritedByUser(user_id, quizData.id);
       })
       .then(rows => {
         quizData.is_favorited = (rows.length > 0);
