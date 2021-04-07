@@ -30,7 +30,7 @@
             <p class="h1"><%= quizData.title %> </p>
             <p class="lead"><%= quizData.description %></p>
             <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
-            <div>Total plays: <%= quizData.total_plays || "<quizData.total_plays>" %></div>
+            <div>Total plays: <%= quizData.total_plays %></div>
             <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %></div>
 
             <div class="d-flex flex-row justify-content-md-between">

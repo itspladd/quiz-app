@@ -493,6 +493,7 @@ form .custom-select:focus {
 
 #trending a:hover {
   opacity: 1;
+  color: #fad207;
   border-top-color: #ffffff79;
   border-bottom-color: #ffffff79;
 }
