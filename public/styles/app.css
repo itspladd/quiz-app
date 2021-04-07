@@ -391,10 +391,6 @@ form .custom-select:focus {
   width: 6rem;
 }
 
-#user-quizzes {
-  font-size: 0.8rem;
-}
-
 #user-quizzes .quiz-public {
   color: #fad207;
 }
