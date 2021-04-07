@@ -413,6 +413,12 @@ form .custom-select:focus {
   color: #008cff;
 }
 
+.abandoned {
+  color: #e22d4b;
+  font-size: 0.7rem;
+  margin-right: 0.9rem;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
