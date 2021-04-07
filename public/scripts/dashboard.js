@@ -1,36 +1,44 @@
-const showTab = (tab) => {
+const selectTab = (tab, content) => {
 
-  $(tab).removeClass("d-none");
+  $(tab).addClass("active-tab");
+  $(content).removeClass("d-none");
 
 };
 
-const hideTab = (tab) => {
+const unselectTab = (tab, content) => {
 
-  $(tab).addClass("d-none");
+  $(tab).removeClass("active-tab");
+  $(content).addClass("d-none")
 
 }
 
 $(document).ready(function() {
 
-  const userQuizzes = $("#user-quizzes");
-  const userHistory = $("#user-history");
-  let current = userQuizzes;
+  const quizTab = $("#tab-quizzes");
+  const historyTab = $("#tab-history");
+  const quizContent = $("#user-quizzes");
+  const historyContent = $("#user-history");
+  let currentTab = quizTab;
+  let currentContent = quizContent;
 
   // Switch to My Quizzes tab (default)
   $("#tab-quizzes").on("click", function() {
-    if (current !== userQuizzes) {
-      showTab(userQuizzes);
-      hideTab(current);
-      current = userQuizzes;
+    if (currentTab !== quizTab) {
+      selectTab(quizTab, quizContent);
+      unselectTab(currentTab, currentContent);
+      currentTab = quizTab;
+      currentContent = quizContent;
     }
+
   });
 
   // Switch to My History tab
   $("#tab-history").on("click", function() {
-    if (current !== userHistory) {
-      showTab(userHistory);
-      hideTab(current);
-      current = userHistory;
+    if (currentTab !== historyTab) {
+      selectTab(historyTab, historyContent);
+      unselectTab(currentTab, currentContent);
+      currentTab = historyTab;
+      currentContent = historyContent;
     }
   });
 

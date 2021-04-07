@@ -391,6 +391,24 @@ form .custom-select:focus {
   width: 6rem;
 }
 
+.dash-tab {
+  border: 1px solid #2e2f4b;
+  border-bottom: transparent;
+  background-color: #1a1b2b;
+  color: #eeeeee;
+  padding: 0.5rem 1rem;
+}
+
+#tab-quizzes:hover,
+#tab-history:hover {
+  background-color: #222338;
+}
+
+#tab-quizzes.active-tab,
+#tab-history.active-tab {
+  background-color: #222338;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
@@ -500,7 +518,7 @@ select {
   height: 34.8rem;
   overflow: auto;
   padding: 1rem;
-  border: 1px solid #222338;
+  border: 1px solid #2e2f4b;
 }
 
 #main-split .main-fixed::-webkit-scrollbar {
