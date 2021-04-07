@@ -31,6 +31,8 @@ const filterData = (data, category) => {
       console.log(quiz.coverphoto_url)
       $quizItem.find(".list-quiz")
         .css("background-image", `url("${quiz.coverphoto_url}")`);
+    } else {
+      console.log("no cover photo found");
     }
 
     // Add quiz to browser container
