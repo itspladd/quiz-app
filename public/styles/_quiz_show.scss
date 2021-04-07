@@ -15,6 +15,7 @@
 
     &:hover {
       border-color: $red;
+      background-color: $red-transparent;
     }
 
   }
@@ -24,6 +25,7 @@
 
     &:hover {
       border-color: $blue;
+      background-color: $blue-transparent;
     }
 
   }
@@ -33,6 +35,7 @@
 
     &:hover {
       border-color: $green;
+      background-color: $green-transparent;
     }
 
   }
@@ -42,6 +45,7 @@
 
     &:hover {
       border-color: $primary;
+      background-color: $yellow-transparent;
     }
 
   }

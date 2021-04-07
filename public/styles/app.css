@@ -252,6 +252,7 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(1):hover {
   border-color: #e22d4b;
+  background-color: #bd294218;
 }
 
 #quiz-answers :nth-child(2) {
@@ -260,6 +261,7 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(2):hover {
   border-color: #008cff;
+  background-color: #0053cf2a;
 }
 
 #quiz-answers :nth-child(3) {
@@ -268,6 +270,7 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(3):hover {
   border-color: #31f37b;
+  background-color: #23ce6515;
 }
 
 #quiz-answers :nth-child(4) {
@@ -276,6 +279,7 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(4):hover {
   border-color: #fad207;
+  background-color: #fad10710;
 }
 
 #review-error {
