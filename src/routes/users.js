@@ -11,18 +11,24 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
+    
+    let userQuizzes, userHistory;
     if (!userData) {
       req.flash("warning", "You must be logged in to access that page!");
       res.redirect("/login");
     } else {
       db.getQuizzesForUser(userData.id)
-      const templateVars = {
-        alerts,
-        userData,
-        currentPage,
-        rankData
-      };
-      res.render("dashboard", templateVars);
+      .then(rows => {
+        userQuizzes = rows;
+        const templateVars = {
+          alerts,
+          userData,
+          currentPage,
+          rankData,
+          userQuizzes
+        };
+        res.render("dashboard", templateVars);
+      })
     }
   });
 

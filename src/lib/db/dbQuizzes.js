@@ -29,7 +29,8 @@ module.exports = {
         users.username AS author
       FROM quizzes
         JOIN users ON users.id = author_id
-      WHERE quizzes.id = $1;
+      WHERE quizzes.id = $1
+      ORDER BY creation_time DESC;
     `;
     const queryParams = [id];
     return db.query(queryString, queryParams);
