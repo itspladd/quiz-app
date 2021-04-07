@@ -632,18 +632,22 @@ form .custom-select:focus {
 }
 
 #account-avatars input {
-  height: 4.5rem;
-  width: 4.5rem;
-  margin: 0.2rem;
+  height: 4.4rem;
+  width: 4.4rem;
   outline: none;
-  border: 4px solid transparent;
+  border: 2px solid transparent;
   opacity: 0.9;
+  padding: 0.1rem;
 }
 
-#account-avatars input:hover {
-  border-color: #2e2f4b;
-  border-radius: 100%;
+#account-avatars input:hover:not(.current) {
+  border-color: #eeeeee;
   opacity: 1;
+}
+
+#account-avatars input.current {
+  border: 2px solid #eeeeee;
+  background-color: #2e2f4b;
 }
 
 html body {

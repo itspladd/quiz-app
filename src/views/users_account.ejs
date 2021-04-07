@@ -24,11 +24,12 @@
             <!-- CHANGE AVATAR -->
             <p class="lead">Choose an avatar:</p>
             <div class="form-group mb-2">
-              <div id="account-avatars" class="d-flex flex-wrap justify-content-start">
+              <div id="account-avatars" class="d-flex flex-wrap justify-content-start p-1">
                 <% for (let i = 1; i < 23; i++) { %>
+                  <% const isCurrentAvatar = userData.avatar_url === `/images/avatars/${i}.png` %>
                   <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
                     <input type="hidden" name="avatar_id" value="<%= i %>" />
-                    <input type="image" src="/images/avatars/<%= i %>.png" alt="Submit">
+                    <input class="<%= isCurrentAvatar ? "current" : "" %>" type="image" src="/images/avatars/<%= i %>.png" alt="Submit" <%= isCurrentAvatar ? "disabled" : "" %> />
                   </form>
                 <% } %>
               </div>
