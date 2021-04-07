@@ -63,13 +63,28 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  getTrendingQuizzes: function() {
+    let queryString = `
+      SELECT quizzes.*,
+      COUNT(quiz_sessions.*) AS total_plays
+      FROM quizzes
+      JOIN quiz_sessions ON quizzes.id = quiz_sessions.quiz_id
+      WHERE public = TRUE
+        AND active
+      GROUP BY quizzes.id
+      ORDER BY COUNT(quiz_sessions.*)
+      LIMIT 7
+    `;
+    return db.query(queryString, []);
+  },
+
   getQuizByID: function(id) {
     const queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
         users.username AS author,
         ROUND(
-          ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric 
+          ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric
           / COUNT(*)::numeric )
           * 100)::integer
           AS score,
@@ -101,7 +116,7 @@ module.exports = {
       FROM quizzes
         JOIN categories ON category_id = categories.id
         JOIN users ON users.id = author_id
-      WHERE author_id = $1 
+      WHERE author_id = $1
         AND active
       ORDER BY creation_time DESC;
     `;
@@ -248,4 +263,3 @@ module.exports = {
 
 
 };
-

@@ -467,6 +467,19 @@ form .custom-select:focus {
   height: 28rem;
 }
 
+#trending a:nth-child(odd) {
+  background-color: #222338;
+}
+
+#trending a:not(:first-child) {
+  color: #eeeeee;
+  opacity: 0.9;
+}
+
+#trending a:not(:first-child):hover {
+  opacity: 1;
+}
+
 #trending .trending-number {
   font-size: 1.5rem;
   margin-right: 1rem;

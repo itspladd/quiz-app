@@ -34,6 +34,19 @@
 #trending {
   height: 28rem;
 
+  a {
+    &:nth-child(odd) {
+      background-color: $tertiary;
+    }
+    &:not(:first-child) {
+      color: $white;
+      opacity: 0.9;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
   .trending-number {
     font-size: 1.5rem;
     margin-right: 1rem;

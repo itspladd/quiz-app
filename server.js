@@ -47,15 +47,19 @@ app.use((req, res, next) => {
   db.getUserByID(cookieUserID)
     .then(rows => {
       const userData = rows[0];
-      res.locals.vars = {
-        alerts: req.flash(),
-        visitorID,
-        userData: userData || null,
-        currentPage: req.originalUrl,
-        currentDateTime,
-        rankData: null
-      };
-      next();
+      db.getTrendingQuizzes()
+        .then(rows => {
+          const rankData = rows;
+          res.locals.vars = {
+            alerts: req.flash(),
+            visitorID,
+            userData: userData || null,
+            currentPage: req.originalUrl,
+            currentDateTime,
+            rankData
+          };
+          next();
+        })
     })
     .catch((err) => console.error(err));
 });
