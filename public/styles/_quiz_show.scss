@@ -92,22 +92,38 @@
   background-color: $tertiary-darker;
 
   img {
-    height: 0.75rem;
-    width: 0.75rem;
-    margin-bottom: 0.1rem;
+    max-height: 6rem;
+    max-width: 6rem;
   }
 
-  .review-avatar {
+  .review-rating {
+    img {
+      height: 0.75rem;
+      width: 0.75rem;
+      margin-bottom: 0.1rem;
 
+    }
   }
+
+  .review-user {
+    width: 6rem;
+  }
+
+  .review-username {
+    font-weight: 700;
+    margin: 0;
+  }
+
 
   .review-title {
     font-weight: 700;
   }
 
   .review-timestamp {
+    color: $light;
     font-size: 0.8rem;
   }
+
 
 }
 

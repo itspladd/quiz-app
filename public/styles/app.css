@@ -345,9 +345,23 @@ form .custom-select:focus {
 }
 
 .quiz-review img {
+  max-height: 6rem;
+  max-width: 6rem;
+}
+
+.quiz-review .review-rating img {
   height: 0.75rem;
   width: 0.75rem;
   margin-bottom: 0.1rem;
+}
+
+.quiz-review .review-user {
+  width: 6rem;
+}
+
+.quiz-review .review-username {
+  font-weight: 700;
+  margin: 0;
 }
 
 .quiz-review .review-title {
@@ -355,6 +369,7 @@ form .custom-select:focus {
 }
 
 .quiz-review .review-timestamp {
+  color: #ffffff79;
   font-size: 0.8rem;
 }
 
