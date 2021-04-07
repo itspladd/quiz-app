@@ -224,9 +224,17 @@ const submitForm = () => {
   // Retrieve quiz info form data
   const title = getValue("#quiz-title");
   const description = getValue("#quiz-desc");
-  const coverphoto_url = getValue("#quiz-photo");
   const category_id = getValue("#quiz-category");
   const public = getValue("#quiz-visibility");
+
+  // // Set cover photo based on category
+  // const coverPhotos = {
+  //   "1": "https://i.imgur.com/MUEFC2O.jpg",
+  //   "2": "https://i.imgur.com/kTcMTv5.jpg",
+  //   "3": "https://i.imgur.com/Zr3TESE.jpg"
+  // }
+
+  // const coverphoto_url = coverPhotos[category_id];
 
   // Retrieve quiz question form data
   const questions = [];
@@ -256,7 +264,7 @@ const submitForm = () => {
     data: {
       title,
       description,
-      coverphoto_url,
+      // coverphoto_url,
       category_id,
       public,
       questions
