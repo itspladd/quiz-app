@@ -224,9 +224,20 @@ const submitForm = () => {
   // Retrieve quiz info form data
   const title = getValue("#quiz-title");
   const description = getValue("#quiz-desc");
-  const coverphoto_url = getValue("#quiz-photo");
+  let coverphoto_url = getValue("#quiz-photo");
   const category_id = getValue("#quiz-category");
   const public = getValue("#quiz-visibility");
+
+  // Set default photo based on category if none provided
+  const defaultPhotos = {
+    "1": "https://i.imgur.com/MUEFC2O.jpg",
+    "2": "https://i.imgur.com/kTcMTv5.jpg",
+    "3": "https://i.imgur.com/Zr3TESE.jpg"
+  }
+
+  if (!coverphoto_url) {
+    coverphoto_url = defaultPhotos[category_id];
+  }
 
   // Retrieve quiz question form data
   const questions = [];

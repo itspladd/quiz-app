@@ -31,7 +31,7 @@
             <p class="lead"><%= quizData.description %></p>
             <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
             <div class="quiz-photo mb-3 mt-2">
-              <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo"><%= quizData.coverphoto_url %>
+              <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
             </div>
             <div>Total plays: <%= quizData.total_plays %></div>
             <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %></div>
