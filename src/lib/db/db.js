@@ -13,15 +13,14 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const AVATAR_URLS = "/images/avatars/";
-const AVATAR_FILETYPE = ".png";
-
 const {
   Pool
 } = require("pg");
 const pool = new Pool(dbParams);
 
 module.exports = {
+  AVATAR_PATH: "/images/avatars/",
+  AVATAR_FILETYPE: ".png",
 
   query: function(queryString, queryParams) {
     // Optional logging, enable to check queries as they run
