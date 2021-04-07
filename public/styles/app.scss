@@ -236,6 +236,24 @@ select {
 
 }
 
+.btn-custom-pink {
+  color: $pink;
+  background-color: $pink-transparent;
+  border-color: $pink;
+  outline: $pink;
+
+  &:hover {
+    border-color: $pink;
+    background-color: $pink;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $pink-darker;
+  }
+
+}
+
 .btn-custom-yellow {
   background-color: $yellow-transparent;
 }

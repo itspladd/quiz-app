@@ -861,6 +861,23 @@ select {
           box-shadow: 0px 0px 1px 2px #23ce64;
 }
 
+.btn-custom-pink {
+  color: #ff55a4;
+  background-color: #e0308223;
+  border-color: #ff55a4;
+  outline: #ff55a4;
+}
+
+.btn-custom-pink:hover {
+  border-color: #ff55a4;
+  background-color: #ff55a4;
+}
+
+.btn-custom-pink:active, .btn-custom-pink:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #e03082;
+          box-shadow: 0px 0px 1px 2px #e03082;
+}
+
 .btn-custom-yellow {
   background-color: #fad10710;
 }
