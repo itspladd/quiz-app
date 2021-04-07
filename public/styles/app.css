@@ -471,6 +471,10 @@ form .custom-select:focus {
 #side-split-top {
   min-height: 9rem;
   margin-bottom: 2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #side-split-top .panel-username {
@@ -487,6 +491,10 @@ form .custom-select:focus {
 #side-split-bottom {
   min-height: 34rem;
   padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #side-split-bottom p {
@@ -656,6 +664,10 @@ section {
   border-radius: 5px;
   border: 1px solid #eeeeee;
   padding: 2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 a {
@@ -953,6 +965,12 @@ select {
 }
 
 @media (min-width: 1202px) {
+  .list-quiz {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
   .list-quiz .quiz-title {
     font-size: 1.5rem;
   }

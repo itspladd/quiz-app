@@ -50,6 +50,7 @@ section {
   border-radius: 5px;
   border: 1px solid $white;
   padding: 2rem;
+  user-select: none;
 }
 
 a {
@@ -345,6 +346,7 @@ select {
 @media (min-width: 1202px) {
 
   .list-quiz {
+    user-select: none;
 
     .quiz-title {
       font-size: 1.5rem;

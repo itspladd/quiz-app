@@ -3,6 +3,7 @@
 #side-split-top {
   min-height: 9rem;
   margin-bottom: 2rem;
+  user-select: none;
 
   .panel-username {
     text-transform: uppercase;
@@ -20,6 +21,7 @@
 #side-split-bottom {
   min-height: 34rem;
   padding: 0;
+  user-select: none;
 
   p {
     margin: 2rem 2rem;
