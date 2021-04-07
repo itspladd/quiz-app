@@ -25,9 +25,14 @@ const filterData = (data, category) => {
         </div>
       </a>
     `);
-    // Set background image
-    $quizItem.find(".list-quiz")
-      .css("background-image", `url("${quiz.coverphoto_url}")`);
+
+    // Set cover photo as the background image if it exists
+    if (quiz.coverphoto_url) {
+      console.log(quiz.coverphoto_url)
+      $quizItem.find(".list-quiz")
+        .css("background-image", `url("${quiz.coverphoto_url}")`);
+    }
+
     // Add quiz to browser container
     $browser.append($quizItem);
   }
