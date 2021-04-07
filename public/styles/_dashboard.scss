@@ -1,19 +1,41 @@
 @import "global";
 
-.user-dash-control {
-  .btn-custom {
-    width: 6rem;
+// .user-dash-control {
+//   .btn-custom {
+//     width: 6rem;
+//   }
+// }
+
+.list-quiz {
+
+  &.quiz-public {
+
+    border-color: $primary-darker;
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    .quiz-visibility {
+      font-size: 0.8rem;
+      color: $primary;
+    }
+
   }
-}
 
-#user-quizzes {
+  &.quiz-unlisted {
 
-  .quiz-public {
-    color: $primary;
-  }
+    border-color: $blue-darker;
 
-  .quiz-unlisted {
-    color: $blue;
+    &:hover {
+      border-color: $blue;
+    }
+
+    .quiz-visibility {
+      font-size: 0.8rem;
+      color: $blue;
+    }
+
   }
 
 }

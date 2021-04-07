@@ -387,15 +387,29 @@ form .custom-select:focus {
   color: #31f37b;
 }
 
-.user-dash-control .btn-custom {
-  width: 6rem;
+.list-quiz.quiz-public {
+  border-color: #faa515;
 }
 
-#user-quizzes .quiz-public {
+.list-quiz.quiz-public:hover {
+  border-color: #fad207;
+}
+
+.list-quiz.quiz-public .quiz-visibility {
+  font-size: 0.8rem;
   color: #fad207;
 }
 
-#user-quizzes .quiz-unlisted {
+.list-quiz.quiz-unlisted {
+  border-color: #0072cf;
+}
+
+.list-quiz.quiz-unlisted:hover {
+  border-color: #008cff;
+}
+
+.list-quiz.quiz-unlisted .quiz-visibility {
+  font-size: 0.8rem;
   color: #008cff;
 }
 
@@ -639,6 +653,12 @@ select {
 
 .btn-custom-yellow {
   background-color: #fad10710;
+}
+
+.btn-custom-md {
+  font-size: 0.8rem;
+  margin: 0.2rem;
+  width: 5.5rem;
 }
 
 .highlight {
