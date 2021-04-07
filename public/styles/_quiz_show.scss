@@ -127,8 +127,13 @@
 
 }
 
-.quiz-stats {
+.quiz-photo {
 
-  margin-bottom: 0;
+  img {
+    object-fit: cover;
+    max-height: 15rem;
+    width: 100%;
+    border: 1px solid $white;
+  }
 
 }
