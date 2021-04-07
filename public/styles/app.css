@@ -431,6 +431,79 @@ form .custom-select:focus {
   margin-right: 0.9rem;
 }
 
+#side-split-top {
+  background-color: #1a1b2b;
+  min-height: 9rem;
+  margin-bottom: 2rem;
+}
+
+#side-split-top .panel-username {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+}
+
+#side-split-top .panel-avatar {
+  width: 4rem;
+  margin-right: 1rem;
+}
+
+#side-split-bottom {
+  background-color: #1a1b2b;
+  min-height: 34rem;
+  padding: 0;
+}
+
+#side-split-bottom p {
+  margin: 2rem 2rem;
+}
+
+#side-split-bottom p img {
+  width: 2.5rem;
+  margin-right: 1.5rem;
+}
+
+#trending {
+  height: 28rem;
+}
+
+#trending .trending-number {
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+#trending .trending-item {
+  height: 4rem;
+  padding-left: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#trending .trending-item:nth-child(odd) {
+  background-color: #222338;
+}
+
+#trending .trending-item .trending-title {
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+}
+
+#trending .trending-item .trending-plays {
+  font-size: 0.8rem;
+}
+
+#side-full {
+  min-height: 45rem;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
@@ -564,19 +637,6 @@ select {
 #main-title img {
   height: 2.5rem;
   padding-bottom: 0.5rem;
-}
-
-#side-full {
-  min-height: 45rem;
-}
-
-#side-split-top {
-  min-height: 19rem;
-  margin-bottom: 2rem;
-}
-
-#side-split-bottom {
-  min-height: 24rem;
 }
 
 #page-footer {

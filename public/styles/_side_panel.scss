@@ -1,0 +1,65 @@
+@import "global";
+
+#side-split-top {
+  background-color: $tertiary-darker;
+  min-height: 9rem;
+  margin-bottom: 2rem;
+
+  .panel-username {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-family: $font-mono;
+  }
+  .panel-avatar {
+    width: 4rem;
+    margin-right: 1rem;
+  }
+}
+
+#side-split-bottom {
+  background-color: $tertiary-darker;
+  min-height: 34rem;
+  padding: 0;
+
+  p {
+    margin: 2rem 2rem;
+
+    img {
+      width: 2.5rem;
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+#trending {
+  height: 28rem;
+
+  .trending-number {
+    font-size: 2rem;
+    margin-right: 2rem;
+  }
+
+  .trending-item {
+    height: 4rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &:nth-child(odd) {
+      background-color: $tertiary;
+    }
+    .trending-title {
+      font-weight: bold;
+      font-family: $font-ss;
+    }
+    .trending-plays {
+      font-size: 0.8rem;
+    }
+  }
+
+}
+
+
+#side-full {
+  min-height: 45rem;
+}

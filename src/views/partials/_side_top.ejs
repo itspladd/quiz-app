@@ -1,3 +1,17 @@
-<section id="side-split-top" class="ml-lg-1">
-  <%= userData ? `Signed in as ${userData.username}` : "" %>
+<section id="side-split-top" class="ml-lg-1 d-flex flex-row align-items-center">
+  <div class="d-flex flex-row align-items-center">
+    <img class="panel-avatar" src="<%= userData ? userData.avatar_url || "/images/lightbulb-circle.png" : "/images/lightbulb-circle.png" %>" alt="avatar">
+    <div class="d-flex flex-column">
+      <div class="panel-username"><%= userData ? userData.username : "Anonymous" %></div>
+      <% if (userData) { %>
+        <div class="panel-email text-muted mt-0"><%= userData.email %> </div>
+      <% } else { %>
+
+          <div class="panel-email mt-0">
+            <a href="/login">Login</a> or <a href="/register">register</a>
+          </div>
+      <% } %>
+    </div>
+  </div>
+
 </section>

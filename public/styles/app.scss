@@ -8,6 +8,7 @@
 @import "quiz_show";
 @import "quiz_results";
 @import "dashboard";
+@import "side_panel";
 
 html body {
   background-color: $dark;
@@ -138,19 +139,6 @@ select {
     padding-bottom: 0.5rem;
   }
 
-}
-
-#side-full {
-  min-height: 45rem;
-}
-
-#side-split-top {
-  min-height: 19rem;
-  margin-bottom: 2rem;
-}
-
-#side-split-bottom {
-  min-height: 24rem;
 }
 
 #page-footer {

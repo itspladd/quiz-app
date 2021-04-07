@@ -78,6 +78,10 @@ module.exports = {
    *         A promise to the user.
    */
   addUser: (userData) => {
+    // Generate random avatar
+    const avatarID = Math.floor(Math.random() * 10);
+    const avatar = `/images/avatars/${avatarID}.png`
+    userData.avatar_url = avatar;
     // Extract the user data into queryParams and the keys into an array
     return db.insert("users", userData);
   }
