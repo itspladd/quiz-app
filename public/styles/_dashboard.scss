@@ -6,24 +6,6 @@
   }
 }
 
-.tab-btn {
-  border: 1px solid $tertiary-lighter;
-  border-bottom: transparent;
-  background-color: $tertiary-darker;
-  color: $white;
-  padding: 0.5rem 1rem;
-}
-
-#tab-quizzes,
-#tab-history {
-  &:hover {
-    background-color: $tertiary
-  }
-  &.active-tab {
-    background-color: $tertiary;
-  }
-}
-
 #user-quizzes {
   font-size: 0.8rem;
 

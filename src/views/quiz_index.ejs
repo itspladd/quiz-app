@@ -4,6 +4,7 @@
 <head>
   <title>All Quizzes - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_index.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,21 @@
         </div>
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
+
+          <!-- ALL QUIZZES TABS -->
+
+          <% const quizData = [] %>
+          <% const sortTech = quizData.filter(quiz => quiz.category_title === "Technology") %>
+          <% const sortGaming = quizData.filter(quiz => quiz.category_title === "Gaming") %>
+          <% const sortEdu = quizData.filter(quiz => quiz.category_title === "Education") %>
+
+          <button id="tab-all" type="button" class="active-tab tab-btn mr-2">
+            All <%= quizData.length ? `(${quizData.length})` : "" %>
+          </button>
+          <button id="tab-tech" type="button" class="tab-btn mr-2">
+            Technology <%= sortTech.length ? `(${sortTech.length})` : "" %>
+          </button>
+
           <% for (const quiz of quizData) { %>
           <a href="/quizzes/<%= quiz.id %> ">
             <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
