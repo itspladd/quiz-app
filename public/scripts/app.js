@@ -45,6 +45,22 @@ const copyText = (str) => {
   document.body.removeChild($temp);
 };
 
+// Select a tab and display its content
+const selectTab = (tab, content) => {
+
+  $(tab).addClass("active-tab");
+  $(content).removeClass("d-none");
+
+};
+
+// Unselect a content tab and hide its content
+const unselectTab = (tab, content) => {
+
+  $(tab).removeClass("active-tab");
+  $(content).addClass("d-none")
+
+}
+
 $(document).ready(function() {
 
   const scrollBtn = $("#scroll-btn");
