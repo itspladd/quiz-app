@@ -30,11 +30,23 @@
             <p class="h1 mt-1"><%= quizData.title %> </p>
             <p class="lead"><%= quizData.description %></p>
             <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
-            <div>
-              <button id="favorite-btn" type="button" class="btn-custom btn-custom-red">
-                Save
-              </button>
-            </div>
+
+            <!-- FAVORITE BUTTON -->
+            <% if (userData && !quizData.is_favorited) { %>
+              <form method="POST" action="/<%= userData.id %>/favorites">
+                <button type="submit" class="btn-custom btn-custom-white btn-fav mb-3">
+                  Add to Favorites
+                </button>
+              </form>
+            <% } else if (userData && quizData.is_favorited) { %>
+              <form method="POST" action="/<%= userData.id %>/favorites">
+                <button type="submit" class="btn-custom btn-custom-red btn-fav mb-3">
+                  Remove from Favorites
+                </button>
+              </form>
+            <% } %>
+
+            <!-- QUIZ PHOTO AND STATS -->
             <div class="quiz-photo mb-3 mt-2">
               <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
             </div>

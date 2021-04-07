@@ -878,6 +878,23 @@ select {
           box-shadow: 0px 0px 1px 2px #e03082;
 }
 
+.btn-custom-white {
+  color: #eeeeee;
+  background-color: transparent;
+  border-color: #eeeeee;
+  outline: #eeeeee;
+}
+
+.btn-custom-white:hover {
+  border-color: #eeeeee;
+  background-color: #eeeeee;
+}
+
+.btn-custom-white:active, .btn-custom-white:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #ffffff79;
+          box-shadow: 0px 0px 1px 2px #ffffff79;
+}
+
 .btn-custom-yellow {
   background-color: #fad10710;
 }
@@ -886,6 +903,10 @@ select {
   font-size: 0.8rem;
   margin: 0.2rem;
   width: 5.5rem;
+}
+
+.btn-fav {
+  font-size: 0.8rem;
 }
 
 .highlight {
