@@ -26,13 +26,13 @@
           <!-- DASHBOARD TABS -->
 
           <button id="tab-quizzes" type="button" class="active-tab tab-btn mr-2">
-            My Quizzes <%= userQuizzes.length ? `(${userQuizzes.length})` : "" %>
-          </button>
-          <button id="tab-history" type="button" class="tab-btn mr-2">
-            My History
+            Quizzes <%= userQuizzes.length ? `(${userQuizzes.length})` : "" %>
           </button>
           <button id="tab-favorites" type="button" class="tab-btn mr-2">
-            My Favorites
+            Favorites <%= userFavorites.length ? `(${userFavorites.length})` : "" %>
+          </button>
+          <button id="tab-history" type="button" class="tab-btn mr-2">
+            History
           </button>
 
           <!-- DASHBOARD CONTENT -->
