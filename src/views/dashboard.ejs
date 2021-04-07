@@ -57,7 +57,7 @@
                     </a>
                     <!-- BUTTON WITH PATCH QUIZ REQUEST -->
                     <form method="POST" action="/quizzes/<%= quiz.id %>?_method=PATCH">
-                      <button type="submit" class="btn-custom <%= quiz.public ? "" : "btn-custom-blue" %> btn-custom-md mb-2 mr-2">
+                      <button type="submit" class="btn-custom <%= quiz.public ? "btn-custom-blue" : "" %> btn-custom-md mb-2 mr-2">
                         <%= quiz.public ? "Unlist" : "Publish" %>
                       </button>
                     </form>
