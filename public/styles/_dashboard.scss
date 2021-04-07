@@ -23,3 +23,16 @@
     background-color: $tertiary;
   }
 }
+
+#user-quizzes {
+  font-size: 0.8rem;
+
+  .quiz-public {
+    color: $green;
+  }
+
+  .quiz-unlisted {
+    color: $primary;
+  }
+
+}
