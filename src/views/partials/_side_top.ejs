@@ -1,6 +1,6 @@
 <section id="side-split-top" class="ml-lg-1 d-flex flex-row align-items-center">
   <div class="d-flex flex-row align-items-center">
-    <img class="panel-avatar" src="<%= userData ? userData.avatar_url || `/images/avatars/9.png` : "/images/lightbulb-circle.png" %>" alt="avatar">
+    <img class="panel-avatar" src="<%= userData ? userData.avatar_url || `/images/avatars/9.png` : "/images/avatars/anon.png" %>" alt="avatar">
     <div class="d-flex flex-column">
       <div class="panel-username"><%= userData ? userData.username : "Anonymous" %></div>
       <% if (userData) { %>
