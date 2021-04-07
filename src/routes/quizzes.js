@@ -79,6 +79,12 @@ module.exports = (db) => {
           review.timestamp = utils.convertTimestamp(review.created_at);
         }
         quizData.reviews = reviewData;
+        return db.isQuizFavoritedByUser(userData.id, quiz_id);
+      })
+      .then(rows => {
+        if (rows.length > 0) {
+          quizData.is_favorited = true;
+        }
         const templateVars = {
           alerts,
           userData,

@@ -9,6 +9,7 @@ const quizzes = require("./dbQuizzes");
 const sessions = require("./dbSessions");
 const reviews = require("./dbReviews");
 const results = require("./dbResults");
+const favorites = require("./dbFavorites");
 
 module.exports = {
 
@@ -17,6 +18,6 @@ module.exports = {
   ...quizzes,
   ...sessions,
   ...reviews,
-  ...results
-
+  ...results,
+  ...favorites
 };

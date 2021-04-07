@@ -13,7 +13,7 @@ module.exports = (db) => {
       rankData
     } = res.locals.vars;
 
-    let userQuizzes, userHistory;
+    let userQuizzes, userHistory, userFavorites;
     if (!userData) {
       req.flash("warning", "You must be logged in to do that!");
       res.redirect("/login");
@@ -31,13 +31,22 @@ module.exports = (db) => {
         for (let session of userHistory) {
           session.end_time = moment(session.end_time).format("LLLL");
         }
+        
+        return db.getFavoritesForUser(userData.id);
+      })
+      .then(rows => {
+        userFavorites = rows;
+        for (let quiz of userFavorites) {
+          quiz.creation_time = moment(quiz.creation_time).format("LLLL");
+        }
         const templateVars = {
           alerts,
           userData,
           currentPage,
           rankData,
           userQuizzes,
-          userHistory
+          userHistory,
+          userFavorites
         };
         res.render("dashboard", templateVars);
       })
