@@ -1,4 +1,5 @@
 const express = require("express");
+const { isQuizFavoritedByUser } = require("../lib/db/dbFavorites");
 const router = express.Router();
 
 module.exports = (db) => {
@@ -44,6 +45,12 @@ module.exports = (db) => {
           quizData,
           sessionData
         };
+        return isQuizFavoritedByUser(userData.id, quizData.id);
+      })
+      .then(rows => {
+        if (rows.length > 0) {
+          quizData.is_favorited = true;
+        }
         res.render("quiz_results", templateVars);
       })
       .catch(err => {

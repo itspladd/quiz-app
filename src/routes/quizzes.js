@@ -84,8 +84,6 @@ module.exports = (db) => {
       .then(rows => {
         if (rows.length > 0) {
           quizData.is_favorited = true;
-        } else {
-          quizData.is_favorited = false;
         }
         const templateVars = {
           alerts,
