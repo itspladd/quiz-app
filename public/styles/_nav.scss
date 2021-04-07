@@ -4,7 +4,7 @@
   min-height: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: $tertiary;
+  background: linear-gradient($dark, $tertiary-darker, $tertiary);
   font-weight: 700;
   user-select: none;
 

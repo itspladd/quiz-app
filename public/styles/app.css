@@ -2,7 +2,8 @@
   min-height: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #222338;
+  background: -webkit-gradient(linear, left top, left bottom, from(#11121b), color-stop(#1a1b2b), to(#222338));
+  background: linear-gradient(#11121b, #1a1b2b, #222338);
   font-weight: 700;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -432,7 +433,6 @@ form .custom-select:focus {
 }
 
 #side-split-top {
-  background-color: #1a1b2b;
   min-height: 9rem;
   margin-bottom: 2rem;
 }
@@ -449,7 +449,6 @@ form .custom-select:focus {
 }
 
 #side-split-bottom {
-  background-color: #1a1b2b;
   min-height: 34rem;
   padding: 0;
 }
@@ -476,14 +475,10 @@ form .custom-select:focus {
   border: 1px solid transparent;
 }
 
-#trending a:nth-child(odd) {
-  background-color: #222338;
-}
-
 #trending a:hover {
   opacity: 1;
-  border-top-color: white;
-  border-bottom-color: white;
+  border-top-color: #ffffff79;
+  border-bottom-color: #ffffff79;
 }
 
 #trending a:nth-child(1) {
@@ -536,6 +531,10 @@ form .custom-select:focus {
 }
 
 #trending .trending-item:nth-child(odd) {
+  background-color: #1a1b2b;
+}
+
+#trending .trending-item:nth-child(even) {
   background-color: #222338;
 }
 
@@ -552,12 +551,8 @@ form .custom-select:focus {
   width: 2rem;
 }
 
-#side-full {
-  min-height: 45rem;
-}
-
 html body {
-  background-color: #111318;
+  background-color: #11121b;
   color: #eeeeee;
   font-family: "Montserrat", sans-serif;
   -webkit-box-sizing: border-box;
@@ -577,8 +572,8 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px #111318;
-          box-shadow: inset 0 0 6px #111318;
+  -webkit-box-shadow: inset 0 0 6px #11121b;
+          box-shadow: inset 0 0 6px #11121b;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -593,9 +588,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 section {
-  background-color: #1a1b2b;
+  background-color: #11121b;
   border-radius: 5px;
-  border: 2px solid #eeeeee;
+  border: 1px solid #ffffff79;
   padding: 2rem;
 }
 
@@ -674,8 +669,8 @@ select {
 }
 
 #main-split .main-fixed::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px #111318;
-          box-shadow: inset 0 0 6px #111318;
+  -webkit-box-shadow: inset 0 0 6px #11121b;
+          box-shadow: inset 0 0 6px #11121b;
 }
 
 #main-split .main-fixed::-webkit-scrollbar-thumb {
@@ -843,7 +838,7 @@ select {
 }
 
 .list-quiz {
-  border: 2px solid #ffffff79;
+  border: 1px solid #ffffff79;
   border-radius: 0.25rem;
   min-height: 8rem;
   padding: 1rem;

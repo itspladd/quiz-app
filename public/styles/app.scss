@@ -46,9 +46,9 @@ body {
 }
 
 section {
-  background-color: $tertiary-darker;
+  background-color: $dark;
   border-radius: 5px;
-  border: 2px solid $white;
+  border: 1px solid $light;
   padding: 2rem;
 }
 
@@ -292,7 +292,7 @@ select {
 }
 
 .list-quiz {
-  border: 2px solid $light;
+  border: 1px solid $light;
   border-radius: 0.25rem;
   min-height: 8rem;
   padding: 1rem;

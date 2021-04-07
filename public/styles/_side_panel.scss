@@ -1,7 +1,6 @@
 @import "global";
 
 #side-split-top {
-  background-color: $tertiary-darker;
   min-height: 9rem;
   margin-bottom: 2rem;
 
@@ -17,7 +16,6 @@
 }
 
 #side-split-bottom {
-  background-color: $tertiary-darker;
   min-height: 34rem;
   padding: 0;
 
@@ -38,13 +36,10 @@
     user-select: none;
     opacity: 0.9;
     border: 1px solid transparent;
-    &:nth-child(odd) {
-      background-color: $tertiary;
-    }
     &:hover {
       opacity: 1;
-      border-top-color: white;
-      border-bottom-color: white;
+      border-top-color: $light;
+      border-bottom-color: $light;
     }
 
     &:nth-child(1) {
@@ -83,6 +78,9 @@
     flex-direction: column;
     justify-content: center;
     &:nth-child(odd) {
+      background-color: $tertiary-darker;
+    }
+    &:nth-child(even) {
       background-color: $tertiary;
     }
     .trending-title {
@@ -97,9 +95,4 @@
     }
   }
 
-}
-
-
-#side-full {
-  min-height: 45rem;
 }
