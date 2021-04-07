@@ -897,7 +897,7 @@ select {
 }
 
 .tab-btn.active-tab {
-  background-color: #222338;
+  background-color: #2e2f4b;
 }
 
 @media (min-width: 1202px) {
