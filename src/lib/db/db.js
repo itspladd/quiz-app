@@ -13,6 +13,9 @@ if (process.env.DATABASE_URL) {
   };
 }
 
+const AVATAR_URLS = "/images/avatars/";
+const AVATAR_FILETYPE = ".png";
+
 const {
   Pool
 } = require("pg");
