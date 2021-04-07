@@ -29,13 +29,18 @@ module.exports = (db) => {
       currentPage,
       rankData
     } = res.locals.vars;
+    let resultData, sessionData, quizData;
     db.getResults(req.params.resultID)
       .then(rows => {
         resultData = rows[0];
-        const {
-          quizData,
-          sessionData
-        } = resultData;
+        quizData = resultData.quizData;
+        sessionData = resultData.sessionData;
+        return isQuizFavoritedByUser(userData.id, quizData.id);
+      })
+      .then(rows => {
+        if (rows.length > 0) {
+          quizData.is_favorited = true;
+        }
         const templateVars = {
           alerts,
           userData,
@@ -45,12 +50,6 @@ module.exports = (db) => {
           quizData,
           sessionData
         };
-        return isQuizFavoritedByUser(userData.id, quizData.id);
-      })
-      .then(rows => {
-        if (rows.length > 0) {
-          quizData.is_favorited = true;
-        }
         res.render("quiz_results", templateVars);
       })
       .catch(err => {
