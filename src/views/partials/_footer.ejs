@@ -28,7 +28,11 @@
     <%= JSON.stringify(quizData) %>
     <% } catch {} %>
 
-
+    <% try { %>
+      <hr>
+    <p class="lead">userQuizzes</p>
+    <%= JSON.stringify(userQuizzes) %>
+    <% } catch {} %>
 
     <% try { %>
       <hr>
