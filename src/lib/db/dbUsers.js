@@ -62,7 +62,8 @@ module.exports = {
    */
   getUserByID: (id) => {
     const queryString = `
-      SELECT *
+      SELECT *,
+        CONCAT(${AVATAR_PATH}, users.avatar_id, ${AVATAR_FILETYPE}) AS avatar_url
       FROM users
       WHERE id = $1
     `;

@@ -6,7 +6,7 @@ module.exports = {
     const queryString = `
       SELECT reviews.*,
         users.username,
-        users.avatar_url
+        CONCAT(${AVATAR_PATH}, users.avatar_id, ${AVATAR_FILETYPE}) AS avatar_url
       FROM quiz_reviews AS reviews
         JOIN users ON users.id = reviews.user_id
       WHERE quiz_id = $1
