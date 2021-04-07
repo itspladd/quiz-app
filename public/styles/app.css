@@ -135,7 +135,7 @@ form .custom-select:focus {
 
 .alert-custom {
   background-color: transparent;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .alert-success {
@@ -796,12 +796,12 @@ select {
 }
 
 .divider-v {
-  border-left: 3px solid;
+  border-left: 1px solid;
   margin: 0 3rem;
 }
 
 .divider-h {
-  border-bottom: 3px solid;
+  border-bottom: 1px solid;
   margin: 2rem 0 3rem 0;
 }
 
@@ -835,6 +835,10 @@ select {
 
 .border-white {
   border-color: #eeeeee;
+}
+
+.border-gray {
+  border-color: #ffffff79;
 }
 
 .list-quiz {
