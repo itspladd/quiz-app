@@ -23,6 +23,7 @@ html body {
 body {
 
   overflow-y: scroll;
+  background-image: url("/images/texture.png");
 
   &::-webkit-scrollbar {
     width: 0.25em;

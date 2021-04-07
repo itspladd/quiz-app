@@ -468,6 +468,10 @@ form .custom-select:focus {
 }
 
 #trending a {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   opacity: 0.9;
   border: 1px solid transparent;
 }
@@ -565,6 +569,7 @@ html body {
 
 body {
   overflow-y: scroll;
+  background-image: url("/images/texture.png");
 }
 
 body::-webkit-scrollbar {
