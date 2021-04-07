@@ -332,11 +332,16 @@ form .custom-select:focus {
 }
 
 .quiz-review {
-  border: 2px solid #eeeeee;
+  border: 1px solid #eeeeee;
   border-radius: 0.25rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #1a1b2b;
 }
 
 .quiz-review img {
@@ -607,7 +612,7 @@ body::-webkit-scrollbar-thumb {
 section {
   background-color: #11121b;
   border-radius: 5px;
-  border: 1px solid #ffffff79;
+  border: 1px solid #eeeeee;
   padding: 2rem;
 }
 
