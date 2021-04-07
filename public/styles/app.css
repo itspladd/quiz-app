@@ -512,7 +512,6 @@ form .custom-select:focus {
 }
 
 #trending a:hover {
-  opacity: 1;
   border-top-color: #ffffff79;
   border-bottom-color: #ffffff79;
 }
@@ -570,7 +569,8 @@ form .custom-select:focus {
 }
 
 #trending a:nth-child(7):hover {
-  color: #ffaa2a;
+  color: #2aff71;
+  border-bottom-color: transparent;
 }
 
 #trending .trending-number {
