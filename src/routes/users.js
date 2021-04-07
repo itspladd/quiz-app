@@ -68,5 +68,21 @@ module.exports = (db) => {
     // };
   });
 
+  router.post("/:userID/favorites/:quizID", (req, res) => {
+    db.addFavorite(req.params.userID, req.params.quizID)
+    .then(rows => {
+      quiz_id = rows[0];
+      req.flash("success", "Quiz added to favorites!");
+      res.redirect(`/quizzes/${quiz_id}`)
+    })
+    .catch(err => console.error(err));
+
+  });
+
+  router.delete("/:userID/favorites/:quizID", (req, res) => {
+    console.log(req);
+    
+  });
+
   return router;
 };
