@@ -48,7 +48,7 @@
             <p class="h4 mt-0 mb-4">Recent Reviews</p>
             <% for (const review of quizData.reviews) { %>
               <div class="d-flex flex-row quiz-review align-items-center">
-                <img class="review-avatar mr-3" src="<%= review.avatar_url || `/images/avatars/${Math.floor(Math.random() * 22) + 1}.png` %>" alt="avatar">
+                <img class="review-avatar mr-3" src="<%= review.avatar_url %>" alt="avatar">
                 <div class="div d-flex flex-column">
                   <span class="review-title"><%= review.title %></span>
                   <div class="d-flex flex-row align-items-center">
@@ -131,7 +131,7 @@
             <p class="h4 mt-0 mb-4">Recent Reviews</p>
             <% for (const review of quizData.reviews) { %>
               <div class="d-flex flex-row quiz-review align-items-center">
-                <img class="review-avatar mr-3" src="<%= review.avatar_url || `/images/avatars/${Math.floor(Math.random() * 22) + 1}.png` %>" alt="avatar">
+                <img class="review-avatar mr-3" src="<%= review.avatar_url %>" alt="avatar">
                 <div class="div d-flex flex-column">
                   <span class="review-title"><%= review.title %></span>
                   <div class="d-flex flex-row align-items-center">
