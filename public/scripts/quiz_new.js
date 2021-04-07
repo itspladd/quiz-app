@@ -224,6 +224,7 @@ const submitForm = () => {
   // Retrieve quiz info form data
   const title = getValue("#quiz-title");
   const description = getValue("#quiz-desc");
+  const coverphoto_url = getValue("#quiz-photo");
   const category_id = getValue("#quiz-category");
   const public = getValue("#quiz-visibility");
 
@@ -255,6 +256,7 @@ const submitForm = () => {
     data: {
       title,
       description,
+      coverphoto_url,
       category_id,
       public,
       questions
