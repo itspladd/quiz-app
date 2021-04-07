@@ -41,37 +41,57 @@
 
     &:hover {
       opacity: 1;
-      color: $primary;
       border-top-color: $light;
       border-bottom-color: $light;
     }
 
     &:nth-child(1) {
       color: #ff7f2a;
+      &:hover {
+        color: #ffaa2a;
+      }
     }
 
     &:nth-child(2) {
       color: #ffaa2a;
+      &:hover {
+        color: #ffdf2a;
+      }
     }
 
     &:nth-child(3) {
       color: #ffdf2a;
+      &:hover {
+        color: #f1ff2a;
+      }
     }
 
     &:nth-child(4) {
       color: #f1ff2a;
+      &:hover {
+        color: #rgb(216, 255, 42);
+      }
     }
 
     &:nth-child(5) {
       color: rgb(216, 255, 42);
+      &:hover {
+        color: rgb(138, 255, 42);
+      }
     }
 
     &:nth-child(6) {
       color: rgb(138, 255, 42);
+      &:hover {
+        color: rgb(78, 255, 42);
+      }
     }
 
     &:nth-child(7) {
       color: rgb(78, 255, 42);
+      &:hover {
+        color: #ffaa2a;
+      }
     }
 
   }
