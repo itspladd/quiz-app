@@ -211,6 +211,31 @@ module.exports = (db) => {
       .then(resultRows => res.json(resultRows[0].id))
       .catch(err => console.error(err));
   });
+
+  // Toggle public/unlisted for a quiz
+  router.patch("/:quizID", (req, res) => {
+    const {
+      userData
+    } = res.locals.vars;
+    db.getQuizAuthor(req.params.quizID)
+    .then(rows => {
+      const author = rows[0].author_id;
+      if (userData.id !== author) {
+        console.log(userData.id, author)
+        req.flash("danger", "You don't have permission to do that!");
+        res.redirect("/");
+        return;
+      } else {
+        db.toggleQuizPublic(req.params.quizID)
+        .then(rows => {
+          req.flash("success", "Update successful!");
+          res.redirect("/users/dashboard");
+        })
+        .catch(err => console.error(err));
+      }
+    })
+    .catch(err => console.error(err));
+  })
   /*STRETCH: global results from this quiz
     router.get("/:quizID/results", (req, res) => {
     res.render("quiz_results");

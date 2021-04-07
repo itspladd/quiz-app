@@ -194,6 +194,26 @@ module.exports = {
     // Extract the answer data into queryParams and the keys into an array
 
     return db.insert("answers", answerData);
-  }
+  },
+
+  toggleQuizPublic: function(quiz_id) {
+    const queryString = `
+    UPDATE quizzes
+    SET public = NOT public
+    WHERE id = $1
+    `;
+    const queryParams = [quiz_id];
+    return db.query(queryString, queryParams);
+  },
+
+  getQuizAuthor: function(quiz_id) {
+    const queryString = `
+    SELECT author_id
+    FROM quizzes
+    WHERE id = $1
+    `;
+    const queryParams = [quiz_id];
+    return db.query(queryString, queryParams);
+  },
 
 };
