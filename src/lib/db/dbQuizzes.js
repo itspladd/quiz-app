@@ -1,7 +1,7 @@
 const db = require("./db");
 
 // Helper function for getQuizQuestionsAndAnswers
-const parseQuestionData = (rows) => {
+const parseQuestionData = (rows, quiz_id) => {
 
   const questionData = [];
 
@@ -105,14 +105,15 @@ module.exports = {
         answers.is_correct AS answer_is_correct
       FROM questions
         JOIN answers ON answers.question_id = questions.id
+        JOIN quizzes ON questions.quiz_id = quizzes.id
       WHERE quiz_id = $1
-        AND active
+        AND quizzes.active
       ORDER BY question_id;
     `;
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams)
       .then(rows => {
-        return parseQuestionData(rows);
+        return parseQuestionData(rows, quiz_id);
       });
   },
 
