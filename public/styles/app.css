@@ -409,6 +409,18 @@ form .custom-select:focus {
   background-color: #222338;
 }
 
+#user-quizzes {
+  font-size: 0.8rem;
+}
+
+#user-quizzes .quiz-public {
+  color: #31f37b;
+}
+
+#user-quizzes .quiz-unlisted {
+  color: #fad207;
+}
+
 html body {
   background-color: #111318;
   color: #eeeeee;
