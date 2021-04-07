@@ -33,13 +33,13 @@
 
             <!-- FAVORITE BUTTON -->
             <% if (userData && !quizData.is_favorited) { %>
-              <form method="POST" action="/<%= userData.id %>/favorites">
+              <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
                 <button type="submit" class="btn-custom btn-custom-white btn-fav mb-3">
                   Add to Favorites
                 </button>
               </form>
             <% } else if (userData && quizData.is_favorited) { %>
-              <form method="POST" action="/<%= userData.id %>/favorites">
+              <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
                 <button type="submit" class="btn-custom btn-custom-red btn-fav mb-3">
                   Remove from Favorites
                 </button>
