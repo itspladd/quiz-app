@@ -31,6 +31,9 @@
           <button id="tab-history" type="button" class="tab-btn mr-2">
             My History
           </button>
+          <button id="tab-favorites" type="button" class="tab-btn mr-2">
+            My Favorites
+          </button>
 
           <!-- DASHBOARD CONTENT -->
 
@@ -104,6 +107,40 @@
             <!-- BROWSE QUIZZES (if the user has no quiz history) -->
             <% if (!userHistory.length) { %>
               <p class="lead">You haven't taken any quizzes yet. :(</p>
+              <a href="/quizzes">
+                <button type="button" class="btn-custom mr-2">
+                  Browse Quizzes
+                </button>
+              </a>
+            <% } %>
+          </div>
+
+          <!-- MY FAVORITES -->
+          <div id="user-favorites" class="main-fixed d-none">
+            <% for (const quiz of userFavorites) { %>
+                  <div class="col-8 d-flex flex-column justify-content-center">
+                    <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
+                    <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
+                  </div>
+                  <div class="user-dash-control d-flex flex-column">
+                    <!-- BUTTON WITH VIEW QUIZ LINK -->
+                    <a href="/quizzes/<%= quiz.id %>">
+                      <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
+                        View
+                      </button>
+                    </a>
+                    <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
+                      <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
+                        Remove
+                      </button>
+                    </form>
+                  </div>
+                </div>
+            <% } %>
+            <!-- CREATE A QUIZ (if the user has no quizzes) -->
+            <% if (!userFavorites.length) { %>
+              <p class="lead">You haven't saved any quizzes yet. :(</p>
               <a href="/quizzes">
                 <button type="button" class="btn-custom mr-2">
                   Browse Quizzes

@@ -1,9 +1,14 @@
 $(document).ready(function() {
 
   const quizTab = $("#tab-quizzes");
-  const historyTab = $("#tab-history");
   const quizContent = $("#user-quizzes");
+
+  const historyTab = $("#tab-history");
   const historyContent = $("#user-history");
+
+  const favoritesTab = $("#tab-favorites");
+  const favoritesContent = $("#user-favorites");
+
   let currentTab = quizTab;
   let currentContent = quizContent;
 
@@ -25,6 +30,16 @@ $(document).ready(function() {
       unselectTab(currentTab, currentContent);
       currentTab = historyTab;
       currentContent = historyContent;
+    }
+  });
+
+  // Switch to My Favorites tab
+  $("#tab-favorites").on("click", function() {
+    if (currentTab !== favoritesTab) {
+      selectTab(favoritesTab, favoritesContent);
+      unselectTab(currentTab, currentContent);
+      currentTab = favoritesTab;
+      currentContent = favoritesContent;
     }
   });
 
