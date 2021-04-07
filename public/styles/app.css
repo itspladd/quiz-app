@@ -391,7 +391,7 @@ form .custom-select:focus {
   width: 6rem;
 }
 
-.dash-tab {
+.tab-btn {
   border: 1px solid #2e2f4b;
   border-bottom: transparent;
   background-color: #1a1b2b;
@@ -515,9 +515,9 @@ select {
 }
 
 #main-split .main-fixed {
-  height: 34.8rem;
+  height: 31.5rem;
   overflow: auto;
-  padding: 1rem;
+  padding: 1rem 1rem 0.7rem 1rem;
   border: 1px solid #2e2f4b;
 }
 
