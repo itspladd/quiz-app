@@ -82,9 +82,9 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   addElement($newForm);
 
   // Minimize other forms
-  setTimeout(() => {
-    $(".toggle.minimize").not(":last").trigger("click");
-  }, 1000);
+  // setTimeout(() => {
+  //   $(".toggle.minimize").not(":last").trigger("click");
+  // }, 1000);
 
   updateCounter();
 
