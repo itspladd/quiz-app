@@ -262,7 +262,8 @@ let complete = false;
 $(document).ready(function() {
 
   // Get quiz information from EJS
-  const quizInfo = getEjsData();
+  // const quizInfo = getEjsData();
+  const quizInfo = JSON.parse($("#ejs").attr("data-ejs"));
 
   // When the user clicks play, send the quizID to the server and create a new session
   $("#play-quiz").on("click", function() {

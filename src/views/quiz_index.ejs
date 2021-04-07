@@ -53,9 +53,6 @@
       </section>
     </div>
 
-    <!-- EJS DATA -->
-    <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
-
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
       <!-- USER PANEL -->
@@ -67,6 +64,9 @@
   </main>
 
   <%- include("partials/_footer.ejs") %>
+
+  <!-- EJS DATA -->
+  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
 
 </body>
 

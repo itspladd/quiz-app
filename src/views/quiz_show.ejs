@@ -169,24 +169,8 @@
 
   <%- include("partials/_footer.ejs") %>
 
-  <!-- EJS Variable Fetcher (don't modify below!) -->
-  <p>EJS Variables</p>
-  <ul id="data-ejs">
-    <% for (const key in quizData) { %>
-    <li>
-      <%= key %>:
-      <span class="data-quiz-key" title="<%= key %>"><%= quizData[key] %></span>
-    </li>
-    <% } %>
-  </ul>
-  <p>quizData.reviews</p>
-  <ul>
-    <% for (const key in quizData.reviews[0]) { %>
-    <li><%= key %>: <%= quizData.reviews[0][key] %></li>
-    <% } %>
-  </ul>
-  <!------------------------------------------->
-
+  <!-- EJS DATA -->
+  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
 
 </body>
 
