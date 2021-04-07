@@ -24,15 +24,24 @@ module.exports = (db) => {
         for (let quiz of userQuizzes) {
           quiz.creation_time = moment(quiz.creation_time).format("LLLL");
         }
+        return db.getSessionsByUser(userData.id);
+      })
+      .then(rows => {
+        userHistory = rows;
+        for (let session of userHistory) {
+          session.end_time = moment(session.end_time).format("LLLL");
+        }
         const templateVars = {
           alerts,
           userData,
           currentPage,
           rankData,
-          userQuizzes
+          userQuizzes,
+          userHistory
         };
         res.render("dashboard", templateVars);
       })
+      .catch(err => console.error(err));
     }
   });
 

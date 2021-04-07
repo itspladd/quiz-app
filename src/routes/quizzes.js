@@ -148,7 +148,6 @@ module.exports = (db) => {
     } = res.locals.vars;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-    console.log(req.body);
     db.getQuizQuestionsAndAnswers(quiz_id)
       .then(questions => {
         // If there's no data, it means quiz_id was invalid and there were no Q's and A's
@@ -198,14 +197,12 @@ module.exports = (db) => {
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
     const data = req.body;
     session_id = data.session_id;
-    console.log(data);
     const sessionAnswers = data.answers.map(elem => {
       return {
         session_id,
         answer_id: elem
       };
     });
-    console.log(sessionAnswers);
     db.insert("session_answers", sessionAnswers)
       .then(rows => db.markSessionEndTime(session_id))
       .then(rows => db.insert("results", {
