@@ -1,17 +1,18 @@
-
 // Display quizzes with the given category title
-const filterData = (data, category = "all") => {
+const filterData = (data, category) => {
 
+  // Set section title
+  $("#main-title").html(category);
+
+  // Clear browser component
   const $browser = $("#quiz-browser");
-
-  // Clear browser
   $browser.empty();
 
   // Filter quizzes by the specified category
-  const filteredData = data.filter(quiz => quiz.category_title === category || category === "all");
+  const filteredData = data.filter(quiz => quiz.category_title === category || category === "All Quizzes");
 
+  // Create quiz list items
   for (const quiz of filteredData) {
-    // Create quiz list item
     const $quizItem = $(`
       <a href="/quizzes/${quiz.id}">
         <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
@@ -24,9 +25,26 @@ const filterData = (data, category = "all") => {
         </div>
       </a>
     `);
+
     // Add quiz to browser container
     $browser.append($quizItem);
   }
+
+  // If there are no quizzes for a category, display a link to create one
+  if (!filteredData.length) {
+    const $message = $(`
+      <p class="lead">There aren't any quizzes for this category yet. :(</p>
+      <a href="/quizzes/new">
+        <button type="button" class="btn-custom btn-custom-blue mr-2">
+          Create Quiz
+        </button>
+      </a>
+    `);
+
+    // Add message to browser container
+    $browser.append($message);
+  }
+
 
 };
 
@@ -35,15 +53,17 @@ $(document).ready(function() {
   // Get EJS data
   const quizData = JSON.parse($("#ejs").attr("data-ejs"));
 
-  let category = "all";
+  let category = "All Quizzes";
 
   // Show all quizzes initially
   filterData(quizData, category);
 
+  // When a tab is clicked, filter quizzes by its associated category
   $(".tab-btn").on("click", function(event) {
+
     const $target = $(event.target);
     if ($target.is("#tab-all")) {
-      category = "all"
+      category = "All Quizzes"
     } else if ($target.is("#tab-tech")) {
       category = "Technology"
     } else if ($target.is("#tab-gaming")) {
@@ -51,7 +71,9 @@ $(document).ready(function() {
     } else if ($target.is("#tab-edu")) {
       category = "Education"
     }
+
     filterData(quizData, category);
+
   })
 
 });
