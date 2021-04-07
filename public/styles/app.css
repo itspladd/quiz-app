@@ -371,6 +371,10 @@ form .custom-select:focus {
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .response-incorrect {
