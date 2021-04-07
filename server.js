@@ -232,7 +232,8 @@ app.get("/account", (req, res) => {
   const {
     alerts,
     userData,
-    currentPage
+    currentPage,
+    rankData
   } = res.locals.vars;
   // ERROR: User is not logged in
   if (!userData) {
@@ -244,7 +245,8 @@ app.get("/account", (req, res) => {
     const templateVars = {
       alerts,
       userData,
-      currentPage
+      currentPage,
+      rankData
     };
     res.render("account", templateVars);
   }

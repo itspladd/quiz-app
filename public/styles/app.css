@@ -627,6 +627,25 @@ form .custom-select:focus {
   width: 2rem;
 }
 
+#account-avatars {
+  border: 1px solid #ffffff79;
+}
+
+#account-avatars input {
+  height: 4.5rem;
+  width: 4.5rem;
+  margin: 0.2rem;
+  outline: none;
+  border: 4px solid transparent;
+  opacity: 0.9;
+}
+
+#account-avatars input:hover {
+  border-color: #2e2f4b;
+  border-radius: 100%;
+  opacity: 1;
+}
+
 html body {
   background-color: #11121b;
   color: #eeeeee;
