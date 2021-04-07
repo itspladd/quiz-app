@@ -29,18 +29,22 @@
           <% const sortGaming = quizData.filter(quiz => quiz.category_title === "Gaming") %>
           <% const sortEdu = quizData.filter(quiz => quiz.category_title === "Education") %>
 
-          <button id="tab-all" type="button" class="active-tab tab-btn mr-2">
-            All <%= quizData.length ? `(${quizData.length})` : "" %>
-          </button>
-          <button id="tab-tech" type="button" class="tab-btn mr-2">
-            Technology <%= sortTech.length ? `(${sortTech.length})` : "" %>
-          </button>
-          <button id="tab-gaming" type="button" class="tab-btn mr-2">
-            Gaming <%= sortGaming.length ? `(${sortGaming.length})` : "" %>
-          </button>
-          <button id="tab-edu" type="button" class="tab-btn mr-2">
-            Education <%= sortEdu.length ? `(${sortEdu.length})` : "" %>
-          </button>
+          <div class="d-flex flex-wrap-reverse">
+
+            <button id="tab-all" type="button" class="active-tab tab-btn mr-2">
+              All <%= quizData.length ? `(${quizData.length})` : "" %>
+            </button>
+            <button id="tab-tech" type="button" class="tab-btn mr-2">
+              Technology <%= sortTech.length ? `(${sortTech.length})` : "" %>
+            </button>
+            <button id="tab-gaming" type="button" class="tab-btn mr-2">
+              Gaming <%= sortGaming.length ? `(${sortGaming.length})` : "" %>
+            </button>
+            <button id="tab-edu" type="button" class="tab-btn mr-2">
+              Education <%= sortEdu.length ? `(${sortEdu.length})` : "" %>
+            </button>
+
+          </div>
 
           <!-- QUIZ BROWSER-->
           <div id="quiz-browser" class="main-fixed">

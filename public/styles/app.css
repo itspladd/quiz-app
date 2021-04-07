@@ -715,6 +715,7 @@ select {
   background-color: #1a1b2b;
   color: #eeeeee;
   padding: 0.5rem 1rem;
+  font-size: 0.8rem;
 }
 
 .tab-btn:hover {

@@ -60,6 +60,13 @@ $(document).ready(function() {
   $(".tab-btn").on("click", function(event) {
 
     const $target = $(event.target);
+
+    // Remove tab highlighting
+    $(".tab-btn").removeClass("active-tab");
+
+    // Highlight selected tab
+    $target.addClass("active-tab");
+
     if ($target.is("#tab-all")) {
       category = "All Quizzes"
     } else if ($target.is("#tab-tech")) {

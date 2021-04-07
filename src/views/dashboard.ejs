@@ -83,7 +83,7 @@
                 <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
                   <div class="col-8">
                     <p class="quiz-title mb-0 mt-0"><%= session.quiz_title %></p>
-                    <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time ? `Completed on: ${session.end_time}` : "Abandoned" %></p>
+                    <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time !== "Invalid date" ? `Completed on: ${session.end_time}` : "Abandoned" %></p>
                   </div>
                   <div class="user-dash-control flex-column <%= session.result_id ? "d-flex" : "d-none" %> ">
                     <!-- BUTTON WITH LINK TO RESULTS (if it exists) -->
