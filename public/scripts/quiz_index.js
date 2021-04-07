@@ -25,7 +25,6 @@ const filterData = (data, category) => {
         </div>
       </a>
     `);
-
     // Add quiz to browser container
     $browser.append($quizItem);
   }
@@ -45,17 +44,16 @@ const filterData = (data, category) => {
     $browser.append($message);
   }
 
-
 };
 
 $(document).ready(function() {
 
   // Get EJS data
   const quizData = JSON.parse($("#ejs").attr("data-ejs"));
-
-  let category = "All Quizzes";
+  $("#ejs").remove();
 
   // Show all quizzes initially
+  let category = "All Quizzes";
   filterData(quizData, category);
 
   // When a tab is clicked, filter quizzes by its associated category
