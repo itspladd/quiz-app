@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+  // Get EJS data
+  const ejsData = JSON.parse($("#ejs").attr("data-ejs"));
+
+  console.log(ejsData);
+
   const quizTab = $("#tab-quizzes");
   const historyTab = $("#tab-history");
   const quizContent = $("#user-quizzes");
@@ -26,6 +31,10 @@ $(document).ready(function() {
       currentTab = historyTab;
       currentContent = historyContent;
     }
+  });
+
+  $("#test").on("click", function() {
+    console.log($(this).attr("data-ejs"));
   });
 
 });

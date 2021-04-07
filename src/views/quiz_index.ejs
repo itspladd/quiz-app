@@ -23,9 +23,8 @@
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
 
-          <!-- ALL QUIZZES TABS -->
+          <!-- QUIZ TABS -->
 
-          <% const quizData = [] %>
           <% const sortTech = quizData.filter(quiz => quiz.category_title === "Technology") %>
           <% const sortGaming = quizData.filter(quiz => quiz.category_title === "Gaming") %>
           <% const sortEdu = quizData.filter(quiz => quiz.category_title === "Education") %>
@@ -36,22 +35,35 @@
           <button id="tab-tech" type="button" class="tab-btn mr-2">
             Technology <%= sortTech.length ? `(${sortTech.length})` : "" %>
           </button>
+          <button id="tab-tech" type="button" class="tab-btn mr-2">
+            Gaming <%= sortGaming.length ? `(${sortGaming.length})` : "" %>
+          </button>
+          <button id="tab-tech" type="button" class="tab-btn mr-2">
+            Education <%= sortEdu.length ? `(${sortEdu.length})` : "" %>
+          </button>
 
-          <% for (const quiz of quizData) { %>
-          <a href="/quizzes/<%= quiz.id %> ">
-            <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-              <div class="col-8">
-                <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
-                <p class="quiz-desc d-none d-xl-inline"><%= quiz.description %></p>
-                <p class="quiz-author d-none d-md-block my-1 text-muted">Submitted by <%= quiz.author %></p>
+          <div id="quiz-browser" class="main-fixed">
+
+            <% for (const quiz of quizData) { %>
+            <a href="/quizzes/<%= quiz.id %> ">
+              <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+                <div class="col-8">
+                  <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
+                  <p class="quiz-desc d-none d-xl-inline"><%= quiz.description %></p>
+                  <p class="quiz-author d-none d-md-block my-1 text-muted">Submitted by <%= quiz.author %></p>
+                </div>
+                <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
               </div>
-              <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
-            </div>
-          </a>
-          <% } %>
+            </a>
+            <% } %>
+
+          </div>
         </div>
       </section>
     </div>
+
+    <!-- EJS DATA -->
+    <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
