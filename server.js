@@ -69,6 +69,7 @@ app.use((req, res, next) => {
 const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
 const resultsRoutes = require("./src/routes/results");
+const { mainModule } = require("process");
 
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
@@ -180,10 +181,10 @@ app.post("/register", (req, res) => {
   } else if (username.length > 12) {
     req.flash("danger", "Username is too long (maximum 12 characters).");
     res.redirect("/register");
-  } else if (password.length > 24) {
-    req.flash("danger", "Password is too long (maximum 24 characters).");
+  } else if (username.includes(" ") || username.includes("@")) {
+    req.flash("danger", "Invalid username.");
     res.redirect("/register");
-  } else if (email.length > 24) {
+  } else if (email.length > 60) {
     req.flash("danger", "Email is too long.");
     res.redirect("/register");
   } else {
