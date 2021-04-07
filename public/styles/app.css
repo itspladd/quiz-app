@@ -414,11 +414,11 @@ form .custom-select:focus {
 }
 
 #user-quizzes .quiz-public {
-  color: #008cff;
+  color: #fad207;
 }
 
 #user-quizzes .quiz-unlisted {
-  color: #fad207;
+  color: #008cff;
 }
 
 html body {
