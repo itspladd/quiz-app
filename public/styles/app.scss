@@ -303,6 +303,9 @@ select {
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
+  user-select: none;
+  background-position: 0%;
+  background-size:cover;
 
   p {
     color: $white;
@@ -346,7 +349,6 @@ select {
 @media (min-width: 1202px) {
 
   .list-quiz {
-    user-select: none;
 
     .quiz-title {
       font-size: 1.5rem;

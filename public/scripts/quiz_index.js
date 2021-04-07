@@ -19,12 +19,15 @@ const filterData = (data, category) => {
           <div class="col-8">
             <p class="quiz-title mb-0 mt-0">${quiz.title}</p>
             <p class="quiz-desc d-none d-xl-inline">${quiz.description}</p>
-            <p class="quiz-author d-none d-md-block my-1 text-muted">Submitted by ${quiz.author}</p>
+            <p class="quiz-author d-none d-md-block my-1">Submitted by ${quiz.author}</p>
           </div>
           <img class="quiz-go pr-3" src="/images/arrow-green.png" alt="arrow" />
         </div>
       </a>
     `);
+    // Set background image
+    $quizItem.find(".list-quiz")
+      .css("background-image", `url("${quiz.coverphoto_url}")`);
     // Add quiz to browser container
     $browser.append($quizItem);
   }
