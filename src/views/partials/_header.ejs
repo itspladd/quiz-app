@@ -27,7 +27,7 @@
             <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
             <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
             <% } else { %>
-            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/account" ? "active" : "inactive"%>" href="/account">ACCOUNT</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === `/users/${userData.id}` ? "active" : "inactive"%>" href="/users/<%= userData.id %>">ACCOUNT</a></li>
             <li class="nav-item my-2 ml-xl-4">
               <form class="form-inline" action="/logout" method="POST">
                 <button id="nav-logout" type="submit" class="btn-nav">
