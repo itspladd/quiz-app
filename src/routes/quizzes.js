@@ -64,6 +64,7 @@ module.exports = (db) => {
     } = res.locals.vars;
     let quizData;
     const quiz_id = req.params.quizID;
+    const user_id = userData ? userData.id : null;
     db.getQuizByID(quiz_id)
       .then(rows => {
         // Convert date/time data to a more readable format
@@ -79,7 +80,7 @@ module.exports = (db) => {
           review.timestamp = utils.convertTimestamp(review.created_at);
         }
         quizData.reviews = reviewData;
-        return db.isQuizFavoritedByUser(userData.id, quiz_id);
+        return db.isQuizFavoritedByUser(user_id, quiz_id);
       })
       .then(rows => {
         quizData.is_favorited = (rows.length > 0);
@@ -221,10 +222,11 @@ module.exports = (db) => {
     const {
       userData
     } = res.locals.vars;
+    const user_id = userData ? userData.id : null;
     db.getQuizAuthor(req.params.quizID)
     .then(rows => {
       const author = rows[0].author_id;
-      if (userData.id !== author) {
+      if (user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
@@ -245,10 +247,11 @@ module.exports = (db) => {
     const {
       userData
     } = res.locals.vars;
+    const user_id = userData ? userData.id : null;
     db.getQuizAuthor(req.params.quizID)
     .then(rows => {
       const author = rows[0].author_id;
-      if (userData.id !== author) {
+      if (user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
