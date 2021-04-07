@@ -1,5 +1,42 @@
 const db = require("./db");
 
+// Helper function for getQuizQuestionsAndAnswers
+const parseQuestionData = (rows, quiz_id) => {
+
+  const questionData = [];
+
+  // Initialize to the first question and array counter
+  let currentQuestionID = null;
+  let index = -1;
+  for (let row of rows) {
+    // If we're on a new question...
+    if (row.question_id !== currentQuestionID) {
+      // Add the question and start the answer array
+      currentQuestionID = row.question_id;
+      questionData.push({
+        question: {
+          id: row.question_id,
+          quiz_id,
+          body: row.question_body,
+          difficulty: row.question_difficulty
+        },
+        answers: []
+      });
+      // Increment counter so we know where to store our answers
+      index++;
+    }
+    // Store answers
+    questionData[index].answers.push({
+      id: row.answer_id,
+      question_id: row.answer_question_id,
+      body: row.answer_body,
+      is_correct: row.answer_is_correct
+    });
+
+  }
+  return questionData;
+};
+
 module.exports = {
 
   /**
@@ -29,8 +66,10 @@ module.exports = {
   getQuizByID: function(id) {
     const queryString = `
       SELECT quizzes.*,
+        categories.title AS category_title,
         users.username AS author
       FROM quizzes
+        JOIN categories ON category_id = categories.id
         JOIN users ON users.id = author_id
       WHERE quizzes.id = $1
         AND active
@@ -42,9 +81,11 @@ module.exports = {
 
   getQuizzesForUser: function(userID) {
     const queryString = `
-      SELECT quizzes.*
+      SELECT quizzes.*,
+        categories.title AS category_title,
       FROM quizzes
-      JOIN users ON users.id = author_id
+        JOIN categories ON category_id = categories.id
+        JOIN users ON users.id = author_id
       WHERE author_id = $1 
         AND active
       ORDER BY creation_time DESC;
@@ -64,56 +105,15 @@ module.exports = {
         answers.is_correct AS answer_is_correct
       FROM questions
         JOIN answers ON answers.question_id = questions.id
+        JOIN quizzes ON questions.quiz_id = quizzes.id
       WHERE quiz_id = $1
+        AND quizzes.active
       ORDER BY question_id;
     `;
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams)
       .then(rows => {
-        // Organize the data into the necessary structure, as follows:
-        /* questionData: [
-          {
-            question: {//question info here},
-            answers: [
-              {answer1 data},
-              {answer2 data}
-            ]},
-          {
-            question... },
-        ]
-        */
-        const questionData = [];
-
-        // Initialize to the first question and array counter
-        let currentQuestionID = null;
-        let index = -1;
-        for (let row of rows) {
-          // If we're on a new question...
-          if (row.question_id !== currentQuestionID) {
-            // Add the question and start the answer array
-            currentQuestionID = row.question_id;
-            questionData.push({
-              question: {
-                id: row.question_id,
-                quiz_id,
-                body: row.question_body,
-                difficulty: row.question_difficulty
-              },
-              answers: []
-            });
-            // Increment counter so we know where to store our answers
-            index++;
-          }
-          // Store answers
-          questionData[index].answers.push({
-            id: row.answer_id,
-            question_id: row.answer_question_id,
-            body: row.answer_body,
-            is_correct: row.answer_is_correct
-          });
-
-        }
-        return questionData;
+        return parseQuestionData(rows, quiz_id);
       });
   },
 
@@ -233,3 +233,4 @@ module.exports = {
 
 
 };
+
