@@ -29,7 +29,11 @@
             </p>
             <p class="h1 mt-1"><%= quizData.title %> </p>
             <p class="lead"><%= quizData.description %></p>
-            <p class="text-muted">Submitted by <%= quizData.author %> on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
+            <p class="quiz-author">Submitted by
+              <span class="quiz-author-name <%= quizData.is_admin ? "admin" : "" %>">
+                <%= quizData.author %>
+              </span>
+               on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
 
             <!-- FAVORITE BUTTON -->
             <% if (userData && !quizData.is_favorited) { %>

@@ -273,6 +273,20 @@ form .custom-select:focus {
           justify-content: center;
 }
 
+#quiz-front .quiz-author {
+  color: #ffffff79;
+  font-size: 0.9rem;
+}
+
+#quiz-front .quiz-author .quiz-author-name {
+  font-weight: 700;
+  color: #eeeeee;
+}
+
+#quiz-front .quiz-author .quiz-author-name.admin {
+  color: #fad207;
+}
+
 #quiz-question {
   min-height: 8rem;
 }

@@ -1,5 +1,23 @@
 @import "global";
 
+#quiz-front {
+
+  .quiz-author {
+    color: $light;
+    font-size: 0.9rem;
+
+    .quiz-author-name {
+      font-weight: 700;
+      color: $white;
+
+      &.admin {
+        color: $primary;
+      }
+
+    }
+  }
+}
+
 #quiz-question {
   min-height: 8rem;
 }
