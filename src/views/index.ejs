@@ -10,17 +10,21 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-  <main id="landing" class="container d-flex flex-column justify-content-center mt-lg-4">
+  <main id="landing-main" class="container d-flex flex-column justify-content-center mt-lg-4">
 
 
-    <p class="display-4">Welcome to InquizitorApp!</p>
-    <p class="lead my-4">Whether it's to study or just for fun, we can help you easily create and share quizzes that everyone can enjoy.</p>
-    <p class="h3 mt-4">Oh, and the best part? It's <span class="highlight">FREE</span>!</p>
+    <div class="p-0 px-lg-2">
 
-      <div class="divider-h"></div>
+      <p class="display-4">Welcome to InquizitorApp!</p>
+      <p class="lead my-4">Whether it's to study or just for fun, we can help you easily create and share quizzes that everyone can enjoy.</p>
+      <p class="h3 mt-4">Oh, and the best part? It's <span class="highlight">FREE</span>!</p>
 
-    <div>
-      <button id="landing-btn" class="btn-custom">View Quizzes</button>
+        <div class="divider-h"></div>
+
+      <a href="/quizzes">
+        <button id="landing-btn" class="btn-custom">View Quizzes</button>
+      </a>
+
     </div>
 
 

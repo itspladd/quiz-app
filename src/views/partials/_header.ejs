@@ -49,10 +49,12 @@
 
 </header>
 
-<!-- FLASH MESSAGES -->
-<div class="container">
-  <%- include("_flash.ejs", {userData, alerts}) %>
-</div>
+<% if (currentPage !== "/") { %>
+  <!-- FLASH MESSAGES -->
+  <div class="container">
+    <%- include("_flash.ejs", {userData, alerts}) %>
+  </div>
+<% } %>
 
 <!-- ADMIN CONTROL PANEL -->
 <% if (userData && userData.is_admin) { %>

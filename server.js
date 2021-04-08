@@ -243,7 +243,7 @@ app.get("/404", (req, res) => {
 });
 
 // Home page
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   const {
     alerts,
     userData,
@@ -258,6 +258,25 @@ app.get("/", (req, res) => {
         currentPage,
         quizData,
         rankData
+      };
+      res.render("home", templateVars);
+    })
+    .catch(err => console.error(err));
+});
+
+// Landing page
+app.get("/", (req, res) => {
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  db.getFeaturedQuizzes()
+    .then(() => {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage
       };
       res.render("index", templateVars);
     })

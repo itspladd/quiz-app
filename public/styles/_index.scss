@@ -1,11 +1,21 @@
 @import "global";
 
-#landing {
+#landing-bg {
+  background-image: url("/images/books.jpg");
+  filter: grayscale(0.5);
+  position: absolute;
+}
+
+#landing-main {
   height: 60vh;
 }
 
+#landing-content {
+  padding: 0 2rem;
+}
+
 #landing-btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-width: 2px;
   border-radius: 0.4rem;
 }
