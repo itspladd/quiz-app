@@ -104,13 +104,6 @@
   }
 }
 
-#landing-bg {
-  background-image: url("/images/books.jpg");
-  -webkit-filter: grayscale(0.5);
-          filter: grayscale(0.5);
-  position: absolute;
-}
-
 #landing-main {
   height: 100%;
 }
@@ -173,6 +166,11 @@
   color: #eeeeee;
 }
 
+#dev-log code .app,
+#dev-log pre .app {
+  color: #fad207;
+}
+
 #featured-quizzes {
   margin: 0;
   padding: 0;
@@ -181,7 +179,7 @@
 
 #featured-quizzes .list-quiz {
   border-width: 2px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #featured-quizzes .list-quiz:hover {
@@ -189,7 +187,7 @@
 }
 
 #featured-quizzes .list-quiz .title {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
@@ -200,18 +198,6 @@
 
 #featured-quizzes .list-quiz .author.admin {
   color: #fad207;
-}
-
-@media (min-width: 1202px) {
-  #featured-quizzes :nth-child(2) {
-    margin-left: 0.9rem;
-  }
-  #featured-quizzes .list-quiz {
-    min-width: 12.8rem;
-  }
-  #featured-quizzes .list-quiz .title {
-    font-size: 1.2rem;
-  }
 }
 
 form .form-control,
@@ -237,10 +223,6 @@ form .custom-select:focus {
   width: 3rem;
   margin: auto;
   padding-bottom: 0.2rem;
-}
-
-.error-404 {
-  padding: 4rem;
 }
 
 .alert-custom {
@@ -1188,6 +1170,10 @@ select {
   border-color: #faa515;
 }
 
+.border-yellow-darker:hover {
+  border-color: #fad207;
+}
+
 .border-green {
   border-color: #31f37b;
 }
@@ -1227,5 +1213,9 @@ select {
 
 .tab-btn.active-tab {
   background-color: #2e2f4b;
+}
+
+.error-404 {
+  padding: 4rem;
 }
 /*# sourceMappingURL=app.css.map */

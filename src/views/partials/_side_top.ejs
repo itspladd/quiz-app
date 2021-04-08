@@ -1,18 +1,20 @@
+<!-- USER INFO PANEL -->
 <section id="side-split-top" class="ml-lg-1 d-flex flex-column align-items-start">
   <div class="d-flex flex-row align-items-center">
+    <!-- AVATAR -->
     <a href="<%= userData ? `/users/${userData.id}` : "/register" %> ">
-    <img class="panel-avatar" src="<%= userData ? userData.avatar_url : "/images/avatars/anon.png" %>" alt="avatar">
+      <img class="panel-avatar" src="<%= userData ? userData.avatar_url : "/images/avatars/anon.png" %>" alt="avatar">
     </a>
     <div class="d-flex flex-column">
+      <!-- PROFILE INFO -->
       <div class="panel-username"><%= userData ? userData.username : "Anonymous" %></div>
       <% if (userData) { %>
-        <div class="panel-member-type <%= userData.is_admin ? "admin" : "member" %> "><%= userData.is_admin ? "ADMIN ⚔️" : "MEMBER" %></div>
-        <div class="panel-email"><%= userData.email %> </div>
+      <div class="panel-member-type <%= userData.is_admin ? "admin" : "member" %> "><%= userData.is_admin ? "ADMIN ⚔️" : "MEMBER" %></div>
+      <div class="panel-email"><%= userData.email %> </div>
       <% } else { %>
-
-          <div class="panel-email mt-0">
-            <a href="/login">Login</a> or <a href="/register">register</a>
-          </div>
+      <div class="panel-email mt-0">
+        <a href="/login">Login</a> or <a href="/register">register</a>
+      </div>
       <% } %>
     </div>
   </div>

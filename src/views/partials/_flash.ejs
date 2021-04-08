@@ -1,6 +1,6 @@
+<!-- FLASH MESSAGES -->
 <div class="container">
 
-  <!-- FLASH MESSAGES (set alert color depending on alert type and display if there is one) -->
   <% const alertType = alerts["warning"] ? "warning" : alerts["danger"] ? "danger" : alerts["success"] ? "success" : "" %>
   <% if (alerts[alertType]) { %>
   <div class="alert alert-<%= alertType %> alert-custom alert-dismissible fade show" role="alert">

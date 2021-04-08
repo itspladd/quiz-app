@@ -3,7 +3,6 @@
 @import "index";
 @import "home";
 @import "form";
-@import "404";
 @import "flash";
 @import "quiz_list";
 @import "quiz_index";
@@ -31,17 +30,7 @@ body {
   overflow-y: scroll;
   background-image: url("/images/texture.png");
 
-  &::-webkit-scrollbar {
-    width: 0.25em;
-  }
-
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px $dark;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $tertiary;
-  }
+  @include scrollbar;
 
 }
 
@@ -121,18 +110,8 @@ select {
     padding: 1rem 1rem 0.7rem 1rem;
     border: 1px solid $tertiary-lighter;
 
+    @include scrollbar;
 
-    &::-webkit-scrollbar {
-      width: 0.25em;
-    }
-
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px $dark;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $tertiary;
-    }
   }
 
 }
@@ -279,7 +258,7 @@ select {
 
 .btn-custom-white {
   color: $white;
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: $white-transparent;
   border-color: $white;
   outline: $white;
 
@@ -344,6 +323,9 @@ select {
 
 .border-yellow-darker {
   border-color: $primary-darker;
+  &:hover {
+    border-color: $primary;
+  }
 }
 
 .border-green {
@@ -383,4 +365,8 @@ select {
     background-color: $tertiary-lighter;
   }
 
+}
+
+.error-404 {
+  padding: 4rem;
 }
