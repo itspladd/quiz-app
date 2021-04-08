@@ -244,37 +244,24 @@ app.get("/404", (req, res) => {
 
 // Home page
 app.get("/", (req, res) => {
-  // Top 3 featured quizzes (admin-selected)
-  const quizData = [{
-    id: "1",
-    title: "Quiz Name",
-    description: "This is the description."
-  },
-  {
-    id: "2",
-    title: "Quiz Name",
-    description: "This is the description."
-  },
-  {
-    id: "3",
-    title: "Quiz Name",
-    description: "This is the description."
-  },
-  ];
   const {
     alerts,
     userData,
     currentPage,
     rankData
   } = res.locals.vars;
-  const templateVars = {
-    alerts,
-    userData,
-    currentPage,
-    quizData,
-    rankData
-  };
-  res.render("index", templateVars);
+  db.getFeaturedQuizzes()
+    .then(quizData => {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        quizData,
+        rankData
+      };
+      res.render("index", templateVars);
+    })
+    .catch(err => console.error(err));
 });
 
 // Wildcard route
