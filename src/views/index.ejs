@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Quiz App</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+</head>
 
-    <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-    <!-- MAIN WINDOW (SPLIT) -->
-    <div class="col-12 col-lg-8">
-      <section id="main-split">
-      </section>
+  <main id="landing-main" class="container d-flex flex-column justify-content-center mt-lg-4">
+
+
+    <div class="p-0 px-lg-2">
+
+      <p class="display-4 mt-5">Welcome to InquizitorApp!</p>
+      <p class="lead my-4">Whether it's to study or just for fun, we can help you easily create and share quizzes that everyone can enjoy.</p>
+      <p class="h3 mt-4">Oh, and the best part? It's <span class="highlight">FREE</span>!</p>
+
+        <div class="divider-h"></div>
+
+      <a href="/register">
+        <button id="landing-btn" class="btn-custom">Get Started</button>
+      </a>
+      <p class="text-muted mt-3">Already have an account? <a href="/login">Login</a>.</p>
+
     </div>
 
-    <!-- MAIN WINDOW (FULL) -->
-    <!-- <div class="col-12">
-      <section id="main-full">
-      </section>
-    </div> -->
 
-    <!-- SIDE PANELS (SPLIT) -->
-    <div class="col-12 col-lg-4">
-      <section id="side-split-top" class="ml-lg-1">
-        <%= userData ? `Signed in as ${userData.username}` : "" %>
-      </section>
-      <section id="side-split-bottom" class="ml-lg-1">
-      </section>
-    </div>
-
-    <!-- SIDE PANEL (FULL) -->
-    <!-- <div class="col-12 col-lg-4">
-      <section id="side-full" class="ml-lg-1">
-      </section>
-    </div> -->
-
-    </main>
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>

@@ -1,0 +1,25 @@
+<span class="avg-rating pb-1">
+
+  <% const fullStars = Math.floor(average) %>
+  <% const halfStar = (average - fullStars) >= 0.25 %>
+  <% const emptyStars = 5 - fullStars - halfStar %>
+
+  <% for (let i = 0; i < fullStars; i++) { %>
+    <img src="/images/star.png" alt="star">
+  <% } %>
+  <% if (halfStar) { %>
+    <img src="/images/star-half.png" alt="star">
+  <% } %>
+  <% for (let i = 0; i < emptyStars; i++) { %>
+    <img src="/images/star-empty.png" alt="star">
+  <% } %>
+  <% if (!average) { %>
+    (no ratings)
+  <% } %>
+
+</span>
+
+<!--
+USAGE: Remove the quotes
+<%- `include("partials/_avg_rating.ejs", {average: <Number>, customClass: ""})` %>
+-->

@@ -1,46 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Quiz App</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title><%= quizData.title %> - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_show.js"></script>
+</head>
 
-    <%- include("partials/_header.ejs") %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {quizData}}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8">
-        <section id="main-split">
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      <!-- MAIN WINDOW (FULL) -->
-      <!-- <div class="col-12">
-        <section id="main-full">
-        </section>
-      </div> -->
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto
+      <%= quizData.featured && quizData.public ? "border-yellow-darker" : "" %>
+      <%= !quizData.public && !quizData.featured ? "border-blue" : "" %>
+      <%= !quizData.public && quizData.featured ? "border-red" : "" %>">
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div class="col-12 col-lg-4">
-        <section id="side-split-top" class="ml-lg-1">
-        </section>
-        <section id="side-split-bottom" class="ml-lg-1">
-        </section>
-      </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
 
-      <!-- SIDE PANEL (FULL) -->
-      <!-- <div class="col-12 col-lg-4">
-        <section id="side-full" class="ml-lg-1">
-        </section>
-      </div> -->
+          <!-- QUIZ FRONT PAGE -->
+          <div id="quiz-front" class="d-flex flex-column">
 
-      </main>
+            <!-- QUIZ INFO -->
+            <span class="text-muted initialism my-0">
+              <%= quizData.category_title %>
+            </span>
+            <div class="d-flex flex-row">
+              <% if (quizData.featured && quizData.public) { %>
+                <span class="quiz-featured mt-2 mb-1 mr-2">FEATURED</span>
+              <% } %>
+              <% if (!quizData.featured && !quizData.public) { %>
+                <span class="quiz-unlisted mt-2 mb-1">UNLISTED</span>
+              <% } %>
+              <% if (!quizData.public && quizData.featured) { %>
+                <span class="quiz-conflict mt-2 mb-1">FEATURED & UNLISTED</span>
+              <% } %>
+            </div>
+            <% if (!quizData.public && quizData.featured) { %>
+              <span class="feature-warning">Unlisted quizzes cannot appear on the featured list</span>
+            <% } %>
+
+            <p class="h1 mt-1"><%= quizData.title %> </p>
+            <p class="lead"><%= quizData.description %></p>
+            <p class="quiz-author">Submitted by
+              <span class="quiz-author-name <%= quizData.is_admin ? "admin" : "" %>">
+                <%= quizData.author %>
+              </span>
+               on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
+
+            <!-- START BUTTON -->
+            <div>
+              <button id="play-quiz" type="button" class="btn-custom btn-custom-green mb-3">
+                Start Quiz
+              </button>
+            </div>
+
+            <!-- QUIZ PHOTO -->
+            <div class="quiz-photo mb-4 mt-2">
+              <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-between">
+              <!-- QUIZ STATS -->
+              <div>
+                <div class="mt-1 mb-3">Total plays: <%= quizData.total_plays %></div>
+                <div class="mt-1 mb-3">Have I played: <%= quizData.already_played %></div>
+
+                <div>
+                  Average user rating:
+                  <span class="ml-1">
+                    <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>
+                  </span>
+                </div>
+
+                <div class="mb-3">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
+              </div>
+
+              <div class="d-flex flex-column align-items-md-end">
+                <!-- FAVORITE BUTTON -->
+                <% if (userData && !quizData.is_favorited) { %>
+                  <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
+                    <button type="submit" class="btn-custom btn-custom-purple  btn-custom-lg">
+                      Add to favorites
+                    </button>
+                  </form>
+                  <% } else if (userData && quizData.is_favorited) { %>
+                  <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>?_method=DELETE">
+                    <input type="hidden" name="source" value="/quizzes/<%= quizData.id %>" />
+                    <button type="submit" class="btn-custom btn-custom-red btn-custom-lg">
+                      Unfavorite
+                    </button>
+                  </form>
+                <% } %>
+                <!-- SHARE BUTTON -->
+                <button id="share-btn" type="button" class="btn-custom btn-custom-blue btn-custom-lg mb-2">
+                  Share this page
+                </button>
+              </div>
+
+            </div>
+
+            <div class="divider-h my-4"></div>
+            <!-- REVIEWS -->
+            <%- include("partials/_reviews.ejs", {quizData}) %>
+
+          </div>
+
+          <!-- RESULTS FORM -->
+          <div id="quiz-end" class="d-none flex-column justify-content-center">
+
+            <p class="lead">Hooray! You've reached the end of:</p>
+            <p class="h1 d-flex mb-3"><%= quizData.title %> </p>
+            <p>You won't be able to come back to this page without taking the quiz again, so we suggest taking a moment to <span class="highlight">leave a review</span> while you can. Once you're done, click the button below to view your results.</p>
+            <div>
+              <button id="submit-quiz" type="button" class="btn-custom btn-custom-green btn-custom-xl mb-2">
+                View Results
+              </button>
+            </div>
+
+            <div class="divider-h mt-3 mb-2"></div>
+
+            <!-- REVIEW FORM (shown only if the user is logged in) -->
+            <% if (userData) { %>
+            <div id="quiz-review-form">
+              <h1 class="h4 mt-3">Submit a review</h1>
+              <form id="review-form" class="form">
+                <div class="form-group mb-2">
+                  <!-- USER DATA -->
+                  <input id="review-user" class="d-none" type="text" value="<%= userData ? userData.id : null %>">
+                  <!-- REVIEW TITLE -->
+                  <label for="title" class="form-label text-muted">Review Title</label>
+                  <input id="review-title" class="form-control" type="text" name="title" maxlength="60" placeholder="Great quiz!" required>
+                  <!-- REVIEW COMMENT -->
+                  <label for="comment" class="form-label text-muted mt-2">Review Comment</label>
+                  <input id="review-comment" class="form-control" type="text" name="comment" maxlength="90" placeholder="Challenging and intriguing questions! Highly recommended!" required>
+                  <!-- REVIEW RATING -->
+                  <label for="rating" class="form-label text-muted mt-2">Review Rating</label>
+                  <select id="review-rating" class="custom-select" required>
+                    <option selected disabled value="">Select a rating...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <!-- SUBMIT -->
+                  <button type="submit" class="btn-custom btn-custom-xl mt-4 mt-3 mb-2">Submit Review</button>
+                  <span id="review-error" class="ml-2"></span>
+                </div>
+              </form>
+            </div>
+
+            <!-- SUBMISSION SUCCESS MESSAGE -->
+            <div id="review-submitted" class="d-none">
+              <p class="lead mt-3">Thanks for the review! Don't forget to submit your quiz!</p>
+            </div>
+
+            <% } else { %>
+
+            <p class="lead mt-3">You must be logged in to post a review!</p>
+
+            <% } %>
+
+            <div class="divider-h mt-2 mb-4"></div>
+
+            <!-- REVIEWS -->
+            <%- include("partials/_reviews.ejs", {quizData}) %>
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", {userData}) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+  <!-- EJS DATA -->
+  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
+
+</body>
 
 </html>

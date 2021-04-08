@@ -1,11 +1,14 @@
-require("dotenv").config({path: __dirname + "/.env"});
+require("dotenv").config({
+  path: __dirname + "/.env"
+});
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
-const dayjs = require("dayjs");
+const moment = require("moment");
 const bcrypt = require("bcrypt");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -20,55 +23,57 @@ const {
 // MIDDLEWARE & CONFIGURATIONS ///////////////////////
 
 app.set("view engine", "ejs"); // set the view engine to EJS
-app.set("views","./src/views"); // set the views directory
-app.use(bodyParser.urlencoded({ extended: true })); // parse req body
+app.set("views", "./src/views"); // set the views directory
+app.use(bodyParser.urlencoded({
+  extended: true
+})); // parse req body
 app.use(cookieSession({ // configure cookies
   name: "session",
   keys: ["userID", "visitorID"],
   maxAge: 24 * 60 * 60 * 1000
 }));
 app.use(methodOverride("_method")); // override POST requests
-app.use(express.static("public")); // serve public directory
+app.use(express.static(path.join(__dirname, "public"))); // serve public directory
 app.use(flash()); // enable storage of flash messages
 
 // Initialize local variables on every request
 app.use((req, res, next) => {
-  console.log('middleware start')
   if (!req.session.visitorID) {
     req.session.visitorID = generateRandomString(10);
   }
   const visitorID = req.session.visitorID;
   const cookieUserID = req.session.userID;
-  const currentDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
+  const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
   db.getUserByID(cookieUserID)
-    .then(userData => {
-      res.locals.vars = {
-        alerts: req.flash(),
-        visitorID,
-        userData: userData || null,
-        currentPage: req.originalUrl,
-        currentDateTime
-      };
-      next();
+    .then(rows => {
+      const userData = rows[0];
+      db.getTrendingQuizzes()
+        .then(rows => {
+          const rankData = rows;
+          res.locals.vars = {
+            alerts: req.flash(),
+            visitorID,
+            userData: userData || null,
+            currentPage: req.originalUrl,
+            currentDateTime,
+            rankData
+          };
+          next();
+        })
     })
     .catch((err) => console.error(err));
-
-  //////////////////////////////////////////
-
-  // console.log("COOKIES:");
-  // console.log("visitorID:", visitorID);
-  // console.log("userID:", cookieUserID);
-console.log('middleware end');
-  //////////////////////////////////////////
 });
 
 // RESOURCE ROUTES ///////////////////////////////////
 
 const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
+const resultsRoutes = require("./src/routes/results");
+const { mainModule } = require("process");
 
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
+app.use("/results", resultsRoutes(db));
 
 // ENDPOINTS & ROUTES ////////////////////////////////
 
@@ -84,7 +89,8 @@ app.post("/login", (req, res) => {
     res.redirect("/login");
   } else {
     db.getUserByLogin(login)
-      .then(userData => {
+      .then(rows => {
+        const userData = rows[0];
         // Given a valid login, check if the password matches the hashed password
         const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
         // ERROR: Credentials are invalid
@@ -98,7 +104,7 @@ app.post("/login", (req, res) => {
           console.log(req.session.userID);
           console.log(`Login successful. Welcome back, ${userData.username}!`);
           req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
-          res.redirect("/");
+          res.redirect("/home");
         }
       });
   }
@@ -112,7 +118,7 @@ app.post("/logout", (req, res) => {
     req.flash("success", "You've successfully logged out.");
     console.log("You've successfully logged out.");
   }
-  res.redirect("/");
+  res.redirect("/home");
 });
 
 // Form to login to an existing account
@@ -124,9 +130,9 @@ app.get("/login", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.")
+    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
-    res.redirect("/");
+    res.redirect("/home");
   } else {
     // SUCCESS: User is not logged in
     const templateVars = {
@@ -147,9 +153,9 @@ app.get("/register", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.")
+    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
-    res.redirect("/");
+    res.redirect("/home");
   } else {
     // SUCCESS: User is not logged in
     const templateVars = {
@@ -172,9 +178,19 @@ app.post("/register", (req, res) => {
   if (!username || !email || !password) {
     req.flash("danger", "Please complete all fields.");
     res.redirect("/register");
+  } else if (username.length > 12) {
+    req.flash("danger", "Username is too long (maximum 12 characters).");
+    res.redirect("/register");
+  } else if (username.includes(" ") || username.includes("@")) {
+    req.flash("danger", "Invalid username.");
+    res.redirect("/register");
+  } else if (email.length > 60) {
+    req.flash("danger", "Email is too long.");
+    res.redirect("/register");
   } else {
     db.getUserByUsername(username)
-      .then(userData => {
+      .then(rows => {
+        const userData = rows[0];
         // ERROR: Username is taken
         if (userData) {
           console.log("The username you entered is already in use.");
@@ -182,8 +198,9 @@ app.post("/register", (req, res) => {
           res.redirect("/register");
         } else {
           db.getUserByEmail(email)
-          // ERROR: Email is taken
-            .then(userData => {
+            // ERROR: Email is taken
+            .then(rows => {
+              const userData = rows[0];
               if (userData) {
                 console.log("The email you entered is already in use.");
                 req.flash("danger", "The email you entered is already in use.");
@@ -191,12 +208,17 @@ app.post("/register", (req, res) => {
                 // SUCCESS: Complete form and nonexistent credentials
               } else {
                 const hashedPassword = bcrypt.hashSync(password, 10);
-                db.addUser({ username, email, password: hashedPassword })
-                  .then(userData => {
+                db.addUser({
+                  username,
+                  email,
+                  password: hashedPassword
+                })
+                  .then(rows => {
+                    const userData = rows[0];
                     req.session.userID = userData.id;
-                    console.log(`Registration successful. Welcome to InquizitorApp!`);
-                    req.flash("success", `Registration successful. Welcome to InquizitorApp!`);
-                    res.redirect("/");
+                    console.log("Registration successful. Welcome to InquizitorApp!");
+                    req.flash("success", "Registration successful. Welcome to InquizitorApp!");
+                    res.redirect("/home");
                   });
               }
             });
@@ -217,23 +239,48 @@ app.get("/404", (req, res) => {
     userData,
     currentPage
   };
-  res.render("404", templateVars);
+  res.status(404).render("404", templateVars);
 });
 
 // Home page
+app.get("/home", (req, res) => {
+  const {
+    alerts,
+    userData,
+    currentPage,
+    rankData
+  } = res.locals.vars;
+  db.getFeaturedQuizzes()
+    .then(quizData => {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage,
+        quizData,
+        rankData
+      };
+      res.render("home", templateVars);
+    })
+    .catch(err => console.error(err));
+});
+
+// Landing page
 app.get("/", (req, res) => {
-  console.log('made it here')
   const {
     alerts,
     userData,
     currentPage
   } = res.locals.vars;
-  const templateVars = {
-    alerts,
-    userData,
-    currentPage
-  };
-  res.render("index", templateVars);
+  db.getFeaturedQuizzes()
+    .then(() => {
+      const templateVars = {
+        alerts,
+        userData,
+        currentPage
+      };
+      res.render("index", templateVars);
+    })
+    .catch(err => console.error(err));
 });
 
 // Wildcard route

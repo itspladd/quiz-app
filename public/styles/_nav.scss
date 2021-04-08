@@ -1,9 +1,10 @@
 @import "global";
 
 #navigation {
+  min-height: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: $tertiary;
+  background: linear-gradient($dark, $tertiary-darker, $tertiary);
   font-weight: 700;
   user-select: none;
 
@@ -12,13 +13,13 @@
   }
 
   button {
-    color: $white;
+    color: $red;
     font-weight: 700;
     background-color: transparent;
     border: none;
 
     &:hover {
-      color: $primary;
+      color: $red-darker;
     }
 
   }
@@ -31,6 +32,85 @@
 
   li a:hover {
     color: $primary;
+  }
+
+  button,
+  .nav-link {
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+#app-links,
+#user-links {
+
+  .nav-primary {
+    color: $primary;
+
+    &:hover {
+      color: $primary-darker;
+    }
+
+  }
+
+  .nav-primary-darker {
+    color: $primary-darker;
+
+    &:hover {
+      color: $primary;
+    }
+
+  }
+
+  .nav-blue {
+    color: $blue;
+
+    &:hover {
+      color: $blue-darker;
+    }
+
+  }
+
+  .nav-green {
+    color: $green;
+
+    &:hover {
+      color: $green-darker;
+    }
+
+  }
+
+  .nav-purple {
+    color: $purple;
+
+    &:hover {
+      color: $purple-darker;
+    }
+
+  }
+
+}
+
+.nav-item {
+
+  .inactive,
+  .active {
+    border-top: 0.2rem solid transparent;
+    border-bottom: 0.2rem solid transparent;
+  }
+
+}
+
+
+@media (min-width: 1202px) {
+
+  .nav-item {
+
+    .active {
+      border-bottom-color: $white;
+    }
+
   }
 
 }

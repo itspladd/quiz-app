@@ -1,34 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Quiz App</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>Create Quiz - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_new.js"></script>
+</head>
 
-    <%- include("partials/_header.ejs") %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8">
-        <section id="main-split">
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div class="col-12 col-lg-4">
-        <section id="side-split-top" class="ml-lg-1">
-        </section>
-        <section id="side-split-bottom" class="ml-lg-1">
-        </section>
-      </div>
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto border-blue">
+        <!-- MAIN TITLE -->
+        <div id="main-title" class="mb-5">
+          Create Quiz
+        </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
+          <!-- FORM -->
+          <div class="d-flex flex-column justify-content-center">
+            <form id="new-quiz-form" class="form" action="/quizzes" method="POST">
+              <div class="form-group mb-2">
+                <!-- TITLE -->
+                <label for="title" class="form-label text-muted">Title</label>
+                <input id="quiz-title" class="form-control" type="text" name="username" maxlength="30" required>
+                <!-- DESCRIPTION -->
+                <label for="description" class="form-label text-muted mt-2">Description</label>
+                <input id="quiz-desc" class="form-control" type="text" name="description" maxlength="60" required>
+                <!-- CATEGORY (value = category_id) -->
+                <div class="form-row">
+                  <div class="col-12 col-md-6">
+                    <label for="category" class="form-label text-muted mt-2">Category</label>
+                    <select id="quiz-category" class="custom-select" required>
+                      <option selected disabled value="">Select one...</option>
+                      <option value="1">Technology</option>
+                      <option value="2">Gaming</option>
+                      <option value="3">Education</option>
+                    </select>
+                  </div>
+                  <!-- VISIBILITY -->
+                  <div class="col-12 col-md-6">
+                    <label for="public" class="form-label text-muted mt-2">Visibility</label>
+                    <select id="quiz-visibility" class="custom-select" required>
+                      <option value="true">Public</option>
+                      <option value="false">Unlisted</option>
+                    </select>
+                  </div>
+                </div>
 
-      </main>
+                <!-- QUESTIONS -->
+                <label id="questions-counter" class="form-label text-muted mt-3 lead">Questions</label>
+                <div id="add-questions" class="mt-2">
+
+                  <!-- INDIVIDUAL QUESTIONS -->
+
+                </div>
+
+                <!-- ADD NEW QUESTION BUTTON -->
+                <div class="d-flex flex-row justify-content-center align-items-center mt-4">
+                  <button type="button" class="btn-custom btn-custom-green btn-custom-lg add-btn">Add Question</button>
+                </div>
+
+                <div class="divider-h mt-4 mb-2 border-gray"></div>
+
+
+                <!-- SUBMIT -->
+                <button id="create-btn" type="submit" class="btn-custom btn-custom-flex mt-3 justify-content-end">Create Quiz</button>
+                <!-- ERROR MESSAGE -->
+                <div id="new-quiz-error" class="d-none justify-content-center"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+</body>
 
 </html>

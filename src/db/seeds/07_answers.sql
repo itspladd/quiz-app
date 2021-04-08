@@ -18,5 +18,21 @@ VALUES
 (5, 'psh. try me.', false),
 (6, 'Yes. I can fight Pluto. I will kick Pluto, the planet, with my feet.', false),
 (6, '(C)Hah! I''d like to see it try--oh no. It''s behind me, isn''t it.', true),
-(6, 'What are you TALKING about', false)
+(6, 'What are you TALKING about', false),
+(7, 'Separating data to eliminate duplicates', true),
+(7, 'Adjusting data to fit within a specific range of values', false),
+(7, 'Removing data that doesn''t fit your needs', false),
+(7, 'Searching for trends in your data', false),
+(8, 'SELECT user.id, (SELECT COUNT(*) FROM answers) FROM users', true),
+(8, 'SELECT * FROM users JOIN quizzes', false),
+(8, 'SELECT AVG(ratings) FROM quizzes', false),
+(8, 'SELECT CONCAT(id, url) FROM answers WHERE question_id = 5', false),
+(9, 'PRIMARY KEY', true),
+(9, 'SERIAL', false),
+(9, 'UNIQUE', false),
+(9, 'SELECT DISTINCT', false),
+(10, 'SQL injection', true),
+(10, 'Form hacking', false),
+(10, 'Cross-site scripting', false),
+(10, 'Form hijacking', false)
 ;

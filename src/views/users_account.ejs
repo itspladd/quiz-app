@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Account Settings - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+</head>
+
+<body>
+
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
+
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto">
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
+
+          <div class="d-flex flex-column justify-content-center">
+            <h1 class="h1">Account Settings</h1>
+
+            <!-- CHANGE AVATAR -->
+            <p class="lead">Choose an avatar:</p>
+            <div class="form-group mb-2">
+              <div id="account-avatars" class="d-flex flex-wrap justify-content-start p-1">
+                <% for (let i = 1; i < 23; i++) { %>
+                  <% const isCurrentAvatar = userData.avatar_url === `/images/avatars/${i}.png` %>
+                  <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
+                    <input type="hidden" name="avatar_id" value="<%= i %>" />
+                    <input class="<%= isCurrentAvatar ? "current" : "" %>" type="image" src="/images/avatars/<%= i %>.png" alt="Submit" <%= isCurrentAvatar ? "disabled" : "" %> />
+                  </form>
+                <% } %>
+              </div>
+            </div>
+
+            <div class="divider-h mb-4"></div>
+
+            <!-- DELETE ACCOUNT -->
+            <p class="lead">Delete your account:</p>
+            <p>To delete your account, press the button below. Be careful, this action is <strong>irreversible</strong> and all of your content on InquizitorApp including your quizzes and reviews will be removed. <em>It will be as if you never existed. :(</em></p>
+            <form class="mt-2" method="POST" action="/users/<%= userData.id %>?_method=DELETE">
+              <button type="submit" class="btn-custom btn-custom-red mr-2">
+                Delete Account
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
+
+  <%- include("partials/_footer.ejs") %>
+
+</body>
+
+</html>

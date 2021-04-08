@@ -1,0 +1,184 @@
+@import "global";
+
+#play-quiz {
+  font-size: 2rem;
+}
+
+#quiz-front {
+
+  .quiz-featured {
+    color: $primary;
+    font-weight: 700;
+  }
+
+  .quiz-unlisted {
+    color: $blue;
+    font-weight: 700;
+  }
+
+  .quiz-conflict {
+    color: $red;
+    font-weight: 700;
+  }
+
+  .quiz-author {
+    color: $light;
+    font-size: 0.9rem;
+
+    .quiz-author-name {
+      font-weight: 700;
+      color: $white;
+
+      &.admin {
+        color: $primary;
+      }
+
+    }
+  }
+}
+
+#quiz-question {
+  min-height: 8rem;
+}
+
+#quiz-answers {
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  :nth-child(1) {
+    border-color: $red-darker;
+
+    &:hover {
+      border-color: $red;
+      background-color: $red-transparent;
+    }
+
+  }
+
+  :nth-child(2) {
+    border-color: $blue-darker;
+
+    &:hover {
+      border-color: $blue;
+      background-color: $blue-transparent;
+    }
+
+  }
+
+  :nth-child(3) {
+    border-color: $green-darker;
+
+    &:hover {
+      border-color: $green;
+      background-color: $green-transparent;
+    }
+
+  }
+
+  :nth-child(4) {
+    border-color: $primary-darker;
+
+    &:hover {
+      border-color: $primary;
+      background-color: $yellow-transparent;
+    }
+
+  }
+
+}
+
+#review-error {
+  color: $red;
+}
+
+#review-submitted {
+  color: $green;
+}
+
+.quiz-option {
+  font-size: 0.9rem;
+  border: 2px solid $white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  min-height: 6rem;
+  margin-top: 0.5rem;
+  word-wrap: break-word;
+  user-select: none;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: $tertiary;
+
+    &:active {
+      background-color: $tertiary-darker;
+    }
+
+  }
+
+}
+
+.quiz-review {
+  border: 1px solid $white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  background-color: $tertiary-darker;
+
+  img {
+    max-height: 6rem;
+    max-width: 6rem;
+  }
+
+  .review-rating {
+    img {
+      height: 0.75rem;
+      width: 0.75rem;
+      margin-bottom: 0.1rem;
+
+    }
+  }
+
+  .review-user {
+    width: 6rem;
+  }
+
+  .review-username {
+    font-weight: 700;
+    margin: 0;
+    color: $white;
+    &.admin {
+      color: $primary;
+    }
+  }
+
+
+  .review-title {
+    font-weight: 700;
+  }
+
+  .review-timestamp {
+    color: $light;
+    font-size: 0.8rem;
+  }
+
+
+}
+
+.quiz-photo {
+
+  img {
+    object-fit: cover;
+    max-height: 15rem;
+    width: 100%;
+    border: 1px solid $white;
+  }
+
+}
+
+.feature-warning {
+  color: $red;
+  font-size: 0.9rem;
+}

@@ -1,49 +1,101 @@
 <header>
   <nav class="navbar navbar-expand-xl navbar-dark fixed-top" id="navigation">
     <div class="container">
-        <a class="navbar-brand ml-lg-3" href="/">InquizitorApp<img src="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/lightbulb-light.png" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav d-flex ml-auto">
+      <a class="navbar-brand ml-lg-3" href="/">InquizitorApp<img src="https://raw.githubusercontent.com/itspladd/quiz-app/main/public/images/lightbulb-light.png" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/">HOME</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes">ALL</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/new">NEW</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/quizzes/123">SHOW</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/users/dashboard">DASHBOARD</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/404">404</a></li>
+      <!-- NAV BAR-->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav d-flex flex-column flex-xl-row m-0 justify-content-xl-between w-100">
 
+          <!-- APP NAV LINKS -->
+          <div id="app-links" class="d-flex flex-column flex-xl-row align-items-xl-center ml-lg-3">
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/home" ? "active" : "inactive"%>" href="/home">HOME</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/quizzes" ? "active" : "inactive"%>" href="/quizzes">QUIZZES</a></li>
+            <% if (userData) { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-blue nav-link <%= currentPage === "/quizzes/new" ? "active" : "inactive"%>" href="/quizzes/new">CREATE</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-green nav-link <%= currentPage === "/study" ? "active" : "inactive"%>" href="/study">STUDY</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-purple nav-link <%= currentPage === "/users/dashboard" ? "active" : "inactive"%>" href="/users/dashboard">DASHBOARD</a></li>
+            <% } %>
+          </div>
 
-              <% if (!userData) { %>
+          <!-- USER PANEL NAV LINKS -->
+          <div id="user-links" class="d-flex flex-column flex-xl-row align-items-xl-center mx-lg-3">
+            <% if (!userData) { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === "/login" ? "active" : "inactive"%>" href="/login">LOGIN</a></li>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-primary nav-link <%= currentPage === "/register" ? "active" : "inactive"%>" href="/register">REGISTER</a></li>
+            <% } else { %>
+            <li class="nav-item my-2 ml-xl-4"><a class="nav-link <%= currentPage === `/users/${userData.id}` ? "active" : "inactive"%>" href="/users/<%= userData.id %>">ACCOUNT</a></li>
+            <li class="nav-item my-2 ml-xl-4">
+              <form class="form-inline" action="/logout" method="POST">
+                <button id="nav-logout" type="submit" class="btn-nav">
+                  LOGOUT
+                </button>
+              </form>
+            </li>
+            <% } %>
+          </div>
 
-                <!-- LOGIN/REGISTER (shown if user is currently not logged in) -->
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/login">LOGIN</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3" href="/register">REGISTER</a></li>
+        </ul>
+      </div>
 
-              <% } else { %>
-
-                <!-- LOGOUT (shown if user is currently logged in) -->
-                <li class="nav-item mx-0 mx-lg-1">
-                  <form class="form-inline" action="/logout" method="POST">
-                    <button id="btn-logout" type="submit" class="btn-nav py-3 px-0 px-lg-3">
-                      LOGOUT
-                    </button>
-                  </form>
-                </li>
-
-              <% } %>
-
-            </ul>
-        </div>
     </div>
   </nav>
+
   <!-- SPACER -->
-  <div id="nav-spacer" class="mt-md-3"></div>
+  <div id="nav-spacer" class="mt-3 mt-xl-2"></div>
+
 </header>
 
-<!-- FLASH MESSAGES -->
+<% if (currentPage !== "/") { %>
+  <!-- FLASH MESSAGES -->
+  <div class="container">
+    <%- include("_flash.ejs", {userData, alerts}) %>
+  </div>
+<% } %>
+
+<!-- ADMIN CONTROL PANEL -->
+<% if (userData && userData.is_admin) { %>
 <div class="container">
-  <%- include("_flash.ejs", {userData, alerts}) %>
+  <div id="admin-cp" class="col-12">
+
+    <% const quizData = data["quizData"] %>
+
+    <!-- quizData -->
+    <% if (quizData) { %>
+
+      <div class="d-flex flex-row flex-wrap justify-content-between justify-content-sm-start">
+
+        <!-- BUTTON WITH PATCH FEATURE QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
+          <input type="hidden" name="origin" value="/quizzes/<%= quizData.id %>" />
+          <button type="submit" name="action" value="feature" class="btn-custom <%= quizData.featured ? "btn-custom-purple" : "btn-custom-yellow" %>">
+            <%= quizData.featured ? "Unfeature Quiz" : "Feature Quiz" %>
+          </button>
+        </form>
+
+        <!-- BUTTON WITH PATCH PUBLIC QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
+          <input type="hidden" name="origin" value="/quizzes/<%= quizData.id %>" />
+          <button type="submit" name="action" value="public" class="btn-custom <%= quizData.public ? "btn-custom-blue" : "btn-custom-white" %>">
+            <%= quizData.public ? "Unlist Quiz" : "Publish Quiz" %>
+          </button>
+        </form>
+
+        <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=DELETE">
+          <button type="submit" class="btn-custom btn-custom-red">
+            Delete Quiz
+          </button>
+        </form>
+
+      </div>
+
+      <div class="divider-h mt-1 mb-1"></div>
+      <div class="initialism text-muted mb-2">Admin Control Panel</div>
+      <% } %>
+    <% } %>
+  </div>
 </div>

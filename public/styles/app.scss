@@ -1,8 +1,20 @@
 @import "global";
 @import "nav";
+@import "index";
+@import "home";
 @import "form";
 @import "404";
 @import "flash";
+@import "quiz_list";
+@import "quiz_index";
+@import "quiz_new";
+@import "quiz_show";
+@import "quiz_results";
+@import "side_panel";
+@import "account";
+@import "avg_rating";
+@import "admin_cp";
+@import "dashboard";
 
 html body {
   background-color: $dark;
@@ -14,6 +26,25 @@ html body {
   padding-bottom: 1rem;
 }
 
+body {
+
+  overflow-y: scroll;
+  background-image: url("/images/texture.png");
+
+  &::-webkit-scrollbar {
+    width: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px $dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $tertiary;
+  }
+
+}
+
 *,
 *:before,
 *:after {
@@ -21,71 +52,115 @@ html body {
 }
 
 section {
-  background-color: $tertiary-darker;
+  background-color: $dark;
   border-radius: 5px;
-  border: 4px solid $primary-darker;
+  border: 1px solid $white;
   padding: 2rem;
 }
 
 a {
   color: $primary-darker;
+  transition: 0.2s;
+
   &:hover {
     color: $primary;
     text-decoration: none;
   }
+
 }
 
-form {
+img,
+label,
+select {
+  user-select: none;
+}
 
-  .form-control {
-    outline: none;
-    box-shadow: none;
-    border: none;
+#scroll-btn {
+  height: 5rem;
+  width: 5rem;
+  position: fixed;
+  z-index: 9;
+  right: 25px;
+  bottom: 35px;
+  visibility: hidden;
+  opacity: 0.75;
+  user-select: none;
+  cursor: pointer;
 
-    &:active,
-    &:focus {
-      box-shadow: 0px 0px 1px 2px $primary-darker;
-    }
+  img {
+    height: 5rem;
+    width: 5rem;
+  }
 
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 1;
   }
 
 }
 
 #nav-spacer {
-  height: 5rem;
+  height: 4.5rem;
 }
 
 #main-full {
-  // background-color: $tertiary;
   min-height: 33rem;
   margin-bottom: 2rem;
 }
 
 #main-split {
-  background-color: $blue;
   min-height: 45rem;
   margin-bottom: 2rem;
+
+  .main-fixed {
+    height: 31.5rem;
+    overflow: auto;
+    padding: 1rem 1rem 0.7rem 1rem;
+    border: 1px solid $tertiary-lighter;
+
+
+    &::-webkit-scrollbar {
+      width: 0.25em;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px $dark;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $tertiary;
+    }
+  }
+
 }
 
-#side-full {
-  background-color: $purple;
-  min-height: 45rem;
+#main-title {
+  line-height: 3rem;
+  font-size: 3rem;
+
+  img {
+    height: 2.5rem;
+    padding-bottom: 0.5rem;
+  }
+
 }
 
-#side-split-top {
-  background-color: $red;
-  min-height: 19rem;
-  margin-bottom: 2rem;
+#share-btn {
+  width: 9rem;
 }
 
-#side-split-bottom {
-  background-color: $green;
-  min-height: 24rem;
+#page-footer {
+  border: 5px solid $tertiary;
+  position: fixed;
+  bottom: 0px;
 }
 
 .btn-custom {
   color: $primary-darker;
-  background-color: $tertiary-darker;
+  background-color: $yellow-transparent;
   width: auto;
   padding: 0.5rem 1rem;
   border: 1px solid $primary-darker;
@@ -105,6 +180,7 @@ form {
   &:focus {
     box-shadow: 0px 0px 1px 2px $primary-darker;
   }
+
 }
 
 .btn-custom-flex {
@@ -113,9 +189,10 @@ form {
 
 .btn-custom-red {
   color: $red;
-  background-color: $tertiary-darker;
+  background-color: $red-transparent;
   border-color: $red;
   outline: $red;
+
   &:hover {
     border-color: $red;
     background-color: $red;
@@ -128,17 +205,128 @@ form {
 
 }
 
+.btn-custom-blue {
+  color: $blue;
+  background-color: $blue-transparent;
+  border-color: $blue;
+  outline: $blue;
+
+  &:hover {
+    border-color: $blue;
+    background-color: $blue;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $blue-darker;
+  }
+
+}
+
+.btn-custom-green {
+  color: $green;
+  background-color: $green-transparent;
+  border-color: $green;
+  outline: $green;
+
+  &:hover {
+    border-color: $green;
+    background-color: $green;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $green-darker;
+  }
+
+}
+
+.btn-custom-purple {
+  color: $purple;
+  background-color: $purple-transparent;
+  border-color: $purple;
+  outline: $purple;
+
+  &:hover {
+    border-color: $purple;
+    background-color: $purple;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $purple-darker;
+  }
+
+}
+
+.btn-custom-pink {
+  color: $pink;
+  background-color: $pink-transparent;
+  border-color: $pink;
+  outline: $pink;
+
+  &:hover {
+    border-color: $pink;
+    background-color: $pink;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $pink-darker;
+  }
+
+}
+
+.btn-custom-white {
+  color: $white;
+  background-color: rgba(255, 255, 255, 0.075);
+  border-color: $white;
+  outline: $white;
+
+  &:hover {
+    border-color: $white;
+    background-color: $white;
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0px 0px 1px 2px $light;
+  }
+
+}
+
+.btn-custom-yellow {
+  background-color: $yellow-transparent;
+}
+
+.btn-custom-md {
+  font-size: 0.8rem;
+  margin: 0.2rem;
+  width: 5.5rem;
+}
+
+.btn-custom-lg {
+  font-size: 0.8rem;
+  margin: 0.2rem;
+  width: 9rem;
+}
+
+.btn-custom-xl {
+  margin: 0.2rem;
+  width: 10rem;
+}
+
 .highlight {
   color: $primary-darker;
 }
 
 .divider-v {
-  border-left: 3px solid $primary-darker;
+  border-left: 1px solid;
   margin: 0 3rem;
 }
 
 .divider-h {
-  border-bottom: 3px solid $primary-darker;
+  border-bottom: 1px solid;
   margin: 2rem 0 3rem 0;
 }
 
@@ -150,10 +338,49 @@ form {
   border-color: $blue;
 }
 
+.border-yellow {
+  border-color: $primary;
+}
+
+.border-yellow-darker {
+  border-color: $primary-darker;
+}
+
 .border-green {
   border-color: $green;
 }
 
 .border-purple {
   border-color: $purple;
+}
+
+.border-tertiary {
+  border-color: $tertiary;
+}
+
+.border-white {
+  border-color: $white;
+}
+
+.border-gray {
+  border-color: $light;
+}
+
+.tab-btn {
+  border: 1px solid $tertiary-lighter;
+  border-bottom: transparent;
+  background-color: $tertiary-darker;
+  color: $white;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  user-select: none;
+
+  &:hover {
+    background-color: $tertiary;
+  }
+
+  &.active-tab {
+    background-color: $tertiary-lighter;
+  }
+
 }

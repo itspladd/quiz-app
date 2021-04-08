@@ -1,0 +1,24 @@
+@import "global";
+
+.new-question {
+  border: 1px solid $light;
+  background-color: $dark;
+  border-radius: 0.25rem;
+  min-height: 10rem;
+  padding: 1rem 2rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    border-color: $white;
+    background-color: $tertiary-darker;
+  }
+
+}
+
+#new-quiz-error {
+  color: $red;
+  height: 2rem;
+  margin-top: 1rem;
+  display: none;
+  justify-content: center;
+}

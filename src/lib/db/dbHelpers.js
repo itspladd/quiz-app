@@ -6,7 +6,18 @@ const db = require("./db");
 
 const users = require("./dbUsers");
 const quizzes = require("./dbQuizzes");
+const sessions = require("./dbSessions");
+const reviews = require("./dbReviews");
+const results = require("./dbResults");
+const favorites = require("./dbFavorites");
 
 module.exports = {
+
+  ...db,
   ...users,
+  ...quizzes,
+  ...sessions,
+  ...reviews,
+  ...results,
+  ...favorites
 };

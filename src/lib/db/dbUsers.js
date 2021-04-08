@@ -1,4 +1,5 @@
 const db = require("./db");
+const fs = require("fs");
 
 module.exports = {
 
@@ -16,8 +17,7 @@ module.exports = {
       WHERE username = $1
     `;
     const queryParams = [username];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -34,8 +34,7 @@ module.exports = {
       WHERE email = $1
     `;
     const queryParams = [email];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -52,8 +51,7 @@ module.exports = {
       WHERE username = $1 OR email = $1
     `;
     const queryParams = [login];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -65,13 +63,13 @@ module.exports = {
    */
   getUserByID: (id) => {
     const queryString = `
-      SELECT *
+      SELECT *,
+        CONCAT('${db.AVATAR_PATH}', users.avatar_id, '${db.AVATAR_FILETYPE}') AS avatar_url
       FROM users
       WHERE id = $1
     `;
     const queryParams = [id];
-    return db.query(queryString, queryParams)
-      .then(rows => rows[0]);
+    return db.query(queryString, queryParams);
   },
 
   /**
@@ -82,14 +80,35 @@ module.exports = {
    *         A promise to the user.
    */
   addUser: (userData) => {
+    // Generate random avatar
+    numAvatars = fs.readdirSync(`./public${db.AVATAR_PATH}`).length -1;
+    console.log('avatars: ', numAvatars);
+    userData.avatar_id = Math.floor(Math.random() * numAvatars) + 1;
+    console.log('trying with avatar_id: ', userData.avatar_id)
     // Extract the user data into queryParams and the keys into an array
-    const {columns, vars, queryParams} = db.buildInsertQueryParams(userData);
+    return db.insert("users", userData);
+  },
+
+  // Change a user's avatar.
+  updateUserAvatar: (user_id, avatar_id) => {
     const queryString = `
-      INSERT INTO users (${columns})
-      VALUES (${vars})
-      RETURNING *;
+      UPDATE users
+      SET avatar_id = $1
+      WHERE id = $2;
     `;
-    return db.query(queryString, queryParams)
-    .then(rows => rows[0]);
-  }
+    const queryParams = [avatar_id, user_id];
+    return db.query(queryString, queryParams);
+  },
+
+  // DELETE A USER FOREVER. DANGER DANGER.
+  deleteUserByID: (user_id) => {
+    const queryString = `
+      DELETE
+      FROM users
+      WHERE id = $1
+      RETURNING * 
+    `;
+    const queryParams = [user_id];
+    return db.query(queryString, queryParams);
+  },
 };

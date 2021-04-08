@@ -1,0 +1,27 @@
+@import "global";
+
+#account-avatars {
+
+  border: 1px solid $light;
+
+  input {
+    height: 4.4rem;
+    width: 4.4rem;
+    outline: none;
+    border: 2px solid transparent;
+    opacity: 0.9;
+    padding: 0.1rem;
+
+    &:hover:not(.current) {
+      border-color: $white;
+      opacity: 1;
+    }
+
+    &.current {
+      border: 2px solid $white;
+      background-color: $tertiary-lighter;
+    }
+
+  }
+
+}

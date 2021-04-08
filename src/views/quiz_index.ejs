@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Quiz App</title>
-    <%- include("partials/_imports.ejs") %>
-  </head>
 
-  <body>
+<head>
+  <title>Quizzes - InquizitorApp</title>
+  <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/quiz_index.js"></script>
+</head>
 
-    <%- include("partials/_header.ejs") %>
+<body>
 
-    <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-      <!-- MAIN WINDOW (SPLIT) -->
-      <div class="col-12 col-lg-8">
-        <section id="main-split">
-        </section>
-      </div>
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+    <!-- MAIN WINDOW (SPLIT) -->
+    <div class="col-12 col-lg-8 m-auto">
+      <section id="main-split" class="overflow-auto border-yellow">
+        <!-- MAIN TITLE -->
+        <div id="main-title" class="mb-5">
+          All Quizzes
+        </div>
+        <!-- MAIN CONTENT -->
+        <div id="main-split-content">
 
-      <!-- SIDE PANELS (SPLIT) -->
-      <div class="col-12 col-lg-4">
-        <section id="side-split-top" class="ml-lg-1">
-        </section>
-        <section id="side-split-bottom" class="ml-lg-1">
-        </section>
-      </div>
+          <!-- QUIZ TABS -->
 
-      </main>
+          <% const sortTech = quizData.filter(quiz => quiz.category_title === "Technology") %>
+          <% const sortGaming = quizData.filter(quiz => quiz.category_title === "Gaming") %>
+          <% const sortEdu = quizData.filter(quiz => quiz.category_title === "Education") %>
+
+          <div class="d-flex flex-wrap-reverse">
+
+            <button id="tab-all" type="button" class="active-tab tab-btn mr-2">
+              All <%= quizData.length ? `(${quizData.length})` : "" %>
+            </button>
+            <button id="tab-tech" type="button" class="tab-btn mr-2">
+              Technology <%= sortTech.length ? `(${sortTech.length})` : "" %>
+            </button>
+            <button id="tab-gaming" type="button" class="tab-btn mr-2">
+              Gaming <%= sortGaming.length ? `(${sortGaming.length})` : "" %>
+            </button>
+            <button id="tab-edu" type="button" class="tab-btn mr-2">
+              Education <%= sortEdu.length ? `(${sortEdu.length})` : "" %>
+            </button>
+
+          </div>
+
+          <!-- QUIZ BROWSER-->
+          <div id="quiz-browser" class="main-fixed">
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDE PANELS (SPLIT) -->
+    <div id="side-section" class="col-12 col-lg-4">
+      <!-- USER PANEL -->
+      <%- include("partials/_side_top.ejs", userData) %>
+      <!-- LEADERBOARDS -->
+      <%- include("partials/_side_bottom.ejs", rankData) %>
+    </div>
+
+  </main>
 
   <%- include("partials/_footer.ejs") %>
 
-  </body>
+  <!-- EJS DATA -->
+  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
+
+</body>
 
 </html>
