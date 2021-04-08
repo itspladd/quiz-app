@@ -118,7 +118,6 @@ module.exports = (db) => {
   });
 
   // Patch request for updating a user's avatar
-  // TODO: db.updateUserAvatar
   router.patch("/:userID", (req, res) => {
     const {
       userData

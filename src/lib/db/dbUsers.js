@@ -89,7 +89,15 @@ module.exports = {
     return db.insert("users", userData);
   },
 
-  // Change a user's avatar.
+  /**
+   * Changes a user's avatar.
+   * @param  {Integer} user_id
+   *         The ID of the user.
+   * @param  {Integer} avatar_id
+   *         The ID of the new avatar.
+   * @return {Promise<[]>}
+   *         A promise to an empty array.
+   */
   updateUserAvatar: (user_id, avatar_id) => {
     const queryString = `
       UPDATE users
@@ -101,6 +109,13 @@ module.exports = {
   },
 
   // DELETE A USER FOREVER. DANGER DANGER.
+  /**
+   * Deletes a user from the 'users' table.
+   * @param  {Integer} user_id
+   *         The ID of the user to delete.
+   * @return {Promise<[]>}
+   *         A promise to an array containing the deleted user's data.
+   */
   deleteUserByID: (user_id) => {
     const queryString = `
       DELETE

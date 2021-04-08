@@ -79,6 +79,7 @@ const parseResults = (rows) => {
 };
 
 module.exports = {
+  
   /**
    * Retrieves the results of a single quiz session.
    * Uses parseResults() before returning data.
@@ -101,7 +102,11 @@ module.exports = {
    *            duration
    *            end_time
    *            correct_answers
-   *            responses: 
+   *            responses: [
+   *                      {question,
+   *                       answer,
+   *                       actual_answer}
+   *                        ]
    *          }
    *
    */

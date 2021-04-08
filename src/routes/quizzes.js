@@ -165,7 +165,8 @@ module.exports = (db) => {
             quiz_id,
             user_id
           })
-            .then(session => {
+            .then(rows => {
+              session = rows[0];
               console.log(`New session started by ${userData ? userData.username : "anonymous" }`);
               // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
               // containing all of a quiz's questions and answers
@@ -196,7 +197,12 @@ module.exports = (db) => {
     });
   });
 
+  // When a quiz is completed, client sends a PUT request to this route, with the following body:
+  // {
+  //   session_id
+  //   answers: [answer_id, answer_id, ...]
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
+    // Create the session_answers entries for this session, using the session_id and answer_ids
     const data = req.body;
     session_id = data.session_id;
     const sessionAnswers = data.answers.map(elem => {
@@ -207,10 +213,10 @@ module.exports = (db) => {
     });
     db.insert("session_answers", sessionAnswers)
       .then(rows => db.markSessionEndTime(session_id))
-      .then(rows => db.insert("results", {
+      .then(rows => db.insert("results", { // Create results entry for this session
         session_id
       }))
-      .then(resultRows => res.json(resultRows[0].id))
+      .then(resultRows => res.json(resultRows[0].id)) // Send a JSON response with the result ID
       .catch(err => console.error(err));
   });
 
@@ -279,11 +285,6 @@ module.exports = (db) => {
     })
     .catch(err => console.error(err));
   })
-  /*STRETCH: global results from this quiz
-    router.get("/:quizID/results", (req, res) => {
-    res.render("quiz_results");
-  });
- */
 
   return router;
 
