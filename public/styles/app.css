@@ -673,9 +673,10 @@ form .custom-select:focus {
   margin: auto;
 }
 
-#admin-cp button {
-  width: 8rem;
+#admin-cp form button {
+  width: 10rem;
   font-size: 0.8rem;
+  margin: 0 2rem 1rem 0;
 }
 
 html body {

@@ -234,21 +234,22 @@ module.exports = (db) => {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
-        // If action is "public", toggle public/unlisted for the quizID
+        // PUBLIC: toggle public/unlisted for the quizID
       } else if (action === "public") {
-        db.toggleQuizPublic(quizID)
-        .then(rows => {
-          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
-          res.redirect(redirectURL);
-        })
-        .catch(err => console.error(err));
-        // If action is "feature", toggle featured/unfeatured for the quizID (admin only)
+          db.toggleQuizPublic(quizID)
+            .then(rows => {
+              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+              res.redirect(redirectURL);
+            })
+            .catch(err => console.error(err));
+        // FEATURE: toggle featured/unfeatured for the quizID (admin only)
       } else if (userData.is_admin && action === "feature") {
-        db.toggleQuizFeature(quizID)
-        .then(rows => {
-          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
-          res.redirect(redirectURL);
-        })
+          db.toggleQuizFeature(quizID)
+            .then(rows => {
+              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+              res.redirect(redirectURL);
+            })
+            .catch(err => console.error(err));
       }
     })
     .catch(err => console.error(err));

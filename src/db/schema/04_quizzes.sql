@@ -11,5 +11,5 @@ CREATE TABLE quizzes (
   creation_time TIMESTAMP DEFAULT NOW(),
   public BOOLEAN DEFAULT FALSE,
   active BOOLEAN DEFAULT TRUE,
-  is_featured BOOLEAN DEFAULT FALSE
+  featured BOOLEAN DEFAULT FALSE
 );

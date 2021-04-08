@@ -265,6 +265,16 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  toggleQuizFeature: function(quiz_id) {
+    const queryString = `
+    UPDATE quizzes
+    SET featured = NOT featured
+    WHERE id = $1
+    `;
+    const queryParams = [quiz_id];
+    return db.query(queryString, queryParams);
+  },
+
   toggleQuizActive: function(quiz_id) {
     const queryString = `
     UPDATE quizzes
