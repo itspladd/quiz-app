@@ -11,6 +11,11 @@
     font-weight: 700;
   }
 
+  .quiz-unlisted {
+    color: $blue;
+    font-weight: 700;
+  }
+
   .quiz-author {
     color: $light;
     font-size: 0.9rem;
@@ -166,4 +171,8 @@
     border: 1px solid $white;
   }
 
+}
+
+.feature-warning {
+  color: $red;
 }

@@ -69,7 +69,7 @@
         <!-- BUTTON WITH PATCH FEATURE QUIZ REQUEST -->
         <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
           <input type="hidden" name="origin" value="/quizzes/<%= quizData.id %>" />
-          <button type="submit" name="action" value="feature" class="btn-custom <%= quizData.featured ? "btn-custom-white" : "btn-custom-pink" %>">
+          <button type="submit" name="action" value="feature" class="btn-custom <%= quizData.featured ? "btn-custom-purple" : "btn-custom-yellow" %>">
             <%= quizData.featured ? "Unfeature Quiz" : "Feature Quiz" %>
           </button>
         </form>

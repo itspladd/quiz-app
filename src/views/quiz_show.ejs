@@ -15,7 +15,10 @@
 
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="overflow-auto <%= quizData.featured ? "border-yellow-darker" : "" %> ">
+      <section id="main-split" class="overflow-auto
+      <%= quizData.featured && quizData.public ? "border-yellow-darker" : "" %>
+      <%= !quizData.public && !quizData.featured ? "border-blue" : "" %>
+      <%= !quizData.public && quizData.featured ? "border-red" : "" %>">
 
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
@@ -24,12 +27,21 @@
           <div id="quiz-front" class="d-flex flex-column">
 
             <!-- QUIZ INFO -->
-            <p class="text-muted initialism my-0">
+            <span class="text-muted initialism my-0">
               <%= quizData.category_title %>
-            </p>
-            <% if (quizData.featured) { %>
-              <p class="quiz-featured mt-2 mb-1">FEATURED</p>
+            </span>
+            <div class="d-flex flex-row">
+              <% if (quizData.featured) { %>
+                <span class="quiz-featured mt-2 mb-1 mr-2">FEATURED</span>
+              <% } %>
+              <% if (!quizData.public) { %>
+                <span class="quiz-unlisted mt-2 mb-1">UNLISTED</span>
+              <% } %>
+            </div>
+            <% if (!quizData.public && quizData.featured) { %>
+              <span class="feature-warning">Unlisted quizzes do not appear on the featured list</span>
             <% } %>
+
             <p class="h1 mt-1"><%= quizData.title %> </p>
             <p class="lead"><%= quizData.description %></p>
             <p class="quiz-author">Submitted by

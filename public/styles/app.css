@@ -282,6 +282,11 @@ form .custom-select:focus {
   font-weight: 700;
 }
 
+#quiz-front .quiz-unlisted {
+  color: #008cff;
+  font-weight: 700;
+}
+
 #quiz-front .quiz-author {
   color: #ffffff79;
   font-size: 0.9rem;
@@ -421,6 +426,10 @@ form .custom-select:focus {
   max-height: 15rem;
   width: 100%;
   border: 1px solid #eeeeee;
+}
+
+.feature-warning {
+  color: #e22d4b;
 }
 
 #results-score {
