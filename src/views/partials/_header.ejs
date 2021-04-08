@@ -53,3 +53,36 @@
 <div class="container">
   <%- include("_flash.ejs", {userData, alerts}) %>
 </div>
+
+<!-- ADMIN CONTROL PANEL -->
+
+<% if (userData.is_admin) { %>
+
+<div class="container">
+
+  <div id="admin-cp" class="col-12">
+
+    <% const quizData = data["quizData"] %>
+
+    <!-- quizData -->
+
+    <% if (quizData) { %>
+
+      <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+      <form method="POST" action="/quizzes/<%= quizData.id %>?_method=DELETE">
+        <button type="submit" class="btn-custom btn-custom-red btn-custom-admin mr-2">
+          Delete Quiz
+        </button>
+      </form>
+
+      <div class="divider-h mt-3 mb-2"></div>
+
+      <div class="initialism text-muted mb-2">Admin Controls</div>
+
+      <% } %>
+
+    <% } %>
+
+  </div>
+
+</div>

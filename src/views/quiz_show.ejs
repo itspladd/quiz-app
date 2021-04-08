@@ -9,7 +9,7 @@
 
 <body>
 
-  <%- include("partials/_header.ejs", {alerts, userData, currentPage}) %>
+  <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {quizData}}) %>
 
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
@@ -147,14 +147,14 @@
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
       <!-- USER PANEL -->
-      <%- include("partials/_side_top.ejs", userData) %>
+      <%- include("partials/_side_top.ejs", {userData}) %>
       <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 
   </main>
 
-  <%- include("partials/_footer.ejs") %>
+  <% include("partials/_footer.ejs") %>
 
   <!-- EJS DATA -->
   <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>

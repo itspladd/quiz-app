@@ -1,0 +1,19 @@
+<% if (!userData.is_admin) { %>
+
+<div id="admin-cp" class="container m-auto p-5">
+
+  <p>ADMIN CONTROL PANEL</p>
+
+  <% const quizData = data["quizData"] || {} %>
+
+  <!-- quizData -->
+
+  <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+  <form method="POST" action="/quizzes/<%= quizData.id %>?_method=DELETE">
+    <button type="submit" class="btn-custom btn-custom-red btn-custom-lg mr-2">
+      Delete Quiz
+    </button>
+  </form>
+</div>
+
+<% } %>

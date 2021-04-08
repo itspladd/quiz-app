@@ -655,6 +655,15 @@ form .custom-select:focus {
   margin-bottom: 0.1rem;
 }
 
+#admin-cp {
+  margin: auto;
+}
+
+#admin-cp button {
+  width: 8rem;
+  font-size: 0.8rem;
+}
+
 html body {
   background-color: #11121b;
   color: #eeeeee;
