@@ -355,10 +355,6 @@ form .custom-select:focus {
   padding: 1rem;
   margin-bottom: 0.5rem;
   word-wrap: break-word;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   background-color: #1a1b2b;
 }
 
@@ -636,6 +632,13 @@ form .custom-select:focus {
   background-color: #2e2f4b;
 }
 
+.avg-rating {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 .avg-rating img {
   width: 0.75rem;
   height: 0.75rem;
@@ -683,10 +686,6 @@ section {
   border-radius: 5px;
   border: 1px solid #eeeeee;
   padding: 2rem;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 
 a {
