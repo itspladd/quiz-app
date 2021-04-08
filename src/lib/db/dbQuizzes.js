@@ -70,7 +70,7 @@ module.exports = {
   getTrendingQuizzes: function() {
     let queryString = `
       SELECT quizzes.*,
-      COUNT(quiz_sessions.*) AS total_plays
+        COUNT(quiz_sessions.*) AS total_plays
       FROM quizzes
       JOIN quiz_sessions ON quizzes.id = quiz_sessions.quiz_id
       WHERE public = TRUE
@@ -106,7 +106,13 @@ module.exports = {
             FROM quiz_sessions
             JOIN quizzes ON quiz_sessions.quiz_id = quizzes.id
             WHERE quizzes.id = $1)
-        AS total_plays
+        AS total_plays,
+          ROUND(
+            (SELECT AVG(rating)
+            FROM quiz_reviews
+              JOIN quizzes ON quizzes.id = quiz_reviews.quiz_id
+            WHERE quiz_id = $1), 1)
+        AS average_rating
       FROM quizzes
         FULL OUTER JOIN quiz_sessions AS sessions ON sessions.quiz_id = quizzes.id
         JOIN questions ON questions.quiz_id = quizzes.id
