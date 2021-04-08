@@ -179,7 +179,7 @@
 
 #featured-quizzes .list-quiz {
   border-width: 2px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #featured-quizzes .list-quiz:hover {
@@ -187,7 +187,7 @@
 }
 
 #featured-quizzes .list-quiz .title {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
@@ -198,18 +198,6 @@
 
 #featured-quizzes .list-quiz .author.admin {
   color: #fad207;
-}
-
-@media (min-width: 1202px) {
-  #featured-quizzes :nth-child(2) {
-    margin-left: 0.9rem;
-  }
-  #featured-quizzes .list-quiz {
-    min-width: 12.8rem;
-  }
-  #featured-quizzes .list-quiz .title {
-    font-size: 1.2rem;
-  }
 }
 
 form .form-control,
@@ -1180,6 +1168,10 @@ select {
 
 .border-yellow-darker {
   border-color: #faa515;
+}
+
+.border-yellow-darker:hover {
+  border-color: #fad207;
 }
 
 .border-green {

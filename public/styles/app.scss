@@ -323,6 +323,9 @@ select {
 
 .border-yellow-darker {
   border-color: $primary-darker;
+  &:hover {
+    border-color: $primary;
+  }
 }
 
 .border-green {

@@ -44,14 +44,14 @@
 
   .list-quiz {
     border-width: 2px;
-    padding: 1rem;
+    padding: 2rem;
 
     &:hover {
       border-width: 2px;
     }
 
     .title {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       font-weight: 700;
     }
 
@@ -65,28 +65,29 @@
 
     }
 
-  }
-
-}
-
-
-@media (min-width: 1202px) {
-
-  #featured-quizzes {
-
-    :nth-child(2) {
-      margin-left: 0.9rem;
-    }
-
-    .list-quiz {
-      min-width: 12.8rem;
-
-      .title {
-        font-size: 1.2rem;
-      }
-
-    }
 
   }
 
 }
+
+
+// @media (min-width: 1202px) {
+
+//   #featured-quizzes {
+
+//     :nth-child(2) {
+//       margin-left: 0.9rem;
+//     }
+
+//     .list-quiz {
+//       min-width: 12.8rem;
+
+//       .title {
+//         font-size: 1.2rem;
+//       }
+
+//     }
+
+//   }
+
+// }
