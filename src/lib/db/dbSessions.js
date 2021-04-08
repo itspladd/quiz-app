@@ -45,6 +45,13 @@ module.exports = {
     return db.insert("quiz_sessions", sessionData);
   },
 
+  /**
+   * Updates a quiz_session's end time.
+   * @param  {Integer} session_id
+   *         The ID of the session to update.
+   * @return {Promise<[]>}
+   *         A promise to an empty array.
+   */
   markSessionEndTime: function(session_id) {
     const queryString = `
       UPDATE quiz_sessions

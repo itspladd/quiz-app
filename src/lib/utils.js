@@ -17,11 +17,15 @@ const generateRandomString = (length) => {
 };
 
 /**
- * Returns a string describing the relative time since the given timestamp (milliseconds)
+ * Returns a string describing relative time.
+ * If given one timestamp, describes the difference between the current time and the timestamp.
+ * If given two timestamps, describes the difference between the two timestamps.
  * @param  {number} timestamp
- *         The UNIX timestamp (in milliseconds) to convert
+ *         The UNIX timestamp (in milliseconds) to convert, representing an earlier time
+ * @param  {number} timestamp2
+ *         OPTIONAL: The UNIX timestamp (in milliseconds), representing a later time
  * @return {string}
- *         A string describing the elapsed time
+ *         A string describing the elapsed time.
  */
 const convertTimestamp = (timestamp, timestamp2) => {
   // Retrieve current date in milliseconds and calculate difference
