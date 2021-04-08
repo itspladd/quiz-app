@@ -1,46 +1,75 @@
+const wrapper = (string) => {
+  let msg = string;
+  let className = "system";
+  if (msg.startsWith("@ahhreggi > ")) {
+    className = "ahhreggi"
+  } else if (msg.startsWith("@pladd > ")) {
+    className = "pladd"
+  } else if (msg.startsWith("//")) {
+    className = "comment"
+  }
+  return `<span class="${className}">${msg}</span>`;
+}
+
+const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
+  let feed = [];
+  for (let i = 0; i < repeat; i++) {
+    feed.push(...messages)
+  }
+  feed.push(wrapper("@ahhreggi > no, it doesn't actually go on forever haha"));
+  let count = 0;
+  let wait = 1000;
+  for (const msg of feed) {
+    setTimeout(() => {
+      container.append(wrapper(msg));
+      count++;
+      if (scroll && count > scroll) {
+        container.find(":first-child").remove();
+      }
+    }, wait)
+    wait += delay;
+  }
+}
+
 $(document).ready(function() {
 
   // Load cover photos
   loadCoverPhotos();
 
-  // Array of featured quizzes
-  const quizData = JSON.parse($(ejs).attr("data-quiz-data"));
+  const msgs = [
+    `@ahhreggi > inquizitorapp -v`,
+    "v13.13.37",
+    `@pladd > "hello world!"`,
+    "'hello world!'",
+    `@ahhreggi > "hello world!"`,
+    "'goodbye world!'",
+    "@ahhreggi > wait a minute-",
+    "-bash: wait: `a': not a pid or valid job spec",
+    "-bash: wait: `minute-': not a pid or valid job spec",
+    `@ahhreggi > git add .`,
+    `@ahhreggi > git commit -m 'time to sleep'`,
+    `@ahhreggi > git checkout main`,
+    `Already on 'main'`,
+    `@ahhreggi > oh god`,
+    `oh: command not found`,
+    `WHAT: command not found`,
+    `@ahhreggi > sleep`,
+    `sleep: missing operand`,
+    `Try 'sleep --help' for more information.`,
+    `@ahhreggi > no`,
+    `yes`,
+    `@ahhreggi > no`,
+    `yes`,
+    `@ahhreggi > no`,
+    `yes`,
+    `@ahhreggi > no`,
+    `yes`,
+    `@ahhreggi > no`,
+    `yes`,
+    `@pladd > WHAT IS HAPPENING`
+  ]
 
-  const consoleComp = $("#console");
-
-  const messages = [
-    "<span class='pladd'>@pladd > Hello world!</span>",
-    "<span class='ahhreggi'>@ahhreggi > hey paul i think the trending panel is broken pls fix, ty!</span>",
-    "<span class='ahhreggi'>@ahhreggi > btw check out the quiz show page</span>",
-    "<span class='ahhreggi'>@ahhreggi > also coverphoto urls aren't being sent to the dashboard properly (they're null)</span>",
-    "<span class='ahhreggi'>@ahhreggi > to show ejs data, set if (!true) to true in _footer.ejs</span>",
-    "<span class='ahhreggi'>@ahhreggi > p.s. databases make me cri</span>",
-    "<span class='ahhreggi'>@ahhreggi > inquizitorapp -v</span>",
-    "<span class='system'>v13.33.7</span>",
-    "<span class='ahhreggi'>@ahhreggi > this is cool</span>",
-    "<span class='ahhreggi'>@ahhreggi > git add .</span>",
-    "<span class='ahhreggi'>@ahhreggi > git commit -m 'time to sleep'</span>",
-    "<span class='ahhreggi'>@ahhreggi > git push</span>",
-    "<span class='ahhreggi'>@ahhreggi > git checkout main</span>",
-    "<span class='system'>Already on 'main'</span>",
-    "<span class='ahhreggi'>@ahhreggi > oh god</span>",
-    "<span class='system'>oh: command not found</span>",
-    "<span class='ahhreggi'>@ahhreggi > sleep</span>",
-    "<span class='system'>sleep: missing operand</span>",
-    "<span class='system'>Try 'sleep --help' for more information.</span>",
-    "<span class='system'>no</span>"
-  ];
-
-  for (let i = 0; i < 1000; i++) {
-    messages.push("<span class='system'>no</span>");
-  }
-
-  let delay = 1000;
-  for (const msg of messages) {
-    setTimeout(() => {
-      consoleComp.append(msg);
-    }, delay);
-    delay += 1000
-  }
+  const $comp = $("#console");
+  type(msgs, $comp, 15);
 
 });

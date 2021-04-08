@@ -409,6 +409,17 @@ form .custom-select:focus {
 
 #quiz-question {
   min-height: 8rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#quiz-answers {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #quiz-answers:hover {

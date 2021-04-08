@@ -40,9 +40,11 @@
 
 #quiz-question {
   min-height: 8rem;
+  user-select: none;
 }
 
 #quiz-answers {
+  user-select: none;
 
   &:hover {
     cursor: pointer;
