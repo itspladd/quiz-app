@@ -1,0 +1,50 @@
+@import "global";
+
+#user-quizzes {
+
+  .user-quiz {
+
+    &.quiz-featured {
+      border-color: $primary-darker;
+
+      &:hover {
+        border-color: $primary;
+      }
+      .quiz-visibility {
+        color: $primary;
+      }
+
+    }
+
+    &.quiz-unlisted {
+      border-color: $blue-darker;
+
+      &:hover {
+        border-color: $blue;
+      }
+      .quiz-visibility {
+        color: $blue;
+      }
+
+    }
+
+    &.quiz-conflict {
+      border-color: $red-darker;
+
+      &:hover {
+        border-color: $red;
+      }
+      .quiz-visibility {
+        color: $red;
+      }
+
+    }
+
+    .quiz-visibility {
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+  }
+
+}

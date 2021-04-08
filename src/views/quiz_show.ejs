@@ -31,15 +31,18 @@
               <%= quizData.category_title %>
             </span>
             <div class="d-flex flex-row">
-              <% if (quizData.featured) { %>
+              <% if (quizData.featured && quizData.public) { %>
                 <span class="quiz-featured mt-2 mb-1 mr-2">FEATURED</span>
               <% } %>
-              <% if (!quizData.public) { %>
+              <% if (!quizData.featured && !quizData.public) { %>
                 <span class="quiz-unlisted mt-2 mb-1">UNLISTED</span>
+              <% } %>
+              <% if (!quizData.public && quizData.featured) { %>
+                <span class="quiz-conflict mt-2 mb-1">FEATURED & UNLISTED</span>
               <% } %>
             </div>
             <% if (!quizData.public && quizData.featured) { %>
-              <span class="feature-warning">Unlisted quizzes do not appear on the featured list</span>
+              <span class="feature-warning">Unlisted quizzes cannot appear on the featured list</span>
             <% } %>
 
             <p class="h1 mt-1"><%= quizData.title %> </p>

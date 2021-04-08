@@ -64,7 +64,7 @@
     <!-- quizData -->
     <% if (quizData) { %>
 
-      <div class="d-flex flex-row flex-wrap">
+      <div class="d-flex flex-row flex-wrap justify-content-between justify-content-sm-start">
 
         <!-- BUTTON WITH PATCH FEATURE QUIZ REQUEST -->
         <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
@@ -77,7 +77,7 @@
         <!-- BUTTON WITH PATCH PUBLIC QUIZ REQUEST -->
         <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
           <input type="hidden" name="origin" value="/quizzes/<%= quizData.id %>" />
-          <button type="submit" name="action" value="public" class="btn-custom <%= quizData.public ? "btn-custom-blue" : "" %>">
+          <button type="submit" name="action" value="public" class="btn-custom <%= quizData.public ? "btn-custom-blue" : "btn-custom-white" %>">
             <%= quizData.public ? "Unlist Quiz" : "Publish Quiz" %>
           </button>
         </form>
@@ -91,7 +91,7 @@
 
       </div>
 
-      <div class="divider-h mt-1 mb-2"></div>
+      <div class="divider-h mt-1 mb-1"></div>
       <div class="initialism text-muted mb-2">Admin Control Panel</div>
       <% } %>
     <% } %>

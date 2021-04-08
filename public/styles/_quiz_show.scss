@@ -16,6 +16,11 @@
     font-weight: 700;
   }
 
+  .quiz-conflict {
+    color: $red;
+    font-weight: 700;
+  }
+
   .quiz-author {
     color: $light;
     font-size: 0.9rem;
@@ -175,4 +180,5 @@
 
 .feature-warning {
   color: $red;
+  font-size: 0.9rem;
 }
