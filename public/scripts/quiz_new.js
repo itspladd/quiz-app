@@ -118,8 +118,10 @@ const showError = (errorMsg) => {
   const errorComponent = $("#new-quiz-error");
   if (errorMsg) {
     errorComponent.html(errorMsg);
+    errorComponent.removeClass("d-none").addClass("d-flex");
   } else {
     errorComponent.empty();
+    errorComponent.removeClass("d-flex").addClass("d-none");
   }
 
 };
@@ -283,6 +285,9 @@ $(document).ready(function() {
   const addQuestionBtn = $(".add-btn");
   const quizForm = $("#new-quiz-form");
 
+  // Add an initial question form
+  addQuestionComponent(questionsList);
+
   // Add a new question when the user clicks the add question button
   addQuestionBtn.on("click", function() {
 
@@ -309,7 +314,8 @@ $(document).ready(function() {
   // Clear question validation highlights and error message on user input
   quizForm.on("input", function() {
 
-    $(this).find(".new-question").css("border-color", "#fff");
+    $(this).find(".new-question").css("border-color", "#fff")
+    .removeClass("valid-question").removeClass("invalid-question");
     showError(false);
 
   });

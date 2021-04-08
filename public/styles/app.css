@@ -171,6 +171,7 @@ form .custom-select:focus {
 
 .new-question {
   border: 1px solid #ffffff79;
+  background-color: #1a1b2b;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem 2rem;
@@ -186,9 +187,7 @@ form .custom-select:focus {
   color: #e22d4b;
   height: 2rem;
   margin-top: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
