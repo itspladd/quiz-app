@@ -2,21 +2,39 @@
 <html lang="en">
 
 <head>
-  <title>InquizitorApp</title>
+  <title>Quizzes - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
+  <script type="text/javascript" src="/scripts/home.js"></script>
 </head>
 
 <body>
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-  <main class="container d-flex flex-row justify-content-center mt-lg-4">
-
+  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto">
         <!-- MAIN CONTENT -->
-        <div id="main-split-content" class="">
+        <div id="main-split-content">
+
+          <h1 class="h3">Featured Quizzes</h1>
+          <div class="divider-h mt-3 mb-4"></div>
+          <!-- QUIZ BROWSER -->
+
+
+
+          <!-- FEATURED QUIZZES -->
+          <div id="featured-quizzes" class="d-flex flex-column flex-xl-row justify-content-between">
+
+            <% for (const quiz of quizData) { %>
+              <div class="list-quiz col-12 col-xl-4 d-flex flex-column align-items-start justify-content-between">
+                <p class="title"><%= quiz.title %> </p>
+                <p class="author <%= quiz.is_admin ? "admin" : "" %> "><%= quiz.author %> </p>
+              </div>
+            <% } %>
+
+          </div>
 
         </div>
       </section>
@@ -33,6 +51,9 @@
   </main>
 
   <%- include("partials/_footer.ejs") %>
+
+  <!-- EJS DATA -->
+  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
 
 </body>
 

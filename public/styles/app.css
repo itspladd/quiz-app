@@ -112,13 +112,31 @@
 }
 
 #landing-main {
-  height: 60vh;
+  height: 100%;
 }
 
 #landing-btn {
   font-size: 1.5rem;
   border-width: 2px;
   border-radius: 0.4rem;
+}
+
+#featured-quizzes .list-quiz {
+  padding: 1rem;
+  min-width: 31%;
+}
+
+#featured-quizzes .list-quiz .title {
+  font-size: 1.2rem;
+}
+
+#featured-quizzes .list-quiz .author {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#featured-quizzes .list-quiz .author.admin {
+  color: #fad207;
 }
 
 form .form-control,
