@@ -32,7 +32,11 @@ module.exports = {
   getFavoritesForUser: function(user_id) {
     const queryString = `
       SELECT quizzes.*,
-        categories.title AS category_title
+        categories.title AS category_title,
+          (CASE
+            WHEN quizzes.coverphoto_url IS NULL
+            THEN categories.coverphoto_url END)
+        AS coverphoto_url
       FROM quizzes
         JOIN categories ON category_id = categories.id
         JOIN favorites ON favorites.quiz_id = quizzes.id
