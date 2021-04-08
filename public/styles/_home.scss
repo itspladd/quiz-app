@@ -42,8 +42,12 @@
 }
 
 #featured-quizzes {
+  margin: 0;
+  padding: 0;
+  min-height: 8rem;
 
-  a > .list-quiz {
+
+  .list-quiz {
     border-width: 2px;
     padding: 1rem;
 
@@ -75,22 +79,15 @@
 
   #featured-quizzes {
 
+    :nth-child(2) {
+      margin-left: 0.9rem;
+    }
+
     .list-quiz {
-      width: 13.1rem;
-    }
-
-    .title {
-      font-size: 1.2rem;
-    }
-
-    .author {
-      font-size: 0.9rem;
-      font-weight: 700;
-
-      &.admin {
-        color: $primary;
+      min-width: 12.8rem;
+      .title {
+        font-size: 1.2rem;
       }
-
     }
 
   }
