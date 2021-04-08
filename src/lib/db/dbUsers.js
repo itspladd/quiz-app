@@ -89,6 +89,7 @@ module.exports = {
     return db.insert("users", userData);
   },
 
+  // Change a user's avatar.
   updateUserAvatar: (user_id, avatar_id) => {
     const queryString = `
       UPDATE users
@@ -98,4 +99,16 @@ module.exports = {
     const queryParams = [avatar_id, user_id];
     return db.query(queryString, queryParams);
   },
+
+  // DELETE A USER FOREVER. DANGER DANGER.
+  deleteUserByID: (user_id) => {
+    const queryString = `
+      DELETE
+      FROM users
+      WHERE user-id = $1
+      RETURNING * 
+    `;
+    const queryParams = [user_id];
+    return db.query(queryString, queryParams);
+  }
 };

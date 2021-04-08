@@ -151,6 +151,7 @@ module.exports = (db) => {
     } else {
       db.deleteUserByID(userID)
       .then(rows => {
+        req.session.userID = null;
         req.flash("success", "Account deleted successfully! Goodbye!");
         res.redirect("/");
       })
