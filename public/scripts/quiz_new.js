@@ -56,13 +56,13 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
         .removeClass("maximize")
         .addClass("minimize");
     } else if ($($target).is(".toggle.minimize")) {
-      const question = $(this).find("input").val();
-      const answer = $(this).find(".input-response:first").val();
+      const question = $(this).find("input");
+      const answer = $(this).find(".input-response:first");
       $(this).find(".min-question")
       .css("opacity", "0")
       .html(`
-        <p class="lead">${question || "N/A"}</p>
-        <p class="mb-0">Answer: ${answer || "N/A"}</p>
+        <p class="lead">${getValue(question) || "N/A"}</p>
+        <p class="mb-0">Answer: ${getValue(answer) || "N/A"}</p>
       `)
       .animate({
         queue: true,
@@ -219,7 +219,7 @@ const getQuizFormErrors = () => {
 };
 
 // Retrieve and trim an input field's value
-const getValue = (inputField, escape = false) => {
+const getValue = (inputField, escape = true) => {
 
   const string = $(inputField).val().trim();
 
