@@ -70,13 +70,15 @@ module.exports = {
   getTrendingQuizzes: function() {
     let queryString = `
       SELECT quizzes.*,
-        COUNT(quiz_sessions.*) AS total_plays
+        COUNT(DISTINCT quiz_sessions.*) AS total_plays,
+        ROUND(AVG(rating), 1) AS average_rating
       FROM quizzes
-      JOIN quiz_sessions ON quizzes.id = quiz_sessions.quiz_id
+        JOIN quiz_sessions ON quizzes.id = quiz_sessions.quiz_id
+        JOIN quiz_ratings ON quizzes.id = quiz_ratings.quiz_id
       WHERE public = TRUE
         AND active
       GROUP BY quizzes.id
-      ORDER BY COUNT(quiz_sessions.*) DESC
+      ORDER BY AVG(rating) DESC
       LIMIT 7
     `;
     return db.query(queryString, []);
