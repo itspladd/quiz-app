@@ -238,7 +238,8 @@ module.exports = (db) => {
       } else if (action === "public") {
           db.toggleQuizPublic(quizID)
             .then(rows => {
-              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+              const isPublic = rows[0].public;
+              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz ${ isPublic ? "published" : "unlisted" } successfully!`);
               res.redirect(redirectURL);
             })
             .catch(err => console.error(err));
@@ -246,7 +247,8 @@ module.exports = (db) => {
       } else if (userData.is_admin && action === "feature") {
           db.toggleQuizFeature(quizID)
             .then(rows => {
-              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+              const isFeatured = rows[0].featured;
+              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz ${ isFeatured ? "featured" : "unfeatured" } successfully!`);
               res.redirect(redirectURL);
             })
             .catch(err => console.error(err));

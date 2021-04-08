@@ -260,6 +260,7 @@ module.exports = {
     UPDATE quizzes
     SET public = NOT public
     WHERE id = $1
+    RETURNING public
     `;
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams);
@@ -270,6 +271,7 @@ module.exports = {
     UPDATE quizzes
     SET featured = NOT featured
     WHERE id = $1
+    RETURNING featured
     `;
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams);
