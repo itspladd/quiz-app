@@ -51,9 +51,9 @@ module.exports = {
       SELECT quizzes.*,
         categories.title AS category_title,
         users.username AS author,
-          (CASE 
+          (CASE
             WHEN quizzes.coverphoto_url IS NULL
-            THEN categories.coverphoto_url END) 
+            THEN categories.coverphoto_url END)
         AS coverphoto_url
         FROM quizzes
         JOIN users ON author_id = users.id
@@ -84,14 +84,16 @@ module.exports = {
     return db.query(queryString, []);
   },
 
+  // From Reggi: in case anything breaks, I added the lines "users.is_admin AS is_admin", and "users.is_admin" to the GROUP BY clause
   getQuizByID: function(id) {
     const queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
+        users.is_admin AS is_admin,
         users.username AS author,
-          (CASE 
+          (CASE
             WHEN quizzes.coverphoto_url IS NULL
-            THEN categories.coverphoto_url END) 
+            THEN categories.coverphoto_url END)
         AS coverphoto_url,
           ROUND(
             ( COUNT(CASE WHEN answers.is_correct THEN answers.is_correct END)::numeric
@@ -124,7 +126,7 @@ module.exports = {
         JOIN users ON users.id = author_id
       WHERE quizzes.id = $1
         AND active
-      GROUP BY quizzes.id, categories.id, users.username
+      GROUP BY quizzes.id, categories.id, users.username, users.is_admin
       ORDER BY creation_time DESC;
     `;
     const queryParams = [id];
