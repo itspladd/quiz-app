@@ -10,29 +10,19 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
-  <main class="container d-flex flex-column flex-lg-row mt-lg-4">
+  <main id="landing" class="container d-flex flex-column justify-content-center mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
-    <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="overflow-auto">
-        <!-- MAIN TITLE -->
-        <div id="main-title" class="mb-5">
-          Featured
-        </div>
-        <!-- MAIN CONTENT -->
-        <div id="main-split-content">
 
-        </div>
-      </section>
+    <p class="display-4">Welcome to InquizitorApp!</p>
+    <p class="lead my-4">Whether it's to study or just for fun, we can help you easily create and share quizzes that everyone can enjoy.</p>
+    <p class="h3 mt-4">Oh, and the best part? It's <span class="highlight">FREE</span>!</p>
+
+      <div class="divider-h"></div>
+
+    <div>
+      <button id="landing-btn" class="btn-custom">View Quizzes</button>
     </div>
 
-    <!-- SIDE PANELS (SPLIT) -->
-    <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
-      <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
-      <%- include("partials/_side_bottom.ejs", rankData) %>
-    </div>
 
   </main>
 

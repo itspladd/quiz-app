@@ -104,6 +104,16 @@
   }
 }
 
+#landing {
+  height: 60vh;
+}
+
+#landing-btn {
+  font-size: 2rem;
+  border-width: 2px;
+  border-radius: 0.4rem;
+}
+
 form .form-control,
 form .custom-select {
   outline: none;
