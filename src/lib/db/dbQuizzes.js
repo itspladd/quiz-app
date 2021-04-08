@@ -84,6 +84,19 @@ module.exports = {
     return db.query(queryString, []);
   },
 
+  getFeaturedQuizzes: function() {
+    let queryString = `
+      SELECT quizzes.*,
+      FROM quizzes
+      WHERE public = TRUE
+        AND featured = TRUE
+        AND active
+      GROUP BY quizzes.id
+      ORDER BY AVG(rating) DESC
+    `;
+    return db.query(queryString, []);
+  },
+
   // From Reggi: in case anything breaks, I added the lines "users.is_admin AS is_admin", and "users.is_admin" to the GROUP BY clause
   getQuizByID: function(id) {
     const queryString = `
