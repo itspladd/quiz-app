@@ -14,16 +14,24 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-console.log("**********************************")
-console.log("IN DB.JS")
-console.log("dbPARAMS:")
-console.log(dbParams)
-console.log("**********************************")
 
 const {
   Pool
 } = require("pg");
 const pool = new Pool(dbParams);
+
+console.log("**********************************")
+console.log("IN DB.JS")
+pool.connect()
+.then(client => {
+  console.log("CONNECTED")
+  client.query('SELECT NOW()')
+  return client.release()
+})
+.then(done => console.log("DONE"))
+.catch(err => console.error("ERROR"))
+console.log("**********************************")
+
 
 module.exports = {
   AVATAR_PATH: "/images/avatars/",
