@@ -94,13 +94,15 @@ $(document).ready(function() {
     copyText(window.location.href);
 
     // Change share button appearance
-    button.addClass("btn-custom-blue");
-    button.html("Copied!");
+    button.html("Link copied!")
+      .removeClass("btn-custom-blue")
+      .addClass("btn-custom-white")
 
     // Revert appearance after 2 seconds
     revert = setTimeout(() => {
-      button.removeClass("btn-custom-blue");
-      button.html("Share Link");
+      button.html("Share this page")
+        .removeClass("btn-custom-white")
+        .addClass("btn-custom-blue")
     }, 2000);
 
   });
