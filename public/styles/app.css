@@ -141,7 +141,7 @@ form .custom-select:focus {
 .alert-success {
   color: #31f37b;
   border-color: #31f37b;
-  background-color: #002c1198;
+  background-color: #002c118e;
 }
 
 .alert-warning {
@@ -170,7 +170,7 @@ form .custom-select:focus {
 }
 
 .new-question {
-  border: 2px solid #ffffff79;
+  border: 1px solid #ffffff79;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem 2rem;
@@ -192,67 +192,6 @@ form .custom-select:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.question-control {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.question-control .control-desc {
-  visibility: visible;
-}
-
-.question-control .control-desc.control-del {
-  color: #e22d4b;
-}
-
-.question-control .control-desc.control-add {
-  color: #31f37b;
-}
-
-.question-control .icon {
-  height: 2rem;
-  width: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.question-control .icon.icon-add {
-  margin-right: 0.5rem;
-  content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/plus.png");
-}
-
-.question-control .icon.icon-del {
-  margin-left: 0.5rem;
-  content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
-}
-
-.question-control .icon:hover {
-  opacity: 1;
-}
-
-.maximize,
-.minimize {
-  font-size: 0.8rem;
-  color: white;
-  opacity: 0.5;
-}
-
-.maximize:hover,
-.minimize:hover {
-  cursor: pointer;
-  opacity: 1;
 }
 
 #quiz-question {
@@ -287,7 +226,7 @@ form .custom-select:focus {
 
 #quiz-answers :nth-child(3):hover {
   border-color: #31f37b;
-  background-color: #002c1198;
+  background-color: #002c118e;
 }
 
 #quiz-answers :nth-child(4) {
@@ -433,7 +372,7 @@ form .custom-select:focus {
 
 .response-correct {
   border-color: #31f37b;
-  background-color: #002c1198;
+  background-color: #002c118e;
 }
 
 .response-correct .results-correctness {
@@ -869,7 +808,7 @@ select {
 
 .btn-custom-green {
   color: #31f37b;
-  background-color: #002c1198;
+  background-color: #002c118e;
   border-color: #31f37b;
   outline: #31f37b;
 }
