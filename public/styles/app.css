@@ -387,17 +387,20 @@ form .custom-select:focus {
   font-weight: 700;
 }
 
-#quiz-front .quiz-author {
+#quiz-front .quiz-author,
+#quiz-front .quiz-attempted {
   color: #ffffff79;
   font-size: 0.9rem;
 }
 
-#quiz-front .quiz-author .quiz-author-name {
+#quiz-front .quiz-author .quiz-author-name,
+#quiz-front .quiz-attempted .quiz-author-name {
   font-weight: 700;
   color: #eeeeee;
 }
 
-#quiz-front .quiz-author .quiz-author-name.admin {
+#quiz-front .quiz-author .quiz-author-name.admin,
+#quiz-front .quiz-attempted .quiz-author-name.admin {
   color: #fad207;
 }
 

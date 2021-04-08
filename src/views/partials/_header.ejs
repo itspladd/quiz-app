@@ -62,6 +62,7 @@
   <div id="admin-cp" class="col-12">
 
     <% const quizData = data["quizData"] %>
+    <% const createData = data["createData"] %>
 
     <!-- quizData -->
     <% if (quizData) { %>
@@ -95,7 +96,27 @@
 
       <div class="divider-h mt-1 mb-1"></div>
       <div class="initialism text-muted mb-2">Admin Control Panel</div>
-      <% } %>
+    <% } else if (createData) { %>
+
+      <div class="d-flex flex-row flex-wrap justify-content-between justify-content-sm-start">
+
+        <% for (let i = 1; i <= 3; i++) { %>
+
+        <!-- BUTTON WITH POST GENERATE QUIZ REQUEST -->
+        <form method="POST" action="/admin/<%= i %> ">
+          <button type="submit" class="btn-custom btn-custom-blue">
+            Generate Quiz <%= i %>
+          </button>
+        </form>
+
+        <% } %>
+
+      </div>
+
+      <div class="divider-h mt-1 mb-1"></div>
+      <div class="initialism text-muted mb-2">Admin Control Panel</div>
+
     <% } %>
   </div>
 </div>
+<% } %>
