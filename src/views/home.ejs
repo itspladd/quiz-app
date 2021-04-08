@@ -18,17 +18,35 @@
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
 
-          <h1 class="h3">Featured Quizzes</h1>
-          <div class="divider-h mt-3 mb-4"></div>
-          <!-- QUIZ BROWSER -->
+          <!-- DEV LOG -->
+          <h1 class="h3">Dev Log</h1>
+          <div class="divider-h mt-1 mb-3"></div>
 
+          <div id="dev-log" class="mb-3 mb-xl-4 console overflow-auto">
 
+          <!-- CONSOLE -->
+
+          <code class="d-flex flex-column align-items-start">
+
+          <span class="pladd">@pladd > Hello world!</span>
+          <span class="ahhreggi">@ahhreggi > sleep</span>
+          <span class="system">sleep: missing operand</span>
+          <span class="system">Try 'sleep --help' for more information.</span>
+
+          <span class="comment">// TODO: sleep</span>
+
+          </code>
+
+          </div>
 
           <!-- FEATURED QUIZZES -->
+          <h1 class="h3">Featured Quizzes</h1>
+          <div class="divider-h mt-1 mb-2"></div>
           <div id="featured-quizzes" class="d-flex flex-column flex-xl-row justify-content-between">
 
             <% for (const quiz of quizData) { %>
-              <div class="list-quiz col-12 col-xl-4 d-flex flex-column align-items-start justify-content-between">
+              <div class="list-quiz d-flex flex-column align-items-start justify-content-center justify-content-xl-between"
+              data-quiz-data="<%= JSON.stringify(quiz) %>">
                 <p class="title"><%= quiz.title %> </p>
                 <p class="author <%= quiz.is_admin ? "admin" : "" %> "><%= quiz.author %> </p>
               </div>
@@ -53,7 +71,7 @@
   <%- include("partials/_footer.ejs") %>
 
   <!-- EJS DATA -->
-  <div id="ejs" data-ejs="<%= JSON.stringify(quizData) %>"></div>
+  <div id="ejs" data-quiz-data="<%= JSON.stringify(quizData) %>"></div>
 
 </body>
 

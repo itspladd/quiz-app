@@ -1,11 +1,55 @@
 @import "global";
 
+#dev-log {
+  width: 100%;
+  border: 1px solid $tertiary;
+  &.console {
+    background-color: rgba(12, 12, 12, 0.548);
+    height: 23rem;
+    overflow: auto;
+    padding: 0.7rem 1rem;
+    border: 1px solid $tertiary-lighter;
+
+    &::-webkit-scrollbar {
+      width: 0.25em;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px $dark;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $tertiary;
+    }
+  }
+  code,
+  pre {
+    color: $white;
+    .ahhreggi {
+      color: $primary;
+    }
+    .pladd {
+      color: $green;
+    }
+    .comment {
+      color: $light;
+    }
+    .system {
+      color: $white;
+    }
+  }
+}
+
 
 #featured-quizzes {
 
   .list-quiz {
+    border-width: 2px;
     padding: 1rem;
-    min-width: 31%;
+    width: 100%;
+    &:hover {
+      border-width: 2px;
+    }
     .title {
       font-size: 1.2rem;
     }
@@ -15,6 +59,19 @@
       &.admin {
         color: $primary;
       }
+    }
+  }
+
+}
+
+
+@media (min-width: 1202px) {
+
+  #featured-quizzes {
+    .list-quiz {
+
+      width: 32.7%;
+
     }
   }
 

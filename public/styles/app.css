@@ -121,9 +121,65 @@
   border-radius: 0.4rem;
 }
 
+#dev-log {
+  width: 100%;
+  border: 1px solid #222338;
+}
+
+#dev-log.console {
+  background-color: rgba(12, 12, 12, 0.548);
+  height: 23rem;
+  overflow: auto;
+  padding: 0.7rem 1rem;
+  border: 1px solid #2e2f4b;
+}
+
+#dev-log.console::-webkit-scrollbar {
+  width: 0.25em;
+}
+
+#dev-log.console::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #11121b;
+          box-shadow: inset 0 0 6px #11121b;
+}
+
+#dev-log.console::-webkit-scrollbar-thumb {
+  background-color: #222338;
+}
+
+#dev-log code,
+#dev-log pre {
+  color: #eeeeee;
+}
+
+#dev-log code .ahhreggi,
+#dev-log pre .ahhreggi {
+  color: #fad207;
+}
+
+#dev-log code .pladd,
+#dev-log pre .pladd {
+  color: #31f37b;
+}
+
+#dev-log code .comment,
+#dev-log pre .comment {
+  color: #ffffff79;
+}
+
+#dev-log code .system,
+#dev-log pre .system {
+  color: #eeeeee;
+}
+
 #featured-quizzes .list-quiz {
+  border-width: 2px;
   padding: 1rem;
-  min-width: 31%;
+  width: 100%;
+}
+
+#featured-quizzes .list-quiz:hover {
+  border-width: 2px;
 }
 
 #featured-quizzes .list-quiz .title {
@@ -137,6 +193,12 @@
 
 #featured-quizzes .list-quiz .author.admin {
   color: #fad207;
+}
+
+@media (min-width: 1202px) {
+  #featured-quizzes .list-quiz {
+    width: 32.7%;
+  }
 }
 
 form .form-control,

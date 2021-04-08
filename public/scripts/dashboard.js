@@ -1,21 +1,3 @@
-const loadCoverPhotos = () => {
-
-  // Select all quiz list items
-  const quizzes = $(".list-quiz");
-
-  for (const quiz of quizzes) {
-    // Retrieve cover photo URL
-    const quizData = JSON.parse($(quiz).attr("data-quiz-data"));
-    const url = quizData.coverphoto_url;
-    // Set cover photo as the background image
-    $(quiz)
-      .css("backdrop-filter", "blur(10px)")
-      .css("background-image", `url("${url}")`)
-
-  }
-
-};
-
 $(document).ready(function() {
 
   const quizTab = $("#tab-quizzes");
