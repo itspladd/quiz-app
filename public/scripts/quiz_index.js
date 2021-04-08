@@ -16,7 +16,7 @@ const filterData = (data, category) => {
     const $quizItem = $(`
       <a href="/quizzes/${quiz.id}">
         <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-          <div class="col-8">
+        <div class="col-8 pl-4">
             <p class="quiz-title mb-0 mt-0">${quiz.title}</p>
             <p class="quiz-desc d-none d-xl-inline">${quiz.description}</p>
             <p class="quiz-author d-none d-md-block my-1">Submitted by ${quiz.author}</p>
