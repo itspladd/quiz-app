@@ -86,13 +86,20 @@ module.exports = {
 
   getFeaturedQuizzes: function() {
     let queryString = `
-      SELECT quizzes.*,
-      FROM quizzes
-      WHERE public = TRUE
-        AND featured = TRUE
-        AND active
-      GROUP BY quizzes.id
-      ORDER BY AVG(rating) DESC
+    SELECT quizzes.*,
+    categories.title AS category_title,
+    users.username AS author,
+    users.is_admin AS is_admin,
+      (CASE
+        WHEN quizzes.coverphoto_url IS NULL
+        THEN categories.coverphoto_url END)
+    AS coverphoto_url
+    FROM quizzes
+      JOIN users ON author_id = users.id
+      JOIN categories ON category_id = categories.id
+    WHERE public = TRUE
+      AND active
+      AND featured = TRUE
     `;
     return db.query(queryString, []);
   },
