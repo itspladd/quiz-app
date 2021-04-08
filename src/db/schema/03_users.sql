@@ -7,5 +7,6 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   avatar_id INTEGER REFERENCES avatars(id),
   registration_date DATE DEFAULT NOW(),
-  last_login TIMESTAMP DEFAULT NOW()
+  last_login TIMESTAMP DEFAULT NOW(),
+  is_admin BOOLEAN DEFAULT FALSE
 );

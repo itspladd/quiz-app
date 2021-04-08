@@ -110,5 +110,5 @@ module.exports = {
     `;
     const queryParams = [user_id];
     return db.query(queryString, queryParams);
-  }
+  },
 };
