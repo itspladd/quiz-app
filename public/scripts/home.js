@@ -47,7 +47,7 @@ $(document).ready(function() {
     "-bash: wait: `a': not a pid or valid job spec",
     "-bash: wait: `minute-': not a pid or valid job spec",
     `@ahhreggi > git add .`,
-    `@ahhreggi > git commit -m 'time to sleep'`,
+    `@ahhreggi > git commit -m "time to sleep"`,
     `@ahhreggi > git checkout main`,
     `Already on 'main'`,
     `@ahhreggi > oh god`,
