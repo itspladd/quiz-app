@@ -195,7 +195,7 @@ module.exports = (db) => {
     .then(rows => res.json(rows[0]))
     .catch(err => {
       req.flash("warning", "Sorry, there was a problem when submitting your review.");
-      res.redirect("/");
+      res.redirect("/home");
     });
   });
 
@@ -232,7 +232,7 @@ module.exports = (db) => {
       // ERROR: The user is not an admin and not the owner of the quiz
       if (!userData.is_admin && user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
-        res.redirect("/");
+        res.redirect("/home");
         return;
         // PUBLIC: toggle public/unlisted for the quizID
       } else if (action === "public") {
@@ -269,7 +269,7 @@ module.exports = (db) => {
       // ERROR: The user is not an admin and not the owner of the quiz
       if (!userData.is_admin && user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
-        res.redirect("/");
+        res.redirect("/home");
         return;
       } else {
         db.toggleQuizActive(req.params.quizID)

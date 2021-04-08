@@ -104,7 +104,7 @@ app.post("/login", (req, res) => {
           console.log(req.session.userID);
           console.log(`Login successful. Welcome back, ${userData.username}!`);
           req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
-          res.redirect("/");
+          res.redirect("/home");
         }
       });
   }
@@ -118,7 +118,7 @@ app.post("/logout", (req, res) => {
     req.flash("success", "You've successfully logged out.");
     console.log("You've successfully logged out.");
   }
-  res.redirect("/");
+  res.redirect("/home");
 });
 
 // Form to login to an existing account
@@ -132,7 +132,7 @@ app.get("/login", (req, res) => {
   if (userData) {
     console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
-    res.redirect("/");
+    res.redirect("/home");
   } else {
     // SUCCESS: User is not logged in
     const templateVars = {
@@ -155,7 +155,7 @@ app.get("/register", (req, res) => {
   if (userData) {
     console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
-    res.redirect("/");
+    res.redirect("/home");
   } else {
     // SUCCESS: User is not logged in
     const templateVars = {
@@ -218,7 +218,7 @@ app.post("/register", (req, res) => {
                     req.session.userID = userData.id;
                     console.log("Registration successful. Welcome to InquizitorApp!");
                     req.flash("success", "Registration successful. Welcome to InquizitorApp!");
-                    res.redirect("/");
+                    res.redirect("/home");
                   });
               }
             });

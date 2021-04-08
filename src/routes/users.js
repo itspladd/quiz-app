@@ -75,7 +75,7 @@ module.exports = (db) => {
         console.log(req.params.userID);
         console.log(userData.id);
         req.flash("danger", "You don't have permission to access this page.");
-        res.redirect("/");
+        res.redirect("/home");
       } else {
         // SUCCESS: User is logged in and accessing their own account page
         const templateVars = {
@@ -126,7 +126,7 @@ module.exports = (db) => {
     const userID = Number(req.params.userID);
     if (userData.id !== userID) {
       req.flash("danger", "You don't have permission to do that!");
-      res.redirect("/");
+      res.redirect("/home");
     } else {
       const avatarID = Number(req.body.avatar_id);
       db.updateUserAvatar(userID, avatarID)
@@ -147,13 +147,13 @@ module.exports = (db) => {
     const userID = Number(req.params.userID);
     if (userData.id !== userID) {
       req.flash("danger", "You don't have permission to do that!");
-      res.redirect("/");
+      res.redirect("/home");
     } else {
       db.deleteUserByID(userID)
       .then(rows => {
         req.session.userID = null;
         req.flash("success", "Account deleted successfully! Goodbye!");
-        res.redirect("/");
+        res.redirect("/home");
       })
       .catch(err => console.error(err));
     }
