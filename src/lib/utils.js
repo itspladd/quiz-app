@@ -57,6 +57,14 @@ const convertTimestamp = (timestamp, timestamp2) => {
   }
 };
 
+const userIsAdmin = (user_id) => {
+  if(user_id === 1) {
+    return true;
+  }
+
+  return false;
+}
+
 module.exports = {
   generateRandomString,
   convertTimestamp
