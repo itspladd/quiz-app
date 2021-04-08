@@ -1,7 +1,692 @@
 {
-  "1": {"author_id": "3", "title":"Web Development","description":"Test your web dev knowledge!","category_id":"1","public":"true","questions":[{"body":"What does REST stand for?","answers":[{"body":"Representational State Transfer"},{"body":"Representational Status Transfer"},{"body":"Representational Status Transmission"},{"body":"Representational State Transmission"}]},{"body":"What does CRUD stand for?","answers":[{"body":"Create, read, update, and delete"},{"body":"Create, reset, update, and destroy"},{"body":"Create, read, update, and destroy"},{"body":"Create, reset, update, and delete"}]},{"body":"Which of the following contains invalid JSON syntax?","answers":[{"body":"{ name: 'Reggi', isAwake: false }"},{"body":"123"},{"body":"{ \"1\": \"first\", \"2\": \"second\" }"},{"body":"[ { \"Hello\": \"World\" } ]"}]},{"body":"Which of the following is FALSE regarding AJAX?","answers":[{"body":"It requires the use of the jQuery method $.ajax()"},{"body":"It allows a web page to send and retrieve data from a server asynchronously without reload"},{"body":"It stands for Asynchronous JavaScript And XML"},{"body":"It supports various HTTP request methods including GET, PUT, POST, PATCH, and DELETE"}]},{"body":"What is the correct HTML for creating a hyperlink that opens a new browser window?","answers":[{"body":"<a href=\"url\" target=\"_blank\">"},{"body":"<a href=\"url\" target=\"new\">"},{"body":"<a href=\"url\" target=\"\">"},{"body":"<a href=\"url\" new>"}]},{"body":"An HTTP response error code 500 typically suggests that an error occurred within which of the following?","answers":[{"body":"the server"},{"body":"the client"},{"body":"the internet service provider"},{"body":"the operating system"}]},{"body":"Which of the following is FALSE regarding the jQuery method, $(document).ready()?","answers":[{"body":"It must be placed at the bottom of a webpage to ensure that the page content has loaded first"},{"body":"It signals that the DOM of the page is now ready so you can manipulate it without worrying that parts of the DOM has not yet been created"},{"body":"The event fires before all images, etc. are loaded"},{"body":"The use of $(document).ready() can be useful, but is not required to run JavaScript code on a webpage"}]}]},
-
-  "2":{"author_id":"1","title":"World Capitals","description":"Do you know all the capitals of the world?","category_id":"3","public":"true","questions":[{"body":"What is the capital of Canada?","answers":[{"body":"Ottawa"},{"body":"Toronto"},{"body":"Quebec City"},{"body":"Vancouver"}]},{"body":"What is the capital of the U.S.?","answers":[{"body":"Washington, D.C."},{"body":"New York City"},{"body":"Los Angeles"},{"body":"Honolulu"}]}]},
-
-  "3":{"author_id":"1","title":"World Capitals","description":"Do you know all the capitals of the world?","category_id":"3","public":"true","questions":[{"body":"What is the capital of Canada?","answers":[{"body":"Ottawa"},{"body":"Toronto"},{"body":"Quebec City"},{"body":"Vancouver"}]},{"body":"What is the capital of the U.S.?","answers":[{"body":"Washington, D.C."},{"body":"New York City"},{"body":"Los Angeles"},{"body":"Honolulu"}]}]}
+  "1": {
+    "author_id": "3",
+    "title": "Web Development",
+    "description": "Test your web dev knowledge!",
+    "category_id": "1",
+    "public": "true",
+    "questions": [
+      {
+        "body": "What does REST stand for?",
+        "answers": [
+          {
+            "body": "Representational State Transfer"
+          },
+          {
+            "body": "Representational Status Transfer"
+          },
+          {
+            "body": "Representational Status Transmission"
+          },
+          {
+            "body": "Representational State Transmission"
+          }
+        ]
+      },
+      {
+        "body": "What does CRUD stand for?",
+        "answers": [
+          {
+            "body": "Create, read, update, and delete"
+          },
+          {
+            "body": "Create, reset, update, and destroy"
+          },
+          {
+            "body": "Create, read, update, and destroy"
+          },
+          {
+            "body": "Create, reset, update, and delete"
+          }
+        ]
+      },
+      {
+        "body": "Which of the following contains invalid JSON syntax?",
+        "answers": [
+          {
+            "body": "{ name: 'Reggi', isAwake: false }"
+          },
+          {
+            "body": "123"
+          },
+          {
+            "body": "{ \"1\": \"first\", \"2\": \"second\" }"
+          },
+          {
+            "body": "[ { \"Hello\": \"World\" } ]"
+          }
+        ]
+      },
+      {
+        "body": "Which of the following is FALSE regarding AJAX?",
+        "answers": [
+          {
+            "body": "It requires the use of the jQuery method $.ajax()"
+          },
+          {
+            "body": "It allows a web page to send and retrieve data from a server asynchronously without reload"
+          },
+          {
+            "body": "It stands for Asynchronous JavaScript And XML"
+          },
+          {
+            "body": "It supports various HTTP request methods including GET, PUT, POST, PATCH, and DELETE"
+          }
+        ]
+      },
+      {
+        "body": "What is the correct HTML for creating a hyperlink that opens a new browser window?",
+        "answers": [
+          {
+            "body": "&lt;a href=\"url\" target=\"_blank\"&gt;"
+          },
+          {
+            "body": "&lt;a href=\"url\" target=\"new\"&gt;"
+          },
+          {
+            "body": "&lt;a href=\"url\" target=\"\"&gt;"
+          },
+          {
+            "body": "&lt;a href=\"url\" new&gt;"
+          }
+        ]
+      },
+      {
+        "body": "An HTTP response error code 500 typically suggests that an error occurred within which of the following?",
+        "answers": [
+          {
+            "body": "the server"
+          },
+          {
+            "body": "the client"
+          },
+          {
+            "body": "the internet service provider"
+          },
+          {
+            "body": "the operating system"
+          }
+        ]
+      },
+      {
+        "body": "Which of the following is FALSE regarding the jQuery method, $(document).ready()?",
+        "answers": [
+          {
+            "body": "It must be placed at the bottom of a webpage to ensure that the page content has loaded first"
+          },
+          {
+            "body": "It signals that the DOM of the page is now ready so you can manipulate it without worrying that parts of the DOM has not yet been created"
+          },
+          {
+            "body": "The event fires before all images, etc. are loaded"
+          },
+          {
+            "body": "The use of $(document).ready() can be useful, but is not required to run JavaScript code on a webpage"
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    "author_id": 3,
+    "title": "Overwatch Quotes",
+    "description": "Can you figure out which characters these quotes belong to?",
+    "category_id": "2",
+    "public": "true",
+    "questions": [
+      {
+        "body": "\"Mada mada!\"",
+        "answers": [
+          {
+            "body": "Genji"
+          },
+          {
+            "body": "Hanzo"
+          },
+          {
+            "body": "Mei"
+          },
+          {
+            "body": "Junkrat"
+          }
+        ]
+      },
+      {
+        "body": "\"Reach for the sky.\"",
+        "answers": [
+          {
+            "body": "McCree"
+          },
+          {
+            "body": "Pharah"
+          },
+          {
+            "body": "Mercy"
+          },
+          {
+            "body": "Wrecking Ball"
+          }
+        ]
+      },
+      {
+        "body": "\"I've got you on my radar.\"",
+        "answers": [
+          {
+            "body": "Pharah"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "Moira"
+          },
+          {
+            "body": "Sigma"
+          }
+        ]
+      },
+      {
+        "body": "\"Dead man walking.\"",
+        "answers": [
+          {
+            "body": "Reaper"
+          },
+          {
+            "body": "McCree"
+          },
+          {
+            "body": "Doomfist"
+          },
+          {
+            "body": "Soldier: 76"
+          }
+        ]
+      },
+      {
+        "body": "\"You're just a glitch in the system.\"",
+        "answers": [
+          {
+            "body": "Sombra"
+          },
+          {
+            "body": "Tracer"
+          },
+          {
+            "body": "Symmetra"
+          },
+          {
+            "body": "Zarya"
+          }
+        ]
+      },
+      {
+        "body": "\"The world could always use more heroes.\"",
+        "answers": [
+          {
+            "body": "Tracer"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "Mercy"
+          },
+          {
+            "body": "Lucio"
+          }
+        ]
+      },
+      {
+        "body": "\"Dah-dah weeeee!\"",
+        "answers": [
+          {
+            "body": "Bastion"
+          },
+          {
+            "body": "Torbjorn"
+          },
+          {
+            "body": "Orisa"
+          },
+          {
+            "body": "Echo"
+          }
+        ]
+      },
+      {
+        "body": "\"From one thing, know ten thousand things.\"",
+        "answers": [
+          {
+            "body": "Hanzo"
+          },
+          {
+            "body": "Genji"
+          },
+          {
+            "body": "Widowmaker"
+          },
+          {
+            "body": "Moira"
+          }
+        ]
+      },
+      {
+        "body": "\"Anyone want some BBQ? Heheh.\"",
+        "answers": [
+          {
+            "body": "Junkrat"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "Pharah"
+          },
+          {
+            "body": "Roadhog"
+          }
+        ]
+      },
+      {
+        "body": "\"Sorry! Sorry, I'm sorry. Sorry.\"",
+        "answers": [
+          {
+            "body": "Mei"
+          },
+          {
+            "body": "Tracer"
+          },
+          {
+            "body": "Wrecking Ball"
+          },
+          {
+            "body": "D. Va"
+          }
+        ]
+      },
+      {
+        "body": "\"Let's not buy the pig while it's still in the bag.\"",
+        "answers": [
+          {
+            "body": "Torbjorn"
+          },
+          {
+            "body": "Roadhog"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "Winston"
+          }
+        ]
+      },
+      {
+        "body": "\"A single death can change everything.\"",
+        "answers": [
+          {
+            "body": "Widowmaker"
+          },
+          {
+            "body": "Genji"
+          },
+          {
+            "body": "Hanzo"
+          },
+          {
+            "body": "Ana"
+          }
+        ]
+      },
+      {
+        "body": "\"No hacks required.\"",
+        "answers": [
+          {
+            "body": "D.Va"
+          },
+          {
+            "body": "Sombra"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "Symmetra"
+          }
+        ]
+      },
+      {
+        "body": "\"I am the ultimate crushing machine!\"",
+        "answers": [
+          {
+            "body": "Reinhardt"
+          },
+          {
+            "body": "Wrecking Ball"
+          },
+          {
+            "body": "Winston"
+          },
+          {
+            "body": "Doomfist"
+          }
+        ]
+      },
+      {
+        "body": "\"Welcome to the apocalypse.\"",
+        "answers": [
+          {
+            "body": "Roadhog"
+          },
+          {
+            "body": "Reaper"
+          },
+          {
+            "body": "Doomfist"
+          },
+          {
+            "body": "McCree"
+          }
+        ]
+      },
+      {
+        "body": "\"Houston, we have a problem.\"",
+        "answers": [
+          {
+            "body": "Winston"
+          },
+          {
+            "body": "Soldier: 76"
+          },
+          {
+            "body": "McCree"
+          },
+          {
+            "body": "Tracer"
+          }
+        ]
+      },
+      {
+        "body": "\"Strong as the mountain.\"",
+        "answers": [
+          {
+            "body": "Zarya"
+          },
+          {
+            "body": "Brigitte"
+          },
+          {
+            "body": "Doomfist"
+          },
+          {
+            "body": "Reinhardt"
+          }
+        ]
+      },
+      {
+        "body": "\"It takes a woman to know it.\"",
+        "answers": [
+          {
+            "body": "Ana"
+          },
+          {
+            "body": "Widowmaker"
+          },
+          {
+            "body": "Ashe"
+          },
+          {
+            "body": "Mercy"
+          }
+        ]
+      },
+      {
+        "body": "\"I'm on top of the world!\"",
+        "answers": [
+          {
+            "body": "Lucio"
+          },
+          {
+            "body": "Pharah"
+          },
+          {
+            "body": "Wrecking Ball"
+          },
+          {
+            "body": "D.Va"
+          }
+        ]
+      },
+      {
+        "body": "\"I'll send you my consultation fee.\"",
+        "answers": [
+          {
+            "body": "Mercy"
+          },
+          {
+            "body": "Winston"
+          },
+          {
+            "body": "Zenyatta"
+          },
+          {
+            "body": "Brigitte"
+          }
+        ]
+      },
+      {
+        "body": "\"Perfect harmony.\"",
+        "answers": [
+          {
+            "body": "Symmetra"
+          },
+          {
+            "body": "Zenyatta"
+          },
+          {
+            "body": "Genji"
+          },
+          {
+            "body": "Hanzo"
+          }
+        ]
+      },
+      {
+        "body": "\"Death is whimsical today.\"",
+        "answers": [
+          {
+            "body": "Zenyatta"
+          },
+          {
+            "body": "Reaper"
+          },
+          {
+            "body": "Moira"
+          },
+          {
+            "body": "Symmetra"
+          }
+        ]
+      }
+    ]
+  },
+  "3": {
+    "author_id": "3",
+    "title": "U.S. Capitals",
+    "description": "How well do you know your state capitals?",
+    "category_id": "3",
+    "public": "true",
+    "questions": [
+      {
+        "body": "What is the capital of Montana?",
+        "answers": [
+          {
+            "body": "Helena"
+          },
+          {
+            "body": "Trenton"
+          },
+          {
+            "body": "Lincoln"
+          },
+          {
+            "body": "Boise"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Alaska?",
+        "answers": [
+          {
+            "body": "Juneau"
+          },
+          {
+            "body": "Carson City"
+          },
+          {
+            "body": "Concord"
+          },
+          {
+            "body": "Salem"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of California?",
+        "answers": [
+          {
+            "body": "Sacramento"
+          },
+          {
+            "body": "Los Angeles"
+          },
+          {
+            "body": "Springfield"
+          },
+          {
+            "body": "Santa Fe"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of New York?",
+        "answers": [
+          {
+            "body": "Albany"
+          },
+          {
+            "body": "New York City"
+          },
+          {
+            "body": "Brooklyn"
+          },
+          {
+            "body": "Hartford"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Kentucky?",
+        "answers": [
+          {
+            "body": "Frankfort"
+          },
+          {
+            "body": "Columbus"
+          },
+          {
+            "body": "Boise"
+          },
+          {
+            "body": "Little Rock"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Mississippi?",
+        "answers": [
+          {
+            "body": "Jackson"
+          },
+          {
+            "body": "Jefferson City"
+          },
+          {
+            "body": "Baton Rouge"
+          },
+          {
+            "body": "Montpelier"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Maine?",
+        "answers": [
+          {
+            "body": "Augusta"
+          },
+          {
+            "body": "Helena"
+          },
+          {
+            "body": "Pierre"
+          },
+          {
+            "body": "Cheyenne"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Michigan?",
+        "answers": [
+          {
+            "body": "Lansing"
+          },
+          {
+            "body": "Annapolis"
+          },
+          {
+            "body": "Bismark"
+          },
+          {
+            "body": "Raleigh"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Wisconsin?",
+        "answers": [
+          {
+            "body": "Madison"
+          },
+          {
+            "body": "Bismarck"
+          },
+          {
+            "body": "Dover"
+          },
+          {
+            "body": "Hartford"
+          }
+        ]
+      },
+      {
+        "body": "What is the capital of Texas?",
+        "answers": [
+          {
+            "body": "Austin"
+          },
+          {
+            "body": "Houston"
+          },
+          {
+            "body": "Nashville"
+          },
+          {
+            "body": "Jackson"
+          }
+        ]
+      }
+    ]
+  }
 }
