@@ -61,12 +61,33 @@
     <% const quizData = data["quizData"] %>
     <!-- quizData -->
     <% if (quizData) { %>
-      <!-- BUTTON WITH DELETE QUIZ REQUEST -->
-      <form method="POST" action="/quizzes/<%= quizData.id %>?_method=DELETE">
-        <button type="submit" class="btn-custom btn-custom-red btn-custom-admin mr-2">
-          Delete Quiz
-        </button>
-      </form>
+
+      <div class="d-flex flex-row">
+
+        <!-- BUTTON WITH PATCH FEATURE QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
+          <button type="submit" name="action" value="feature" class="btn-custom btn-custom-pink btn-custom-admin mr-2">
+            Feature Quiz
+          </button>
+        </form>
+
+        <!-- BUTTON WITH PATCH PUBLIC QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=PATCH">
+          <input type="hidden" name="origin" value="/quizzes/<%= quizData.id %>" />
+          <button type="submit" name="action" value="public" class="btn-custom <%= quizData.public ? "btn-custom-blue" : "" %> btn-custom-admin mr-2">
+            <%= quizData.public ? "Unlist Quiz" : "Publish Quiz" %>
+          </button>
+        </form>
+
+        <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+        <form method="POST" action="/quizzes/<%= quizData.id %>?_method=DELETE">
+          <button type="submit" class="btn-custom btn-custom-red btn-custom-admin mr-2">
+            Delete Quiz
+          </button>
+        </form>
+
+      </div>
+
       <div class="divider-h mt-3 mb-2"></div>
       <div class="initialism text-muted mb-2">Admin Control Panel</div>
       <% } %>

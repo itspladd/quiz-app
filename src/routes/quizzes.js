@@ -217,26 +217,38 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
-  // Toggle public/unlisted for a quiz
+  // Toggle public/unlisted for a quiz, or featured/unfeatured
   router.patch("/:quizID", (req, res) => {
     const {
       userData
     } = res.locals.vars;
     const user_id = userData ? userData.id : null;
-    db.getQuizAuthor(req.params.quizID)
+    const action = req.body.action;
+    const redirectURL = req.body.origin;
+    const quizID = req.params.quizID;
+    db.getQuizAuthor(quizID)
     .then(rows => {
       const author = rows[0].author_id;
-      if (user_id !== author) {
+      // ERROR: The user is not an admin and not the owner of the quiz
+      if (!userData.is_admin && user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
-      } else {
-        db.toggleQuizPublic(req.params.quizID)
+        // If action is "public", toggle public/unlisted for the quizID
+      } else if (action === "public") {
+        db.toggleQuizPublic(quizID)
         .then(rows => {
-          req.flash("success", "Quiz updated successfully!");
-          res.redirect("/users/dashboard");
+          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+          res.redirect(redirectURL);
         })
         .catch(err => console.error(err));
+        // If action is "feature", toggle featured/unfeatured for the quizID (admin only)
+      } else if (userData.is_admin && action === "feature") {
+        db.toggleQuizFeature(quizID)
+        .then(rows => {
+          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz updated successfully!`);
+          res.redirect(redirectURL);
+        })
       }
     })
     .catch(err => console.error(err));
@@ -251,15 +263,15 @@ module.exports = (db) => {
     db.getQuizAuthor(req.params.quizID)
     .then(rows => {
       const author = rows[0].author_id;
-      // ERROR: The user does not own the quiz, nor are they an admin
-      if (user_id !== author && !userData.is_admin) {
+      // ERROR: The user is not an admin and not the owner of the quiz
+      if (!userData.is_admin && user_id !== author) {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
       } else {
         db.toggleQuizActive(req.params.quizID)
         .then(rows => {
-          req.flash("success", "Quiz deleted successfully!");
+          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz deleted successfully!`);
           res.redirect("/users/dashboard");
         })
         .catch(err => console.error(err));
