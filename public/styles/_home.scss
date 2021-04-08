@@ -80,11 +80,11 @@
   #featured-quizzes {
 
     :nth-child(2) {
-      margin: 0 0.7rem;
+      margin-left: 0.9rem;
     }
 
     .list-quiz {
-      max-width: 13rem;
+      min-width: 12.8rem;
       .title {
         font-size: 1.2rem;
       }

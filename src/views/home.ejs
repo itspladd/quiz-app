@@ -35,11 +35,11 @@
           <!-- FEATURED QUIZZES -->
           <h1 class="h3">Featured Quizzes</h1>
           <div class="divider-h mt-1 mb-3"></div>
-          <div id="featured-quizzes" class="d-flex flex-column flex-xl-row">
+          <div id="featured-quizzes" class="d-flex flex-column flex-xl-row justify-content-between">
 
               <% for (const quiz of quizData) { %>
                 <a href="/quizzes/<%= quiz.id %> ">
-                <div class="list-quiz col-12 flex-grow-1 flex-shrink-1"
+                <div class="list-quiz col-12 col-xl-3 d-flex flex-column justify-content-between"
                 data-quiz-data="<%= JSON.stringify(quiz) %>">
                   <p class="title"><%= quiz.title %> </p>
                   <p class="description d-xl-none"><%= quiz.description %> </p>

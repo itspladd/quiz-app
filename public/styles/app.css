@@ -204,10 +204,10 @@
 
 @media (min-width: 1202px) {
   #featured-quizzes :nth-child(2) {
-    margin: 0 0.7rem;
+    margin-left: 0.9rem;
   }
   #featured-quizzes .list-quiz {
-    max-width: 13rem;
+    min-width: 12.8rem;
   }
   #featured-quizzes .list-quiz .title {
     font-size: 1.2rem;
