@@ -165,7 +165,8 @@ module.exports = (db) => {
             quiz_id,
             user_id
           })
-            .then(session => {
+            .then(rows => {
+              session = rows[0];
               console.log(`New session started by ${userData ? userData.username : "anonymous" }`);
               // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
               // containing all of a quiz's questions and answers

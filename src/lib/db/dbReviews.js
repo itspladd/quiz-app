@@ -1,7 +1,13 @@
 const db = require("./db");
 
 module.exports = {
-
+  /**
+   * Retrieves all reviews for a given quiz.
+   * @param  {Integer} id
+   *         The ID of the quiz.
+   * @return {Promise<[]>}
+   *         A promise to an array of review objects.
+   */
   getReviewsByQuizId: function(id) {
     const queryString = `
       SELECT reviews.*,
@@ -17,7 +23,13 @@ module.exports = {
     console.log
     return db.query(queryString, queryParams);
   },
-
+  /**
+   * Adds a new review into the database.
+   * @param  {Object} reviewData
+   *         The data about the review to insert.
+   * @return {Promise<[]>}
+   *         A promise to an array containing the new review.
+   */
   addReview: function(reviewData) {
     return db.insert("quiz_reviews", reviewData);
   }
