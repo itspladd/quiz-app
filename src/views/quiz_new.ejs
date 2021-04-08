@@ -11,16 +11,16 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {"createData": true}}) %>
 
+  <!-- MAIN CONTENT (SPLIT) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto border-blue">
-        <!-- MAIN TITLE -->
+        <!-- TITLE -->
         <div id="main-title" class="mb-5">
           Create Quiz
         </div>
-        <!-- MAIN CONTENT -->
+        <!-- CONTENT -->
         <div id="main-split-content">
           <!-- FORM -->
           <div class="d-flex flex-column justify-content-center">
@@ -32,7 +32,7 @@
                 <!-- DESCRIPTION -->
                 <label for="description" class="form-label text-muted mt-2">Description</label>
                 <input id="quiz-desc" class="form-control" type="text" name="description" maxlength="60" required>
-                <!-- CATEGORY (value = category_id) -->
+                <!-- CATEGORY -->
                 <div class="form-row">
                   <div class="col-12 col-md-6">
                     <label for="category" class="form-label text-muted mt-2">Category</label>
@@ -52,15 +52,11 @@
                     </select>
                   </div>
                 </div>
-
                 <!-- QUESTIONS -->
                 <label id="questions-counter" class="form-label text-muted mt-3 lead">Questions</label>
+                <!-- QUESTION CONTAINER -->
                 <div id="add-questions" class="mt-2">
-
-                  <!-- INDIVIDUAL QUESTIONS -->
-
                 </div>
-
                 <!-- ADD NEW QUESTION BUTTON -->
                 <div class="d-flex flex-row justify-content-center align-items-center mt-4">
                   <button type="button" class="btn-custom btn-custom-green btn-custom-lg add-btn">Add Question</button>
@@ -68,23 +64,23 @@
 
                 <div class="divider-h mt-4 mb-2 border-gray"></div>
 
-
                 <!-- SUBMIT -->
                 <button id="create-btn" type="submit" class="btn-custom btn-custom-flex mt-3 justify-content-end">Create Quiz</button>
                 <!-- ERROR MESSAGE -->
                 <div id="new-quiz-error" class="d-none justify-content-center"></div>
+
               </div>
             </form>
+
           </div>
         </div>
       </section>
+
     </div>
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 

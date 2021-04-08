@@ -10,15 +10,16 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
+  <!-- MAIN CONTENT (SPLIT) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto">
-        <!-- MAIN CONTENT -->
         <div id="main-split-content">
 
           <div class="d-flex flex-column justify-content-center">
+
+            <!-- TITLE -->
             <h1 class="h1">Account Settings</h1>
 
             <!-- CHANGE AVATAR -->
@@ -26,11 +27,11 @@
             <div class="form-group mb-2">
               <div id="account-avatars" class="d-flex flex-wrap justify-content-start p-1">
                 <% for (let i = 1; i < 23; i++) { %>
-                  <% const isCurrentAvatar = userData.avatar_url === `/images/avatars/${i}.png` %>
-                  <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
-                    <input type="hidden" name="avatar_id" value="<%= i %>" />
-                    <input class="<%= isCurrentAvatar ? "current" : "" %>" type="image" src="/images/avatars/<%= i %>.png" alt="Submit" <%= isCurrentAvatar ? "disabled" : "" %> />
-                  </form>
+                <% const isCurrentAvatar = userData.avatar_url === `/images/avatars/${i}.png` %>
+                <form method="POST" action="/users/<%= userData.id %>?_method=PATCH">
+                  <input type="hidden" name="avatar_id" value="<%= i %>" />
+                  <input class="<%= isCurrentAvatar ? "current" : "" %>" type="image" src="/images/avatars/<%= i %>.png" alt="Submit" <%= isCurrentAvatar ? "disabled" : "" %> />
+                </form>
                 <% } %>
               </div>
             </div>
@@ -54,9 +55,7 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 

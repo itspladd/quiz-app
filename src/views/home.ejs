@@ -11,43 +11,33 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
+  <!-- MAIN CONTENT (SPLIT) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
-    <!-- MAIN WINDOW (SPLIT) -->
+
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="">
-        <!-- MAIN CONTENT -->
         <div id="main-index">
 
           <!-- DEV LOG -->
           <h1 class="h3">Dev Log</h1>
           <div class="divider-h mt-1 mb-3"></div>
-
           <div id="dev-log" class="mb-3 mb-xl-4 console overflow-auto">
-
-          <!-- CONSOLE -->
-
-          <code id="console" class="d-flex flex-column align-items-start">
-
-          </code>
-
+            <code id="console" class="d-flex flex-column align-items-start"></code>
           </div>
 
           <!-- FEATURED QUIZZES -->
           <h1 class="h3">Featured Quizzes</h1>
           <div class="divider-h mt-1 mb-3"></div>
           <div id="featured-quizzes" class="d-flex flex-column justify-content-between">
-
-              <% for (const quiz of quizData) { %>
-                <a href="/quizzes/<%= quiz.id %> ">
-                <div class="list-quiz d-flex flex-column justify-content-between border-yellow-darker"
-                data-quiz-data="<%= JSON.stringify(quiz) %>">
-                  <p class="quiz-title mb-0 mt-0"><%= quiz.title %> </p>
-                  <p class="quiz-desc d-xl-inline mb-0"><%= quiz.description %> </p>
-                  <p class="quiz-author d-md-block mt-0 my-1">Submitted by <%= quiz.author %></p>
-                </div>
-                </a>
-              <% } %>
-
+            <% for (const quiz of quizData) { %>
+            <a href="/quizzes/<%= quiz.id %> ">
+              <div class="list-quiz d-flex flex-column justify-content-between border-yellow-darker" data-quiz-data="<%= JSON.stringify(quiz) %>">
+                <p class="quiz-title mb-0 mt-0"><%= quiz.title %> </p>
+                <p class="quiz-desc d-xl-inline mb-0"><%= quiz.description %> </p>
+                <p class="quiz-author d-md-block mt-0 my-1">Submitted by <%= quiz.author %></p>
+              </div>
+            </a>
+            <% } %>
           </div>
 
         </div>
@@ -56,9 +46,7 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 
@@ -67,7 +55,7 @@
   <%- include("partials/_footer.ejs") %>
 
   <!-- EJS DATA -->
-  <div id="ejs" data-quiz-data="<%= JSON.stringify(quizData) %>"></div>
+  <div id="ejs" data-quiz-data="<%= JSON.stringify(quizData) %>" class="d-none"></div>
 
 </body>
 

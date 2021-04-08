@@ -11,16 +11,16 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
+  <!-- MAIN CONTENT (SPLIT) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto">
-        <!-- MAIN TITLE -->
+        <!-- TITLE -->
         <div id="main-title">
           Results
         </div>
-        <!-- MAIN CONTENT -->
+        <!-- CONTENT -->
         <div id="main-split-content" class="d-flex flex-column">
 
           <!-- SCORE AND DURATION-->
@@ -45,7 +45,6 @@
           <!-- QUIZ INFO -->
           <p class="h5 mb-3"><a href="/quizzes/<%= quizData.id %>"><%= quizData.title %></a>
           </p>
-
           <div class="d-flex flex-column flex-md-row justify-content-md-between">
             <div class="d-flex flex-column">
               <span><%= sessionData.end_time %></span>
@@ -65,70 +64,36 @@
 
           <!-- ALL USER RESPONSES -->
           <p class="lead mt-0">Responses <%= perfect ? "" : "(click to reveal answers)" %> </p>
-
           <% for (const response of sessionData.responses) { %>
-
-            <div class="results-response response-<%= response.answer.is_correct ? "correct" : "incorrect" %>">
-              <!-- CORRECT/INCORRECT-->
-              <div class="results-correctness mb-1">
-                <%= response.answer.is_correct ? "CORRECT" : "INCORRECT" %>
-              </div>
-              <!-- QUESTION BODY -->
-              <div class="results-bold mb-1">
-                <%= response.question %>
-              </div>
-              <!-- ANSWER BODY -->
-              <%= (response.answer.is_correct ? "✔️ " : "❌ ") + response.answer.answer %>
-              <!-- CORRECT ANSWER (if incorrect) -->
-              <% if (!response.answer.is_correct) { %>
-                <p class="d-none results-actual mt-3 mb-0"><span class="results-bold">Correct Answer:</span> <%= response.actual_answer %> </p>
-              <% } %>
+          <div class="results-response response-<%= response.answer.is_correct ? "correct" : "incorrect" %>">
+            <!-- CORRECT/INCORRECT-->
+            <div class="results-correctness mb-1">
+              <%= response.answer.is_correct ? "CORRECT" : "INCORRECT" %>
             </div>
-
+            <!-- QUESTION BODY -->
+            <div class="results-bold mb-1">
+              <%= response.question %>
+            </div>
+            <!-- ANSWER BODY -->
+            <%= (response.answer.is_correct ? "✔️ " : "❌ ") + response.answer.answer %>
+            <!-- CORRECT ANSWER (if incorrect) -->
+            <% if (!response.answer.is_correct) { %>
+            <p class="d-none results-actual mt-3 mb-0"><span class="results-bold">Correct Answer:</span> <%= response.actual_answer %> </p>
+            <% } %>
+          </div>
           <% } %>
 
-          </div>
+        </div>
       </section>
     </div>
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 
-  </main>
-  <p>Quiz data available:</p>
-  <ul>
-    <% for (let key in quizData) { %>
-    <li><%= key %>: <%= quizData[key] %></li>
-
-    <% } %>
-  </ul>
-
-
-  <p>Session data available:</p>
-  <ul>
-    <% for (let key in sessionData) { %>
-    <li><%= key %>: <%= sessionData[key] %></li>
-
-    <% } %>
-  </ul>
-  <p>Responses:</p>
-  <ul>
-    <% for (let response of sessionData.responses) { %>
-    <li>question: <%= response.question %></li>
-    <ul>
-      <li>answer: <%= response.answer.answer %></li>
-      <li>is_correct: <%= response.answer.is_correct %></li>
-      <li>actual_answer: <%= response.actual_answer %></li>
-    </ul>
-    <% } %>
-  </ul>
-
-  <%- include("partials/_footer.ejs") %>
+    <%- include("partials/_footer.ejs") %>
 
 </body>
 
