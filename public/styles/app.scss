@@ -3,11 +3,11 @@
 @import "form";
 @import "404";
 @import "flash";
+@import "quiz_list";
 @import "quiz_index";
 @import "quiz_new";
 @import "quiz_show";
 @import "quiz_results";
-@import "dashboard";
 @import "side_panel";
 @import "account";
 
@@ -283,6 +283,12 @@ select {
   width: 5.5rem;
 }
 
+.btn-custom-lg {
+  font-size: 0.8rem;
+  margin: 0.2rem;
+  width: 8.5rem;
+}
+
 .btn-fav {
   font-size: 0.8rem;
 }
@@ -337,37 +343,6 @@ select {
   border-color: $light;
 }
 
-.list-quiz {
-  border: 1px solid $light;
-  border-radius: 0.25rem;
-  min-height: 9rem;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  word-wrap: break-word;
-  user-select: none;
-  background-position: 0%;
-  background-size:cover;
-
-  p {
-    color: $white;
-  }
-
-  &:hover {
-    border-color: $white;
-    background-color: $tertiary;
-
-    img {
-      opacity: 1;
-    }
-
-  }
-
-  .quiz-title {
-    font-size: 1.2rem;
-  }
-
-}
-
 .tab-btn {
   border: 1px solid $tertiary-lighter;
   border-bottom: transparent;
@@ -383,18 +358,6 @@ select {
 
   &.active-tab {
     background-color: $tertiary-lighter;
-  }
-
-}
-
-@media (min-width: 1202px) {
-
-  .list-quiz {
-
-    .quiz-title {
-      font-size: 1.5rem;
-    }
-
   }
 
 }

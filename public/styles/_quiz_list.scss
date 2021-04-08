@@ -1,0 +1,89 @@
+@import "global";
+
+.list-quiz {
+  border: 1px solid $light;
+  border-radius: 0.25rem;
+  min-height: 9rem;
+  padding: 1rem 1rem 1rem 0;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  user-select: none;
+  background-position: 0%;
+  background-size:cover;
+
+  p {
+    color: $white;
+  }
+
+  &:hover {
+    border-color: $white;
+    background-color: $tertiary;
+
+    img {
+      opacity: 1;
+    }
+
+  }
+
+  &.quiz-public {
+    border-color: $primary-darker;
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    .quiz-visibility {
+      font-size: 0.8rem;
+      color: $primary;
+    }
+
+  }
+
+  &.quiz-unlisted {
+
+    border-color: $blue-darker;
+
+    &:hover {
+      border-color: $blue;
+    }
+
+    .quiz-visibility {
+      font-size: 0.8rem;
+      color: $blue;
+    }
+
+  }
+
+  .quiz-title {
+    font-size: 1.2rem;
+  }
+
+  .quiz-author {
+    font-size: 0.75rem;
+  }
+
+  .quiz-go {
+    width: 5rem;
+    opacity: 0.75;
+  }
+
+  .abandoned {
+    color: $red;
+    font-weight: 700;
+    font-size: 0.7rem;
+    margin-right: 0.8rem;
+  }
+
+}
+
+@media (min-width: 1202px) {
+
+  .list-quiz {
+
+    .quiz-title {
+      font-size: 1.5rem;
+    }
+
+  }
+
+}

@@ -40,12 +40,12 @@
           <!-- MY QUIZZES -->
           <div id="user-quizzes" class="main-fixed">
             <% for (const quiz of userQuizzes) { %>
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz quiz-<%= quiz.public ? "public" : "unlisted" %>">
-                  <div class="col-8 d-flex flex-column justify-content-center">
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz quiz-<%= quiz.public ? "public" : "unlisted" %>" data-quiz-data="<%= JSON.stringify(quiz) %>">
+                  <div class="col-8 d-flex flex-column justify-content-center pl-4">
                     <p class="quiz-visibility mb-1 mt-0"><%= quiz.public ? "PUBLIC" : "UNLISTED" %></p>
                     <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
-                    <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
-                    <p class="quiz-author d-none d-md-block mt-2 mb-0 text-muted">Created <%= quiz.creation_time %></p>
+                    <p class="quiz-date d-none d-xl-inline mb-0"><%= quiz.description %></p>
+                    <p class="quiz-author d-none d-md-block mt-2 mb-0">Created on <%= quiz.creation_time %></p>
                   </div>
                   <div class="user-dash-control d-flex flex-column">
                     <!-- BUTTON WITH VIEW QUIZ LINK -->
@@ -83,10 +83,10 @@
           <!-- QUIZ HISTORY -->
           <div id="user-history" class="main-fixed d-none">
             <% for (const session of userHistory) { %>
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-                  <div class="col-8">
+                <div class="d-flex flex-row justify-content-between align-items-center list-quiz" data-quiz-data="<%= JSON.stringify(session) %>">
+                  <div class="col-8 pl-4">
                     <p class="quiz-title mb-0 mt-0"><%= session.quiz_title %></p>
-                    <p class="quiz-author d-none d-md-block my-1 text-muted"><%= session.end_time !== "Invalid date" ? `Completed on: ${session.end_time}` : "" %></p>
+                    <p class="quiz-author d-none d-md-block my-1"><%= session.end_time !== "Invalid date" ? `Completed on: ${session.end_time}` : "" %></p>
                   </div>
 
                   <% if (session.result_id) { %>
@@ -118,11 +118,10 @@
           <!-- MY FAVORITES -->
           <div id="user-favorites" class="main-fixed d-none">
             <% for (const quiz of userFavorites) { %>
-              <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
-                <div class="col-8 d-flex flex-column justify-content-center">
+              <div class="d-flex flex-row justify-content-between align-items-center list-quiz" data-quiz-data="<%= JSON.stringify(quiz) %>">
+                <div class="col-8 d-flex flex-column justify-content-center pl-4">
                   <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
                   <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
-                  <p class="quiz-author d-none d-md-block mt-2 mb-0 text-muted">Created <%= quiz.creation_time %></p>
                 </div>
                 <div class="user-dash-control d-flex flex-column">
                   <!-- BUTTON WITH VIEW QUIZ LINK -->

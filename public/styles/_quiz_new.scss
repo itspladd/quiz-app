@@ -1,7 +1,8 @@
 @import "global";
 
 .new-question {
-  border: 2px solid $light;
+  border: 1px solid $light;
+  background-color: $tertiary-darker;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem 2rem;
@@ -18,61 +19,6 @@
   color: $red;
   height: 2rem;
   margin-top: 1rem;
-  display: flex;
+  display: none;
   justify-content: center;
-}
-
-.question-control {
-
-  user-select: none;
-  display: flex;
-
-  .control-desc {
-    visibility: visible;
-
-    &.control-del {
-      color: $red;
-    }
-
-    &.control-add {
-      color: $green;
-    }
-
-  }
-
-  .icon {
-    height: 2rem;
-    width: 2rem;
-    display: flex;
-    align-self: flex-end;
-    opacity: 0.8;
-    cursor: pointer;
-
-    &.icon-add {
-      margin-right: 0.5rem;
-      content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/plus.png");
-    }
-
-    &.icon-del {
-      margin-left: 0.5rem;
-      content: url("https://raw.githubusercontent.com/itspladd/quiz-app/dev/frontend/public/images/cancel.png");
-    }
-
-    &:hover {
-      opacity: 1;
-    }
-
-  }
-
-}
-
-.maximize,
-.minimize {
-  font-size: 0.8rem;
-  color: white;
-  opacity: 0.5;
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
 }

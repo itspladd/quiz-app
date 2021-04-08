@@ -22,11 +22,9 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
 
   str += `
       </div>
-      <div class="question-control d-flex flex-row justify-content-between mt-3">
-        <div class="toggle minimize">hide</div>
-        <div class="d-flex flex-row align-items-center">
-          <span class="control-desc control-del">Delete </span><span class="icon icon-del"></span>
-        </div>
+      <div class="d-flex flex-row justify-content-between mt-3 p-0">
+        <button type="button" class="toggle minimize btn-custom btn-custom-blue btn-custom-md m-0">Hide</button>
+        <button type="button" class="btn-custom btn-custom-red btn-custom-md del-btn m-0">Delete</button>
       </div>
     </div>
   `;
@@ -34,7 +32,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   const $newForm = $(str);
 
   // Bind a click event handler to the delete button
-  const deleteBtn = $newForm.find(".icon-del");
+  const deleteBtn = $newForm.find(".del-btn");
   $(deleteBtn).bind("click", function() {
     const component = $(this).closest(".new-question");
     removeElement(component);
@@ -54,7 +52,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
         .slideDown();
       $(this)
         .find(".toggle")
-        .html("hide")
+        .html("Hide")
         .removeClass("maximize")
         .addClass("minimize");
     } else if ($($target).is(".toggle.minimize")) {
@@ -70,7 +68,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
       $(this).find(".responses").slideUp();
       $(this)
         .find(".toggle")
-        .html("show")
+        .html("Show")
         .removeClass("minimize")
         .addClass("maximize");
     }
@@ -120,8 +118,10 @@ const showError = (errorMsg) => {
   const errorComponent = $("#new-quiz-error");
   if (errorMsg) {
     errorComponent.html(errorMsg);
+    errorComponent.removeClass("d-none").addClass("d-flex");
   } else {
     errorComponent.empty();
+    errorComponent.removeClass("d-flex").addClass("d-none");
   }
 
 };
@@ -282,8 +282,11 @@ const submitForm = () => {
 $(document).ready(function() {
 
   const questionsList = $("#add-questions");
-  const addQuestionBtn = $(".icon-add");
+  const addQuestionBtn = $(".add-btn");
   const quizForm = $("#new-quiz-form");
+
+  // Add an initial question form
+  addQuestionComponent(questionsList);
 
   // Add a new question when the user clicks the add question button
   addQuestionBtn.on("click", function() {
@@ -311,7 +314,8 @@ $(document).ready(function() {
   // Clear question validation highlights and error message on user input
   quizForm.on("input", function() {
 
-    $(this).find(".new-question").css("border-color", "#fff");
+    $(this).find(".new-question").css("border-color", "#fff")
+    .removeClass("valid-question").removeClass("invalid-question");
     showError(false);
 
   });
