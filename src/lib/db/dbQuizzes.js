@@ -74,7 +74,7 @@ module.exports = {
         ROUND(AVG(rating), 1) AS average_rating
       FROM quizzes
         JOIN quiz_sessions ON quizzes.id = quiz_sessions.quiz_id
-        JOIN quiz_ratings ON quizzes.id = quiz_ratings.quiz_id
+        JOIN quiz_reviews ON quizzes.id = quiz_reviews.quiz_id
       WHERE public = TRUE
         AND active
       GROUP BY quizzes.id
