@@ -14,6 +14,8 @@ $pink: #ff55a4;
 $pink-darker: #e03082;
 $pink-transparent: #e0308223;
 $yellow-transparent: #2c1e00a1;
+$white: rgb(238, 238, 238);
+$white-transparent: rgba(255, 255, 255, 0.075);
 
 $primary: #fad207;
 $primary-darker: #faa515;
@@ -22,9 +24,26 @@ $secondary-darker: #2b597f;
 $tertiary: #222338;
 $tertiary-lighter: #2e2f4b;
 $tertiary-darker: #1a1b2b;
-$white: rgb(238, 238, 238);
 $light: #ffffff79;
 $dark: #11121b;
 
-$font-ss: "Montserrat", sans-serif;
-$font-mono: "Lato", sans-serif;
+$font-ss: "Montserrat",
+sans-serif;
+$font-mono: "Lato",
+sans-serif;
+
+@mixin scrollbar {
+
+  &::-webkit-scrollbar {
+    width: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px $dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $tertiary;
+  }
+
+}

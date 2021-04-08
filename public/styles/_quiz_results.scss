@@ -2,22 +2,28 @@
 
 #results-score {
   margin: 2rem 0;
+
   .green {
     color: $green;
   }
+
   .yellow {
     color: $primary;
   }
+
   .red {
     color: $red;
   }
+
   .results-bold {
     font-size: 1.5rem;
     padding: 0.4rem 0.6rem;
   }
+
   .results-username {
     padding-left: 0;
   }
+
 }
 
 .results-bold {

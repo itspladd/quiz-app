@@ -104,13 +104,6 @@
   }
 }
 
-#landing-bg {
-  background-image: url("/images/books.jpg");
-  -webkit-filter: grayscale(0.5);
-          filter: grayscale(0.5);
-  position: absolute;
-}
-
 #landing-main {
   height: 100%;
 }
@@ -242,10 +235,6 @@ form .custom-select:focus {
   width: 3rem;
   margin: auto;
   padding-bottom: 0.2rem;
-}
-
-.error-404 {
-  padding: 4rem;
 }
 
 .alert-custom {
@@ -1232,5 +1221,9 @@ select {
 
 .tab-btn.active-tab {
   background-color: #2e2f4b;
+}
+
+.error-404 {
+  padding: 4rem;
 }
 /*# sourceMappingURL=app.css.map */

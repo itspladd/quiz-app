@@ -12,9 +12,11 @@
   .panel-member-type {
     font-size: 0.9rem;
     font-weight: 700;
+
     &.admin {
       color: $primary;
     }
+
   }
 
   .panel-email {
@@ -40,7 +42,9 @@
       width: 2.1rem;
       margin-right: 1.5rem;
     }
+
   }
+
 }
 
 #trending {
