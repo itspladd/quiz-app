@@ -309,6 +309,7 @@ form .custom-select:focus {
 
 .list-quiz .quiz-title {
   font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .list-quiz .quiz-author {
