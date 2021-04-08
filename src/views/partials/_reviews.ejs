@@ -6,11 +6,7 @@
     <div class="div d-flex flex-column">
       <span class="review-title"><%= review.title %></span>
       <div class="d-flex flex-row align-items-center">
-        <div class="review-rating">
-          <% for (let i = 0; i < review.rating; i++) { %>
-          <img class="review-star" src="/images/star.png" alt="star">
-          <% } %>
-        </div>
+        <%- include("_avg_rating.ejs", {average: review.rating}) %>
       </div>
       <span class="review-comment mt-2"><%= review.comment %> </span>
       <span class="review-timestamp mt-1"><%= review.timestamp %> by <span class="review-username"><%= review.username %></span></span>

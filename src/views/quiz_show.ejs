@@ -53,9 +53,11 @@
             </div>
             <div>Total plays: <%= quizData.total_plays %></div>
 
-            <div class="d-flex flex-row align-items-center">
+            <div>
               Average user rating:
-              <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>(<%= quizData.average_rating %> out of 5)
+              <span class="ml-1">
+                <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>
+              </span>
             </div>
 
 

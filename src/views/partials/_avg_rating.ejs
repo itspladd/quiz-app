@@ -1,4 +1,4 @@
-<span class="avg-rating mx-2">
+<span class="avg-rating pb-1">
 
   <% const fullStars = Math.floor(average) %>
   <% const halfStar = (average - fullStars) >= 0.25 %>
@@ -14,5 +14,9 @@
     <img src="/images/star-empty.png" alt="star">
   <% } %>
 
-
 </span>
+
+<!--
+USAGE: Remove the quotes
+<%- `include("partials/_avg_rating.ejs", {average: <Number>, customClass: ""})` %>
+-->
