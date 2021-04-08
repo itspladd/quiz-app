@@ -636,6 +636,12 @@ form .custom-select:focus {
   background-color: #2e2f4b;
 }
 
+.avg-rating img {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-bottom: 0.1rem;
+}
+
 html body {
   background-color: #11121b;
   color: #eeeeee;

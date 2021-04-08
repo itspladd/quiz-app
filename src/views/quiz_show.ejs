@@ -52,8 +52,14 @@
               <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
             </div>
             <div>Total plays: <%= quizData.total_plays %></div>
-            <div>Average rating: <%= quizData.average_rating %>/5</div>
-            <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %></div>
+
+            <div class="d-flex flex-row align-items-center">
+              Average user rating:
+              <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>(<%= quizData.average_rating %> out of 5)
+            </div>
+
+
+            <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
 
             <div class="d-flex flex-row justify-content-md-between">
               <button id="play-quiz" type="button" class="btn-custom btn-custom-green">
