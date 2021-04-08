@@ -1,6 +1,15 @@
 @import "global";
 
+#play-quiz {
+  font-size: 2rem;
+}
+
 #quiz-front {
+
+  .quiz-featured {
+    color: $primary;
+    font-weight: 700;
+  }
 
   .quiz-author {
     color: $light;

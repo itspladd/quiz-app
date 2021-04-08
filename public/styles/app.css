@@ -273,6 +273,15 @@ form .custom-select:focus {
           justify-content: center;
 }
 
+#play-quiz {
+  font-size: 2rem;
+}
+
+#quiz-front .quiz-featured {
+  color: #fad207;
+  font-weight: 700;
+}
+
 #quiz-front .quiz-author {
   color: #ffffff79;
   font-size: 0.9rem;
@@ -956,11 +965,7 @@ select {
 .btn-custom-lg {
   font-size: 0.8rem;
   margin: 0.2rem;
-  width: 8.5rem;
-}
-
-.btn-fav {
-  font-size: 0.8rem;
+  width: 9rem;
 }
 
 .highlight {

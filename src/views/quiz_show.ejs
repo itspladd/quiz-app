@@ -15,7 +15,7 @@
 
     <!-- MAIN WINDOW (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
-      <section id="main-split" class="overflow-auto">
+      <section id="main-split" class="overflow-auto <%= quizData.featured ? "border-yellow-darker" : "" %> ">
 
         <!-- MAIN CONTENT -->
         <div id="main-split-content">
@@ -27,6 +27,9 @@
             <p class="text-muted initialism my-0">
               <%= quizData.category_title %>
             </p>
+            <% if (quizData.featured) { %>
+              <p class="quiz-featured mt-2 mb-1">FEATURED</p>
+            <% } %>
             <p class="h1 mt-1"><%= quizData.title %> </p>
             <p class="lead"><%= quizData.description %></p>
             <p class="quiz-author">Submitted by
@@ -35,48 +38,58 @@
               </span>
                on <%= quizData.creation_time %> (<%= quizData.relative_time %>)</p>
 
-            <!-- FAVORITE BUTTON -->
-            <% if (userData && !quizData.is_favorited) { %>
-            <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
-              <button type="submit" class="btn-custom btn-custom-white btn-fav mb-3">
-                Add to Favorites
-              </button>
-            </form>
-            <% } else if (userData && quizData.is_favorited) { %>
-            <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>?_method=DELETE">
-              <input type="hidden" name="source" value="/quizzes/<%= quizData.id %>" />
-              <button type="submit" class="btn-custom btn-custom-red btn-fav mb-3">
-                Remove from Favorites
-              </button>
-            </form>
-            <% } %>
-
-            <!-- QUIZ PHOTO AND STATS -->
-            <div class="quiz-photo mb-3 mt-2">
-              <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
-            </div>
-            <div>Total plays: <%= quizData.total_plays %></div>
-
+            <!-- START BUTTON -->
             <div>
-              Average user rating:
-              <span class="ml-1">
-                <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>
-              </span>
-            </div>
-
-            <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
-
-            <div class="d-flex flex-row justify-content-md-between">
-              <button id="play-quiz" type="button" class="btn-custom btn-custom-green">
+              <button id="play-quiz" type="button" class="btn-custom btn-custom-green mb-3">
                 Start Quiz
               </button>
-              <button id="share-btn" type="button" class="btn-custom ml-2">
-                Share Link
-              </button>
             </div>
 
-            <div class="divider-h mb-4"></div>
+            <!-- QUIZ PHOTO -->
+            <div class="quiz-photo mb-4 mt-2">
+              <img src="<%= quizData.coverphoto_url || "https://i.imgur.com/MUEFC2O.jpg" %>" alt="cover photo" />
+            </div>
 
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-between">
+              <!-- QUIZ STATS -->
+              <div>
+                <div class="mt-1 mb-3">Total plays: <%= quizData.total_plays %></div>
+
+                <div>
+                  Average user rating:
+                  <span class="ml-1">
+                    <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>
+                  </span>
+                </div>
+
+                <div class="mb-3">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
+              </div>
+
+              <div class="d-flex flex-column align-items-md-end">
+                <!-- SHARE BUTTON -->
+                <button id="share-btn" type="button" class="btn-custom btn-custom-lg mb-2">
+                  Share Link
+                </button>
+                <!-- FAVORITE BUTTON -->
+                <% if (userData && !quizData.is_favorited) { %>
+                  <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
+                    <button type="submit" class="btn-custom btn-custom-white  btn-custom-lg">
+                      Add to Favorites
+                    </button>
+                  </form>
+                  <% } else if (userData && quizData.is_favorited) { %>
+                  <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>?_method=DELETE">
+                    <input type="hidden" name="source" value="/quizzes/<%= quizData.id %>" />
+                    <button type="submit" class="btn-custom btn-custom-red btn-custom-lg">
+                      Remove from Favorites
+                    </button>
+                  </form>
+                <% } %>
+              </div>
+
+            </div>
+
+            <div class="divider-h my-4"></div>
             <!-- REVIEWS -->
             <%- include("partials/_reviews.ejs", {quizData}) %>
 
