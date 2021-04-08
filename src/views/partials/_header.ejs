@@ -51,10 +51,8 @@
 </header>
 
 <% if (currentPage !== "/") { %>
-<!-- FLASH MESSAGES -->
 <div class="container">
   <%- include("_flash.ejs", {userData, alerts}) %>
 </div>
-<!-- ADMIN CONTROL PANEL -->
 <%- include("_admin.ejs", {userData, data}) %>
 <% } %>

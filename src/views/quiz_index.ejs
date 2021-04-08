@@ -11,25 +11,26 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
+  <!-- MAIN CONTENT (SPLIT) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
-    <!-- MAIN WINDOW (SPLIT) -->
+
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="overflow-auto border-yellow">
-        <!-- MAIN TITLE -->
+
+        <!-- TITLE -->
         <div id="main-title" class="mb-5">
           All Quizzes
         </div>
-        <!-- MAIN CONTENT -->
+
         <div id="main-split-content">
 
-          <!-- QUIZ TABS -->
-
+          <!-- CATEGORY TABS -->
           <% const sortTech = quizData.filter(quiz => quiz.category_title === "Technology") %>
           <% const sortGaming = quizData.filter(quiz => quiz.category_title === "Gaming") %>
           <% const sortEdu = quizData.filter(quiz => quiz.category_title === "Education") %>
 
+          <!-- CATEGORY TITLES -->
           <div class="d-flex flex-wrap-reverse">
-
             <button id="tab-all" type="button" class="active-tab tab-btn mr-2">
               All <%= quizData.length ? `(${quizData.length})` : "" %>
             </button>
@@ -42,7 +43,6 @@
             <button id="tab-edu" type="button" class="tab-btn mr-2">
               Education <%= sortEdu.length ? `(${sortEdu.length})` : "" %>
             </button>
-
           </div>
 
           <!-- QUIZ BROWSER-->
@@ -55,9 +55,7 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 

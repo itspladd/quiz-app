@@ -13,18 +13,19 @@
 
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
-    <!-- MAIN WINDOW (SPLIT) -->
+    <!-- MAIN CONTENT (SPLIT) -->
     <div class="col-12 col-lg-8 m-auto">
       <section id="main-split" class="border-purple">
-        <!-- MAIN TITLE -->
+
+        <!-- TITLE -->
         <div id="main-title" class="mb-5">
           Dashboard
         </div>
-        <!-- MAIN CONTENT -->
+
+        <!-- CONTENT -->
         <div id="main-split-content">
 
           <!-- DASHBOARD TABS -->
-
           <button id="tab-quizzes" type="button" class="active-tab tab-btn mr-2">
             Quizzes <%= userQuizzes.length ? `(${userQuizzes.length})` : "" %>
           </button>
@@ -35,130 +36,128 @@
             History
           </button>
 
-          <!-- DASHBOARD CONTENT -->
+          <!-- DASHBOARD BROWSER -->
 
           <!-- MY QUIZZES -->
           <div id="user-quizzes" class="main-fixed">
             <% for (const quiz of userQuizzes) { %>
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz
+            <div class="d-flex flex-row justify-content-between align-items-center list-quiz user-quiz
                 <%= !quiz.public && !quiz.featured ? "quiz-unlisted" : "" %>
                 <%= quiz.public && quiz.featured ? "quiz-featured" : "" %>
-                <%= !quiz.public && quiz.featured ? "quiz-conflict" : "" %>
-                "
-                data-quiz-data="<%= JSON.stringify(quiz) %>">
-                  <div class="col-8 d-flex flex-column justify-content-center pl-4">
-                    <p class="quiz-visibility mb-1 mt-0">
-                      <%= quiz.public && !quiz.featured ? "PUBLISHED" : "" %>
-                      <%= !quiz.public && !quiz.featured ? "UNLISTED" : "" %>
-                      <%= quiz.public && quiz.featured ? "FEATURED" : "" %>
-                      <%= !quiz.public && quiz.featured ? "FEATURED & UNLISTED" : "" %>
-                    </p>
-                    <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
-                    <p class="quiz-date d-none d-xl-inline mb-0"><%= quiz.description %></p>
-                    <p class="quiz-author d-none d-md-block mt-2 mb-0">Created on <%= quiz.creation_time %></p>
-                  </div>
-                  <div class="user-dash-control d-flex flex-column">
-                    <!-- BUTTON WITH VIEW QUIZ LINK -->
-                    <a href="/quizzes/<%= quiz.id %>">
-                      <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
-                        View
-                      </button>
-                    </a>
-                    <!-- BUTTON WITH PATCH QUIZ REQUEST -->
-                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=PATCH">
-                      <input type="hidden" name="origin" value="/users/dashboard" />
-                      <button type="submit" name="action" value="public" class="btn-custom <%= quiz.public ? "btn-custom-blue" : "btn-custom-white" %> btn-custom-md mb-2 mr-2">
-                        <%= quiz.public ? "Unlist" : "Publish" %>
-                      </button>
-                    </form>
-                    <!-- BUTTON WITH DELETE QUIZ REQUEST -->
-                    <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
-                      <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
-                        Delete
-                      </button>
-                    </form>
-                  </div>
-                </div>
+                <%= !quiz.public && quiz.featured ? "quiz-conflict" : "" %>" data-quiz-data="<%= JSON.stringify(quiz) %>">
+              <div class="col-8 d-flex flex-column justify-content-center pl-4">
+                <p class="quiz-visibility mb-1 mt-0">
+                  <%= quiz.public && !quiz.featured ? "PUBLISHED" : "" %>
+                  <%= !quiz.public && !quiz.featured ? "UNLISTED" : "" %>
+                  <%= quiz.public && quiz.featured ? "FEATURED" : "" %>
+                  <%= !quiz.public && quiz.featured ? "FEATURED & UNLISTED" : "" %>
+                </p>
+                <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
+                <p class="quiz-date d-none d-xl-inline mb-0"><%= quiz.description %></p>
+                <p class="quiz-author d-none d-md-block mt-2 mb-0">Created on <%= quiz.creation_time %></p>
+              </div>
+              <div class="user-dash-control d-flex flex-column">
+                <!-- BUTTON WITH VIEW QUIZ LINK -->
+                <a href="/quizzes/<%= quiz.id %>">
+                  <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
+                    View
+                  </button>
+                </a>
+                <!-- BUTTON WITH PATCH QUIZ REQUEST -->
+                <form method="POST" action="/quizzes/<%= quiz.id %>?_method=PATCH">
+                  <input type="hidden" name="origin" value="/users/dashboard" />
+                  <button type="submit" name="action" value="public" class="btn-custom <%= quiz.public ? "btn-custom-blue" : "btn-custom-white" %> btn-custom-md mb-2 mr-2">
+                    <%= quiz.public ? "Unlist" : "Publish" %>
+                  </button>
+                </form>
+                <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+                <form method="POST" action="/quizzes/<%= quiz.id %>?_method=DELETE">
+                  <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
             <% } %>
-            <!-- CREATE A QUIZ (if the user has no quizzes) -->
+            <!-- CREATE A QUIZ -->
             <% if (!userQuizzes.length) { %>
-              <p class="lead">You don't have any quizzes yet. :(</p>
-              <a href="/quizzes/new">
-                <button type="button" class="btn-custom btn-custom-blue mr-2">
-                  Create Quiz
-                </button>
-              </a>
+            <p class="lead">You don't have any quizzes yet. :(</p>
+            <a href="/quizzes/new">
+              <button type="button" class="btn-custom btn-custom-blue mr-2">
+                Create Quiz
+              </button>
+            </a>
             <% } %>
           </div>
 
           <!-- QUIZ HISTORY -->
           <div id="user-history" class="main-fixed d-none">
             <% for (const session of userHistory) { %>
-                <div class="d-flex flex-row justify-content-between align-items-center list-quiz" data-quiz-data="<%= JSON.stringify(session) %>">
-                  <div class="col-8 pl-4">
-                    <p class="quiz-title mb-0 mt-0"><%= session.quiz_title %></p>
-                    <p class="quiz-author d-none d-md-block my-1"><%= session.end_time !== "Invalid date" ? `Completed on: ${session.end_time}` : "" %></p>
-                  </div>
+            <div class="d-flex flex-row justify-content-between align-items-center list-quiz" data-quiz-data="<%= JSON.stringify(session) %>">
+              <div class="col-8 pl-4">
+                <p class="quiz-title mb-0 mt-0"><%= session.quiz_title %></p>
+                <p class="quiz-author d-none d-md-block my-1"><%= session.end_time !== "Invalid date" ? `Completed on: ${session.end_time}` : "" %></p>
+              </div>
 
-                  <% if (session.result_id) { %>
-                  <!-- BUTTON WITH LINK TO RESULTS/ABANDONED -->
-                  <div class="user-dash-control flex-column d-flex">
-                    <a href="/results/<%= session.result_id %>">
-                      <button type="button" class="btn-custom btn-custom-green btn-custom-md mr-2">
-                        Results
-                      </button>
-                    </a>
-                  </div>
-                  <% } else { %>
-                    <span class="initialism abandoned">ABANDONED</span>
-                  <% } %>
-
-                </div>
+              <% if (session.result_id) { %>
+              <!-- BUTTON WITH LINK TO RESULTS/ABANDONED -->
+              <div class="user-dash-control flex-column d-flex">
+                <a href="/results/<%= session.result_id %>">
+                  <button type="button" class="btn-custom btn-custom-green btn-custom-md mr-2">
+                    Results
+                  </button>
+                </a>
+              </div>
+              <% } else { %>
+              <span class="initialism abandoned">ABANDONED</span>
+              <% } %>
+            </div>
             <% } %>
-            <!-- BROWSE QUIZZES (if the user has no quiz history) -->
+
+            <!-- BROWSE QUIZZES -->
             <% if (!userHistory.length) { %>
-              <p class="lead">You haven't taken any quizzes yet. :(</p>
-              <a href="/quizzes">
-                <button type="button" class="btn-custom mr-2">
-                  Browse Quizzes
-                </button>
-              </a>
+            <p class="lead">You haven't taken any quizzes yet. :(</p>
+            <a href="/quizzes">
+              <button type="button" class="btn-custom mr-2">
+                Browse Quizzes
+              </button>
+            </a>
             <% } %>
           </div>
 
           <!-- MY FAVORITES -->
           <div id="user-favorites" class="main-fixed d-none">
             <% for (const quiz of userFavorites) { %>
-              <div class="d-flex flex-row justify-content-between align-items-center list-quiz <%= quiz.featured ? "border-yellow-darker" : "" %> " data-quiz-data="<%= JSON.stringify(quiz) %>">
-                <div class="col-8 d-flex flex-column justify-content-center pl-4">
-                  <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
-                  <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
-                </div>
-                <div class="user-dash-control d-flex flex-column">
-                  <!-- BUTTON WITH VIEW QUIZ LINK -->
-                  <a href="/quizzes/<%= quiz.id %>">
-                    <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
-                      View
-                    </button>
-                  </a>
-                  <!-- BUTTON WITH DELETE QUIZ REQUEST -->
-                  <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quiz.id %>?_method=DELETE">
-                    <input type="hidden" name="source" value="/users/dashboard" />
-                    <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
-                      Remove
-                    </button>
-                  </form>
-                </div>
+            <div class="d-flex flex-row justify-content-between align-items-center list-quiz <%= quiz.featured ? "border-yellow-darker" : "" %> " data-quiz-data="<%= JSON.stringify(quiz) %>">
+              <div class="col-8 d-flex flex-column justify-content-center pl-4">
+                <p class="quiz-title mb-0 mt-0"><%= quiz.title %></p>
+                <p class="quiz-date d-none d-xl-inline"><%= quiz.description %></p>
               </div>
+              <div class="user-dash-control d-flex flex-column">
+                <!-- BUTTON WITH VIEW QUIZ LINK -->
+                <a href="/quizzes/<%= quiz.id %>">
+                  <button type="button" class="btn-custom btn-custom-green btn-custom-md mb-2 mr-2">
+                    View
+                  </button>
+                </a>
+                <!-- BUTTON WITH DELETE QUIZ REQUEST -->
+                <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quiz.id %>?_method=DELETE">
+                  <input type="hidden" name="source" value="/users/dashboard" />
+                  <button type="submit" class="btn-custom btn-custom-red btn-custom-md mr-2">
+                    Remove
+                  </button>
+                </form>
+              </div>
+            </div>
             <% } %>
             <!-- CREATE A QUIZ (if the user has no quizzes) -->
             <% if (!userFavorites.length) { %>
-              <p class="lead">You haven't saved any quizzes yet. :(</p>
-              <a href="/quizzes">
-                <button type="button" class="btn-custom mr-2">
-                  Browse Quizzes
-                </button>
-              </a>
+            <p class="lead">You haven't saved any quizzes yet. :(</p>
+            <a href="/quizzes">
+              <button type="button" class="btn-custom mr-2">
+                Browse Quizzes
+              </button>
+            </a>
             <% } %>
           </div>
 
@@ -168,9 +167,7 @@
 
     <!-- SIDE PANELS (SPLIT) -->
     <div id="side-section" class="col-12 col-lg-4">
-      <!-- USER PANEL -->
       <%- include("partials/_side_top.ejs", userData) %>
-      <!-- LEADERBOARDS -->
       <%- include("partials/_side_bottom.ejs", rankData) %>
     </div>
 
