@@ -15,7 +15,7 @@ $(document).ready(function() {
   // Load quiz cover photos
   loadCoverPhotos();
 
-  // Switch to My Quizzes tab (default)
+  // Switch to Quizzes tab (default)
   $("#tab-quizzes").on("click", function() {
     if (currentTab !== quizTab) {
       selectTab(quizTab, quizContent);
@@ -26,7 +26,7 @@ $(document).ready(function() {
 
   });
 
-  // Switch to My History tab
+  // Switch to History tab
   $("#tab-history").on("click", function() {
     if (currentTab !== historyTab) {
       selectTab(historyTab, historyContent);
@@ -36,7 +36,7 @@ $(document).ready(function() {
     }
   });
 
-  // Switch to My Favorites tab
+  // Switch to Favorites tab
   $("#tab-favorites").on("click", function() {
     if (currentTab !== favoritesTab) {
       selectTab(favoritesTab, favoritesContent);

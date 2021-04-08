@@ -1,4 +1,4 @@
-// Appends a question component to the given element
+// Append a question component to the given element
 const addQuestionComponent = (element, additionalResponses = 2) => {
 
   let str = `
@@ -44,6 +44,7 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
   // Bind a click event handler to the show/hide form toggler
   $($newForm).bind("click", function(event) {
     const $target = $(event.target);
+    // Minimize the form
     if ($($target).is(".toggle.maximize")) {
       $(this).find(".min-question").html("");
       $(this).find("input").slideDown();
@@ -55,21 +56,22 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
         .html("Hide")
         .removeClass("maximize")
         .addClass("minimize");
+      // Expand the form
     } else if ($($target).is(".toggle.minimize")) {
       const question = $(this).find("input");
       const answer = $(this).find(".input-response:first");
       $(this).find(".min-question")
-      .css("opacity", "0")
-      .html(`
+        .css("opacity", "0")
+        .html(`
         <p class="lead">${getValue(question) || "N/A"}</p>
         <p class="mb-0">Answer: ${getValue(answer) || "N/A"}</p>
       `)
-      .animate({
-        queue: true,
-        opacity: 1
-      }, {
-        duration: 500
-      });
+        .animate({
+          queue: true,
+          opacity: 1
+        }, {
+          duration: 500
+        });
       $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
       $(this)
@@ -132,13 +134,13 @@ const showError = (errorMsg) => {
 
 };
 
-// Check that the form is complete and that there are sufficient questions and responses
+// Return an error if a question for is invalid and change visual appearance
 const getQuestionFormErrors = (minQuestions = 2, minResponses = 4) => {
 
   let error = null;
 
-  const questions = $("#add-questions").children();
-  if (questions.length < minQuestions) {
+  const numQuestions = getNumQuestions();
+  if (numQuestions < minQuestions) {
     error = `Minimum of ${minQuestions} questions must be provided`;
   }
 
@@ -173,13 +175,13 @@ const getQuestionFormErrors = (minQuestions = 2, minResponses = 4) => {
       valid = false;
     }
 
-    // Highlight question forms green/red if valid/invalid
+    // Highlight question forms green/red on submit attempt if they are valid/invalid
     $(question).closest(".new-question")
       .css("border-color", valid ? "#31f37b" : "#e22d4b")
       .css("background-color", valid ? "#002c118e" : "#250006c7")
       .addClass(valid ? "valid-question" : "invalid-question");
 
-    // Maximize invalid questions and minimize valid questions
+    // Force expand invalid questions and collapse valid questions
     $(".invalid-question .maximize").trigger("click");
     $(".valid-question .minimize").trigger("click");
 
@@ -189,7 +191,7 @@ const getQuestionFormErrors = (minQuestions = 2, minResponses = 4) => {
 
 };
 
-// Check that the quiz info fields are complete
+// Return an error message if the form is invalid
 const getQuizFormErrors = () => {
 
   let error = null;
@@ -218,14 +220,13 @@ const getQuizFormErrors = () => {
 
 };
 
-// Retrieve and trim an input field's value
+// Retrieve and sanitize an input field's value
 const getValue = (inputField, escape = true) => {
 
   const string = $(inputField).val().trim();
-
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(string));
-  return escape ? div.innerHTML : div.innerHTML.replace('&lt;','<').replace('&gt;', '>');
+  return escape ? div.innerHTML : div.innerHTML.replace('&lt;', '<').replace('&gt;', '>');
 
 };
 
@@ -261,17 +262,16 @@ const submitForm = () => {
 
   // Submit a post request with the quiz data
   $.ajax({
-    url: "/quizzes",
-    type: "POST",
-    data: {
-      title,
-      description,
-      // coverphoto_url,
-      category_id,
-      public,
-      questions
-    }
-  })
+      url: "/quizzes",
+      type: "POST",
+      data: {
+        title,
+        description,
+        category_id,
+        public,
+        questions
+      }
+    })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
       setTimeout(() => {
@@ -302,7 +302,7 @@ $(document).ready(function() {
 
     event.preventDefault();
 
-    // Display question form errors, if any
+    // Display any form errors
     const error = getQuizFormErrors() || getQuestionFormErrors();
     showError(error);
 
@@ -313,7 +313,7 @@ $(document).ready(function() {
 
   });
 
-  // Clear question validation highlights and error message on user input
+  // Clear question validation highlights and error messages on user input
   quizForm.on("input", function() {
 
     $(this).find(".new-question")

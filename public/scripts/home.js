@@ -1,3 +1,4 @@
+// Wrap the console message with a span tag and color class
 const wrapper = (string) => {
   let msg = string;
   let className = "system";
@@ -13,6 +14,7 @@ const wrapper = (string) => {
   return `<span class="${className}">${msg}</span>`;
 }
 
+// Animate the dev log console using a list of messages
 const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
   let feed = [];
   for (let i = 0; i < repeat; i++) {
@@ -75,7 +77,6 @@ $(document).ready(function() {
     `IDK: command not found`
   ]
 
-  const $comp = $("#console");
-  type(msgs, $comp, 15);
+  type(msgs, $("#console"), 15);
 
 });

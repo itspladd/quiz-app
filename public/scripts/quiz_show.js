@@ -1,18 +1,3 @@
-// Retrieve quizInfo from EJS variables
-const getEjsData = () => {
-
-  const quizInfo = {};
-  const ejsData = $("#data-ejs .data-quiz-key");
-  for (const dataKey of ejsData) {
-    const key = $(dataKey).attr("title");
-    const value = $(dataKey).html();
-    quizInfo[key] = value;
-  }
-
-  return quizInfo;
-
-};
-
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
 const loadQuiz = (quizInfo, delay = 5000) => {
@@ -78,7 +63,7 @@ const shuffleQuizData = (quizData) => {
 
 };
 
-// Given quiz data and a question number, create a single quiz question page component
+// Recursively generate individual question components with the given quiz data
 const getNextQuestion = (quizInfo, quizData, number = 0) => {
 
   // Clear the page of any previous questions
@@ -149,7 +134,7 @@ const getNextQuestion = (quizInfo, quizData, number = 0) => {
 
   } else {
 
-    // Store session data
+    // Store the session data
     sessionData = {
       quizID: quizInfo.id,
       sessionID: quizData.sessionID
@@ -207,6 +192,7 @@ const submitResults = (data, quizID, sessionID) => {
 
 // Return true if the review form is valid, otherwise display an error
 const showReviewErrors = () => {
+
   const title = $("#review-title").val().trim();
   const comment = $("#review-comment").val().trim();
   const rating = $("#review-rating").val().trim();
@@ -225,6 +211,7 @@ const showReviewErrors = () => {
     $error.addClass("d-none");
     return true
   }
+
 }
 
 // Send a POST request to the server with the user review form data
@@ -262,7 +249,6 @@ let complete = false;
 $(document).ready(function() {
 
   // Get quiz information from EJS
-  // const quizInfo = getEjsData();
   const quizInfo = JSON.parse($("#ejs").attr("data-ejs"));
 
   // When the user clicks play, send the quizID to the server and create a new session
@@ -276,7 +262,7 @@ $(document).ready(function() {
   $("#review-form").on("submit", function(event) {
     event.preventDefault();
 
-    // Check that the form is complete
+    // Check that the form is complete before submitting
     const isValid = showReviewErrors();
 
     if (isValid) {

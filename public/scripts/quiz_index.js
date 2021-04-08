@@ -8,10 +8,10 @@ const filterData = (data, category) => {
   const $browser = $("#quiz-browser");
   $browser.empty();
 
-  // Filter quizzes by the specified category
+  // Filter the quizzes by the specified category
   const filteredData = data.filter(quiz => quiz.category_title === category || category === "All Quizzes");
 
-  // Create quiz list items
+  // Create the quiz list items
   for (const quiz of filteredData) {
     const $quizItem = $(`
       <a href="/quizzes/${quiz.id}">
@@ -26,13 +26,14 @@ const filterData = (data, category) => {
       </a>
     `);
 
-    // Set cover photo as the background image if it exists
+    // Set the cover photo as the background image if it exists
     if (quiz.coverphoto_url) {
       console.log(quiz.coverphoto_url)
       $quizItem.find(".list-quiz")
         .css("background-image", `url("${quiz.coverphoto_url}")`);
     }
-    // Add quiz to browser container
+
+    // Add the quiz to browser container
     $browser.append($quizItem);
   }
 
@@ -49,6 +50,7 @@ const filterData = (data, category) => {
 
     // Add message to browser container
     $browser.append($message);
+
   }
 
 };
@@ -68,12 +70,13 @@ $(document).ready(function() {
 
     const $target = $(event.target);
 
-    // Remove tab highlighting
+    // Remove all tab highlighting
     $(".tab-btn").removeClass("active-tab");
 
-    // Highlight selected tab
+    // Highlight the newly selected tab
     $target.addClass("active-tab");
 
+    // Set the category
     if ($target.is("#tab-all")) {
       category = "All Quizzes"
     } else if ($target.is("#tab-tech")) {
@@ -84,6 +87,7 @@ $(document).ready(function() {
       category = "Education"
     }
 
+    // Filter by the selected category
     filterData(quizData, category);
 
   })

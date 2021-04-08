@@ -1,4 +1,4 @@
-// Remove an element
+// Remove an element with an animation
 const removeElement = (element, delay = 800, temporary = false) => {
   element
     .css("min-height", "0")
@@ -18,7 +18,7 @@ const removeElement = (element, delay = 800, temporary = false) => {
   }, delay);
 };
 
-// Add an element
+// Add an element with an animation
 const addElement = (element, delay = 400) => {
   element.css("display", "none");
   setTimeout(() => {
@@ -53,7 +53,7 @@ const selectTab = (tab, content) => {
 
 };
 
-// Unselect a content tab and hide its content
+// Unselect a tab and hide its content
 const unselectTab = (tab, content) => {
 
   $(tab).removeClass("active-tab");
@@ -61,35 +61,15 @@ const unselectTab = (tab, content) => {
 
 }
 
+// Load cover photos for all list quizzes
 const loadCoverPhotos = () => {
 
-  // Select all quiz list items
   const quizzes = $(".list-quiz");
-
   for (const quiz of quizzes) {
-    // Retrieve cover photo URL
     const quizData = JSON.parse($(quiz).attr("data-quiz-data"));
-    let url = quizData.coverphoto_url;
-
-    // ///////////////////////////////////////////////////////////////////////////////////////////////
-    // // If there is no url, set cover photo based on category --> this ideally should never happen
-    // // once fixed, this if block is no longer necessary, then change url to const
-    // if (!url) {
-    //   console.log("coverphoto url not found for a quiz in dashboard meaning the query returned null");
-    //   const categoryID = quizData.category_id;
-    //   const coverPhotos = {
-    //     "1": "https://i.imgur.com/MUEFC2O.jpg",
-    //     "2": "https://i.imgur.com/kTcMTv5.jpg",
-    //     "3": "https://i.imgur.com/Zr3TESE.jpg"
-    //   }
-    //   url = coverPhotos[categoryID];
-    // }
-    // ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Set cover photo as the background image
+    const url = quizData.coverphoto_url;
     $(quiz)
       .css("background-image", `url("${url}")`)
-
   }
 
 };
@@ -98,13 +78,14 @@ $(document).ready(function() {
 
   const scrollBtn = $("#scroll-btn");
 
+  // Scroll to top when the user clicks the scroll-to-top button
   scrollBtn.on("click", function() {
     $(document).scrollTop(0);
   });
 
+  // Display the scroll-to-top button when the user scroll's below a certain position
   $(document).on("scroll", function() {
     const position = $(this).scrollTop();
-    // Show the scroll-to-top button when the user scroll's below a certain position
     if (position > 250) {
       scrollBtn
         .css("visibility", "visible")
@@ -116,28 +97,20 @@ $(document).ready(function() {
 
   let revert;
 
+  // Copy the current page link and animate the share button appearance
   $("#share-btn").on("click", function() {
 
-    // Clear any previous timeouts
     clearTimeout(revert);
-
     const button = $(this);
-
-    // Copy results link to clipboard
     copyText(window.location.href);
-
-    // Change share button appearance
     button.html("Link copied!")
       .removeClass("btn-custom-blue")
       .addClass("btn-custom-white")
-
-    // Revert appearance after 2 seconds
     revert = setTimeout(() => {
       button.html("Share this page")
         .removeClass("btn-custom-white")
         .addClass("btn-custom-blue")
     }, 2000);
-
   });
 
 });
