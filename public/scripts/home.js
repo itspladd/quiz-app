@@ -52,7 +52,6 @@ $(document).ready(function() {
     `Already on 'main'`,
     `@ahhreggi > oh god`,
     `oh: command not found`,
-    `WHAT: command not found`,
     `@ahhreggi > sleep`,
     `sleep: missing operand`,
     `Try 'sleep --help' for more information.`,
@@ -67,6 +66,7 @@ $(document).ready(function() {
     `@ahhreggi > no`,
     `yes`,
     `@pladd > WHAT IS HAPPENING`
+    `WHAT: command not found`,
   ]
 
   const $comp = $("#console");
