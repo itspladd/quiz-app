@@ -33,18 +33,18 @@
 
             <!-- FAVORITE BUTTON -->
             <% if (userData && !quizData.is_favorited) { %>
-              <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
-                <button type="submit" class="btn-custom btn-custom-white btn-fav mb-3">
-                  Add to Favorites
-                </button>
-              </form>
+            <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>">
+              <button type="submit" class="btn-custom btn-custom-white btn-fav mb-3">
+                Add to Favorites
+              </button>
+            </form>
             <% } else if (userData && quizData.is_favorited) { %>
-              <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>?_method=DELETE">
-                <input type="hidden" name="source" value="/quizzes/<%= quizData.id %>" />
-                <button type="submit" class="btn-custom btn-custom-red btn-fav mb-3">
-                  Remove from Favorites
-                </button>
-              </form>
+            <form method="POST" action="/users/<%= userData.id %>/favorites/<%= quizData.id %>?_method=DELETE">
+              <input type="hidden" name="source" value="/quizzes/<%= quizData.id %>" />
+              <button type="submit" class="btn-custom btn-custom-red btn-fav mb-3">
+                Remove from Favorites
+              </button>
+            </form>
             <% } %>
 
             <!-- QUIZ PHOTO AND STATS -->
@@ -59,7 +59,6 @@
                 <%- include("partials/_avg_rating.ejs", {average: quizData.average_rating}) %>
               </span>
             </div>
-
 
             <div class="mb-4">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
 
@@ -130,7 +129,7 @@
 
             <% } else { %>
 
-              <p class="lead mt-3">You must be logged in to post a review!</p>
+            <p class="lead mt-3">You must be logged in to post a review!</p>
 
             <% } %>
 
