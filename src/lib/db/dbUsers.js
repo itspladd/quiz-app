@@ -105,7 +105,7 @@ module.exports = {
     const queryString = `
       DELETE
       FROM users
-      WHERE user-id = $1
+      WHERE id = $1
       RETURNING * 
     `;
     const queryParams = [user_id];
