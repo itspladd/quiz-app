@@ -14,7 +14,12 @@
               <div class="trending-title">
                 <%= rankData[i].title %>
               </div>
-              <div class="trending-plays d-none d-xl-flex">Rating: <%= rankData[i].average_rating %> </div>
+              <div class="trending-plays d-none d-xl-flex">
+                Rating:
+                <span>
+                  <%- include("_avg_rating.ejs", {average: rankData[i].average_rating}) %>
+                </span>
+              </div>
             </div>
           </div>
         </a>
