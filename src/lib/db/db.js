@@ -13,6 +13,13 @@ if (process.env.DATABASE_URL) {
     database: process.env.DB_NAME
   };
 }
+
+console.log("**********************************")
+console.log("IN DB.JS")
+console.log("dbPARAMS:")
+console.log(dbParams)
+console.log("**********************************")
+
 const {
   Pool
 } = require("pg");
