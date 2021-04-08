@@ -66,28 +66,7 @@
             <div class="divider-h mb-4"></div>
 
             <!-- REVIEWS -->
-            <p class="h4 mt-0 mb-4">Recent Reviews</p>
-            <% for (const review of quizData.reviews) { %>
-              <div class="d-flex flex-row quiz-review align-items-center">
-                <img class="review-avatar mr-3" src="<%= review.avatar_url %>" alt="avatar">
-                <div class="div d-flex flex-column">
-                  <span class="review-title"><%= review.title %></span>
-                  <div class="d-flex flex-row align-items-center">
-                    <div class="review-rating">
-                      <% for (let i = 0; i < review.rating; i++) { %>
-                      <img class="review-star" src="/images/star.png" alt="star">
-                      <% } %>
-                    </div>
-                  </div>
-                  <span class="review-comment mt-2"><%= review.comment %> </span>
-                  <span class="review-timestamp mt-1"><%= review.timestamp %> by <span class="review-username"><%= review.username %></span></span>
-                </div>
-              </div>
-            <% } %>
-            <!-- REVIEW MESSAGE (if there are no reviews) -->
-            <% if (!quizData.reviews.length) { %>
-              <p class="lead">There aren't any reviews for this quiz yet.</p>
-            <% } %>
+            <%- include("partials/_reviews.ejs", {quizData}) %>
 
           </div>
 
@@ -149,28 +128,7 @@
             <div class="divider-h mt-2 mb-4"></div>
 
             <!-- REVIEWS -->
-            <p class="h4 mt-0 mb-4">Recent Reviews</p>
-            <% for (const review of quizData.reviews) { %>
-              <div class="d-flex flex-row quiz-review align-items-center">
-                <img class="review-avatar mr-3" src="<%= review.avatar_url %>" alt="avatar">
-                <div class="div d-flex flex-column">
-                  <span class="review-title"><%= review.title %></span>
-                  <div class="d-flex flex-row align-items-center">
-                    <div class="review-rating">
-                      <% for (let i = 0; i < review.rating; i++) { %>
-                      <img class="review-star" src="/images/star.png" alt="star">
-                      <% } %>
-                    </div>
-                  </div>
-                  <span class="review-comment mt-2"><%= review.comment %> </span>
-                  <span class="review-timestamp mt-1"><%= review.timestamp %> by <span class="review-username"><%= review.username %></span></span>
-                </div>
-              </div>
-            <% } %>
-            <!-- REVIEW MESSAGE (if there are no reviews) -->
-            <% if (!quizData.reviews.length) { %>
-              <p class="lead">There aren't any reviews for this quiz yet.</p>
-            <% } %>
+            <%- include("partials/_reviews.ejs", {quizData}) %>
 
           </div>
 
