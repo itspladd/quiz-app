@@ -15,7 +15,7 @@ const filterData = (data, category) => {
   for (const quiz of filteredData) {
     const $quizItem = $(`
       <a href="/quizzes/${quiz.id}">
-        <div class="d-flex flex-row justify-content-between align-items-center list-quiz">
+        <div class="d-flex flex-row justify-content-between align-items-center list-quiz ${quiz.featured ? "border-yellow-darker" : ""}">
         <div class="col-8 pl-4">
             <p class="quiz-title mb-0 mt-0">${quiz.title}</p>
             <p class="quiz-desc d-none d-xl-inline">${quiz.description}</p>
