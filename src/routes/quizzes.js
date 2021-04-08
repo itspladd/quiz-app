@@ -65,7 +65,7 @@ module.exports = (db) => {
     let quizData;
     const quiz_id = req.params.quizID;
     const user_id = userData ? userData.id : null;
-    db.getQuizByID(quiz_id)
+    db.getQuizByID({ quiz_id, user_id })
       .then(rows => {
         // Convert date/time data to a more readable format
         quizData = rows[0];
@@ -80,10 +80,6 @@ module.exports = (db) => {
           review.timestamp = utils.convertTimestamp(review.created_at);
         }
         quizData.reviews = reviewData;
-        return db.isQuizFavoritedByUser(user_id, quiz_id);
-      })
-      .then(rows => {
-        quizData.is_favorited = (rows.length > 0);
         const templateVars = {
           alerts,
           userData,

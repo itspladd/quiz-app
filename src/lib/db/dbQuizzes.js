@@ -105,7 +105,8 @@ module.exports = {
   },
 
   // From Reggi: in case anything breaks, I added the lines "users.is_admin AS is_admin", and "users.is_admin" to the GROUP BY clause
-  getQuizByID: function(id) {
+  getQuizByID: function(params) {
+    const {quiz_id, user_id} = params;
     const queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
@@ -136,7 +137,26 @@ module.exports = {
             FROM quiz_reviews
               JOIN quizzes ON quizzes.id = quiz_reviews.quiz_id
             WHERE quiz_id = $1), 1)
-        AS average_rating
+        AS average_rating,
+          (SELECT 
+            (CASE
+              WHEN COUNT(*) = 0 THEN FALSE
+              ELSE TRUE
+            END)
+          FROM quiz_sessions
+          JOIN quizzes ON quiz_sessions.quiz_id = quizzes.id
+          WHERE quiz_sessions.quiz_id = $1
+            AND quiz_sessions.user_id = $2)
+        AS already_played,
+          (SELECT
+            (CASE
+              WHEN COUNT(*) = 0 THEN FALSE
+              ELSE TRUE
+            END)
+          FROM favorites
+            WHERE favorites.quiz_id = $1
+            AND favorites.user_id = $2)
+        AS is_favorited
       FROM quizzes
         FULL OUTER JOIN quiz_sessions AS sessions ON sessions.quiz_id = quizzes.id
         JOIN questions ON questions.quiz_id = quizzes.id
@@ -149,7 +169,7 @@ module.exports = {
       GROUP BY quizzes.id, categories.id, users.username, users.is_admin
       ORDER BY creation_time DESC;
     `;
-    const queryParams = [id];
+    const queryParams = [quiz_id, user_id];
     return db.query(queryString, queryParams);
   },
 
@@ -316,6 +336,4 @@ module.exports = {
     const queryParams = [quiz_id];
     return db.query(queryString, queryParams);
   },
-
-
 };
