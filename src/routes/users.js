@@ -130,7 +130,7 @@ module.exports = (db) => {
     } else {
       const avatarID = Number(req.body.avatar_id);
       db.updateUserAvatar(userID, avatarID)
-      .then(res => {
+      .then(rows => {
         req.flash("success", "Avatar updated successfully!");
         res.redirect(`/users/${userData.id}`);
       })
@@ -150,7 +150,8 @@ module.exports = (db) => {
       res.redirect("/");
     } else {
       db.deleteUserByID(userID)
-      .then(res => {
+      .then(rows => {
+        req.session.userID = null;
         req.flash("success", "Account deleted successfully! Goodbye!");
         res.redirect("/");
       })

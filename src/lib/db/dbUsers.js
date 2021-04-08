@@ -87,6 +87,28 @@ module.exports = {
     console.log('trying with avatar_id: ', userData.avatar_id)
     // Extract the user data into queryParams and the keys into an array
     return db.insert("users", userData);
-  }
+  },
 
+  // Change a user's avatar.
+  updateUserAvatar: (user_id, avatar_id) => {
+    const queryString = `
+      UPDATE users
+      SET avatar_id = $1
+      WHERE id = $2;
+    `;
+    const queryParams = [avatar_id, user_id];
+    return db.query(queryString, queryParams);
+  },
+
+  // DELETE A USER FOREVER. DANGER DANGER.
+  deleteUserByID: (user_id) => {
+    const queryString = `
+      DELETE
+      FROM users
+      WHERE id = $1
+      RETURNING * 
+    `;
+    const queryParams = [user_id];
+    return db.query(queryString, queryParams);
+  }
 };
