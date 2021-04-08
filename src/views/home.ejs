@@ -28,12 +28,32 @@
 
           <code class="d-flex flex-column align-items-start">
 
-          <span class="pladd">@pladd > Hello world!</span>
+            <span class="ahhreggi">@ahhreggi > inquizitorapp -v</span>
+            <span class="system">v13.33.7</span>
+            <span class="pladd">@pladd > Hello world!</span>
           <span class="ahhreggi">@ahhreggi > sleep</span>
           <span class="system">sleep: missing operand</span>
           <span class="system">Try 'sleep --help' for more information.</span>
 
-          <span class="comment">// TODO: sleep</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
+          <span class="system">no</span>
 
           </code>
 
@@ -45,11 +65,13 @@
           <div id="featured-quizzes" class="d-flex flex-column flex-xl-row justify-content-between">
 
             <% for (const quiz of quizData) { %>
+              <a href="/quizzes/<%= quiz.id %> ">
               <div class="list-quiz d-flex flex-column align-items-start justify-content-center justify-content-xl-between"
               data-quiz-data="<%= JSON.stringify(quiz) %>">
                 <p class="title"><%= quiz.title %> </p>
                 <p class="author <%= quiz.is_admin ? "admin" : "" %> "><%= quiz.author %> </p>
               </div>
+              </a>
             <% } %>
 
           </div>

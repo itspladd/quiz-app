@@ -40,13 +40,11 @@
   }
 }
 
-
 #featured-quizzes {
 
-  .list-quiz {
+  a > .list-quiz {
     border-width: 2px;
     padding: 1rem;
-    width: 100%;
     &:hover {
       border-width: 2px;
     }
@@ -70,7 +68,7 @@
   #featured-quizzes {
     .list-quiz {
 
-      width: 32.7%;
+      width: 13.1rem;
 
     }
   }
