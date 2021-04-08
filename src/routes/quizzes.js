@@ -122,6 +122,7 @@ module.exports = (db) => {
       // 3. Construct the quiz variable to contain everything that db.addQuiz() needs
       if (valid) {
         const quiz = req.body;
+        console.log(JSON.stringify(quiz));
         quiz.author_id = userData.id;
         // After quiz is constructed with all of the values it needs, pass it into db.addQuiz();
         db.addQuiz(quiz)
