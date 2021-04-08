@@ -25,13 +25,13 @@ module.exports = {
 
   query: function(queryString, queryParams) {
     // Optional logging, enable to check queries as they run
-    console.log("Querying...");
+/*     console.log("Querying...");
     console.log(queryString);
-    console.log(queryParams);
+    console.log(queryParams); */
     return pool.query(queryString, queryParams)
       .then(res => {
         // Optional logging, enable to check queries as they run
-        console.log('returning: ', res.rows )
+/*         console.log('returning: ', res.rows ) */
         return res.rows;
       })
       .catch(err => console.error(err));
