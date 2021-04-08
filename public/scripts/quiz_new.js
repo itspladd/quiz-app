@@ -219,9 +219,13 @@ const getQuizFormErrors = () => {
 };
 
 // Retrieve and trim an input field's value
-const getValue = (inputField) => {
+const getValue = (inputField, escape = false) => {
 
-  return $(inputField).val().trim();
+  const string = $(inputField).val().trim();
+
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(string));
+  return escape ? div.innerHTML : div.innerHTML.replace('&lt;','<').replace('&gt;', '>');
 
 };
 
@@ -238,11 +242,11 @@ const submitForm = () => {
   const questions = [];
   const allQuestions = $(".input-question");
   for (const questionField of allQuestions) {
-    const questionValue = getValue(questionField);
+    const questionValue = getValue(questionField, true);
     const responseFields = $(questionField).next().find(".input-response");
     const responseValues = [];
     for (const responseField of responseFields) {
-      const responseValue = getValue(responseField);
+      const responseValue = getValue(responseField, true);
       const answer = {
         body: responseValue
       };
