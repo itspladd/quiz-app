@@ -251,7 +251,7 @@ module.exports = (db) => {
     db.getQuizAuthor(req.params.quizID)
     .then(rows => {
       const author = rows[0].author_id;
-      if (user_id !== author) {
+      if (user_id !== author && !userData.is_admin) {
         req.flash("danger", "You don't have permission to do that!");
         res.redirect("/");
         return;
