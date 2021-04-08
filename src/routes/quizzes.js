@@ -242,7 +242,7 @@ module.exports = (db) => {
             .catch(err => console.error(err));
         // FEATURE: toggle featured/unfeatured for the quizID (admin only)
       } else if (userData.is_admin && action === "feature") {
-          db.toggleQuizFeature(quizID)
+          db.toggleQuizFeatured(quizID)
             .then(rows => {
               const isFeatured = rows[0].featured;
               req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz ${ isFeatured ? "featured" : "unfeatured" } successfully!`);

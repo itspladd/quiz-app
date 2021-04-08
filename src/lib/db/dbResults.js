@@ -5,14 +5,23 @@ const {
 const utils = require("../utils");
 const moment = require("moment");
 
-// Helper function for getResults to format the results properly.
+/**
+ * Helper function for getResults to format the results properly.
+ * @param  {Array} rows
+ *         The rows of raw data retrieved from getResults.
+ * @return {Array}
+ *         An object: {quizData, sessionData}, wrapped in an array.
+ *         (The array wrapper is for consistency, since the
+ *         server expects all DB functions to return an array)
+ *
+ */
 const parseResults = (rows) => {
   // If there's no results, just return an empty array
   if (rows.length === 0) {
     return rows;
   }
   // Some data is the same in every row, so we save a single row
-  // to singletonRow to extract all that data before parsing the other rows.
+  // to extract all that data before parsing the other rows.
   singletonRow = rows[0];
   const quizData = {
     id: singletonRow.quiz_id,
@@ -70,8 +79,34 @@ const parseResults = (rows) => {
 };
 
 module.exports = {
-
+  /**
+   * Retrieves the results of a single quiz session.
+   * Uses parseResults() before returning data.
+   * @param  {Integer} result_id
+   *         The id of the result in the database.
+   * @return {Array}
+   *         The return value of parseResults:
+   *         An object: {quizData, sessionData}, wrapped in an array.
+   *         quizData: {
+   *             id
+   *             author_id
+   *             title
+   *             description
+   *             category_id
+   *          }
+   *         sessionData: {
+   *            id
+   *            user_id
+   *            username
+   *            duration
+   *            end_time
+   *            correct_answers
+   *            responses: 
+   *          }
+   *
+   */
   getResults: function(result_id) {
+    // Note the OUTER JOINs
     const queryString = `
       SELECT DISTINCT username,
         user_id,

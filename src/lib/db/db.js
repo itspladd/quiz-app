@@ -20,35 +20,26 @@ const {
 const pool = new Pool(dbParams);
 
 module.exports = {
-  /*Constants needed by other DB functions.
-
-  Avatar URL are generated on-the-fly by using an avatar ID.
-  Since the URL and file extension data is needed by multiple DB helpers,
-  we define them here.*/
+  // Avatar URLs are generated on-the-fly using the avatar ID.
+  // Since the URL and file extension data is needed by multiple DB helpers,
+  // we define them here.
   AVATAR_PATH: "/images/avatars/",
   AVATAR_FILETYPE: ".png",
 
   /**
-   * Build the data needed to insert a new object into the database, then run query() to insert.
-   * @param  {String} table
-   *         The table to insert the data into.
-   * @param  {Object} dataArray
-   *         Array of objects to be added. All object keys must match columns in the target table.
+   * Single point-of-entry for all database queries.
+   * Queries the database with the input string and parameters.
+   * @param  {String} queryString
+   *         The query in string format, with $1-style variables.
+   * @param  {Array} queryParams
+   *         The parameters to be inserted at the $1 variables in the query.
    * @return {Object}
-   *         A promise to the added data.
+   *         A promise to the rows of data retrieved.
    *
    */
   query: function(queryString, queryParams) {
-    // Optional logging, enable to check queries as they run
-    /*console.log("Querying...");
-    console.log(queryString);
-    console.log(queryParams); */
     return pool.query(queryString, queryParams)
-      .then(res => {
-        // Optional logging, enable to check queries as they run
-        /*console.log('returning: ', res.rows ) */
-        return res.rows;
-      })
+      .then(res => res.rows)
       .catch(err => console.error(err));
   },
 
@@ -81,9 +72,10 @@ module.exports = {
     let varNumber = 1;
     const queryParams = [];
 
-    // This loop creates and appends to queryString: '($1, $2, ...$x), ($x+1, $x+2, $...x+x) ... ($nx+1, $nx+2, ...$nx+x)'
-    // WHERE n = one less than the number of input *objects* in the data parameter
-    // AND x = the number of keys per object.
+    // This loop creates and appends the following string to queryString:
+    //  '($1, $2, ...$x), ($x+1, $x+2, $...x+x) ... ($nx+1, $nx+2, ...$nx+x)'
+    //    WHERE n = one less than the number of input *objects* in the data parameter
+    //    AND x = the number of keys per object.
     // So four objects with two keys each would give '($1, $2), ($3, $4), ($5, $6), ($7, $8)' 
     for (let row of data) {
       queryString += (varNumber === 1) ? "(" : ", (";

@@ -1,6 +1,16 @@
 const db = require("./db");
 
-// Helper function for getQuizQuestionsAndAnswers
+/**
+ * Parse the information from getQuizQuestionsAndAnswers into an object consumable by the front-end.
+ * @param  {Array} rows
+ *         The raw data from the database, containing duplicates of the question data and unique instances of answer data.
+ * @return {Array}
+ *         An array of question data in the following format:
+ *          [
+ *           { id, quiz_id, body, difficulty, answers: [ { id, question_id, body, is_correct }, ...] },
+ *            ...
+ *          ]
+ */
 const parseQuestionData = (rows, quiz_id) => {
 
   const questionData = [];
@@ -8,10 +18,15 @@ const parseQuestionData = (rows, quiz_id) => {
   // Initialize to the first question and array counter
   let currentQuestionID = null;
   let index = -1;
+
+  // Every row contains *unique* answer data and *duplicated* question data.
+  // Thus, this loop tracks the current question and position in the questionData index.
+  // It adds a single entry to the questionData[] array for each unique question,
+  // and adds an entry to the appropriate answers[] array for each row.
   for (let row of rows) {
     // If we're on a new question...
     if (row.question_id !== currentQuestionID) {
-      // Add the question and start the answer array
+      // Add the question and init the answer array
       currentQuestionID = row.question_id;
       questionData.push({
         question: {
@@ -25,7 +40,7 @@ const parseQuestionData = (rows, quiz_id) => {
       // Increment counter so we know where to store our answers
       index++;
     }
-    // Store answers
+    // Store answer data
     questionData[index].answers.push({
       id: row.answer_id,
       question_id: row.answer_question_id,
@@ -40,13 +55,11 @@ const parseQuestionData = (rows, quiz_id) => {
 module.exports = {
 
   /**
-   * Search for quizzes that match the input parameters.
-   * @param  { searchParameters: {  } } quiz
-   *         The quiz data to be added.
+   * Return all publicly-listed, active quizzes.
    * @return {Promise<{}>}
-   *         A promise to the quiz.
+   *         A promise to an array of quizzes with additional category title, quiz author, and cover photo data.
    */
-  getPublicQuizzes: function(searchParameters) {
+  getPublicQuizzes: function() {
     let queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
@@ -62,11 +75,14 @@ module.exports = {
         AND active
     `;
     const queryParams = [];
-    // Close out the query
-    queryString += ";";
     return db.query(queryString, queryParams);
   },
 
+  /**
+   * Return the top 7 highest-average-rating quizzes.
+   * @return {Promise<{}>}
+   *         A promise to an array of no more than 7 quizzes, including total quiz plays and average rating for each.
+   */
   getTrendingQuizzes: function() {
     let queryString = `
       SELECT quizzes.*,
@@ -84,6 +100,11 @@ module.exports = {
     return db.query(queryString, []);
   },
 
+  /**
+   * Return 3 public, active quizzes marked as 'featured' in the DB.
+   * @return {Promise<{}>}
+   *         A promise to an array of no more than 3 quizzes, including category title, cover photo, author ID, and member status of author (i.e. admin or normal user)
+   */
   getFeaturedQuizzes: function() {
     let queryString = `
     SELECT quizzes.*,
@@ -105,9 +126,28 @@ module.exports = {
     return db.query(queryString, []);
   },
 
-  // From Reggi: in case anything breaks, I added the lines "users.is_admin AS is_admin", and "users.is_admin" to the GROUP BY clause
+  /**
+   * The God Query.
+   * Return data about a single active quiz, including the current user's history with this quiz.
+   * @param  {Object} params 
+   *         An object containing user_id and quiz_id, where user_id is the currently logged-in user or NULL for anonymous users
+   * @return {Promise<{}>}
+   *         A promise to an array containing 1 object containing:
+   *         - All standard quiz data
+   *         - Title of the quiz's category
+   *         - Author ID and admin status of author
+   *         - Cover photo URL (defaults to the category cover photo if none is specified for this quiz)
+   *         - Average score for all users who have taken this quiz, as an integer representing percentage (i.e. 50 indicates 50% score)
+   *         - Number of questions in the quiz
+   *         - Total number of times this quiz has been played
+   *         - Average review score for this quiz
+   *         - Whether the current user has taken this quiz before, as a TRUE or FALSE value
+   *         - Whether the current user has favorited this quiz
+   */
   getQuizByID: function(params) {
     const {quiz_id, user_id} = params;
+    
+    // Note the OUTER joins - without them, we can only retrieve quizzes that have already been played and/or reviewed.
     const queryString = `
       SELECT quizzes.*,
         categories.title AS category_title,
@@ -174,6 +214,24 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  /**
+   * 
+   * Return data about a single active quiz, including the current user's history with this quiz.
+   * @param  {Object} params 
+   *         An object containing user_id and quiz_id, where user_id is the currently logged-in user or NULL for anonymous users
+   * @return {Promise<{}>}
+   *         A promise to an array containing 1 object containing:
+   *         - All standard quiz data
+   *         - Title of the quiz's category
+   *         - Author ID and admin status of author
+   *         - Cover photo URL (defaults to the category cover photo if none is specified for this quiz)
+   *         - Average score for all users who have taken this quiz, as an integer representing percentage (i.e. 50 indicates 50% score)
+   *         - Number of questions in the quiz
+   *         - Total number of times this quiz has been played
+   *         - Average review score for this quiz
+   *         - Whether the current user has taken this quiz before, as a TRUE or FALSE value
+   *         - Whether the current user has favorited this quiz
+   */
   getQuizzesForUser: function(userID) {
     const queryString = `
       SELECT quizzes.*,
@@ -193,6 +251,25 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  /**
+   * 
+   * Return question and answer data for a single quiz.
+   * NOTE: Uses the parseQuestionData helper function to format data.
+   * @param  {Integer} quiz_id 
+   *         The id of the quiz.
+   * @return {Array}
+   *         An array containing each question as an object in the following format:
+   *           { 
+   *            id, 
+   *            quiz_id, 
+   *            body, 
+   *            difficulty, 
+   *            answers: [ 
+   *              { id, question_id, body, is_correct }, 
+   *              { id, question_id, body, is_correct }, etc
+   *            ]
+   *           }
+   */
   getQuizQuestionsAndAnswers: function(quiz_id) {
     const queryString = `
       SELECT questions.id AS question_id,
@@ -217,13 +294,15 @@ module.exports = {
   },
 
   /**
-   * Adds a new quiz to the database. Also adds all included questions and answers.
+   * Adds a new quiz to the database.
+   * Also adds all included questions and answers 
+   * by calling the addQuestion and addAnswer functions.
    * @param  { { author_id: int,
    *             category_id: int,
    *             title: string,
    *             description: string,
    *             public: boolean,
-   *             questions: array } } quiz
+   *             questions: array } } quizData
    *         The quiz data to be added.
    * @return {Promise<{}>}
    *         A promise to the quiz.
@@ -236,9 +315,13 @@ module.exports = {
       .then(rows => {
         // Save the quiz object
         const quiz = rows[0];
+
         // Create the array to hold all the promises from adding each question
-        // The quiz object is the first thing in this array, so we can access it later
+        // The quiz object itself is the first element of this array
+        // Why? So that when we exit this function, the function that called this one
+        // has access to the quiz data.
         const questionPromises = [quiz];
+        
         // Add the quiz id to each question and add its database promise to the array
         for (let question of questions) {
           question["quiz_id"] = quiz.id;
@@ -300,6 +383,13 @@ module.exports = {
     return db.insert("answers", answerData);
   },
 
+  /**
+   * Toggles a quiz as public or unlisted.
+   * @param  { Integer } quiz_id
+   *         The ID of the quiz.
+   * @return {Promise<{}>}
+   *         A promise to a boolean indicating the new status of the quiz.
+   */
   toggleQuizPublic: function(quiz_id) {
     const queryString = `
     UPDATE quizzes
@@ -311,7 +401,14 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
-  toggleQuizFeature: function(quiz_id) {
+  /**
+   * Toggles a quiz as featured or not featured.
+   * @param  { Integer } quiz_id
+   *         The ID of the quiz.
+   * @return {Promise<{}>}
+   *         A promise to a boolean indicating the new status of the quiz.
+   */
+  toggleQuizFeatured: function(quiz_id) {
     const queryString = `
     UPDATE quizzes
     SET featured = NOT featured
@@ -322,6 +419,13 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  /**
+   * Toggles a quiz as active or inactive ("deleted").
+   * @param  { Integer } quiz_id
+   *         The ID of the quiz.
+   * @return {Promise<{}>}
+   *         A promise to a boolean indicating the new status of the quiz.
+   */
   toggleQuizActive: function(quiz_id) {
     const queryString = `
     UPDATE quizzes
@@ -332,6 +436,13 @@ module.exports = {
     return db.query(queryString, queryParams);
   },
 
+  /**
+   * Returns the author of a given quiz.
+   * @param  { Integer } quiz_id
+   *         The ID of the quiz.
+   * @return {Promise<{}>}
+   *         A promise to the author ID.
+   */
   getQuizAuthor: function(quiz_id) {
     const queryString = `
     SELECT author_id
