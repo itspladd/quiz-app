@@ -4,7 +4,8 @@
     <div class="d-flex flex-column">
       <div class="panel-username"><%= userData ? userData.username : "Anonymous" %></div>
       <% if (userData) { %>
-        <div class="panel-email text-muted mt-0"><%= userData.email %> </div>
+        <div class="panel-member-type <%= userData.is_admin ? "admin" : "member" %> "><%= userData.is_admin ? "ADMIN ⚔️" : "MEMBER" %></div>
+        <div class="panel-email"><%= userData.email %> </div>
       <% } else { %>
 
           <div class="panel-email mt-0">
@@ -13,5 +14,4 @@
       <% } %>
     </div>
   </div>
-
 </section>

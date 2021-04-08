@@ -5,9 +5,21 @@
   margin-bottom: 2rem;
 
   .panel-username {
-    text-transform: uppercase;
     font-size: 1.2rem;
     font-family: $font-mono;
+  }
+
+  .panel-member-type {
+    font-size: 0.9rem;
+    font-weight: 700;
+    &.admin {
+      color: $primary;
+    }
+  }
+
+  .panel-email {
+    color: $light;
+    font-size: 0.8rem;
   }
 
   .panel-avatar {

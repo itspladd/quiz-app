@@ -9,7 +9,11 @@
         <%- include("_avg_rating.ejs", {average: review.rating}) %>
       </div>
       <span class="review-comment mt-2"><%= review.comment %> </span>
-      <span class="review-timestamp mt-1"><%= review.timestamp %> by <span class="review-username"><%= review.username %></span></span>
+      <span class="review-timestamp mt-1"><%= review.timestamp %> by
+        <span class="review-username <%= review.is_admin ? "admin" : "" %>">
+          <%= review.username %>
+        </span>
+      </span>
     </div>
   </div>
 <% } %>

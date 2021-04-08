@@ -376,6 +376,11 @@ form .custom-select:focus {
 .quiz-review .review-username {
   font-weight: 700;
   margin: 0;
+  color: #eeeeee;
+}
+
+.quiz-review .review-username.admin {
+  color: #fad207;
 }
 
 .quiz-review .review-title {
@@ -460,9 +465,22 @@ form .custom-select:focus {
 }
 
 #side-split-top .panel-username {
-  text-transform: uppercase;
   font-size: 1.2rem;
   font-family: "Lato", sans-serif;
+}
+
+#side-split-top .panel-member-type {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#side-split-top .panel-member-type.admin {
+  color: #fad207;
+}
+
+#side-split-top .panel-email {
+  color: #ffffff79;
+  font-size: 0.8rem;
 }
 
 #side-split-top .panel-avatar {
