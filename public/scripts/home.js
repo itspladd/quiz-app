@@ -7,6 +7,8 @@ const wrapper = (string) => {
     className = "pladd"
   } else if (msg.startsWith("//")) {
     className = "comment"
+  } else if (msg.startsWith("@InquizitorApp > ")) {
+    className = "app"
   }
   return `<span class="${className}">${msg}</span>`;
 }
@@ -37,8 +39,10 @@ $(document).ready(function() {
   loadCoverPhotos();
 
   const msgs = [
-    `@ahhreggi > inquizitorapp -v`,
-    "v13.13.37",
+    `@InquizitorApp > Welcome to InquizitorApp v13.33.37.`,
+    `Type ".help" for more information.`,
+    `@ahhreggi > .help`,
+    "sike",
     `@pladd > "hello world!"`,
     "'hello world!'",
     `@ahhreggi > "hello world!"`,
@@ -56,17 +60,19 @@ $(document).ready(function() {
     `sleep: missing operand`,
     `Try 'sleep --help' for more information.`,
     `@ahhreggi > no`,
-    `yes`,
+    `@InquizitorApp > yes`,
     `@ahhreggi > no`,
-    `yes`,
+    `@InquizitorApp > yes`,
     `@ahhreggi > no`,
-    `yes`,
+    `@InquizitorApp > yes`,
     `@ahhreggi > no`,
-    `yes`,
-    `@ahhreggi > no`,
-    `yes`,
-    `@pladd > WHAT IS HAPPENING`
+    `@InquizitorApp > yes`,
+    `@ahhreggi > NO`,
+    `@InquizitorApp > YES`,
+    `@pladd > WHAT IS HAPPENING`,
     `WHAT: command not found`,
+    `@ahhreggi > IDK MAN`,
+    `IDK: command not found`
   ]
 
   const $comp = $("#console");

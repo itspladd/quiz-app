@@ -173,6 +173,11 @@
   color: #eeeeee;
 }
 
+#dev-log code .app,
+#dev-log pre .app {
+  color: #fad207;
+}
+
 #featured-quizzes {
   margin: 0;
   padding: 0;
