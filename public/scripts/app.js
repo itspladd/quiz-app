@@ -145,8 +145,11 @@ $(document).ready(function() {
 
   const messages = [
     "<span class='pladd'>@pladd > Hello world!</span>",
-    "<span class='ahhreggi'>@ahhreggi > hey paul i think the trending panel is broken pls fix</span>",
-    "<span class='ahhreggi'>@ahhreggi > databases make me cri</span>",
+    "<span class='ahhreggi'>@ahhreggi > hey paul i think the trending panel is broken pls fix, ty!</span>",
+    "<span class='ahhreggi'>@ahhreggi > btw check out the quiz show page</span>",
+    "<span class='ahhreggi'>@ahhreggi > also coverphoto urls aren't being sent to the dashboard properly (they're null)</span>",
+    "<span class='ahhreggi'>@ahhreggi > to show ejs data, set if (!true) to true in _footer.ejs</span>",
+    "<span class='ahhreggi'>@ahhreggi > p.s. databases make me cri</span>",
     "<span class='ahhreggi'>@ahhreggi > inquizitorapp -v</span>",
     "<span class='system'>v13.33.7</span>",
     "<span class='ahhreggi'>@ahhreggi > this is cool</span>",
@@ -167,7 +170,7 @@ $(document).ready(function() {
     messages.push("<span class='system'>no</span>");
   }
 
-  let delay = 2000;
+  let delay = 1000;
   for (const msg of messages) {
     setTimeout(() => {
       console.append(msg);
