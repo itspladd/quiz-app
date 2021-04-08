@@ -9,6 +9,7 @@
     overflow: auto;
     padding: 0.7rem 1rem;
     border: 1px solid $tertiary-lighter;
+    word-wrap: break-word;
 
     &::-webkit-scrollbar {
       width: 0.25em;
@@ -45,19 +46,26 @@
   a > .list-quiz {
     border-width: 2px;
     padding: 1rem;
+
     &:hover {
       border-width: 2px;
     }
+
     .title {
       font-size: 1.2rem;
+      font-weight: 700;
     }
+
     .author {
       font-size: 0.9rem;
       font-weight: 700;
+
       &.admin {
         color: $primary;
       }
+
     }
+
   }
 
 }
@@ -66,11 +74,25 @@
 @media (min-width: 1202px) {
 
   #featured-quizzes {
-    .list-quiz {
 
+    .list-quiz {
       width: 13.1rem;
+    }
+
+    .title {
+      font-size: 1.2rem;
+    }
+
+    .author {
+      font-size: 0.9rem;
+      font-weight: 700;
+
+      &.admin {
+        color: $primary;
+      }
 
     }
+
   }
 
 }

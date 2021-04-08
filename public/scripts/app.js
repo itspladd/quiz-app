@@ -141,4 +141,38 @@ $(document).ready(function() {
 
   });
 
+  const console = $("#console");
+
+  const messages = [
+    "<span class='pladd'>@pladd > Hello world!</span>",
+    "<span class='ahhreggi'>@ahhreggi > hey paul i think the trending panel is broken pls fix</span>",
+    "<span class='ahhreggi'>@ahhreggi > databases make me cri</span>",
+    "<span class='ahhreggi'>@ahhreggi > inquizitorapp -v</span>",
+    "<span class='system'>v13.33.7</span>",
+    "<span class='ahhreggi'>@ahhreggi > this is cool</span>",
+    "<span class='ahhreggi'>@ahhreggi > git add .</span>",
+    "<span class='ahhreggi'>@ahhreggi > git commit -m 'time to sleep'</span>",
+    "<span class='ahhreggi'>@ahhreggi > git push</span>",
+    "<span class='ahhreggi'>@ahhreggi > git checkout main</span>",
+    "<span class='system'>Already on 'main'</span>",
+    "<span class='ahhreggi'>@ahhreggi > oh god</span>",
+    "<span class='system'>oh: command not found</span>",
+    "<span class='ahhreggi'>@ahhreggi > sleep</span>",
+    "<span class='system'>sleep: missing operand</span>",
+    "<span class='system'>Try 'sleep --help' for more information.</span>",
+    "<span class='system'>no</span>"
+  ];
+
+  for (let i = 0; i < 1000; i++) {
+    messages.push("<span class='system'>no</span>");
+  }
+
+  let delay = 2000;
+  for (const msg of messages) {
+    setTimeout(() => {
+      console.append(msg);
+    }, delay);
+    delay += 1000
+  }
+
 });

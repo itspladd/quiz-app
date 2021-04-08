@@ -26,42 +26,7 @@
 
           <!-- CONSOLE -->
 
-          <code class="d-flex flex-column align-items-start">
-
-          <span class="ahhreggi">@ahhreggi > inquizitorapp -v</span>
-          <span class="system">v13.33.7</span>
-          <span class="pladd">@pladd > Hello world!</span>
-          <span class="ahhreggi">@ahhreggi > git add .</span>
-          <span class="ahhreggi">@ahhreggi > git commit -m "time to sleep"</span>
-          <span class="ahhreggi">@ahhreggi > git push</span>
-          <span class="ahhreggi">@ahhreggi > git checkout main</span>
-          <span class="system">Already on 'main'</span>
-          <span class="ahhreggi">@ahhreggi > oh god</span>
-          <span class="system">oh: command not found</span>
-          <span class="ahhreggi">@ahhreggi > sleep</span>
-          <span class="system">sleep: missing operand</span>
-          <span class="system">Try 'sleep --help' for more information.</span>
-
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">no</span>
-          <span class="system">:)</span>
+          <code id="console" class="d-flex flex-column align-items-start">
 
           </code>
 
@@ -77,6 +42,7 @@
               <div class="list-quiz d-flex flex-column align-items-start justify-content-center justify-content-xl-between"
               data-quiz-data="<%= JSON.stringify(quiz) %>">
                 <p class="title"><%= quiz.title %> </p>
+                <p class="description d-xl-none"><%= quiz.description %> </p>
                 <p class="author <%= quiz.is_admin ? "admin" : "" %> "><%= quiz.author %> </p>
               </div>
               </a>

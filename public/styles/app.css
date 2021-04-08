@@ -132,6 +132,7 @@
   overflow: auto;
   padding: 0.7rem 1rem;
   border: 1px solid #2e2f4b;
+  word-wrap: break-word;
 }
 
 #dev-log.console::-webkit-scrollbar {
@@ -183,6 +184,7 @@
 
 #featured-quizzes a > .list-quiz .title {
   font-size: 1.2rem;
+  font-weight: 700;
 }
 
 #featured-quizzes a > .list-quiz .author {
@@ -197,6 +199,16 @@
 @media (min-width: 1202px) {
   #featured-quizzes .list-quiz {
     width: 13.1rem;
+  }
+  #featured-quizzes .title {
+    font-size: 1.2rem;
+  }
+  #featured-quizzes .author {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  #featured-quizzes .author.admin {
+    color: #fad207;
   }
 }
 
