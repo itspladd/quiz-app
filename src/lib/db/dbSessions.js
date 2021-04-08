@@ -7,10 +7,15 @@ module.exports = {
       SELECT 
         results.id AS result_id,
         quizzes.title AS quiz_title,
+          (CASE
+            WHEN quizzes.coverphoto_url IS NULL
+            THEN categories.coverphoto_url END)
+        AS coverphoto_url,
         end_time
       FROM quiz_sessions AS sessions
         LEFT OUTER JOIN results ON session_id = sessions.id
         JOIN quizzes ON sessions.quiz_id = quizzes.id
+        JOIN categories ON quizzes.category_id = categories.id
       WHERE user_id = $1
       ORDER BY start_time DESC
     `;
