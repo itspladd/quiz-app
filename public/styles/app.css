@@ -251,7 +251,7 @@ form .custom-select:focus {
 
 .new-question {
   border: 1px solid #ffffff79;
-  background-color: #1a1b2b;
+  background-color: #11121b;
   border-radius: 0.25rem;
   min-height: 10rem;
   padding: 1rem 2rem;
@@ -260,7 +260,7 @@ form .custom-select:focus {
 
 .new-question:hover {
   border-color: #eeeeee;
-  background-color: #222338;
+  background-color: #1a1b2b;
 }
 
 #new-quiz-error {

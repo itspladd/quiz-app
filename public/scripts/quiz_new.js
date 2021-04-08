@@ -58,12 +58,18 @@ const addQuestionComponent = (element, additionalResponses = 2) => {
     } else if ($($target).is(".toggle.minimize")) {
       const question = $(this).find("input").val();
       const answer = $(this).find(".input-response:first").val();
-      setTimeout(() => {
-        $(this).find(".min-question").html(`
-          <p class="lead">${question || "N/A"}</p>
-          <p class="mb-0">Answer: ${answer || "N/A"}</p>
-        `);
-      }, 150);
+      $(this).find(".min-question")
+      .css("opacity", "0")
+      .html(`
+        <p class="lead">${question || "N/A"}</p>
+        <p class="mb-0">Answer: ${answer || "N/A"}</p>
+      `)
+      .animate({
+        queue: true,
+        opacity: 1
+      }, {
+        duration: 500
+      });
       $(this).find("input").slideUp();
       $(this).find(".responses").slideUp();
       $(this)
@@ -170,6 +176,7 @@ const getQuestionFormErrors = (minQuestions = 2, minResponses = 4) => {
     // Highlight question forms green/red if valid/invalid
     $(question).closest(".new-question")
       .css("border-color", valid ? "#31f37b" : "#e22d4b")
+      .css("background-color", valid ? "#002c118e" : "#250006c7")
       .addClass(valid ? "valid-question" : "invalid-question");
 
     // Maximize invalid questions and minimize valid questions
@@ -226,15 +233,6 @@ const submitForm = () => {
   const description = getValue("#quiz-desc");
   const category_id = getValue("#quiz-category");
   const public = getValue("#quiz-visibility");
-
-  // // Set cover photo based on category
-  // const coverPhotos = {
-  //   "1": "https://i.imgur.com/MUEFC2O.jpg",
-  //   "2": "https://i.imgur.com/kTcMTv5.jpg",
-  //   "3": "https://i.imgur.com/Zr3TESE.jpg"
-  // }
-
-  // const coverphoto_url = coverPhotos[category_id];
 
   // Retrieve quiz question form data
   const questions = [];
@@ -314,8 +312,10 @@ $(document).ready(function() {
   // Clear question validation highlights and error message on user input
   quizForm.on("input", function() {
 
-    $(this).find(".new-question").css("border-color", "#fff")
-    .removeClass("valid-question").removeClass("invalid-question");
+    $(this).find(".new-question")
+      .css("border-color", "#fff")
+      .css("background-color", "#11121b")
+      .removeClass("valid-question").removeClass("invalid-question");
     showError(false);
 
   });
