@@ -100,6 +100,7 @@ module.exports = {
     WHERE public = TRUE
       AND active
       AND featured = TRUE
+    LIMIT 3
     `;
     return db.query(queryString, []);
   },
