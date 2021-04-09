@@ -41,11 +41,13 @@ This app was created as part of our midterm project for Lighthouse Labs' Web Dev
 
 Maria Regina Sirilan ([**@ahhreggi**](https://github.com/ahhreggi)) - *Front-end, UI/UX, API*
 
-> My goal was to create a mobile-first, responsive UI that would help make the user experience as seamless as possible. Every bit of the app is designed with contextual feedback in mind - to provide relevant information to the user through visuals alone so that the UI could remain simple and intuitive. I also focused on scalability early on by dispersing assets and utilities into modular components. This minimized the variety of data passed between the client and server, making it significantly easier to implement additional stretch features towards the end while maintaining a high degree of customizability. Huge props to Paul (and his GOD queries) for holding our crazy database together and keeping up with my requests for progressively granular data! - Reggi ✌️
+> My goal was to create a mobile-first, responsive UI that would help make the user experience as seamless as possible. Every bit of the app is designed with contextual feedback in mind - to provide relevant information to the user through visuals alone so that the UI could remain simple and intuitive. I also focused on scalability early on by dispersing assets and utilities into modular components. This minimized the variety of data passed between the client and server, making it significantly easier to implement additional stretch features towards the end while maintaining a high degree of customizability. Huge props to Paul (and their GOD queries) for holding our crazy database together and keeping up with my requests for progressively granular data! - Reggi ✌️
 
 Paul Ladd ([**@pladd**](https://github.com/itspladd)) - *Back-end architecture, database, API*
 
 > Paul is the GOD querier and very well-rehearsed about Mario's dietary restrictions.
+
+> I refuse to edit that introduction; thanks, Reggi! My goal was to enforce a well-normalized database structure, to stop any data duplication errors before they could start. The database API is designed with a single point-of-entry, making it easy to bundle the entire database access API into server routes. Within the database API, I did my best to strike a balance between making the functions *flexible* and making them *intuitive*. Lower-level functions are designed to handle an arbitrary amount of input data, while higher-level functions are more granular, with longer, descriptive names designed to be easier to read in the server code. I also handled deployment to Heroku - my first Heroku app, and I learned a LOT! And likewise, huge props to Reggi for both her incredible front-end design and development skills and vision for the project as a whole!
 
 <!-- INSTALLATION -->
 
