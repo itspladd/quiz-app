@@ -97,7 +97,7 @@ $(document).ready(function() {
   const initial = [
     "@InquizitorApp > Welcome to InquizitorApp v3.1.21.",
     "// Created by Reggi Sirilan (@ahhreggi) & Paul Ladd (@pladd).",
-    "// See project on <a href='https://github.com/itspladd/quiz-app'>GitHub</a>.",
+    "// See project on <a href='https://github.com/itspladd/quiz-app' target='_blank'>GitHub</a>.",
     "Type \".help\" for more information."
   ];
 
