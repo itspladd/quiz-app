@@ -5,7 +5,7 @@ $(document).ready(function() {
     const isCorrect = $(this).find(".results-correctness").html().trim() === "CORRECT";
     if (!isCorrect) {
       $(this).find(".results-actual").removeClass("d-none");
-      $(this).css("cursor", )
+      $(this).css("cursor", "default").css("border-color", "white");
     }
   });
 
