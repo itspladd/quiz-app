@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Wrap the console message with a span tag and color class
 const wrapper = (string) => {
   let msg = string;
