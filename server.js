@@ -229,6 +229,22 @@ app.post("/register", (req, res) => {
   }
 });
 
+// Study page
+app.get("/study", (req, res) => {
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  const templateVars = {
+    alerts,
+    userData,
+    currentPage
+  };
+  res.render("study", templateVars);
+});
+
+
 // Error 404 page
 app.get("/404", (req, res) => {
   const {
