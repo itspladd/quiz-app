@@ -16,35 +16,41 @@ const wrapper = (string) => {
 
 // Animate the dev log console using a list of messages
 const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
+
+  $("#console").empty();
+
   let feed = [];
   for (let i = 0; i < repeat; i++) {
     feed.push(...messages)
   }
-  feed.push(wrapper("@ahhreggi > no, it doesn't actually go on forever haha"));
+
+  if (repeat >= 100) {
+    feed.push(wrapper("@ahhreggi > no, it doesn't actually go on forever haha"));
+  }
+
   let count = 0;
   let wait = 1000;
   for (const msg of feed) {
-    setTimeout(() => {
+    if (terminate) break;
+    queue.push(setTimeout(() => {
       container.append(wrapper(msg));
       count++;
       if (scroll && count > scroll) {
         container.find(":first-child").remove();
       }
-    }, wait)
+    }, wait));
     wait += delay;
   }
 }
 
-$(document).ready(function() {
-
-  // Load cover photos
-  loadCoverPhotos();
+// DevLog shenanigans :)
+const devLog = () => {
 
   const msgs = [
     `@InquizitorApp > Welcome to InquizitorApp v13.33.37.`,
     `Type ".help" for more information.`,
     `@ahhreggi > .help`,
-    "sike",
+    "@InquizitorApp > sike",
     `@pladd > "hello world!"`,
     "'hello world!'",
     `@ahhreggi > "hello world!"`,
@@ -56,27 +62,99 @@ $(document).ready(function() {
     `@ahhreggi > git commit -m "time to sleep"`,
     `@ahhreggi > git checkout main`,
     `Already on 'main'`,
+    `@ahhreggi > i swear i wasn't on main`,
+    `yes you were`,
     `@ahhreggi > oh god`,
     `oh: command not found`,
     `@ahhreggi > sleep`,
     `sleep: missing operand`,
-    `Try 'sleep --help' for more information.`,
-    `@ahhreggi > no`,
-    `@InquizitorApp > yes`,
-    `@ahhreggi > no`,
-    `@InquizitorApp > yes`,
-    `@ahhreggi > no`,
-    `@InquizitorApp > yes`,
-    `@ahhreggi > no`,
-    `@InquizitorApp > yes`,
-    `@ahhreggi > NO`,
-    `@InquizitorApp > YES`,
+    `Try 'sleep' for more information.`,
+    `@ahhreggi > sleep`,
+    `@InquizitorApp > no`,
+    `@ahhreggi > 'sleep'`,
+    `@InquizitorApp > no`,
+    `@ahhreggi > PLEASE`,
+    `@InquizitorApp > no`,
+    `@ahhreggi > yes`,
+    `@InquizitorApp > no`,
+    `@ahhreggi > yes`,
+    `@InquizitorApp > NO`,
+    `@ahhreggi > YES`,
     `@pladd > WHAT IS HAPPENING`,
     `WHAT: command not found`,
-    `@ahhreggi > IDK MAN`,
+    `@ahhreggi > IDK MAN I'M TRYING TO SLEEP BUT IT WON'T LET ME`,
     `IDK: command not found`
   ]
 
-  type(msgs, $("#console"), 15);
+  const initial = [
+    `@InquizitorApp > Welcome to InquizitorApp v3.1.21.`,
+    `// Live project: https://inquizitor-app.herokuapp.com/`,
+    `// Created by Reggi Sirilan (@ahhreggi) & Paul Ladd (@pladd).`,
+    `Type ".help" for more information.`
+  ]
+
+  const $console = $("#console");
+
+  type(initial, $console, 13, 250, 1);
+
+  let help = ".help";
+  let sleep = "sleep"
+  let i = 0;
+
+  let helped = false;
+
+  $(document).on("keydown", function(event) {
+    const pressed = event.originalEvent.key;
+    console.log(pressed)
+
+    if (helped) {
+      if (pressed === sleep[i]) {
+        i++
+      } else {
+        i = 0;
+      }
+      console.log(i)
+      if (i === sleep.length) {
+        terminate = true;
+        for (const timeout of queue) {
+          clearTimeout(timeout);
+        }
+        helped = false;
+        terminate = false;
+        type(initial, $console, 13, 250, 1);
+        i = 0;
+      }
+    }
+
+    if (!helped) {
+
+      if (pressed === help[i]) {
+        i++
+      } else {
+        i = 0;
+      }
+      if (i === help.length) {
+        console.log("HELP!");
+        // help();
+        helped = true;
+        type(msgs, $console, 15, 250, 100);
+        i = 0
+      }
+
+    }
+
+  })
+}
+
+let queue = [];
+let terminate = false;
+
+$(document).ready(function() {
+
+  // Load cover photos
+  loadCoverPhotos();
+
+  // DevLog shenanigans :)
+  devLog();
 
 });
