@@ -224,9 +224,9 @@ const getQuizFormErrors = () => {
 const getValue = (inputField, escape = true) => {
 
   const string = $(inputField).val().trim();
-  let div = document.createElement('div');
+  let div = document.createElement("div");
   div.appendChild(document.createTextNode(string));
-  return escape ? div.innerHTML : div.innerHTML.replace('&lt;', '<').replace('&gt;', '>');
+  return escape ? div.innerHTML : div.innerHTML.replace("&lt;", "<").replace("&gt;", ">");
 
 };
 
@@ -262,16 +262,16 @@ const submitForm = () => {
 
   // Submit a post request with the quiz data
   $.ajax({
-      url: "/quizzes",
-      type: "POST",
-      data: {
-        title,
-        description,
-        category_id,
-        public,
-        questions
-      }
-    })
+    url: "/quizzes",
+    type: "POST",
+    data: {
+      title,
+      description,
+      category_id,
+      public,
+      questions
+    }
+  })
     .then(quizID => {
       // On successful quiz submission, redirect to the new quiz show page
       setTimeout(() => {

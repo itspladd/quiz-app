@@ -91,7 +91,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         console.error(err);
-        req.flash("warning", `Sorry, we couldn't find a quiz with the ID ${quiz_id}.`)
+        req.flash("warning", `Sorry, we couldn't find a quiz with the ID ${quiz_id}.`);
         res.redirect("/404");
       });
   });
@@ -190,11 +190,11 @@ module.exports = (db) => {
   router.post("/:quizID/reviews", (req, res) => {
     const reviewData = req.body;
     db.addReview(reviewData)
-    .then(rows => res.json(rows[0]))
-    .catch(err => {
-      req.flash("warning", "Sorry, there was a problem when submitting your review.");
-      res.redirect("/home");
-    });
+      .then(rows => res.json(rows[0]))
+      .catch(err => {
+        req.flash("warning", "Sorry, there was a problem when submitting your review.");
+        res.redirect("/home");
+      });
   });
 
   // When a quiz is completed, client sends a PUT request to this route, with the following body:
@@ -230,15 +230,15 @@ module.exports = (db) => {
     const redirectURL = req.body.origin;
     const quizID = req.params.quizID;
     db.getQuizAuthor(quizID)
-    .then(rows => {
-      const author = rows[0].author_id;
-      // ERROR: The user is not an admin and not the owner of the quiz
-      if (!userData.is_admin && user_id !== author) {
-        req.flash("danger", "You don't have permission to do that!");
-        res.redirect("/home");
-        return;
+      .then(rows => {
+        const author = rows[0].author_id;
+        // ERROR: The user is not an admin and not the owner of the quiz
+        if (!userData.is_admin && user_id !== author) {
+          req.flash("danger", "You don't have permission to do that!");
+          res.redirect("/home");
+          return;
         // PUBLIC: toggle public/unlisted for the quizID
-      } else if (action === "public") {
+        } else if (action === "public") {
           db.toggleQuizPublic(quizID)
             .then(rows => {
               const isPublic = rows[0].public;
@@ -247,7 +247,7 @@ module.exports = (db) => {
             })
             .catch(err => console.error(err));
         // FEATURE: toggle featured/unfeatured for the quizID (admin only)
-      } else if (userData.is_admin && action === "feature") {
+        } else if (userData.is_admin && action === "feature") {
           db.toggleQuizFeatured(quizID)
             .then(rows => {
               const isFeatured = rows[0].featured;
@@ -255,10 +255,10 @@ module.exports = (db) => {
               res.redirect(redirectURL);
             })
             .catch(err => console.error(err));
-      }
-    })
-    .catch(err => console.error(err));
-  })
+        }
+      })
+      .catch(err => console.error(err));
+  });
 
   // User can "delete" a quiz, which just deactivates it in our DB.
   router.delete("/:quizID", (req, res) => {
@@ -267,24 +267,24 @@ module.exports = (db) => {
     } = res.locals.vars;
     const user_id = userData ? userData.id : null;
     db.getQuizAuthor(req.params.quizID)
-    .then(rows => {
-      const author = rows[0].author_id;
-      // ERROR: The user is not an admin and not the owner of the quiz
-      if (!userData.is_admin && user_id !== author) {
-        req.flash("danger", "You don't have permission to do that!");
-        res.redirect("/home");
-        return;
-      } else {
-        db.toggleQuizActive(req.params.quizID)
-        .then(rows => {
-          req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz deleted successfully!`);
-          res.redirect("/users/dashboard");
-        })
-        .catch(err => console.error(err));
-      }
-    })
-    .catch(err => console.error(err));
-  })
+      .then(rows => {
+        const author = rows[0].author_id;
+        // ERROR: The user is not an admin and not the owner of the quiz
+        if (!userData.is_admin && user_id !== author) {
+          req.flash("danger", "You don't have permission to do that!");
+          res.redirect("/home");
+          return;
+        } else {
+          db.toggleQuizActive(req.params.quizID)
+            .then(rows => {
+              req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz deleted successfully!`);
+              res.redirect("/users/dashboard");
+            })
+            .catch(err => console.error(err));
+        }
+      })
+      .catch(err => console.error(err));
+  });
 
   return router;
 

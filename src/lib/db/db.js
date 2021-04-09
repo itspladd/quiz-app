@@ -76,7 +76,7 @@ module.exports = {
     //  '($1, $2, ...$x), ($x+1, $x+2, $...x+x) ... ($nx+1, $nx+2, ...$nx+x)'
     //    WHERE n = one less than the number of input *objects* in the data parameter
     //    AND x = the number of keys per object.
-    // So four objects with two keys each would give '($1, $2), ($3, $4), ($5, $6), ($7, $8)' 
+    // So four objects with two keys each would give '($1, $2), ($3, $4), ($5, $6), ($7, $8)'
     for (let row of data) {
       queryString += (varNumber === 1) ? "(" : ", (";
       const values = Object.values(row);

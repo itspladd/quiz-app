@@ -59,7 +59,7 @@ app.use((req, res, next) => {
             rankData
           };
           next();
-        })
+        });
     })
     .catch((err) => console.error(err));
 });

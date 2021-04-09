@@ -20,7 +20,7 @@ module.exports = {
       ORDER BY created_at DESC;
     `;
     const queryParams = [id];
-    console.log
+    console.log;
     return db.query(queryString, queryParams);
   },
   /**

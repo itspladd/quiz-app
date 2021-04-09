@@ -3,16 +3,16 @@ const wrapper = (string) => {
   let msg = string;
   let className = "system";
   if (msg.startsWith("@ahhreggi > ")) {
-    className = "ahhreggi"
+    className = "ahhreggi";
   } else if (msg.startsWith("@pladd > ")) {
-    className = "pladd"
+    className = "pladd";
   } else if (msg.startsWith("//")) {
-    className = "comment"
+    className = "comment";
   } else if (msg.startsWith("@InquizitorApp > ")) {
-    className = "app"
+    className = "app";
   }
   return `<span class="${className}">${msg}</span>`;
-}
+};
 
 // Animate the dev log console using a list of messages
 const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
@@ -21,7 +21,7 @@ const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
 
   let feed = [];
   for (let i = 0; i < repeat; i++) {
-    feed.push(...messages)
+    feed.push(...messages);
   }
 
   if (repeat >= 100) {
@@ -41,79 +41,79 @@ const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
     }, wait));
     wait += delay;
   }
-}
+};
 
 // DevLog shenanigans :)
 const devLog = () => {
 
   const msgs = [
-    `@InquizitorApp > Welcome to InquizitorApp v13.33.37.`,
-    `Type ".help" for more information.`,
-    `@ahhreggi > .help`,
+    "@InquizitorApp > Welcome to InquizitorApp v13.33.37.",
+    "Type \".help\" for more information.",
+    "@ahhreggi > .help",
     "@InquizitorApp > sike",
-    `@pladd > "hello world!"`,
+    "@pladd > \"hello world!\"",
     "'hello world!'",
-    `@ahhreggi > "hello world!"`,
+    "@ahhreggi > \"hello world!\"",
     "'goodbye world!'",
     "@ahhreggi > wait a minute-",
     "-bash: wait: `a': not a pid or valid job spec",
     "-bash: wait: `minute-': not a pid or valid job spec",
-    `@ahhreggi > git add .`,
-    `@ahhreggi > git commit -m "time to sleep"`,
-    `@ahhreggi > git checkout main`,
-    `Already on 'main'`,
-    `@ahhreggi > i swear i wasn't on main`,
-    `yes you were`,
-    `@ahhreggi > oh god`,
-    `oh: command not found`,
-    `@ahhreggi > sleep`,
-    `sleep: missing operand`,
-    `Try 'sleep' for more information.`,
-    `@ahhreggi > sleep`,
-    `@InquizitorApp > no`,
-    `@ahhreggi > 'sleep'`,
-    `@InquizitorApp > no`,
-    `@ahhreggi > PLEASE`,
-    `@InquizitorApp > no`,
-    `@ahhreggi > yes`,
-    `@InquizitorApp > no`,
-    `@ahhreggi > yes`,
-    `@InquizitorApp > NO`,
-    `@ahhreggi > YES`,
-    `@pladd > WHAT IS HAPPENING`,
-    `WHAT: command not found`,
-    `@ahhreggi > IDK MAN I'M TRYING TO SLEEP BUT IT WON'T LET ME`,
-    `IDK: command not found`
-  ]
+    "@ahhreggi > git add .",
+    "@ahhreggi > git commit -m \"time to sleep\"",
+    "@ahhreggi > git checkout main",
+    "Already on 'main'",
+    "@ahhreggi > i swear i wasn't on main",
+    "yes you were",
+    "@ahhreggi > oh god",
+    "oh: command not found",
+    "@ahhreggi > sleep",
+    "sleep: missing operand",
+    "Try 'sleep' for more information.",
+    "@ahhreggi > sleep",
+    "@InquizitorApp > no",
+    "@ahhreggi > 'sleep'",
+    "@InquizitorApp > no",
+    "@ahhreggi > PLEASE",
+    "@InquizitorApp > no",
+    "@ahhreggi > yes",
+    "@InquizitorApp > no",
+    "@ahhreggi > yes",
+    "@InquizitorApp > NO",
+    "@ahhreggi > YES",
+    "@pladd > WHAT IS HAPPENING",
+    "WHAT: command not found",
+    "@ahhreggi > IDK MAN I'M TRYING TO SLEEP BUT IT WON'T LET ME",
+    "IDK: command not found"
+  ];
 
   const initial = [
-    `@InquizitorApp > Welcome to InquizitorApp v3.1.21.`,
-    `// Live project: https://inquizitor-app.herokuapp.com/`,
-    `// Created by Reggi Sirilan (@ahhreggi) & Paul Ladd (@pladd).`,
-    `Type ".help" for more information.`
-  ]
+    "@InquizitorApp > Welcome to InquizitorApp v3.1.21.",
+    "// Live project: https://inquizitor-app.herokuapp.com/",
+    "// Created by Reggi Sirilan (@ahhreggi) & Paul Ladd (@pladd).",
+    "Type \".help\" for more information."
+  ];
 
   const $console = $("#console");
 
-  type(initial, $console, 13, 250, 1);
+  type(initial, $console, 13, 150, 1);
 
   let help = ".help";
-  let sleep = "sleep"
+  let sleep = "sleep";
   let i = 0;
 
   let helped = false;
 
   $(document).on("keydown", function(event) {
     const pressed = event.originalEvent.key;
-    console.log(pressed)
+    console.log(pressed);
 
     if (helped) {
       if (pressed === sleep[i]) {
-        i++
+        i++;
       } else {
         i = 0;
       }
-      console.log(i)
+      console.log(i);
       if (i === sleep.length) {
         terminate = true;
         for (const timeout of queue) {
@@ -121,7 +121,7 @@ const devLog = () => {
         }
         helped = false;
         terminate = false;
-        type(initial, $console, 13, 250, 1);
+        type(initial, $console, 13, 50, 1);
         i = 0;
       }
     }
@@ -129,7 +129,7 @@ const devLog = () => {
     if (!helped) {
 
       if (pressed === help[i]) {
-        i++
+        i++;
       } else {
         i = 0;
       }
@@ -137,14 +137,14 @@ const devLog = () => {
         console.log("HELP!");
         // help();
         helped = true;
-        type(msgs, $console, 15, 250, 100);
-        i = 0
+        type(msgs, $console, 15, 50, 100);
+        i = 0;
       }
 
     }
 
-  })
-}
+  });
+};
 
 let queue = [];
 let terminate = false;

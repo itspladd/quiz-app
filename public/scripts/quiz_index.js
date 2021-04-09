@@ -28,7 +28,7 @@ const filterData = (data, category) => {
 
     // Set the cover photo as the background image if it exists
     if (quiz.coverphoto_url) {
-      console.log(quiz.coverphoto_url)
+      console.log(quiz.coverphoto_url);
       $quizItem.find(".list-quiz")
         .css("background-image", `url("${quiz.coverphoto_url}")`);
     }
@@ -78,18 +78,18 @@ $(document).ready(function() {
 
     // Set the category
     if ($target.is("#tab-all")) {
-      category = "All Quizzes"
+      category = "All Quizzes";
     } else if ($target.is("#tab-tech")) {
-      category = "Technology"
+      category = "Technology";
     } else if ($target.is("#tab-gaming")) {
-      category = "Gaming"
+      category = "Gaming";
     } else if ($target.is("#tab-edu")) {
-      category = "Education"
+      category = "Education";
     }
 
     // Filter by the selected category
     filterData(quizData, category);
 
-  })
+  });
 
 });

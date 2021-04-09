@@ -9,9 +9,9 @@ module.exports = {
    *         A promise to an array containing the sessions, including:
    *          - The ID of the results page if there is an associated entry in the 'results' table
    *          - The title of the quiz for that session
-   *          - The URL of the cover photo (defaults to the category cover photo if none specified for that quiz) 
+   *          - The URL of the cover photo (defaults to the category cover photo if none specified for that quiz)
    *          - The time when the session was completed (NULL if the quiz was never submitted)
-   *          
+   *
    */
   getSessionsByUser: function(user_id) {
     const queryString = `

@@ -129,7 +129,7 @@ module.exports = {
   /**
    * The God Query.
    * Return data about a single active quiz, including the current user's history with this quiz.
-   * @param  {Object} params 
+   * @param  {Object} params
    *         An object containing user_id and quiz_id, where user_id is the currently logged-in user or NULL for anonymous users
    * @return {Promise<{}>}
    *         A promise to an array containing 1 object containing:
@@ -215,9 +215,9 @@ module.exports = {
   },
 
   /**
-   * 
+   *
    * Return data about a single active quiz, including the current user's history with this quiz.
-   * @param  {Object} params 
+   * @param  {Object} params
    *         An object containing user_id and quiz_id, where user_id is the currently logged-in user or NULL for anonymous users
    * @return {Promise<{}>}
    *         A promise to an array containing 1 object containing:
@@ -252,20 +252,20 @@ module.exports = {
   },
 
   /**
-   * 
+   *
    * Return question and answer data for a single quiz.
    * NOTE: Uses the parseQuestionData helper function to format data.
-   * @param  {Integer} quiz_id 
+   * @param  {Integer} quiz_id
    *         The id of the quiz.
    * @return {Array}
    *         An array containing each question as an object in the following format:
-   *           { 
-   *            id, 
-   *            quiz_id, 
-   *            body, 
-   *            difficulty, 
-   *            answers: [ 
-   *              { id, question_id, body, is_correct }, 
+   *           {
+   *            id,
+   *            quiz_id,
+   *            body,
+   *            difficulty,
+   *            answers: [
+   *              { id, question_id, body, is_correct },
    *              { id, question_id, body, is_correct }, etc
    *            ]
    *           }
@@ -295,7 +295,7 @@ module.exports = {
 
   /**
    * Adds a new quiz to the database.
-   * Also adds all included questions and answers 
+   * Also adds all included questions and answers
    * by calling the addQuestion and addAnswer functions.
    * @param  { { author_id: int,
    *             category_id: int,
