@@ -17,7 +17,7 @@
 
 ## 📚 Introduction
 
-<b>[InquizitorApp](https://inquizitor-app.herokuapp.com/)</b> is a responsive, full-stack web application that allows users to create, modify, and take quizzes, as well as share their results.
+<b>[InquizitorApp](https://inquizitor-app.herokuapp.com/)</b> is a RESTful, responsive full-stack web application that allows users to create, modify, and take quizzes, as well as share their results.
 
 Created by Maria Regina Sirilan ([**@ahhreggi**](https://github.com/ahhreggi)) and Paul Ladd ([**@pladd**](https://github.com/itspladd)).
 
