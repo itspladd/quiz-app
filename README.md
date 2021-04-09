@@ -70,4 +70,14 @@ The project is live
 4. Visit <a href="http://localhost:8080/">http://localhost:8080/</a> on your browser
 
 ## 📷 Screenshots
-- There's nothing here yet. :(
+<img src="public/images/screenshots/landing.png" alt="landing" />
+<img src="public/images/screenshots/register.png" alt="register" />
+<img src="public/images/screenshots/home.png" alt="home" />
+<img src="public/images/screenshots/allquizzes.png" alt="allquizzes" />
+<img src="public/images/screenshots/show.png" alt="show" />
+<img src="public/images/screenshots/play.png" alt="play" />
+<img src="public/images/screenshots/review.png" alt="review" />
+<img src="public/images/screenshots/results.png" alt="results" />
+<img src="public/images/screenshots/create.png" alt="create" />
+<img src="public/images/screenshots/dashboard.png" alt="dashboard" />
+<img src="public/images/screenshots/account.png" alt="account" />
