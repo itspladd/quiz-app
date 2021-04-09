@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // Remove an element with an animation
 const removeElement = (element, delay = 800, temporary = false) => {
   element
@@ -9,7 +7,7 @@ const removeElement = (element, delay = 800, temporary = false) => {
       opacity: 0
     }, {
       duration: 400
-    })``
+    })
     .slideUp(400);
   setTimeout(() => {
     if (temporary) {
@@ -59,9 +57,9 @@ const selectTab = (tab, content) => {
 const unselectTab = (tab, content) => {
 
   $(tab).removeClass("active-tab");
-  $(content).addClass("d-none");
+  $(content).addClass("d-none")
 
-};
+}
 
 // Load cover photos for all list quizzes
 const loadCoverPhotos = () => {
@@ -71,7 +69,7 @@ const loadCoverPhotos = () => {
     const quizData = JSON.parse($(quiz).attr("data-quiz-data"));
     const url = quizData.coverphoto_url;
     $(quiz)
-      .css("background-image", `url("${url}")`);
+      .css("background-image", `url("${url}")`)
   }
 
 };
@@ -107,11 +105,11 @@ $(document).ready(function() {
     copyText(window.location.href);
     button.html("Link copied!")
       .removeClass("btn-custom-blue")
-      .addClass("btn-custom-white");
+      .addClass("btn-custom-white")
     revert = setTimeout(() => {
       button.html("Share this page")
         .removeClass("btn-custom-white")
-        .addClass("btn-custom-blue");
+        .addClass("btn-custom-blue")
     }, 2000);
   });
 
