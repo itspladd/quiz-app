@@ -81,7 +81,7 @@
                     <%- include("partials/_star_rating.ejs", {average: quizData.average_rating}) %>
                   </span>
                 </div>
-                <div class="mb-3">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
+                <div class="mb-1">Average user score: <%= (quizData.score * 0.01 * quizData.num_questions).toFixed(2) %> / <%= quizData.num_questions %> (<%= quizData.score %>%)</div>
               </div>
 
               <!-- FAVORITE & SHARE BUTTONS -->
