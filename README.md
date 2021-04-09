@@ -63,11 +63,15 @@ The project is live
    cd quiz-app
    npm install
    ```
-3. Launch the development web server (requires a local PostgreSQL db)
+3. Set up a local PostgreSQL db and seed the database
+   ```
+   npm run db:reset
+   ```
+4. Launch the development web server
    ```
    npm run local
    ```
-4. Visit <a href="http://localhost:8080/">http://localhost:8080/</a> on your browser
+5. Visit <a href="http://localhost:8080/">http://localhost:8080/</a> on your browser
 
 ## 📷 Screenshots
 <img src="public/images/screenshots/landing.png" alt="landing" />
