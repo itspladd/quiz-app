@@ -1,17 +1,11 @@
+/* eslint-disable */
+
 const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
 
-  // After the quiz has ended, the client sends the following data to PUT: "/:quizID/sessions/:sessionID" :
-  //  { session_id, answers }
-  //   -- (answers is an array of answerIDs)
-  // Server uses this data to store the session_answers, update the quiz_session end_time and create a results table entry
-  // Server should send back a result ID which is used to REDIRECT the client to the results page on the client side
-  //   -- Redirect to GET route: /results/:resultID
-
-
-  // /results/:resultID
+  // Results page for a quiz session
   router.get("/:resultID", (req, res) => {
     const {
       alerts,
@@ -35,7 +29,6 @@ module.exports = (db) => {
           userData,
           currentPage,
           rankData,
-          userData,
           quizData,
           sessionData
         };
@@ -43,7 +36,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         console.error(err);
-        req.flash("warning", `Sorry, we couldn't find any quiz results with ID ${req.params.resultID}!`);
+        req.flash("danger", "Either the URL you entered is invalid or that page is no longer available.");
         res.redirect("/404");
       });
   });

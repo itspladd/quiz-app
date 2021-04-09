@@ -59,7 +59,7 @@ app.use((req, res, next) => {
             rankData
           };
           next();
-        })
+        });
     })
     .catch((err) => console.error(err));
 });
@@ -70,7 +70,6 @@ const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
 const resultsRoutes = require("./src/routes/results");
 const adminRoutes = require("./src/routes/admin");
-const { mainModule } = require("process");
 
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));
@@ -97,14 +96,11 @@ app.post("/login", (req, res) => {
         const valid = userData ? bcrypt.compareSync(password, userData.password) : false;
         // ERROR: Credentials are invalid
         if (!valid) {
-          console.log("The username/email or password you entered is invalid.");
           req.flash("danger", "The username/email or password you entered is invalid.");
           res.redirect("/login");
           // SUCCESS: Credentials are valid
         } else {
           req.session.userID = userData.id;
-          console.log(req.session.userID);
-          console.log(`Login successful. Welcome back, ${userData.username}!`);
           req.flash("success", `Login successful. Welcome back, ${userData.username}!`);
           res.redirect("/home");
         }
@@ -118,7 +114,6 @@ app.post("/logout", (req, res) => {
   if (req.session.userID) {
     req.session.userID = null;
     req.flash("success", "You've successfully logged out.");
-    console.log("You've successfully logged out.");
   }
   res.redirect("/home");
 });
@@ -132,7 +127,6 @@ app.get("/login", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
     res.redirect("/home");
   } else {
@@ -155,7 +149,6 @@ app.get("/register", (req, res) => {
   } = res.locals.vars;
   // ERROR: User is already logged in
   if (userData) {
-    console.log("You are already logged in.");
     req.flash("warning", "You are already logged in.");
     res.redirect("/home");
   } else {
@@ -195,7 +188,6 @@ app.post("/register", (req, res) => {
         const userData = rows[0];
         // ERROR: Username is taken
         if (userData) {
-          console.log("The username you entered is already in use.");
           req.flash("danger", "The username you entered is already in use.");
           res.redirect("/register");
         } else {
@@ -204,7 +196,6 @@ app.post("/register", (req, res) => {
             .then(rows => {
               const userData = rows[0];
               if (userData) {
-                console.log("The email you entered is already in use.");
                 req.flash("danger", "The email you entered is already in use.");
                 res.redirect("/register");
                 // SUCCESS: Complete form and nonexistent credentials
@@ -218,7 +209,6 @@ app.post("/register", (req, res) => {
                   .then(rows => {
                     const userData = rows[0];
                     req.session.userID = userData.id;
-                    console.log("Registration successful. Welcome to InquizitorApp!");
                     req.flash("success", "Registration successful. Welcome to InquizitorApp!");
                     res.redirect("/home");
                   });
@@ -228,6 +218,22 @@ app.post("/register", (req, res) => {
       });
   }
 });
+
+// Study page
+app.get("/study", (req, res) => {
+  const {
+    alerts,
+    userData,
+    currentPage
+  } = res.locals.vars;
+  const templateVars = {
+    alerts,
+    userData,
+    currentPage
+  };
+  res.render("study", templateVars);
+});
+
 
 // Error 404 page
 app.get("/404", (req, res) => {

@@ -1,8 +1,9 @@
-const { query } = require("./db");
+/* eslint-disable */
+
 const db = require("./db");
 
 module.exports = {
-  
+
   /**
    * Add a new entry to the 'favorites' table.
    * @param  {Object} favoriteData
@@ -25,7 +26,7 @@ module.exports = {
    */
   deleteFavorite: function(favoriteData) {
     const queryString = `
-      DELETE 
+      DELETE
       FROM favorites
       WHERE user_id = $1
         AND quiz_id = $2
@@ -78,4 +79,4 @@ module.exports = {
     const queryParams = [user_id];
     return db.query(queryString, queryParams);
   }
-}
+};

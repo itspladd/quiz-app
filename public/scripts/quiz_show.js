@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
 const loadQuiz = (quizInfo, delay = 5000) => {
@@ -6,9 +8,9 @@ const loadQuiz = (quizInfo, delay = 5000) => {
 
   // Submit a POST request with the given quiz ID
   $.ajax({
-      url: `/quizzes/${quizInfo.id}/sessions`,
-      type: "POST"
-    })
+    url: `/quizzes/${quizInfo.id}/sessions`,
+    type: "POST"
+  })
     .then(res => {
       quizData = res;
     });
@@ -138,7 +140,7 @@ const getNextQuestion = (quizInfo, quizData, number = 0) => {
     sessionData = {
       quizID: quizInfo.id,
       sessionID: quizData.sessionID
-    }
+    };
 
     // When there are no more questions remaining, process the user response data
     processResults(sessionData.quizID, sessionData.sessionID);
@@ -176,10 +178,10 @@ const processResults = (quizID, sessionID) => {
 const submitResults = (data, quizID, sessionID) => {
 
   $.ajax({
-      url: `/quizzes/${quizID}/sessions/${sessionID}`,
-      type: "PUT",
-      data
-    })
+    url: `/quizzes/${quizID}/sessions/${sessionID}`,
+    type: "PUT",
+    data
+  })
     .then(resultID => {
       // Redirect the user to the result page using the resultID received from the server
       window.location.replace(`/results/${resultID}`);
@@ -209,10 +211,10 @@ const showReviewErrors = () => {
     $error.html("Invalid rating");
   } else {
     $error.addClass("d-none");
-    return true
+    return true;
   }
 
-}
+};
 
 // Send a POST request to the server with the user review form data
 const submitReview = () => {
@@ -224,23 +226,23 @@ const submitReview = () => {
     title: $("#review-title").val().trim(),
     comment: $("#review-comment").val().trim(),
     rating: Number($("#review-rating").val().trim())
-  }
+  };
 
   $.ajax({
-      url: `/quizzes/${data.quiz_id}/reviews`,
-      type: "POST",
-      data
-    })
+    url: `/quizzes/${data.quiz_id}/reviews`,
+    type: "POST",
+    data
+  })
     .then(() => {
       $("#quiz-review-form").remove();
       $("#review-submitted").removeClass("d-none");
     })
     .catch(() => {
       $("#review-error").removeClass("d-none");
-      $("#review-error").html("An error occurred")
+      $("#review-error").html("An error occurred");
     });
 
-}
+};
 
 const userAnswers = [];
 let sessionData = {};

@@ -6,7 +6,7 @@
   <div class="div d-flex flex-column">
     <span class="review-title"><%= review.title %></span>
     <div class="d-flex flex-row align-items-center">
-      <%- include("_avg_rating.ejs", {average: review.rating}) %>
+      <%- include("_star_rating.ejs", {average: review.rating}) %>
     </div>
     <span class="review-comment mt-2"><%= review.comment %> </span>
     <span class="review-timestamp mt-1"><%= review.timestamp %> by

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const db = require("./db");
 const fs = require("fs");
 
@@ -81,10 +83,8 @@ module.exports = {
    */
   addUser: (userData) => {
     // Generate random avatar
-    numAvatars = fs.readdirSync(`./public${db.AVATAR_PATH}`).length -1;
-    console.log('avatars: ', numAvatars);
+    numAvatars = fs.readdirSync(`./public${db.AVATAR_PATH}`).length - 1;
     userData.avatar_id = Math.floor(Math.random() * numAvatars) + 1;
-    console.log('trying with avatar_id: ', userData.avatar_id)
     // Extract the user data into queryParams and the keys into an array
     return db.insert("users", userData);
   },
@@ -121,7 +121,7 @@ module.exports = {
       DELETE
       FROM users
       WHERE id = $1
-      RETURNING * 
+      RETURNING *
     `;
     const queryParams = [user_id];
     return db.query(queryString, queryParams);

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>404 - InquizitorApp</title>
+  <title>Study - InquizitorApp</title>
   <%- include("partials/_imports.ejs") %>
 </head>
 
@@ -10,18 +10,19 @@
 
   <%- include("partials/_header.ejs", {alerts, userData, currentPage, data: {}}) %>
 
+  <!-- MAIN CONTENT (FULL) -->
   <main class="container d-flex flex-column flex-lg-row mt-lg-4">
 
     <!-- MAIN CONTENT (FULL) -->
     <div class="col-12">
-      <section id="main-full" class="border-red error-404 d-flex flex-column justify-content-center">
-        <p class="display-4">404: Page not found</p>
-        <div class="divider-h d-block border-red"></div>
-        <p class="lead">Sorry, the URL you entered is invalid or no longer exists. :(</p>
+      <section id="main-full" class="border-green error-404 d-flex flex-column justify-content-center">
+        <p class="display-4">Come back later!</p>
+        <div class="divider-h d-block border-green"></div>
+        <p class="lead">This page is currently under construction.</p>
         <br>
         <div>
           <a href="/home">
-            <button class="btn-custom btn-custom-red">Back to safety</button>
+            <button class="btn-custom btn-custom-green">Back to home</button>
           </a>
         </div>
       </section>
