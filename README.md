@@ -19,7 +19,7 @@
 
 <b>[InquizitorApp](https://inquizitor-app.herokuapp.com/)</b> is a RESTful, responsive full-stack web application that allows users to create, modify, and take quizzes, as well as share their results.
 
-Created by Maria Regina Sirilan ([**@ahhreggi**](https://github.com/ahhreggi)) and Paul Ladd ([**@pladd**](https://github.com/itspladd)).
+Created by Maria Regina Sirilan ([**@ahhreggi**](https://github.com/ahhreggi)) and Paul Ladd ([**@itspladd**](https://github.com/itspladd)).
 
 This app was created as part of our midterm project for Lighthouse Labs' Web Development bootcamp. The goal was to create a full-stack application from start to finish in just one week.
 
