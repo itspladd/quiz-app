@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Append a question component to the given element
 const addQuestionComponent = (element, additionalResponses = 2) => {
 

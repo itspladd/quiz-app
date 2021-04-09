@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const db = require("./db");
 const fs = require("fs");
 
@@ -121,7 +123,7 @@ module.exports = {
       DELETE
       FROM users
       WHERE id = $1
-      RETURNING * 
+      RETURNING *
     `;
     const queryParams = [user_id];
     return db.query(queryString, queryParams);

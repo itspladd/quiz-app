@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const db = require("./db");
 
 module.exports = {
@@ -15,7 +17,7 @@ module.exports = {
    */
   getSessionsByUser: function(user_id) {
     const queryString = `
-      SELECT 
+      SELECT
         results.id AS result_id,
         quizzes.title AS quiz_title,
           (CASE

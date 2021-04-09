@@ -70,7 +70,6 @@ const usersRoutes = require("./src/routes/users");
 const quizzesRoutes = require("./src/routes/quizzes");
 const resultsRoutes = require("./src/routes/results");
 const adminRoutes = require("./src/routes/admin");
-const { mainModule } = require("process");
 
 app.use("/users", usersRoutes(db));
 app.use("/quizzes", quizzesRoutes(db));

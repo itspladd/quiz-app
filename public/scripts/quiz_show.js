@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Fetch and load questions and answers from the database with the given quiz ID
 // If no data is received, timeout after the given delay
 const loadQuiz = (quizInfo, delay = 5000) => {

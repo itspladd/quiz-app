@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const express = require("express");
 const router = express.Router();
 const utils = require("../lib/utils");
@@ -91,7 +93,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         console.error(err);
-        req.flash("warning", `Sorry, we couldn't find a quiz with the ID ${quiz_id}.`);
+        req.flash("danger", "Either the URL you entered is invalid or that page is no longer available.");
         res.redirect("/404");
       });
   });
@@ -191,7 +193,7 @@ module.exports = (db) => {
     const reviewData = req.body;
     db.addReview(reviewData)
       .then(rows => res.json(rows[0]))
-      .catch(err => {
+      .catch(() => {
         req.flash("warning", "Sorry, there was a problem when submitting your review.");
         res.redirect("/home");
       });
@@ -212,8 +214,8 @@ module.exports = (db) => {
       };
     });
     db.insert("session_answers", sessionAnswers)
-      .then(rows => db.markSessionEndTime(session_id))
-      .then(rows => db.insert("results", { // Create results entry for this session
+      .then(() => db.markSessionEndTime(session_id))
+      .then(() => db.insert("results", { // Create results entry for this session
         session_id
       }))
       .then(resultRows => res.json(resultRows[0].id)) // Send a JSON response with the result ID
@@ -276,7 +278,7 @@ module.exports = (db) => {
           return;
         } else {
           db.toggleQuizActive(req.params.quizID)
-            .then(rows => {
+            .then(() => {
               req.flash("success", `${userData.is_admin ? "ADMIN: " : ""}Quiz deleted successfully!`);
               res.redirect("/users/dashboard");
             })

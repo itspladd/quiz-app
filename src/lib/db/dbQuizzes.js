@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const db = require("./db");
 
 /**
@@ -146,7 +148,7 @@ module.exports = {
    */
   getQuizByID: function(params) {
     const {quiz_id, user_id} = params;
-    
+
     // Note the OUTER joins - without them, we can only retrieve quizzes that have already been played and/or reviewed.
     const queryString = `
       SELECT quizzes.*,
@@ -179,7 +181,7 @@ module.exports = {
               JOIN quizzes ON quizzes.id = quiz_reviews.quiz_id
             WHERE quiz_id = $1), 1)
         AS average_rating,
-          (SELECT 
+          (SELECT
             (CASE
               WHEN COUNT(*) = 0 THEN FALSE
               ELSE TRUE
@@ -321,7 +323,7 @@ module.exports = {
         // Why? So that when we exit this function, the function that called this one
         // has access to the quiz data.
         const questionPromises = [quiz];
-        
+
         // Add the quiz id to each question and add its database promise to the array
         for (let question of questions) {
           question["quiz_id"] = quiz.id;

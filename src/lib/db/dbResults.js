@@ -1,7 +1,6 @@
+/* eslint-disable */
+
 const db = require("./db");
-const {
-  response
-} = require("express");
 const utils = require("../utils");
 const moment = require("moment");
 
@@ -79,7 +78,7 @@ const parseResults = (rows) => {
 };
 
 module.exports = {
-  
+
   /**
    * Retrieves the results of a single quiz session.
    * Uses parseResults() before returning data.
@@ -111,7 +110,6 @@ module.exports = {
    *
    */
   getResults: function(result_id) {
-    // Note the OUTER JOINs
     const queryString = `
       SELECT DISTINCT username,
         user_id,

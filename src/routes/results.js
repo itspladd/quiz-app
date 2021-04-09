@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const express = require("express");
 const router = express.Router();
 
@@ -35,7 +37,6 @@ module.exports = (db) => {
           userData,
           currentPage,
           rankData,
-          userData,
           quizData,
           sessionData
         };
@@ -43,7 +44,7 @@ module.exports = (db) => {
       })
       .catch(err => {
         console.error(err);
-        req.flash("warning", `Sorry, we couldn't find any quiz results with ID ${req.params.resultID}!`);
+        req.flash("danger", "Either the URL you entered is invalid or that page is no longer available.");
         res.redirect("/404");
       });
   });

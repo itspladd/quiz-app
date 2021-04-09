@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const utils = require("../lib/utils");
-const moment = require("moment");
 
 module.exports = (db) => {
 
@@ -11,10 +9,7 @@ module.exports = (db) => {
     // Browse all
     // Get all quizzes (this is where we'd add a sort parameter in the future)
     const {
-      alerts,
       userData,
-      currentPage,
-      rankData
     } = res.locals.vars;
 
     // Check that the user is an admin

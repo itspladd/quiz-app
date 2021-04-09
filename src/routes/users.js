@@ -1,4 +1,5 @@
-const e = require("express");
+/* eslint-disable */
+
 const express = require("express");
 const router = express.Router();
 const moment = require("moment");
@@ -129,7 +130,7 @@ module.exports = (db) => {
     } else {
       const avatarID = Number(req.body.avatar_id);
       db.updateUserAvatar(userID, avatarID)
-        .then(rows => {
+        .then(() => {
           req.flash("success", "Avatar updated successfully!");
           res.redirect(`/users/${userData.id}`);
         })
@@ -138,7 +139,6 @@ module.exports = (db) => {
   });
 
   // Delete request for deleting a user's account
-  // TODO: db.deleteUserByID
   router.delete("/:userID", (req, res) => {
     const {
       userData
@@ -149,7 +149,7 @@ module.exports = (db) => {
       res.redirect("/home");
     } else {
       db.deleteUserByID(userID)
-        .then(rows => {
+        .then(() => {
           req.session.userID = null;
           req.flash("success", "Account deleted successfully! Goodbye!");
           res.redirect("/home");
