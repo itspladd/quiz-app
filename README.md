@@ -45,9 +45,7 @@ Maria Regina Sirilan ([**@ahhreggi**](https://github.com/ahhreggi)) - *Front-end
 
 Paul Ladd ([**@pladd**](https://github.com/itspladd)) - *Back-end architecture, database, API*
 
-> Paul is the GOD querier and very well-rehearsed about Mario's dietary restrictions.
-
-> I refuse to edit that introduction; thanks, Reggi! My goal was to enforce a well-normalized database structure, to stop any data duplication errors before they could start. The database API is designed with a single point-of-entry, making it easy to bundle the entire database access API into server routes. Within the database API, I did my best to strike a balance between making the functions *flexible* and making them *intuitive*. Lower-level functions are designed to handle an arbitrary amount of input data, while higher-level functions are more granular, with longer, descriptive names designed to be easier to read in the server code. I also handled deployment to Heroku - my first Heroku app, and I learned a LOT! And likewise, huge props to Reggi for both her incredible front-end design and development skills and vision for the project as a whole!
+> Thanks, Reggi! My goal was to enforce a well-normalized database structure, to stop any data duplication errors before they could start. The database API is designed with a single point-of-entry, making it easy to bundle the entire database access API into server routes. Within the database API, I did my best to strike a balance between making the functions *flexible* and making them *intuitive*. Lower-level functions are designed to handle an arbitrary amount of input data, while higher-level functions are more granular, with longer, descriptive names designed to be easier to read in the server code. I also handled deployment to Heroku - my first Heroku app, and I learned a LOT! And likewise, huge props to Reggi for both her incredible front-end design and development skills and vision for the project as a whole!
 
 <!-- INSTALLATION -->
 
