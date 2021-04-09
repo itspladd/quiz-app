@@ -4,16 +4,13 @@ const router = express.Router();
 module.exports = (db) => {
 
   // /admin/:keyid
-  // Seeds the database from the client-side
+  // Seeds the database from the client-side via the admin control panel
   router.post("/:keyID", (req, res) => {
-    // Browse all
-    // Get all quizzes (this is where we'd add a sort parameter in the future)
     const {
       userData,
     } = res.locals.vars;
 
     // Check that the user is an admin
-
     if (!userData.is_admin) {
       req.flash("danger", "You don't have permission to do that!");
       res.redirect("/home");

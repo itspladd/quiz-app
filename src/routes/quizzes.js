@@ -7,17 +7,14 @@ const moment = require("moment");
 
 module.exports = (db) => {
 
-  // /quizzes
+  // All Quizzes
   router.get("/", (req, res) => {
-    // Browse all
-    // Get all quizzes (this is where we'd add a sort parameter in the future)
     const {
       alerts,
       userData,
       currentPage,
       rankData
     } = res.locals.vars;
-
     db.getPublicQuizzes()
       .then(quizData => {
         const templateVars = {
@@ -32,7 +29,7 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
-  // /quizzes/new
+  // Form to create a new quiz
   router.get("/new", (req, res) => {
     const {
       alerts,
@@ -56,7 +53,7 @@ module.exports = (db) => {
     }
   });
 
-  // /quizzes/:quizID --> generates a session and results/:sessionID on the client-side
+  // Quiz show page
   router.get("/:quizID", (req, res) => {
     const {
       alerts,
@@ -99,7 +96,6 @@ module.exports = (db) => {
   });
 
   // Create a new quiz
-  // Restrictions: user must be logged in
   router.post("/", (req, res) => {
 
     const {
@@ -111,7 +107,6 @@ module.exports = (db) => {
     // 1. Check that the user is signed in
     // ERROR: User is not logged in
     if (userData === null) {
-      console.log("You must be logged in to do that.");
       req.flash("warning", "You must be logged in to do that.");
       res.redirect("/login");
       // SUCCESS: User is logged in
@@ -124,7 +119,6 @@ module.exports = (db) => {
       // 3. Construct the quiz variable to contain everything that db.addQuiz() needs
       if (valid) {
         const quiz = req.body;
-        console.log(JSON.stringify(quiz));
         quiz.author_id = userData.id;
         // After quiz is constructed with all of the values it needs, pass it into db.addQuiz();
         db.addQuiz(quiz)
@@ -141,11 +135,6 @@ module.exports = (db) => {
   });
 
   // Start a new quiz session
-  // Restrictions: none
-  // NOTE: Users do NOT need to be logged in to start a quiz. This means that a quiz_session should
-  // be generated, except user_id would be null, and no post-quiz data will be received by the server
-  // (no results or session_answers).
-  // LATER: If we want to, we can track anonymous quiz plays by counting sessions with user_id = null
   router.post("/:quizID/sessions", (req, res) => {
     const {
       userData
@@ -154,27 +143,17 @@ module.exports = (db) => {
     const user_id = userData ? userData.id : null;
     db.getQuizQuestionsAndAnswers(quiz_id)
       .then(questions => {
-        // If there's no data, it means quiz_id was invalid and there were no Q's and A's
-        // check this: i'm not sure what the value would be - if the quiz id doesn't exist the condition would be if length = 0?
-        // Just make sure this redirect goes through if no data is received
         if (questions.length === 0) {
           res.redirect("/404");
-
-          // If the quiz exists and its questions/answers were retrieved successfully...
         } else {
           // Create a new entry in the quiz_sessions table
           db.addSession({
             quiz_id,
             user_id
           })
+          // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
             .then(rows => {
               session = rows[0];
-              console.log(`New session started by ${userData ? userData.username : "anonymous" }`);
-              // On successful session creation, respond to the user's PLAY QUIZ ajax post request with JSON data
-              // containing all of a quiz's questions and answers
-              // question => a row from the questions table connected to
-              // answers => the 4 rows from the answers table
-
               // Add the sessionID to the quizData array
               const data = {
                 questions,
@@ -189,6 +168,7 @@ module.exports = (db) => {
       });
   });
 
+  // Add a new review
   router.post("/:quizID/reviews", (req, res) => {
     const reviewData = req.body;
     db.addReview(reviewData)
@@ -199,10 +179,7 @@ module.exports = (db) => {
       });
   });
 
-  // When a quiz is completed, client sends a PUT request to this route, with the following body:
-  // {
-  //   session_id
-  //   answers: [answer_id, answer_id, ...]
+  // Update a session at completion
   router.put("/:quizID/sessions/:sessionID", (req, res) => {
     // Create the session_answers entries for this session, using the session_id and answer_ids
     const data = req.body;
@@ -262,7 +239,7 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
-  // User can "delete" a quiz, which just deactivates it in our DB.
+  // "Delete a quiz", which just deactivates it in the database
   router.delete("/:quizID", (req, res) => {
     const {
       userData

@@ -109,9 +109,10 @@ $(document).ready(function() {
 
   let helped = false;
 
+  // Listen for user keypresses to interact with devLog console
   $(document).on("keydown", function(event) {
+
     const pressed = event.originalEvent.key;
-    console.log(pressed);
 
     if (helped) {
       if (pressed === sleep[i]) {
@@ -119,7 +120,6 @@ $(document).ready(function() {
       } else {
         i = 0;
       }
-      console.log(i);
       if (i === sleep.length) {
         terminate = true;
         for (const timeout of queue) {

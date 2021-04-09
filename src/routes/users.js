@@ -6,7 +6,7 @@ const moment = require("moment");
 
 module.exports = (db) => {
 
-  // /users/dashboard
+  // Dashboard
   router.get("/dashboard", (req, res) => {
     const {
       alerts,
@@ -56,8 +56,7 @@ module.exports = (db) => {
     }
   });
 
-  // /users/:userid
-  // Account => form to configure user info
+  // Account settings page
   router.get("/:userID", (req, res) => {
     const {
       alerts,
@@ -67,14 +66,11 @@ module.exports = (db) => {
     } = res.locals.vars;
     // ERROR: User is not logged in
     if (!userData) {
-      console.log("You must be logged in to do that!");
       req.flash("warning", "You must be logged in to do that!");
       res.redirect("/login");
     } else {
       // ERROR: User is logged in but trying to access with a different user ID
       if (Number(req.params.userID) !== userData.id) {
-        console.log(req.params.userID);
-        console.log(userData.id);
         req.flash("danger", "You don't have permission to access this page.");
         res.redirect("/home");
       } else {
@@ -90,6 +86,7 @@ module.exports = (db) => {
     }
   });
 
+  // Add a quiz to the user's favorites
   router.post("/:userID/favorites/:quizID", (req, res) => {
     const {userID, quizID} = req.params;
     db.addFavorite({ user_id: userID, quiz_id: quizID })
@@ -101,6 +98,7 @@ module.exports = (db) => {
       .catch(err => console.error(err));
   });
 
+  // Remove a quiz from the user's favorites
   router.delete("/:userID/favorites/:quizID", (req, res) => {
     const {userID, quizID} = req.params;
     const source = req.body.source;
@@ -108,7 +106,6 @@ module.exports = (db) => {
       .then(rows => {
         quiz_id = rows[0].quiz_id;
         req.flash("success", "Quiz removed from favorites!");
-        console.log(source);
         res.redirect(source);
       })
       .catch(err => {
@@ -118,7 +115,7 @@ module.exports = (db) => {
       });
   });
 
-  // Patch request for updating a user's avatar
+  // Update a user's avatar
   router.patch("/:userID", (req, res) => {
     const {
       userData

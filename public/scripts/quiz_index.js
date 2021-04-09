@@ -28,7 +28,6 @@ const filterData = (data, category) => {
 
     // Set the cover photo as the background image if it exists
     if (quiz.coverphoto_url) {
-      console.log(quiz.coverphoto_url);
       $quizItem.find(".list-quiz")
         .css("background-image", `url("${quiz.coverphoto_url}")`);
     }

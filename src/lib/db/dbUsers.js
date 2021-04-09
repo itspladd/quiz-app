@@ -84,9 +84,7 @@ module.exports = {
   addUser: (userData) => {
     // Generate random avatar
     numAvatars = fs.readdirSync(`./public${db.AVATAR_PATH}`).length - 1;
-    console.log("avatars: ", numAvatars);
     userData.avatar_id = Math.floor(Math.random() * numAvatars) + 1;
-    console.log("trying with avatar_id: ", userData.avatar_id);
     // Extract the user data into queryParams and the keys into an array
     return db.insert("users", userData);
   },
