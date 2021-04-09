@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // Wrap the console message with a span tag and color class
 const wrapper = (string) => {
   let msg = string;
@@ -45,9 +43,15 @@ const type = (messages, container, scroll = 0, delay = 500, repeat = 100) => {
   }
 };
 
-// DevLog shenanigans :)
-const devLog = () => {
+let queue = [];
+let terminate = false;
 
+$(document).ready(function() {
+
+  // Load cover photos
+  loadCoverPhotos();
+
+  // DevLog shenanigans :)
   const msgs = [
     "@InquizitorApp > Welcome to InquizitorApp v13.33.37.",
     "Type \".help\" for more information.",
@@ -136,27 +140,31 @@ const devLog = () => {
         i = 0;
       }
       if (i === help.length) {
-        console.log("HELP!");
-        // help();
         helped = true;
-        type(msgs, $console, 15, 50, 100);
+        type(msgs, $console, 15, 300, 100);
         i = 0;
       }
 
     }
 
   });
-};
 
-let queue = [];
-let terminate = false;
+  // Stop the devLog animation if the user scrolls down
+  $(document).on("scroll", function() {
 
-$(document).ready(function() {
+    const position = $(this).scrollTop();
 
-  // Load cover photos
-  loadCoverPhotos();
+    if (helped && (position + $(window).height() + 100 > $(this).height())) {
+      terminate = true;
+      for (const timeout of queue) {
+        clearTimeout(timeout);
+      }
+      helped = false;
+      terminate = false;
+      type(initial, $console, 13, 50, 1);
+      i = 0;
+    }
 
-  // DevLog shenanigans :)
-  devLog();
+  });
 
 });

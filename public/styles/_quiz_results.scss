@@ -42,6 +42,11 @@
 .response-incorrect {
   border-color: $red;
   background-color: $red-transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $white;
+  }
 
   .results-correctness {
     color: $red;

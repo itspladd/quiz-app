@@ -576,6 +576,11 @@ form .custom-select:focus {
 .response-incorrect {
   border-color: #e22d4b;
   background-color: #250006c7;
+  cursor: pointer;
+}
+
+.response-incorrect:hover {
+  border-color: #eeeeee;
 }
 
 .response-incorrect .results-correctness {
@@ -976,12 +981,6 @@ select {
 
 #share-btn {
   width: 9rem;
-}
-
-#page-footer {
-  border: 5px solid #222338;
-  position: fixed;
-  bottom: 0px;
 }
 
 .btn-custom {
