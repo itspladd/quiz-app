@@ -63,7 +63,7 @@ The project is live
    cd quiz-app
    npm install
    ```
-3. Launch the development web server
+3. Launch the development web server (requires a local PostgreSQL db)
    ```
    npm run local
    ```
