@@ -2,14 +2,14 @@
 
 // Remove an element with an animation
 const removeElement = (element, delay = 800, temporary = false) => {
-  element
+  $(element)
     .css("min-height", "0")
     .animate({
       queue: true,
       opacity: 0
     }, {
       duration: 400
-    })``
+    })
     .slideUp(400);
   setTimeout(() => {
     if (temporary) {
